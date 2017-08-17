@@ -9,3 +9,15 @@ C:\Users\Daniel\Downloads\nop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrde
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csproj.App.config
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.dll
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Views\Configure.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Views\PaymentInfo.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\web.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Description.txt
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\logo.jpg
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.dll.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csproj.App.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.pdb

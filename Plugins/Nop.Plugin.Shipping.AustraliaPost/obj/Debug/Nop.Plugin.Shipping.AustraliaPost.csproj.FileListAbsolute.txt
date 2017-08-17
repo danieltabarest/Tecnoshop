@@ -9,3 +9,14 @@ C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debu
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.dll
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\Views\Configure.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\Description.txt
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\web.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\logo.jpg
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\Nop.Plugin.Shipping.AustraliaPost.dll.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\Nop.Plugin.Shipping.AustraliaPost.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.AustraliaPost\Nop.Plugin.Shipping.AustraliaPost.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.csproj.App.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.AustraliaPost\obj\Debug\Nop.Plugin.Shipping.AustraliaPost.pdb

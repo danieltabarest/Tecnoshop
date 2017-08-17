@@ -11,3 +11,16 @@ C:\Users\Daniel\Downloads\nop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.dll
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Description.txt
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Views\Configure.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Views\Create.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Views\Edit.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Views\_CreateOrUpdate.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\web.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\logo.png
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.dll.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.pdb

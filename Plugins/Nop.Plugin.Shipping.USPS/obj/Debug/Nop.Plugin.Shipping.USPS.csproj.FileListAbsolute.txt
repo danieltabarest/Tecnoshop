@@ -9,3 +9,14 @@ C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plu
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.dll
 C:\Users\Daniel\Downloads\nop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\Views\Configure.cshtml
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\web.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\Description.txt
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\logo.jpg
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\Nop.Plugin.Shipping.USPS.dll.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\Nop.Plugin.Shipping.USPS.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.USPS\Nop.Plugin.Shipping.USPS.pdb
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.csproj.App.config
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.dll
+C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.USPS\obj\Debug\Nop.Plugin.Shipping.USPS.pdb

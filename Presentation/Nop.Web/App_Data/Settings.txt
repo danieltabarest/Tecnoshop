@@ -1,2 +1,2 @@
 DataProvider: sqlserver
-DataConnectionString: Data Source=DANIEL-PTL\SQLEXPRESS;Initial Catalog=TecnoshopDB;Integrated Security=True;Persist Security Info=False
+DataConnectionString: Data Source=DESKTOP-F8ON8GR;Initial Catalog=TecnoshopDB;Integrated Security=True;Persist Security Info=False
