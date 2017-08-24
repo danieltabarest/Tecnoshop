@@ -1,4 +1,5 @@
-﻿@*<div class="header">
+﻿
+@*<div class="header">
     @Html.Widget("header")
     <div class="header-upper">
         <div class="header-selectors-wrapper">
@@ -33,7 +34,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <ul class="list-inline pull-left">
-                    <li>
+                    @*<li>
                         <select class="selectpicker" data-width="95px" data-style="btn-default">
                             <option value="English" data-content="<img alt='English' src='~/Scripts/images/en.jpg'> English">English</option>
                             <option value="French" data-content="<img alt='French' src='~/Scripts/images/fr.jpg'> French">French</option>
@@ -44,7 +45,7 @@
                             <option value="USD">$ USD</option>
                             <option value="EUR">€ EUR</option>
                         </select>
-                    </li>
+                    </li>*@
                     <li class="hidden-xs"><a href="#"><i class="fa fa-phone"></i> +123-456-789</a></li>
                     <li class="hidden-xs"><a href="mailto:cs@domain.tld"><i class="fa fa-envelope"></i> cs@domain.tld</a></li>
                 </ul>
@@ -185,7 +186,16 @@
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
+                <li>
+                    
+                    <a href="@Url.Action("Product", "Product")"><span>Products</span></a>
+                        @*@Html.ActionLink("Product", "Product", "Common")*@
+                    
+                    @*<a href="@Url.RouteUrl("CustomerInfo",)">Products</a>*@
+                @*<a href="products.html">Products</a>*@
+                    @*@Html.Action("HomepageProducts", "Products")*@
+                    @*@Html.Action("HeaderLinks", "Common")*@
+                </li>
                 <li><a href="cart.html">Shopping Cart</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
                 <li class="dropdown">

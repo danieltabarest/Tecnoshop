@@ -184,7 +184,7 @@ namespace Nop.Web.Controllers
             return View(productTemplateViewPath, model);
         }
 
-        [ChildActionOnly]
+        
         public virtual ActionResult RelatedProducts(int productId, int? productThumbPictureSize)
         {
             //load and cache report
@@ -207,7 +207,7 @@ namespace Nop.Web.Controllers
             return PartialView(model);
         }
 
-        [ChildActionOnly]
+        
         public virtual ActionResult ProductsAlsoPurchased(int productId, int? productThumbPictureSize)
         {
             if (!_catalogSettings.ProductsAlsoPurchasedEnabled)
@@ -234,7 +234,7 @@ namespace Nop.Web.Controllers
             return PartialView(model);
         }
 
-        [ChildActionOnly]
+        
         public virtual ActionResult CrossSellProducts(int? productThumbPictureSize)
         {
             var cart = _workContext.CurrentCustomer.ShoppingCartItems
@@ -281,7 +281,7 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
-        [ChildActionOnly]
+        
         public virtual ActionResult RecentlyViewedProductsBlock(int? productThumbPictureSize, bool? preparePriceModel)
         {
             if (!_catalogSettings.RecentlyViewedProductsEnabled)
@@ -375,7 +375,7 @@ namespace Nop.Web.Controllers
 
         #region Home page bestsellers and products
 
-        [ChildActionOnly]
+        
         public virtual ActionResult HomepageBestSellers(int? productThumbPictureSize)
         {
             if (!_catalogSettings.ShowBestsellersOnHomepage || _catalogSettings.NumberOfBestsellersOnHomepage == 0)
@@ -404,7 +404,7 @@ namespace Nop.Web.Controllers
             return PartialView(model);
         }
 
-        [ChildActionOnly]
+        
         public virtual ActionResult HomepageProducts(int? productThumbPictureSize)
         {
             var products = _productService.GetAllProductsDisplayedOnHomePage();

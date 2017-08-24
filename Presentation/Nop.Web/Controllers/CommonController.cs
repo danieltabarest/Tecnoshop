@@ -120,6 +120,13 @@ namespace Nop.Web.Controllers
             return PartialView(model);
         }
 
+        [ChildActionOnly]
+        public virtual ActionResult Product()
+        {
+            return Redirect("~/Product/HomepageProducts");
+        }
+
+
         //language
         [ChildActionOnly]
         public virtual ActionResult LanguageSelector()
