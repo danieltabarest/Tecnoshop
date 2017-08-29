@@ -53,17 +53,17 @@ namespace Nop.Core.Domain.Shipping
         public bool NotifyCustomerAboutShippingFromMultipleLocations { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Free shipping over X' is enabled
+        /// Gets or sets a value indicating whether 'Envíos a todo el país. over X' is enabled
         /// </summary>
         public bool FreeShippingOverXEnabled { get; set; }
 
         /// <summary>
-        /// Gets or sets a value of 'Free shipping over X' option
+        /// Gets or sets a value of 'Envíos a todo el país. over X' option
         /// </summary>
         public decimal FreeShippingOverXValue { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Free shipping over X' option
+        /// Gets or sets a value indicating whether 'Envíos a todo el país. over X' option
         /// should be evaluated over 'X' value including tax or not
         /// </summary>
         public bool FreeShippingOverXIncludingTax { get; set; }

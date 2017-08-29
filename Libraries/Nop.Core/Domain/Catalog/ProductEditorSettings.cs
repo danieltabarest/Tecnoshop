@@ -151,7 +151,7 @@ namespace Nop.Core.Domain.Catalog
         public bool IsRental { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Free shipping' field is shown
+        /// Gets or sets a value indicating whether 'Envíos a todo el país.' field is shown
         /// </summary>
         public bool FreeShipping { get; set; }
 

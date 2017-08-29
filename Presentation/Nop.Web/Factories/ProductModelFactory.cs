@@ -412,7 +412,7 @@ namespace Nop.Web.Factories
 
                                 //property for German market
                                 //we display tax/shipping info only with "shipping enabled" for this product
-                                //we also ensure this it's not free shipping
+                                //we also ensure this it's not Envíos a todo el país.
                                 priceModel.DisplayTaxShippingInfo = _catalogSettings.DisplayTaxShippingInfoProductBoxes
                                                                     && product.IsShipEnabled &&
                                                                     !product.IsFreeShipping;
@@ -609,7 +609,7 @@ namespace Nop.Web.Factories
 
                         //property for German market
                         //we display tax/shipping info only with "shipping enabled" for this product
-                        //we also ensure this it's not free shipping
+                        //we also ensure this it's not Envíos a todo el país.
                         model.DisplayTaxShippingInfo = _catalogSettings.DisplayTaxShippingInfoProductDetailsPage
                             && product.IsShipEnabled &&
                             !product.IsFreeShipping;

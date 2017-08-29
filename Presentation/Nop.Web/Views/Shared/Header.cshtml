@@ -47,7 +47,7 @@
                         </select>
                     </li>*@
                     <li class="hidden-xs"><a href="#"><i class="fa fa-phone"></i> +123-456-789</a></li>
-                    <li class="hidden-xs"><a href="servicio_clientes@tecnoshopandservices.com"><i class="fa fa-envelope"></i> cs@domain.tld</a></li>
+                    <li class="hidden-xs"><a href="servicio_clientes@tecnoshopandservices.com"><i class="fa fa-envelope"></i> servicio_clientes@tecnoshopandservices.com</a></li>
                 </ul>
                 <ul class="list-inline pull-right">
                     <li class="hidden-xs"><a href="wishlist.html"><i class="fa fa-heart"></i> Wishlist (3)</a></li>
@@ -189,14 +189,8 @@
                 <li>
                     
                     <a href="@Url.Action("HomeProduct", "Product")"><span>Products</span></a>
-                        @*@Html.ActionLink("Product", "Product", "Common")*@
-                    
-                    @*<a href="@Url.RouteUrl("CustomerInfo",)">Products</a>*@
-                @*<a href="products.html">Products</a>*@
-                    @*@Html.Action("HomeProduct", "Products")*@
-                    @*@Html.Action("HeaderLinks", "Common")*@
                 </li>
-                <li><a href="cart.html">Shopping Cart</a></li>
+                <li><a href="@Url.Action("Cart", "ShoppingCart")">Shopping Cart</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -297,9 +291,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-feature visible-lg">
-                <li><a><i class="fa fa-truck"></i> Free Shipping</a></li>
-                <li><a><i class="fa fa-money"></i> Cash on Delivery</a></li>
-                <li><a><i class="fa fa-lock"></i> Secure Payment</a></li>
+                <li><a><i class="fa fa-truck"></i> Envíos a todo el país</a></li>
+                <li><a><i class="fa fa-money"></i> Facilidades de Pago</a></li>
+                <li><a><i class="fa fa-lock"></i> Pago Seguro</a></li>
             </ul>
         </div>
     </div>

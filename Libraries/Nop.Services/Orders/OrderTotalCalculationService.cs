@@ -800,16 +800,16 @@ namespace Nop.Services.Orders
             if (!cart.RequiresShipping())
                 return true;
 
-            //check whether customer is in a customer role with free shipping applied
+            //check whether customer is in a customer role with Envíos a todo el país. applied
             var customer = cart.GetCustomer();
             if (customer != null && customer.CustomerRoles.Where(role => role.Active).Any(role => role.FreeShipping))
                 return true;
 
-            //check whether all shopping cart items are marked as free shipping
+            //check whether all shopping cart items are marked as Envíos a todo el país.
             if (cart.All(item => item.IsShipEnabled && item.IsFreeShipping))
                 return true;
 
-            //free shipping over $X
+            //Envíos a todo el país. over $X
             if (_shippingSettings.FreeShippingOverXEnabled)
             {
                 if (!subTotal.HasValue)
@@ -823,7 +823,7 @@ namespace Nop.Services.Orders
                     subTotal = subTotalWithDiscount;
                 }
 
-                //check whether we have subtotal enough to have free shipping
+                //check whether we have subtotal enough to have Envíos a todo el país.
                 if (subTotal.Value > _shippingSettings.FreeShippingOverXValue)
                     return true;
             }
@@ -832,7 +832,7 @@ namespace Nop.Services.Orders
         }
 
         /// <summary>
-        /// Adjust shipping rate (free shipping, additional charges, discounts)
+        /// Adjust shipping rate (Envíos a todo el país., additional charges, discounts)
         /// </summary>
         /// <param name="shippingRate">Shipping rate to adjust</param>
         /// <param name="cart">Cart</param>
@@ -843,7 +843,7 @@ namespace Nop.Services.Orders
         {
             appliedDiscounts = new List<DiscountForCaching>();
 
-            //free shipping
+            //Envíos a todo el país.
             if (IsFreeShipping(cart))
                 return decimal.Zero;
             

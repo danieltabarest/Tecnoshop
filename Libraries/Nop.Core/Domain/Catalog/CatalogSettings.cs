@@ -49,7 +49,7 @@ namespace Nop.Core.Domain.Catalog
         public bool ShowGtin { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether "Free shipping" icon should be displayed for products
+        /// Gets or sets a value indicating whether "Envíos a todo el país." icon should be displayed for products
         /// </summary>
         public bool ShowFreeShippingNotification { get; set; }
 

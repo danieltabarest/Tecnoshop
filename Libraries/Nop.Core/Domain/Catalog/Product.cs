@@ -232,7 +232,7 @@ namespace Nop.Core.Domain.Catalog
         /// </summary>
         public bool IsShipEnabled { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether the entity is free shipping
+        /// Gets or sets a value indicating whether the entity is Envíos a todo el país.
         /// </summary>
         public bool IsFreeShipping { get; set; }
         /// <summary>

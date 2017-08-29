@@ -2803,10 +2803,10 @@
     <Value>Check if the product is downloadable. When customers purchase a downloadable product, they can download it direct from your store. The link will be visible after checkout.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.IsFreeShipping">
-    <Value>Free shipping</Value>
+    <Value>Envíos a todo el país.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.IsFreeShipping.Hint">
-    <Value>Check if this product comes with FREE shipping.</Value>
+    <Value>Check if this product comes with Envíos a todo el país..</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.IsGiftCard">
     <Value>Is gift card</Value>
@@ -5365,10 +5365,10 @@
     <Value>Check to including when showing the number of products besides each category.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowFreeShippingNotification">
-    <Value>Show "free shipping" icon</Value>
+    <Value>Show "Envíos a todo el país." icon</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowFreeShippingNotification.Hint">
-    <Value>Check to show "free shipping" notification for products with this option enabled.</Value>
+    <Value>Check to show "Envíos a todo el país." notification for products with this option enabled.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowGtin">
     <Value>Show GTIN</Value>
@@ -7117,7 +7117,7 @@
     <Value>Downloadable product</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.FreeShipping">
-    <Value>Free shipping</Value>
+    <Value>Envíos a todo el país.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.GTIN">
     <Value>GTIN (global trade item number)</Value>
@@ -7393,10 +7393,10 @@
     <Value>Check to allow customers to estimate shipping on shopping cart page.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXEnabled">
-    <Value>Free shipping over 'X'</Value>
+    <Value>Envíos a todo el país. over 'X'</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXEnabled.Hint">
-    <Value>Check to enable free shipping for all orders over 'X'. Set the value to X below.</Value>
+    <Value>Check to enable Envíos a todo el país. for all orders over 'X'. Set the value to X below.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXIncludingTax">
     <Value>Calculate 'X' including tax</Value>
@@ -7408,7 +7408,7 @@
     <Value>Value of 'X'</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXValue.Hint">
-    <Value>All orders with a total greater than the value of 'X' will qualify for free shipping.</Value>
+    <Value>All orders with a total greater than the value of 'X' will qualify for Envíos a todo el país..</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.GoogleMapsApiKey">
     <Value>Google maps API key</Value>
@@ -9391,10 +9391,10 @@
     <Value>Check to force customers to change their passwords after a specified time.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.CustomerRoles.Fields.FreeShipping">
-    <Value>Free shipping</Value>
+    <Value>Envíos a todo el país.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.CustomerRoles.Fields.FreeShipping.Hint">
-    <Value>Check to allow customers in this role to get free shipping on their orders.</Value>
+    <Value>Check to allow customers in this role to get Envíos a todo el país. on their orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.CustomerRoles.Fields.IsSystemRole">
     <Value>Is system role</Value>
@@ -15733,7 +15733,7 @@
     <Value>Featured products</Value>
   </LocaleResource>
   <LocaleResource Name="Products.FreeShipping">
-    <Value>Free shipping</Value>
+    <Value>Envíos a todo el país.</Value>
   </LocaleResource>
   <LocaleResource Name="Products.GiftCard.Message">
     <Value>Message</Value>

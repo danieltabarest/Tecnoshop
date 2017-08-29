@@ -90,7 +90,7 @@ namespace Nop.Core.Domain.Orders
         public virtual Customer Customer { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether the shopping cart item is free shipping
+        /// Gets a value indicating whether the shopping cart item is Envíos a todo el país.
         /// </summary>
         public bool IsFreeShipping
         {

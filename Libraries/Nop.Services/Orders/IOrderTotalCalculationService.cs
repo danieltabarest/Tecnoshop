@@ -45,7 +45,7 @@ namespace Nop.Services.Orders
 
 
         /// <summary>
-        /// Adjust shipping rate (free shipping, additional charges, discounts)
+        /// Adjust shipping rate (Envíos a todo el país., additional charges, discounts)
         /// </summary>
         /// <param name="shippingRate">Shipping rate to adjust</param>
         /// <param name="cart">Cart</param>
