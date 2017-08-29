@@ -123,7 +123,7 @@ namespace Nop.Web.Controllers
         [ChildActionOnly]
         public virtual ActionResult Product()
         {
-            return Redirect("~/Product/HomepageProducts");
+            return Redirect("~/Product/HomeProduct");
         }
 
 

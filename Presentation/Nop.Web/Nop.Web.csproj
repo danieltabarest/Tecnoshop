@@ -1596,6 +1596,7 @@
     <Content Include="Views\Complements\fonts\robotodraft\Thin\RobotoDraft-Thin.ttf" />
     <Content Include="Views\Complements\fonts\robotodraft\Thin\RobotoDraft-Thin.woff" />
     <Content Include="Views\Complements\fonts\robotodraft\Thin\RobotoDraft-Thin.woff2" />
+    <Content Include="Views\Product\HomeProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />

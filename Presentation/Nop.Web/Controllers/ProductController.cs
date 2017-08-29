@@ -405,7 +405,7 @@ namespace Nop.Web.Controllers
         }
 
         
-        public virtual ActionResult HomepageProducts(int? productThumbPictureSize)
+        public virtual ActionResult HomeProduct(int? productThumbPictureSize)
         {
             var products = _productService.GetAllProductsDisplayedOnHomePage();
             //ACL and store mapping
