@@ -31,6 +31,7 @@
     Html.AddCssFileParts("~/Scripts/css/bootstrap-select.cs");
     Html.AddCssFileParts("~/Scripts/css/owl.carousel.css");
     Html.AddCssFileParts("~/Scripts/css/owl.theme.default.css");
+    Html.AddCssFileParts("~/Scripts/css/jquery.bootstrap-touchspin.css");
     Html.AddCssFileParts("~/Scripts/css/style.teal.flat.cs");
 
 
@@ -38,6 +39,7 @@
     Html.AddScriptParts("~/Scripts/bootstrap/js/bootstrap.js");
     Html.AddScriptParts("~/Scripts/js/bootstrap-select.js");
     Html.AddScriptParts("~/Scripts/js/owl.carousel.js");
+    Html.AddScriptParts("~/Scripts/js/jquery.bootstrap-touchspin.js");
     Html.AddScriptParts("~/Scripts/js/bootstrap3-typeahead.js");
     Html.AddScriptParts("~/Scripts/js/bootstrap-toolkit.js");
     Html.AddScriptParts("~/Scripts/js/mimity.js");
@@ -54,8 +56,10 @@
     <link href="@Url.Content("~/Scripts/css/owl.carousel.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/css/owl.theme.default.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Scripts/css/nouislider.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Scripts/css/style.teal.flat.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/css/jquery.bootstrap-touchspin.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/css/style.teal.flat.css")" rel="stylesheet" id="theme" type="text/css" />
 </head>
+
 
 
 <div class="page home-page">
@@ -64,7 +68,7 @@
             <!-- Top Header -->
             <div class="top-header">
                 <div class="container">
-                    @*<div class="row">
+                    <div class="row">
                         <div class="col-xs-12">
                             <ul class="list-inline pull-left">
                                 <li>
@@ -113,7 +117,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>*@
+                    </div>
                 </div>
             </div>
             <!-- End Top Header -->
