@@ -947,12 +947,18 @@ namespace Nop.Web.Controllers
             //If we got this far, something failed, redisplay form
             return View(model);
         }
+        private readonly ICommonModelFactory _commonModelFactory;
+        //[ChildActionOnly]
+        //public virtual ActionResult CheckoutProgress(CheckoutProgressStep step)
+        //{
+        //    var model = _checkoutModelFactory.PrepareCheckoutProgressModel(step);
+        //    return PartialView(model);
+        //}
 
-        [ChildActionOnly]
-        public virtual ActionResult CheckoutProgress(CheckoutProgressStep step)
+        public virtual ActionResult CheckoutProgress()
         {
-            var model = _checkoutModelFactory.PrepareCheckoutProgressModel(step);
-            return PartialView(model);
+            //var model = _commonModelFactory.PrepareLogoModel();
+            return PartialView();
         }
 
         #endregion
@@ -1115,7 +1121,7 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
-        [ChildActionOnly]
+        //[ChildActionOnly]
         public virtual ActionResult OpcBillingForm()
         {
             var cart = _workContext.CurrentCustomer.ShoppingCartItems
