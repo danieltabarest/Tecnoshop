@@ -9,11 +9,11 @@ namespace Nop.Admin.Models.Tax
     [Validator(typeof(TaxCategoryValidator))]
     public partial class TaxCategoryModel : BaseNopEntityModel
     {
-        [NopResourceDisplayName("Admin.Configuration.Tax.Categorias.Fields.Name")]
+        [NopResourceDisplayName("Admin.Configuration.Tax.Categories.Fields.Name")]
         [AllowHtml]
         public string Name { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Tax.Categorias.Fields.DisplayOrder")]
+        [NopResourceDisplayName("Admin.Configuration.Tax.Categories.Fields.DisplayOrder")]
         public int DisplayOrder { get; set; }
     }
 }

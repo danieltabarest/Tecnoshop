@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Nop.Core.Domain.Common;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Payments;
 using Nop.Web.Models.Checkout;
 

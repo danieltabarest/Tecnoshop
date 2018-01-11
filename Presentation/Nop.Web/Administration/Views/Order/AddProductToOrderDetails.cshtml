@@ -4,9 +4,9 @@
 
 @{
     //page title
-    ViewBag.Title = string.Format(T("Admin.Pedidos.Products.AddNew.Title2").Text, Model.Name, Model.OrderId);
+    ViewBag.Title = string.Format(T("Admin.Orders.Products.AddNew.Title2").Text, Model.Name, Model.OrderId);
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Pedidos");
+    Html.SetActiveMenuItemSystemName("Orders");
 }
 
 @*we add enctype = "multipart/form-data" because "File upload" attribute control type requires it*@
@@ -19,8 +19,8 @@
     @Html.ValidationSummary(false)
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @string.Format(T("Admin.Pedidos.Products.AddNew.Title2").Text, Model.Name, Model.OrderId)
-            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Pedidos.Products.AddNew.BackToList").Text, "AddProductToOrder", new { orderId = Model.OrderId })</small>
+            @string.Format(T("Admin.Orders.Products.AddNew.Title2").Text, Model.Name, Model.OrderId)
+            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Orders.Products.AddNew.BackToList").Text, "AddProductToOrder", new { orderId = Model.OrderId })</small>
         </h1>
         <div class="pull-right">
             &nbsp;
@@ -104,7 +104,7 @@
                                 <div class="form-group">
                                     <div class="col-md-9 col-md-offset-3">
                                         <p>
-                                            <strong>@T("Admin.Pedidos.Products.AddNew.UpdateTotals")</strong>
+                                            <strong>@T("Admin.Orders.Products.AddNew.UpdateTotals")</strong>
                                         </p>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
                                     <button type="submit" class="btn btn-primary">
-                                        @T("Admin.Pedidos.Products.AddNew")
+                                        @T("Admin.Orders.Products.AddNew")
                                     </button>
                                 </div>
                             </div>

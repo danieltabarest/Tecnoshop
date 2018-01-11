@@ -22,12 +22,12 @@
     int shippingMethodStepNumber = 3;
     int paymentMethodStepNumber = 4;
     int paymentInfoStepNumber = 5;
-    int confirmPedidostepNumber = 6;
+    int confirmOrderstepNumber = 6;
     if (!Model.ShippingRequired)
     {
         paymentMethodStepNumber = paymentMethodStepNumber - 2;
         paymentInfoStepNumber = paymentInfoStepNumber - 2;
-        confirmPedidostepNumber = confirmPedidostepNumber - 2;
+        confirmOrderstepNumber = confirmOrderstepNumber - 2;
     }
     if (Model.DisableBillingAddressCheckoutStep)
     {
@@ -35,7 +35,7 @@
         shippingMethodStepNumber--;
         paymentMethodStepNumber--;
         paymentInfoStepNumber--;
-        confirmPedidostepNumber--;
+        confirmOrderstepNumber--;
     }
 }
 <div class="page checkout-page">
@@ -169,7 +169,7 @@
             </li>
             <li id="opc-confirm_order" class="tab-section">
                 <div class="step-title">
-                    <span class="number">@confirmPedidostepNumber</span>
+                    <span class="number">@confirmOrderstepNumber</span>
                     <h2 class="title">@T("Checkout.ConfirmOrder")</h2>
                 </div>
                 <div id="checkout-step-confirm-order" class="step a-item" style="display: none;">

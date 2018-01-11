@@ -5,7 +5,7 @@ using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -17,7 +17,7 @@ using Nop.Services.Security;
 using Nop.Services.Shipping.Date;
 using Nop.Services.Stores;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Shopping cart service
@@ -388,7 +388,7 @@ namespace Nop.Services.Pedidos
                         break;
                     case ManageInventoryMethod.ManageStock:
                         {
-                            if (product.BackorderMode == BackorderMode.NoBackPedidos)
+                            if (product.BackorderMode == BackorderMode.NoBackOrders)
                             {
                                 int maximumQuantityCanBeAdded = product.GetTotalStockQuantity();
                                 if (maximumQuantityCanBeAdded < quantity)
@@ -414,7 +414,7 @@ namespace Nop.Services.Pedidos
                             {
                                 //combination exists
                                 //let's check stock level
-                                if (!combination.AllowOutOfStockPedidos && combination.StockQuantity < quantity)
+                                if (!combination.AllowOutOfStockOrders && combination.StockQuantity < quantity)
                                 {
                                     int maximumQuantityCanBeAdded = combination.StockQuantity;
                                     if (maximumQuantityCanBeAdded <= 0)

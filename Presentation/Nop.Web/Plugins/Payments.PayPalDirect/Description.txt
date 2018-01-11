@@ -1,4 +1,4 @@
-﻿Group: Payment methods
+﻿Group: Formas de pagos
 FriendlyName: Credit Card
 SystemName: Payments.PayPalDirect
 Version: 2.14

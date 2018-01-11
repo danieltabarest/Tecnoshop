@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Shopping cart service

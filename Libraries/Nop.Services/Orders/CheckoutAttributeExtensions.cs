@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Extensions

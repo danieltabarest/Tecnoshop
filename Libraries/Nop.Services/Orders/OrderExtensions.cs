@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Html;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     public static class OrderExtensions
     {

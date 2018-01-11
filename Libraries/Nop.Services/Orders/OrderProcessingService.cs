@@ -10,7 +10,7 @@ using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Logging;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
@@ -31,7 +31,7 @@ using Nop.Services.Shipping;
 using Nop.Services.Tax;
 using Nop.Services.Vendors;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Order processing service
@@ -40,7 +40,7 @@ namespace Nop.Services.Pedidos
     {
         #region Fields
         
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IWebHelper _webHelper;
         private readonly ILocalizationService _localizationService;
         private readonly ILanguageService _languageService;
@@ -77,7 +77,7 @@ namespace Nop.Services.Pedidos
         private readonly ShippingSettings _shippingSettings;
         private readonly PaymentSettings _paymentSettings;
         private readonly RewardPointsSettings _rewardPointsSettings;
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
         private readonly TaxSettings _taxSettings;
         private readonly LocalizationSettings _localizationSettings;
         private readonly CurrencySettings _currencySettings;
@@ -90,7 +90,7 @@ namespace Nop.Services.Pedidos
         /// <summary>
         /// Ctor
         /// </summary>
-        /// <param name="Pedidoservice">Order service</param>
+        /// <param name="Orderservice">Order service</param>
         /// <param name="webHelper">Web helper</param>
         /// <param name="localizationService">Localization service</param>
         /// <param name="languageService">Language service</param>
@@ -125,12 +125,12 @@ namespace Nop.Services.Pedidos
         /// <param name="paymentSettings">Payment settings</param>
         /// <param name="shippingSettings">Shipping settings</param>
         /// <param name="rewardPointsSettings">Reward points settings</param>
-        /// <param name="Pedidosettings">Order settings</param>
+        /// <param name="Ordersettings">Order settings</param>
         /// <param name="taxSettings">Tax settings</param>
         /// <param name="localizationSettings">Localization settings</param>
         /// <param name="currencySettings">Currency settings</param>
         /// <param name="customNumberFormatter">Custom number formatter</param>
-        public OrderProcessingService(IPedidoservice Pedidoservice,
+        public OrderProcessingService(IOrderservice Orderservice,
             IWebHelper webHelper,
             ILocalizationService localizationService,
             ILanguageService languageService,
@@ -166,13 +166,13 @@ namespace Nop.Services.Pedidos
             ShippingSettings shippingSettings,
             PaymentSettings paymentSettings,
             RewardPointsSettings rewardPointsSettings,
-            Pedidosettings Pedidosettings,
+            Ordersettings Ordersettings,
             TaxSettings taxSettings,
             LocalizationSettings localizationSettings,
             CurrencySettings currencySettings,
             ICustomNumberFormatter customNumberFormatter)
         {
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._webHelper = webHelper;
             this._localizationService = localizationService;
             this._languageService = languageService;
@@ -209,7 +209,7 @@ namespace Nop.Services.Pedidos
             this._paymentSettings = paymentSettings;
             this._shippingSettings = shippingSettings;
             this._rewardPointsSettings = rewardPointsSettings;
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
             this._taxSettings = taxSettings;
             this._localizationSettings = localizationSettings;
             this._currencySettings = currencySettings;
@@ -255,12 +255,12 @@ namespace Nop.Services.Pedidos
             public List<DiscountForCaching> AppliedDiscounts { get; set; }
             public List<AppliedGiftCard> AppliedGiftCards { get; set; }
 
-            public decimal PedidosubTotalInclTax { get; set; }
-            public decimal PedidosubTotalExclTax { get; set; }
-            public decimal PedidosubTotalDiscountInclTax { get; set; }
-            public decimal PedidosubTotalDiscountExclTax { get; set; }
-            public decimal PedidoshippingTotalInclTax { get; set; }
-            public decimal PedidoshippingTotalExclTax { get; set; }
+            public decimal OrdersubTotalInclTax { get; set; }
+            public decimal OrdersubTotalExclTax { get; set; }
+            public decimal OrdersubTotalDiscountInclTax { get; set; }
+            public decimal OrdersubTotalDiscountExclTax { get; set; }
+            public decimal OrdershippingTotalInclTax { get; set; }
+            public decimal OrdershippingTotalExclTax { get; set; }
             public decimal PaymentAdditionalFeeInclTax {get; set; }
             public decimal PaymentAdditionalFeeExclTax { get; set; }
             public decimal OrderTaxTotal  {get; set; }
@@ -296,7 +296,7 @@ namespace Nop.Services.Pedidos
                 details.AffiliateId = affiliate.Id;
 
             //check whether customer is guest
-            if (details.Customer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (details.Customer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 throw new NopException("Anonymous checkout is not allowed");
 
             //customer currency
@@ -351,16 +351,16 @@ namespace Nop.Services.Pedidos
             }
 
             //min totals validation
-            if (!ValidateMinPedidosubtotalAmount(details.Cart))
+            if (!ValidateMinOrdersubtotalAmount(details.Cart))
             {
-                var minPedidosubtotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Pedidosettings.MinPedidosubtotalAmount, _workContext.WorkingCurrency);
-                throw new NopException(string.Format(_localizationService.GetResource("Checkout.MinPedidosubtotalAmount"),
-                    _priceFormatter.FormatPrice(minPedidosubtotalAmount, true, false)));
+                var minOrdersubtotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Ordersettings.MinOrdersubtotalAmount, _workContext.WorkingCurrency);
+                throw new NopException(string.Format(_localizationService.GetResource("Checkout.MinOrdersubtotalAmount"),
+                    _priceFormatter.FormatPrice(minOrdersubtotalAmount, true, false)));
             }
 
             if (!ValidateMinOrderTotalAmount(details.Cart))
             {
-                var minOrderTotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Pedidosettings.MinOrderTotalAmount, _workContext.WorkingCurrency);
+                var minOrderTotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Ordersettings.MinOrderTotalAmount, _workContext.WorkingCurrency);
                 throw new NopException(string.Format(_localizationService.GetResource("Checkout.MinOrderTotalAmount"),
                     _priceFormatter.FormatPrice(minOrderTotalAmount, true, false)));
             }
@@ -372,25 +372,25 @@ namespace Nop.Services.Pedidos
                 details.CustomerTaxDisplayType = _taxSettings.TaxDisplayType;
 
             //sub total (incl tax)
-            decimal PedidosubTotalDiscountAmount;
-            List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
+            decimal OrdersubTotalDiscountAmount;
+            List<DiscountForCaching> OrdersubTotalAppliedDiscounts;
             decimal subTotalWithoutDiscountBase;
             decimal subTotalWithDiscountBase;
-            _orderTotalCalculationService.GetShoppingCartSubTotal(details.Cart, true, out PedidosubTotalDiscountAmount,
-                out PedidosubTotalAppliedDiscounts, out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
-            details.PedidosubTotalInclTax = subTotalWithoutDiscountBase;
-            details.PedidosubTotalDiscountInclTax = PedidosubTotalDiscountAmount;
+            _orderTotalCalculationService.GetShoppingCartSubTotal(details.Cart, true, out OrdersubTotalDiscountAmount,
+                out OrdersubTotalAppliedDiscounts, out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
+            details.OrdersubTotalInclTax = subTotalWithoutDiscountBase;
+            details.OrdersubTotalDiscountInclTax = OrdersubTotalDiscountAmount;
 
             //discount history
-            foreach (var disc in PedidosubTotalAppliedDiscounts)
+            foreach (var disc in OrdersubTotalAppliedDiscounts)
                 if (!details.AppliedDiscounts.ContainsDiscount(disc))
                     details.AppliedDiscounts.Add(disc);
 
             //sub total (excl tax)
-            _orderTotalCalculationService.GetShoppingCartSubTotal(details.Cart, false, out PedidosubTotalDiscountAmount,
-                out PedidosubTotalAppliedDiscounts, out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
-            details.PedidosubTotalExclTax = subTotalWithoutDiscountBase;
-            details.PedidosubTotalDiscountExclTax = PedidosubTotalDiscountAmount;
+            _orderTotalCalculationService.GetShoppingCartSubTotal(details.Cart, false, out OrdersubTotalDiscountAmount,
+                out OrdersubTotalAppliedDiscounts, out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
+            details.OrdersubTotalExclTax = subTotalWithoutDiscountBase;
+            details.OrdersubTotalDiscountExclTax = OrdersubTotalDiscountAmount;
 
             //shipping info
             if (details.Cart.RequiresShipping())
@@ -441,13 +441,13 @@ namespace Nop.Services.Pedidos
             //shipping total
             decimal tax;
             List<DiscountForCaching> shippingTotalDiscounts;
-            var PedidoshippingTotalInclTax = _orderTotalCalculationService.GetShoppingCartShippingTotal(details.Cart, true, out tax, out shippingTotalDiscounts);
-            var PedidoshippingTotalExclTax = _orderTotalCalculationService.GetShoppingCartShippingTotal(details.Cart, false);
-            if (!PedidoshippingTotalInclTax.HasValue || !PedidoshippingTotalExclTax.HasValue)
+            var OrdershippingTotalInclTax = _orderTotalCalculationService.GetShoppingCartShippingTotal(details.Cart, true, out tax, out shippingTotalDiscounts);
+            var OrdershippingTotalExclTax = _orderTotalCalculationService.GetShoppingCartShippingTotal(details.Cart, false);
+            if (!OrdershippingTotalInclTax.HasValue || !OrdershippingTotalExclTax.HasValue)
                 throw new NopException("Shipping total couldn't be calculated");
 
-            details.PedidoshippingTotalInclTax = PedidoshippingTotalInclTax.Value;
-            details.PedidoshippingTotalExclTax = PedidoshippingTotalExclTax.Value;
+            details.OrdershippingTotalInclTax = OrdershippingTotalInclTax.Value;
+            details.OrdershippingTotalExclTax = OrdershippingTotalExclTax.Value;
 
             foreach(var disc in shippingTotalDiscounts)
                 if (!details.AppliedDiscounts.ContainsDiscount(disc))
@@ -526,7 +526,7 @@ namespace Nop.Services.Pedidos
             details.IsRecurringShoppingCart = true;
 
             //Load initial order
-            details.InitialOrder = _Pedidoservice.GetOrderById(processPaymentRequest.InitialOrderId);
+            details.InitialOrder = _Orderservice.GetOrderById(processPaymentRequest.InitialOrderId);
             if (details.InitialOrder == null)
                 throw new ArgumentException("Initial order is not set for recurring payment");
 
@@ -543,7 +543,7 @@ namespace Nop.Services.Pedidos
                 details.AffiliateId = affiliate.Id;
 
             //check whether customer is guest
-            if (details.Customer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (details.Customer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 throw new NopException("Anonymous checkout is not allowed");
 
             //customer currency
@@ -571,8 +571,8 @@ namespace Nop.Services.Pedidos
             details.CustomerTaxDisplayType = details.InitialOrder.CustomerTaxDisplayType;
 
             //sub total
-            details.PedidosubTotalInclTax = details.InitialOrder.PedidosubtotalInclTax;
-            details.PedidosubTotalExclTax = details.InitialOrder.PedidosubtotalExclTax;
+            details.OrdersubTotalInclTax = details.InitialOrder.OrdersubtotalInclTax;
+            details.OrdersubTotalExclTax = details.InitialOrder.OrdersubtotalExclTax;
 
             //shipping info
             if (details.InitialOrder.ShippingStatus != ShippingStatus.ShippingNotRequired)
@@ -599,8 +599,8 @@ namespace Nop.Services.Pedidos
                 details.ShippingStatus = ShippingStatus.ShippingNotRequired;
 
             //shipping total
-            details.PedidoshippingTotalInclTax = details.InitialOrder.PedidoshippingInclTax;
-            details.PedidoshippingTotalExclTax = details.InitialOrder.PedidoshippingExclTax;
+            details.OrdershippingTotalInclTax = details.InitialOrder.OrdershippingInclTax;
+            details.OrdershippingTotalExclTax = details.InitialOrder.OrdershippingExclTax;
 
             //payment total
             details.PaymentAdditionalFeeInclTax = details.InitialOrder.PaymentMethodAdditionalFeeInclTax;
@@ -638,12 +638,12 @@ namespace Nop.Services.Pedidos
                 CustomerLanguageId = details.CustomerLanguage.Id,
                 CustomerTaxDisplayType = details.CustomerTaxDisplayType,
                 CustomerIp = _webHelper.GetCurrentIpAddress(),
-                PedidosubtotalInclTax = details.PedidosubTotalInclTax,
-                PedidosubtotalExclTax = details.PedidosubTotalExclTax,
-                PedidosubTotalDiscountInclTax = details.PedidosubTotalDiscountInclTax,
-                PedidosubTotalDiscountExclTax = details.PedidosubTotalDiscountExclTax,
-                PedidoshippingInclTax = details.PedidoshippingTotalInclTax,
-                PedidoshippingExclTax = details.PedidoshippingTotalExclTax,
+                OrdersubtotalInclTax = details.OrdersubTotalInclTax,
+                OrdersubtotalExclTax = details.OrdersubTotalExclTax,
+                OrdersubTotalDiscountInclTax = details.OrdersubTotalDiscountInclTax,
+                OrdersubTotalDiscountExclTax = details.OrdersubTotalDiscountExclTax,
+                OrdershippingInclTax = details.OrdershippingTotalInclTax,
+                OrdershippingExclTax = details.OrdershippingTotalExclTax,
                 PaymentMethodAdditionalFeeInclTax = details.PaymentAdditionalFeeInclTax,
                 PaymentMethodAdditionalFeeExclTax = details.PaymentAdditionalFeeExclTax,
                 TaxRates = details.TaxRates,
@@ -656,7 +656,7 @@ namespace Nop.Services.Pedidos
                 CustomerCurrencyCode = details.CustomerCurrencyCode,
                 CurrencyRate = details.CustomerCurrencyRate,
                 AffiliateId = details.AffiliateId,
-                Pedidostatus = Pedidostatus.Pending,
+                Orderstatus = Orderstatus.Pending,
                 AllowStoringCreditCardNumber = processPaymentResult.AllowStoringCreditCardNumber,
                 CardType = processPaymentResult.AllowStoringCreditCardNumber ? _encryptionService.EncryptText(processPaymentRequest.CreditCardType) : string.Empty,
                 CardName = processPaymentResult.AllowStoringCreditCardNumber ? _encryptionService.EncryptText(processPaymentRequest.CreditCardName) : string.Empty,
@@ -687,11 +687,11 @@ namespace Nop.Services.Pedidos
                 CustomOrderNumber = string.Empty
             };
 
-            _Pedidoservice.InsertOrder(order);
+            _Orderservice.InsertOrder(order);
 
             //generate and set custom order number
             order.CustomOrderNumber = _customNumberFormatter.GenerateOrderCustomNumber(order);
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //reward points history
             if (details.RedeemedRewardPointsAmount > decimal.Zero)
@@ -728,7 +728,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //send email notifications
             var orderPlacedStoreOwnerNotificationQueuedEmailId = _workflowMessageService.SendOrderPlacedStoreOwnerNotification(order, _localizationSettings.DefaultAdminLanguageId);
@@ -740,12 +740,12 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
 
-            var orderPlacedAttachmentFilePath = _Pedidosettings.AttachPdfInvoiceToOrderPlacedEmail ?
+            var orderPlacedAttachmentFilePath = _Ordersettings.AttachPdfInvoiceToOrderPlacedEmail ?
                 _pdfService.PrintOrderToPdf(order) : null;
-            var orderPlacedAttachmentFileName = _Pedidosettings.AttachPdfInvoiceToOrderPlacedEmail ?
+            var orderPlacedAttachmentFileName = _Ordersettings.AttachPdfInvoiceToOrderPlacedEmail ?
                 "order.pdf" : null;
             var orderPlacedCustomerNotificationQueuedEmailId = _workflowMessageService
                 .SendOrderPlacedCustomerNotification(order, order.CustomerLanguageId, orderPlacedAttachmentFilePath, orderPlacedAttachmentFileName);
@@ -757,7 +757,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
 
             var vendors = GetVendorsInOrder(order);
@@ -772,7 +772,7 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
             }
         }
@@ -782,7 +782,7 @@ namespace Nop.Services.Pedidos
         /// <param name="order">Order</param>
         protected virtual void AwardRewardPoints(Order order)
         {
-            var totalForRewardPoints = _orderTotalCalculationService.CalculateApplicableOrderTotalForRewardPoints(order.PedidoshippingInclTax, order.OrderTotal);
+            var totalForRewardPoints = _orderTotalCalculationService.CalculateApplicableOrderTotalForRewardPoints(order.OrdershippingInclTax, order.OrderTotal);
             int points = _orderTotalCalculationService.CalculateRewardPoints(order.Customer, totalForRewardPoints);
             if (points == 0)
                 return;
@@ -804,7 +804,7 @@ namespace Nop.Services.Pedidos
             order.RewardPointsHistoryEntryId = _rewardPointService.AddRewardPointsHistoryEntry(order.Customer, points, order.StoreId,
                 string.Format(_localizationService.GetResource("RewardPoints.Message.EarnedForOrder"), order.CustomOrderNumber), activatingDate: activatingDate);
 
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
         }
 
         /// <summary>
@@ -813,7 +813,7 @@ namespace Nop.Services.Pedidos
         /// <param name="order">Order</param>
         protected virtual void ReduceRewardPoints(Order order)
         {
-            var totalForRewardPoints = _orderTotalCalculationService.CalculateApplicableOrderTotalForRewardPoints(order.PedidoshippingInclTax, order.OrderTotal);
+            var totalForRewardPoints = _orderTotalCalculationService.CalculateApplicableOrderTotalForRewardPoints(order.OrdershippingInclTax, order.OrderTotal);
             int points = _orderTotalCalculationService.CalculateRewardPoints(order.Customer, totalForRewardPoints);
             if (points == 0)
                 return;
@@ -836,7 +836,7 @@ namespace Nop.Services.Pedidos
                     string.Format(_localizationService.GetResource("RewardPoints.Message.ReducedForOrder"), order.CustomOrderNumber));
             }
 
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
         }
 
         /// <summary>
@@ -852,7 +852,7 @@ namespace Nop.Services.Pedidos
             //return back
             _rewardPointService.AddRewardPointsHistoryEntry(order.Customer, -order.RedeemedRewardPointsEntry.Points, order.StoreId,
                 string.Format(_localizationService.GetResource("RewardPoints.Message.ReturnedForOrder"), order.CustomOrderNumber));
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
         }
 
 
@@ -906,18 +906,18 @@ namespace Nop.Services.Pedidos
         /// <param name="order">Order</param>
         /// <param name="os">New order status</param>
         /// <param name="notifyCustomer">True to notify customer</param>
-        protected virtual void SetPedidostatus(Order order, Pedidostatus os, bool notifyCustomer)
+        protected virtual void SetOrderstatus(Order order, Orderstatus os, bool notifyCustomer)
         {
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            Pedidostatus prevPedidostatus = order.Pedidostatus;
-            if (prevPedidostatus == os)
+            Orderstatus prevOrderstatus = order.Orderstatus;
+            if (prevOrderstatus == os)
                 return;
 
             //set and save new order status
-            order.PedidostatusId = (int)os;
-            _Pedidoservice.UpdateOrder(order);
+            order.OrderstatusId = (int)os;
+            _Orderservice.UpdateOrder(order);
 
             //order notes, notifications
             order.OrderNotes.Add(new OrderNote
@@ -926,17 +926,17 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
 
-            if (prevPedidostatus != Pedidostatus.Complete &&
-                os == Pedidostatus.Complete
+            if (prevOrderstatus != Orderstatus.Complete &&
+                os == Orderstatus.Complete
                 && notifyCustomer)
             {
                 //notification
-                var orderCompletedAttachmentFilePath = _Pedidosettings.AttachPdfInvoiceToOrderCompletedEmail ?
+                var orderCompletedAttachmentFilePath = _Ordersettings.AttachPdfInvoiceToOrderCompletedEmail ?
                     _pdfService.PrintOrderToPdf(order) : null;
-                var orderCompletedAttachmentFileName = _Pedidosettings.AttachPdfInvoiceToOrderCompletedEmail ?
+                var orderCompletedAttachmentFileName = _Ordersettings.AttachPdfInvoiceToOrderCompletedEmail ?
                     "order.pdf" : null;
                 int orderCompletedCustomerNotificationQueuedEmailId = _workflowMessageService
                     .SendOrderCompletedCustomerNotification(order, order.CustomerLanguageId, orderCompletedAttachmentFilePath,
@@ -949,12 +949,12 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
             }
 
-            if (prevPedidostatus != Pedidostatus.Cancelled &&
-                os == Pedidostatus.Cancelled
+            if (prevOrderstatus != Orderstatus.Cancelled &&
+                os == Orderstatus.Cancelled
                 && notifyCustomer)
             {
                 //notification
@@ -967,28 +967,28 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
             }
 
             //reward points
-            if (order.Pedidostatus == Pedidostatus.Complete)
+            if (order.Orderstatus == Orderstatus.Complete)
             {
                 AwardRewardPoints(order);
             }
-            if (order.Pedidostatus == Pedidostatus.Cancelled)
+            if (order.Orderstatus == Orderstatus.Cancelled)
             {
                 ReduceRewardPoints(order);
             }
 
             //gift cards activation
-            if (_Pedidosettings.ActivateGiftCardsAfterCompletingOrder && order.Pedidostatus == Pedidostatus.Complete)
+            if (_Ordersettings.ActivateGiftCardsAfterCompletingOrder && order.Orderstatus == Orderstatus.Complete)
             {
                 SetActivatedValueForPurchasedGiftCards(order, true);
             }
 
             //gift cards deactivation
-            if (_Pedidosettings.DeactivateGiftCardsAfterCancellingOrder && order.Pedidostatus == Pedidostatus.Cancelled)
+            if (_Ordersettings.DeactivateGiftCardsAfterCancellingOrder && order.Orderstatus == Orderstatus.Cancelled)
             {
                 SetActivatedValueForPurchasedGiftCards(order, false);
             }
@@ -1009,12 +1009,12 @@ namespace Nop.Services.Pedidos
             //order paid email notification
             if (order.OrderTotal != decimal.Zero)
             {
-                //we should not send it for free ($0 total) Pedidos?
+                //we should not send it for free ($0 total) Orders?
                 //remove this "if" statement if you want to send it in this case
 
-                var orderPaidAttachmentFilePath = _Pedidosettings.AttachPdfInvoiceToOrderPaidEmail ?
+                var orderPaidAttachmentFilePath = _Ordersettings.AttachPdfInvoiceToOrderPaidEmail ?
                     _pdfService.PrintOrderToPdf(order) : null;
-                var orderPaidAttachmentFileName = _Pedidosettings.AttachPdfInvoiceToOrderPaidEmail ?
+                var orderPaidAttachmentFileName = _Ordersettings.AttachPdfInvoiceToOrderPaidEmail ?
                     "order.pdf" : null;
                 _workflowMessageService.SendOrderPaidCustomerNotification(order, order.CustomerLanguageId,
                     orderPaidAttachmentFilePath, orderPaidAttachmentFileName);
@@ -1130,7 +1130,7 @@ namespace Nop.Services.Pedidos
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Validated order</returns>
-        public virtual void CheckPedidostatus(Order order)
+        public virtual void CheckOrderstatus(Order order)
         {
             if (order == null)
                 throw new ArgumentNullException("order");
@@ -1139,31 +1139,31 @@ namespace Nop.Services.Pedidos
             {
                 //ensure that paid date is set
                 order.PaidDateUtc = DateTime.UtcNow;
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
 
-            if (order.Pedidostatus == Pedidostatus.Pending)
+            if (order.Orderstatus == Orderstatus.Pending)
             {
                 if (order.PaymentStatus == PaymentStatus.Authorized ||
                     order.PaymentStatus == PaymentStatus.Paid)
                 {
-                    SetPedidostatus(order, Pedidostatus.Processing, false);
+                    SetOrderstatus(order, Orderstatus.Processing, false);
                 }
             }
 
-            if (order.Pedidostatus == Pedidostatus.Pending)
+            if (order.Orderstatus == Orderstatus.Pending)
             {
                 if (order.ShippingStatus == ShippingStatus.PartiallyShipped ||
                     order.ShippingStatus == ShippingStatus.Shipped ||
                     order.ShippingStatus == ShippingStatus.Delivered)
                 {
-                    SetPedidostatus(order, Pedidostatus.Processing, false);
+                    SetOrderstatus(order, Orderstatus.Processing, false);
                 }
             }
 
             //is order complete?
-            if (order.Pedidostatus != Pedidostatus.Cancelled &&
-                order.Pedidostatus != Pedidostatus.Complete)
+            if (order.Orderstatus != Orderstatus.Cancelled &&
+                order.Orderstatus != Orderstatus.Complete)
             {
                 if (order.PaymentStatus == PaymentStatus.Paid)
                 {
@@ -1176,7 +1176,7 @@ namespace Nop.Services.Pedidos
                     else
                     {
                         //shipping is required
-                        if (_Pedidosettings.CompleteOrderWhenDelivered)
+                        if (_Ordersettings.CompleteOrderWhenDelivered)
                         {
                             completed = order.ShippingStatus == ShippingStatus.Delivered;
                         }
@@ -1189,7 +1189,7 @@ namespace Nop.Services.Pedidos
 
                     if (completed)
                     {
-                        SetPedidostatus(order, Pedidostatus.Complete, true);
+                        SetOrderstatus(order, Orderstatus.Complete, true);
                     }
                 }
             }
@@ -1315,7 +1315,7 @@ namespace Nop.Services.Pedidos
                             RentalEndDateUtc = sc.RentalEndDateUtc
                         };
                         order.OrderItems.Add(orderItem);
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
 
                         //gift cards
                         if (sc.Product.IsGiftCard)
@@ -1385,7 +1385,7 @@ namespace Nop.Services.Pedidos
                             _giftCardService.UpdateGiftCard(agc.GiftCard);
                         }
 
-                    //recurring Pedidos
+                    //recurring Orders
                     if (details.IsRecurringShoppingCart)
                     {
                         //create recurring payment (the first payment)
@@ -1399,7 +1399,7 @@ namespace Nop.Services.Pedidos
                             CreatedOnUtc = DateTime.UtcNow,
                             InitialOrder = order,
                         };
-                        _Pedidoservice.InsertRecurringPayment(rp);
+                        _Orderservice.InsertRecurringPayment(rp);
 
                         switch (_paymentService.GetRecurringPaymentType(processPaymentRequest.PaymentMethodSystemName))
                         {
@@ -1413,7 +1413,7 @@ namespace Nop.Services.Pedidos
                                     CreatedOnUtc = DateTime.UtcNow,
                                     OrderId = order.Id,
                                 });
-                                _Pedidoservice.UpdateRecurringPayment(rp);
+                                _Orderservice.UpdateRecurringPayment(rp);
                                 break;
                             case RecurringPaymentType.Automatic:
                                 //will be created later (process is automated)
@@ -1433,7 +1433,7 @@ namespace Nop.Services.Pedidos
                     _customerActivityService.InsertActivity("PublicStore.PlaceOrder", _localizationService.GetResource("ActivityLog.PublicStore.PlaceOrder"), order.Id);
 
                     //check order status
-                    CheckPedidostatus(order);
+                    CheckOrderstatus(order);
 
                     //raise event       
                     _eventPublisher.Publish(new OrderPlacedEvent(order));
@@ -1473,7 +1473,7 @@ namespace Nop.Services.Pedidos
         /// <param name="updateOrderParameters">Parameters for the updating order</param>
         public virtual void UpdateOrderTotals(UpdateOrderParameters updateOrderParameters)
         {
-            if (!_Pedidosettings.AutoUpdateOrderTotalsOnEditingOrder)
+            if (!_Ordersettings.AutoUpdateOrderTotalsOnEditingOrder)
                 return;
 
             var updatedOrder = updateOrderParameters.UpdatedOrder;
@@ -1561,7 +1561,7 @@ namespace Nop.Services.Pedidos
                 }
             }
 
-            _Pedidoservice.UpdateOrder(updatedOrder);
+            _Orderservice.UpdateOrder(updatedOrder);
 
             //discount usage history
             var discountUsageHistoryForOrder = _discountService.GetAllDiscountUsageHistory(null, updatedOrder.Customer.Id, updatedOrder.Id);
@@ -1582,7 +1582,7 @@ namespace Nop.Services.Pedidos
                 }
             }
 
-            CheckPedidostatus(updatedOrder);
+            CheckOrderstatus(updatedOrder);
         }
 
         /// <summary>
@@ -1598,7 +1598,7 @@ namespace Nop.Services.Pedidos
             //if it already was cancelled, then there's no need to make the following adjustments
             //(such as reward points, inventory, recurring payments)
             //they already was done when cancelling the order
-            if (order.Pedidostatus != Pedidostatus.Cancelled)
+            if (order.Orderstatus != Orderstatus.Cancelled)
             {
                 //return (add) back redeemded reward points
                 ReturnBackRedeemedRewardPoints(order);
@@ -1606,7 +1606,7 @@ namespace Nop.Services.Pedidos
                 ReduceRewardPoints(order);
 
                 //cancel recurring payments
-                var recurringPayments = _Pedidoservice.SearchRecurringPayments(initialOrderId: order.Id);
+                var recurringPayments = _Orderservice.SearchRecurringPayments(initialOrderId: order.Id);
                 foreach (var rp in recurringPayments)
                 {
                     var errors = CancelRecurringPayment(rp);
@@ -1619,7 +1619,7 @@ namespace Nop.Services.Pedidos
                 {
                     foreach (var shipmentItem in shipment.ShipmentItems)
                     {
-                        var orderItem = _Pedidoservice.GetOrderItemById(shipmentItem.OrderItemId);
+                        var orderItem = _Orderservice.GetOrderItemById(shipmentItem.OrderItemId);
                         if (orderItem == null)
                             continue;
 
@@ -1638,7 +1638,7 @@ namespace Nop.Services.Pedidos
             }
 
             //deactivate gift cards
-            if (_Pedidosettings.DeactivateGiftCardsAfterDeletingOrder)
+            if (_Ordersettings.DeactivateGiftCardsAfterDeletingOrder)
                 SetActivatedValueForPurchasedGiftCards(order, false);
 
             //add a note
@@ -1648,10 +1648,10 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
             
             //now delete an order
-            _Pedidoservice.DeleteOrder(order);
+            _Orderservice.DeleteOrder(order);
         }
 
         /// <summary>
@@ -1778,7 +1778,7 @@ namespace Nop.Services.Pedidos
                             RentalEndDateUtc = orderItem.RentalEndDateUtc
                         };
                         order.OrderItems.Add(newOrderItem);
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
 
                         //gift cards
                         if (orderItem.Product.IsGiftCard)
@@ -1821,7 +1821,7 @@ namespace Nop.Services.Pedidos
                     SendNotificationsAndSaveNotes(order);
 
                     //check order status
-                    CheckPedidostatus(order);
+                    CheckOrderstatus(order);
 
                     //raise event       
                     _eventPublisher.Publish(new OrderPlacedEvent(order));
@@ -1839,7 +1839,7 @@ namespace Nop.Services.Pedidos
                         CreatedOnUtc = DateTime.UtcNow,
                         OrderId = order.Id,
                     });
-                    _Pedidoservice.UpdateRecurringPayment(recurringPayment);
+                    _Orderservice.UpdateRecurringPayment(recurringPayment);
 
                     return new List<string>();
                 }
@@ -1854,7 +1854,7 @@ namespace Nop.Services.Pedidos
                     {
                         //set flag that last payment failed
                         recurringPayment.LastPaymentFailed = true;
-                        _Pedidoservice.UpdateRecurringPayment(recurringPayment);
+                        _Orderservice.UpdateRecurringPayment(recurringPayment);
 
                         if (_paymentSettings.CancelRecurringPaymentsAfterFailedPayment)
                         {
@@ -1903,7 +1903,7 @@ namespace Nop.Services.Pedidos
                 {
                     //update recurring payment
                     recurringPayment.IsActive = false;
-                    _Pedidoservice.UpdateRecurringPayment(recurringPayment);
+                    _Orderservice.UpdateRecurringPayment(recurringPayment);
 
 
                     //add a note
@@ -1913,7 +1913,7 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(initialOrder);
+                    _Orderservice.UpdateOrder(initialOrder);
 
                     //notify a store owner
                     _workflowMessageService
@@ -1946,7 +1946,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(initialOrder);
+                _Orderservice.UpdateOrder(initialOrder);
 
                 //log it
                 string logError = string.Format("Error cancelling recurring payment. Order #{0}. Error: {1}", initialOrder.Id, error);
@@ -1977,7 +1977,7 @@ namespace Nop.Services.Pedidos
             if (customer == null)
                 return false;
 
-            if (initialOrder.Pedidostatus == Pedidostatus.Cancelled)
+            if (initialOrder.Orderstatus == Orderstatus.Cancelled)
                 return false;
 
             if (!customerToValidate.IsAdmin())
@@ -2004,7 +2004,7 @@ namespace Nop.Services.Pedidos
             if (recurringPayment == null || customer == null)
                 return false;
 
-            if (recurringPayment.InitialOrder == null || recurringPayment.InitialOrder.Pedidostatus == Pedidostatus.Cancelled)
+            if (recurringPayment.InitialOrder == null || recurringPayment.InitialOrder.Orderstatus == Orderstatus.Cancelled)
                 return false;
 
             if (!recurringPayment.LastPaymentFailed || _paymentService.GetRecurringPaymentType(recurringPayment.InitialOrder.PaymentMethodSystemName) != RecurringPaymentType.Manual)
@@ -2027,7 +2027,7 @@ namespace Nop.Services.Pedidos
             if (shipment == null)
                 throw new ArgumentNullException("shipment");
 
-            var order = _Pedidoservice.GetOrderById(shipment.OrderId);
+            var order = _Orderservice.GetOrderById(shipment.OrderId);
             if (order == null)
                 throw new Exception("Order cannot be loaded");
 
@@ -2040,7 +2040,7 @@ namespace Nop.Services.Pedidos
             //process products with "Multiple warehouse" support enabled
             foreach (var item in shipment.ShipmentItems)
             {
-                var orderItem = _Pedidoservice.GetOrderItemById(item.OrderItemId);
+                var orderItem = _Orderservice.GetOrderItemById(item.OrderItemId);
                 _productService.BookReservedInventory(orderItem.Product, item.WarehouseId, -item.Quantity,
                     string.Format(_localizationService.GetResource("Admin.StockQuantityHistory.Messages.Ship"), shipment.OrderId));
             }
@@ -2050,7 +2050,7 @@ namespace Nop.Services.Pedidos
                 order.ShippingStatusId = (int)ShippingStatus.PartiallyShipped;
             else
                 order.ShippingStatusId = (int)ShippingStatus.Shipped;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2059,7 +2059,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             if (notifyCustomer)
             {
@@ -2073,7 +2073,7 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
             }
 
@@ -2081,7 +2081,7 @@ namespace Nop.Services.Pedidos
             _eventPublisher.PublishShipmentSent(shipment);
 
             //check order status
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
         }
 
         /// <summary>
@@ -2109,7 +2109,7 @@ namespace Nop.Services.Pedidos
 
             if (!order.HasItemsToAddToShipment() && !order.HasItemsToShip() && !order.HasItemsToDeliver())
                 order.ShippingStatusId = (int)ShippingStatus.Delivered;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2118,7 +2118,7 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             if (notifyCustomer)
             {
@@ -2132,7 +2132,7 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
             }
 
@@ -2140,7 +2140,7 @@ namespace Nop.Services.Pedidos
             _eventPublisher.PublishShipmentDelivered(shipment);
 
             //check order status
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
         }
 
 
@@ -2155,7 +2155,7 @@ namespace Nop.Services.Pedidos
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            if (order.Pedidostatus == Pedidostatus.Cancelled)
+            if (order.Orderstatus == Orderstatus.Cancelled)
                 return false;
 
             return true;
@@ -2175,7 +2175,7 @@ namespace Nop.Services.Pedidos
                 throw new NopException("Cannot do cancel for order.");
 
             //Cancel order
-            SetPedidostatus(order, Pedidostatus.Cancelled, notifyCustomer);
+            SetOrderstatus(order, Orderstatus.Cancelled, notifyCustomer);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2184,13 +2184,13 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //return (add) back redeemded reward points
             ReturnBackRedeemedRewardPoints(order);
 
             //cancel recurring payments
-            var recurringPayments = _Pedidoservice.SearchRecurringPayments(initialOrderId: order.Id);
+            var recurringPayments = _Orderservice.SearchRecurringPayments(initialOrderId: order.Id);
             foreach (var rp in recurringPayments)
             {
                 var errors = CancelRecurringPayment(rp);
@@ -2203,7 +2203,7 @@ namespace Nop.Services.Pedidos
             {
                 foreach (var shipmentItem in shipment.ShipmentItems)
                 {
-                    var orderItem = _Pedidoservice.GetOrderItemById(shipmentItem.OrderItemId);
+                    var orderItem = _Orderservice.GetOrderItemById(shipmentItem.OrderItemId);
                     if (orderItem == null)
                         continue;
 
@@ -2232,7 +2232,7 @@ namespace Nop.Services.Pedidos
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            if (order.Pedidostatus == Pedidostatus.Cancelled)
+            if (order.Orderstatus == Orderstatus.Cancelled)
                 return false;
 
             if (order.PaymentStatus == PaymentStatus.Pending)
@@ -2251,7 +2251,7 @@ namespace Nop.Services.Pedidos
                 throw new ArgumentNullException("order");
 
             order.PaymentStatusId = (int)PaymentStatus.Authorized;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2260,10 +2260,10 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //check order status
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
         }
 
 
@@ -2278,8 +2278,8 @@ namespace Nop.Services.Pedidos
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            if (order.Pedidostatus == Pedidostatus.Cancelled ||
-                order.Pedidostatus == Pedidostatus.Pending)
+            if (order.Orderstatus == Orderstatus.Cancelled ||
+                order.Orderstatus == Orderstatus.Pending)
                 return false;
 
             if (order.PaymentStatus == PaymentStatus.Authorized &&
@@ -2320,7 +2320,7 @@ namespace Nop.Services.Pedidos
                     order.CaptureTransactionResult = result.CaptureTransactionResult;
                     order.PaymentStatus = result.NewPaymentStatus;
                     order.PaidDateUtc = paidDate;
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //add a note
                     order.OrderNotes.Add(new OrderNote
@@ -2329,9 +2329,9 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
-                    CheckPedidostatus(order);
+                    CheckOrderstatus(order);
      
                     if (order.PaymentStatus == PaymentStatus.Paid)
                     {
@@ -2364,7 +2364,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
 
                 //log it
                 string logError = string.Format("Error capturing order #{0}. Error: {1}", order.Id, error);
@@ -2383,7 +2383,7 @@ namespace Nop.Services.Pedidos
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            if (order.Pedidostatus == Pedidostatus.Cancelled)
+            if (order.Orderstatus == Orderstatus.Cancelled)
                 return false;
 
             if (order.PaymentStatus == PaymentStatus.Paid ||
@@ -2408,7 +2408,7 @@ namespace Nop.Services.Pedidos
 
             order.PaymentStatusId = (int)PaymentStatus.Paid;
             order.PaidDateUtc = DateTime.UtcNow;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2417,9 +2417,9 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
    
             if (order.PaymentStatus == PaymentStatus.Paid)
             {
@@ -2446,8 +2446,8 @@ namespace Nop.Services.Pedidos
             if (order.RefundedAmount > decimal.Zero)
                 return false;
 
-            //uncomment the lines below in order to disallow this operation for cancelled Pedidos
-            //if (order.Pedidostatus == Pedidostatus.Cancelled)
+            //uncomment the lines below in order to disallow this operation for cancelled Orders
+            //if (order.Orderstatus == Orderstatus.Cancelled)
             //    return false;
 
             if (order.PaymentStatus == PaymentStatus.Paid &&
@@ -2486,7 +2486,7 @@ namespace Nop.Services.Pedidos
                     //update order info
                     order.RefundedAmount = totalAmountRefunded;
                     order.PaymentStatus = result.NewPaymentStatus;
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //add a note
                     order.OrderNotes.Add(new OrderNote
@@ -2495,10 +2495,10 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //check order status
-                    CheckPedidostatus(order);
+                    CheckOrderstatus(order);
 
                     //notifications
                     var orderRefundedStoreOwnerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedStoreOwnerNotification(order, request.AmountToRefund, _localizationSettings.DefaultAdminLanguageId);
@@ -2510,7 +2510,7 @@ namespace Nop.Services.Pedidos
                             DisplayToCustomer = false,
                             CreatedOnUtc = DateTime.UtcNow
                         });
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
                     }
                     var orderRefundedCustomerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedCustomerNotification(order, request.AmountToRefund, order.CustomerLanguageId);
                     if (orderRefundedCustomerNotificationQueuedEmailId > 0)
@@ -2521,7 +2521,7 @@ namespace Nop.Services.Pedidos
                             DisplayToCustomer = false,
                             CreatedOnUtc = DateTime.UtcNow
                         });
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
                     }
 
                     //raise event       
@@ -2553,7 +2553,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
 
                 //log it
                 string logError = string.Format("Error refunding order #{0}. Error: {1}", order.Id, error);
@@ -2579,8 +2579,8 @@ namespace Nop.Services.Pedidos
             if (order.RefundedAmount > decimal.Zero)
                 return false;
 
-            //uncomment the lines below in order to disallow this operation for cancelled Pedidos
-            //if (order.Pedidostatus == Pedidostatus.Cancelled)
+            //uncomment the lines below in order to disallow this operation for cancelled Orders
+            //if (order.Orderstatus == Orderstatus.Cancelled)
             //     return false;
 
             if (order.PaymentStatus == PaymentStatus.Paid)
@@ -2610,7 +2610,7 @@ namespace Nop.Services.Pedidos
             //update order info
             order.RefundedAmount = totalAmountRefunded;
             order.PaymentStatus = PaymentStatus.Refunded;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2619,10 +2619,10 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //check order status
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
 
             //notifications
             var orderRefundedStoreOwnerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedStoreOwnerNotification(order, amountToRefund, _localizationSettings.DefaultAdminLanguageId);
@@ -2634,7 +2634,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
             var orderRefundedCustomerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedCustomerNotification(order, amountToRefund, order.CustomerLanguageId);
             if (orderRefundedCustomerNotificationQueuedEmailId > 0)
@@ -2645,7 +2645,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
 
             //raise event       
@@ -2666,8 +2666,8 @@ namespace Nop.Services.Pedidos
             if (order.OrderTotal == decimal.Zero)
                 return false;
 
-            //uncomment the lines below in order to allow this operation for cancelled Pedidos
-            //if (order.Pedidostatus == Pedidostatus.Cancelled)
+            //uncomment the lines below in order to allow this operation for cancelled Orders
+            //if (order.Orderstatus == Orderstatus.Cancelled)
             //    return false;
 
             decimal canBeRefunded = order.OrderTotal - order.RefundedAmount;
@@ -2718,7 +2718,7 @@ namespace Nop.Services.Pedidos
                     order.RefundedAmount = totalAmountRefunded;
                     //mark payment status as 'Refunded' if the order total amount is fully refunded
                     order.PaymentStatus = order.OrderTotal == totalAmountRefunded && result.NewPaymentStatus == PaymentStatus.PartiallyRefunded ? PaymentStatus.Refunded : result.NewPaymentStatus;
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
 
                     //add a note
@@ -2728,10 +2728,10 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //check order status
-                    CheckPedidostatus(order);
+                    CheckOrderstatus(order);
 
                     //notifications
                     var orderRefundedStoreOwnerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedStoreOwnerNotification(order, amountToRefund, _localizationSettings.DefaultAdminLanguageId);
@@ -2743,7 +2743,7 @@ namespace Nop.Services.Pedidos
                             DisplayToCustomer = false,
                             CreatedOnUtc = DateTime.UtcNow
                         });
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
                     }
                     var orderRefundedCustomerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedCustomerNotification(order, amountToRefund, order.CustomerLanguageId);
                     if (orderRefundedCustomerNotificationQueuedEmailId > 0)
@@ -2754,7 +2754,7 @@ namespace Nop.Services.Pedidos
                             DisplayToCustomer = false,
                             CreatedOnUtc = DateTime.UtcNow
                         });
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
                     }
 
                     //raise event       
@@ -2785,7 +2785,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
 
                 //log it
                 string logError = string.Format("Error refunding order #{0}. Error: {1}", order.Id, error);
@@ -2808,8 +2808,8 @@ namespace Nop.Services.Pedidos
             if (order.OrderTotal == decimal.Zero)
                 return false;
 
-            //uncomment the lines below in order to allow this operation for cancelled Pedidos
-            //if (order.Pedidostatus == Pedidostatus.Cancelled)
+            //uncomment the lines below in order to allow this operation for cancelled Orders
+            //if (order.Orderstatus == Orderstatus.Cancelled)
             //    return false;
 
             decimal canBeRefunded = order.OrderTotal - order.RefundedAmount;
@@ -2846,7 +2846,7 @@ namespace Nop.Services.Pedidos
             order.RefundedAmount = totalAmountRefunded;
             //mark payment status as 'Refunded' if the order total amount is fully refunded
             order.PaymentStatus = order.OrderTotal == totalAmountRefunded ? PaymentStatus.Refunded : PaymentStatus.PartiallyRefunded;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -2855,10 +2855,10 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //check order status
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
 
             //notifications
             var orderRefundedStoreOwnerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedStoreOwnerNotification(order, amountToRefund, _localizationSettings.DefaultAdminLanguageId);
@@ -2870,7 +2870,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
             var orderRefundedCustomerNotificationQueuedEmailId = _workflowMessageService.SendOrderRefundedCustomerNotification(order, amountToRefund, order.CustomerLanguageId);
             if (orderRefundedCustomerNotificationQueuedEmailId > 0)
@@ -2881,7 +2881,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
             }
             //raise event       
             _eventPublisher.Publish(new OrderRefundedEvent(order, amountToRefund));
@@ -2902,8 +2902,8 @@ namespace Nop.Services.Pedidos
             if (order.OrderTotal == decimal.Zero)
                 return false;
 
-            //uncomment the lines below in order to allow this operation for cancelled Pedidos
-            //if (order.Pedidostatus == Pedidostatus.Cancelled)
+            //uncomment the lines below in order to allow this operation for cancelled Orders
+            //if (order.Orderstatus == Orderstatus.Cancelled)
             //    return false;
 
             if (order.PaymentStatus == PaymentStatus.Authorized &&
@@ -2937,7 +2937,7 @@ namespace Nop.Services.Pedidos
                 {
                     //update order info
                     order.PaymentStatus = result.NewPaymentStatus;
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //add a note
                     order.OrderNotes.Add(new OrderNote
@@ -2946,10 +2946,10 @@ namespace Nop.Services.Pedidos
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //check order status
-                    CheckPedidostatus(order);
+                    CheckOrderstatus(order);
                 }
             }
             catch (Exception exc)
@@ -2976,7 +2976,7 @@ namespace Nop.Services.Pedidos
                     DisplayToCustomer = false,
                     CreatedOnUtc = DateTime.UtcNow
                 });
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
 
                 //log it
                 string logError = string.Format("Error voiding order #{0}. Error: {1}", order.Id, error);
@@ -2998,8 +2998,8 @@ namespace Nop.Services.Pedidos
             if (order.OrderTotal == decimal.Zero)
                 return false;
 
-            //uncomment the lines below in order to allow this operation for cancelled Pedidos
-            //if (order.Pedidostatus == Pedidostatus.Cancelled)
+            //uncomment the lines below in order to allow this operation for cancelled Orders
+            //if (order.Orderstatus == Orderstatus.Cancelled)
             //    return false;
 
             if (order.PaymentStatus == PaymentStatus.Authorized)
@@ -3021,7 +3021,7 @@ namespace Nop.Services.Pedidos
                 throw new NopException("You can't void this order");
 
             order.PaymentStatusId = (int)PaymentStatus.Voided;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //add a note
             order.OrderNotes.Add(new OrderNote
@@ -3030,10 +3030,10 @@ namespace Nop.Services.Pedidos
                 DisplayToCustomer = false,
                 CreatedOnUtc = DateTime.UtcNow
             });
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //check orer status
-            CheckPedidostatus(order);
+            CheckOrderstatus(order);
         }
 
 
@@ -3069,21 +3069,21 @@ namespace Nop.Services.Pedidos
         /// <returns>Result</returns>
         public virtual bool IsReturnRequestAllowed(Order order)
         {
-            if (!_Pedidosettings.ReturnRequestsEnabled)
+            if (!_Ordersettings.ReturnRequestsEnabled)
                 return false;
 
             if (order == null || order.Deleted)
                 return false;
 
             //status should be compelte
-            if (order.Pedidostatus != Pedidostatus.Complete)
+            if (order.Orderstatus != Orderstatus.Complete)
                 return false;
 
             //validate allowed number of days
-            if (_Pedidosettings.NumberOfDaysReturnRequestAvailable > 0)
+            if (_Ordersettings.NumberOfDaysReturnRequestAvailable > 0)
             {
                 var daysPassed = (DateTime.UtcNow - order.CreatedOnUtc).TotalDays;
-                if (daysPassed >= _Pedidosettings.NumberOfDaysReturnRequestAvailable)
+                if (daysPassed >= _Ordersettings.NumberOfDaysReturnRequestAvailable)
                     return false;
             }
 
@@ -3098,24 +3098,24 @@ namespace Nop.Services.Pedidos
         /// </summary>
         /// <param name="cart">Shopping cart</param>
         /// <returns>true - OK; false - minimum order sub-total amount is not reached</returns>
-        public virtual bool ValidateMinPedidosubtotalAmount(IList<ShoppingCartItem> cart)
+        public virtual bool ValidateMinOrdersubtotalAmount(IList<ShoppingCartItem> cart)
         {
             if (cart == null)
                 throw new ArgumentNullException("cart");
 
             //min order amount sub-total validation
-            if (cart.Any() && _Pedidosettings.MinPedidosubtotalAmount > decimal.Zero)
+            if (cart.Any() && _Ordersettings.MinOrdersubtotalAmount > decimal.Zero)
             {
                 //subtotal
-                decimal PedidosubTotalDiscountAmountBase;
-                List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
+                decimal OrdersubTotalDiscountAmountBase;
+                List<DiscountForCaching> OrdersubTotalAppliedDiscounts;
                 decimal subTotalWithoutDiscountBase;
                 decimal subTotalWithDiscountBase;
-                _orderTotalCalculationService.GetShoppingCartSubTotal(cart, _Pedidosettings.MinPedidosubtotalAmountIncludingTax,
-                    out PedidosubTotalDiscountAmountBase, out PedidosubTotalAppliedDiscounts,
+                _orderTotalCalculationService.GetShoppingCartSubTotal(cart, _Ordersettings.MinOrdersubtotalAmountIncludingTax,
+                    out OrdersubTotalDiscountAmountBase, out OrdersubTotalAppliedDiscounts,
                     out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
 
-                if (subTotalWithoutDiscountBase < _Pedidosettings.MinPedidosubtotalAmount)
+                if (subTotalWithoutDiscountBase < _Ordersettings.MinOrdersubtotalAmount)
                     return false;
             }
 
@@ -3132,10 +3132,10 @@ namespace Nop.Services.Pedidos
             if (cart == null)
                 throw new ArgumentNullException("cart");
 
-            if (cart.Any() && _Pedidosettings.MinOrderTotalAmount > decimal.Zero)
+            if (cart.Any() && _Ordersettings.MinOrderTotalAmount > decimal.Zero)
             {
                 decimal? shoppingCartTotalBase = _orderTotalCalculationService.GetShoppingCartTotal(cart);
-                if (shoppingCartTotalBase.HasValue && shoppingCartTotalBase.Value < _Pedidosettings.MinOrderTotalAmount)
+                if (shoppingCartTotalBase.HasValue && shoppingCartTotalBase.Value < _Ordersettings.MinOrderTotalAmount)
                     return false;
             }
 

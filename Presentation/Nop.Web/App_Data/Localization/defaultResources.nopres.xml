@@ -150,58 +150,58 @@
   <LocaleResource Name="Account.CustomerInfo">
     <Value>Customer info</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos">
-    <Value>Pedidos</Value>
+  <LocaleResource Name="Account.CustomerOrders">
+    <Value>Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.NoPedidos">
-    <Value>No Pedidos</Value>
+  <LocaleResource Name="Account.CustomerOrders.NoOrders">
+    <Value>No Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.OrderDate">
+  <LocaleResource Name="Account.CustomerOrders.OrderDate">
     <Value>Order Date</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.OrderDetails">
+  <LocaleResource Name="Account.CustomerOrders.OrderDetails">
     <Value>Details</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.OrderNumber">
+  <LocaleResource Name="Account.CustomerOrders.OrderNumber">
     <Value>Order Number</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.Pedidostatus">
+  <LocaleResource Name="Account.CustomerOrders.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.OrderTotal">
+  <LocaleResource Name="Account.CustomerOrders.OrderTotal">
     <Value>Order Total</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders">
     <Value>Recurring payments</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.Cancel">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.Cancel">
     <Value>Cancel payment</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.CycleInfo">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.CycleInfo">
     <Value>Cycle info</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.CyclesRemaining">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.CyclesRemaining">
     <Value>Cycles remaining</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.InitialOrder">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.InitialOrder">
     <Value>Initial order</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.NextPayment">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.NextPayment">
     <Value>Next payment</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.RetryLastPayment">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.RetryLastPayment">
     <Value>Retry last payment</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.StartDate">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.StartDate">
     <Value>Start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.TotalCycles">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.TotalCycles">
     <Value>Total cycles</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.RecurringPedidos.ViewInitialOrder">
+  <LocaleResource Name="Account.CustomerOrders.RecurringOrders.ViewInitialOrder">
     <Value>View order (Order number - {0})</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.CustomerPedidos.ReturnItems">
+  <LocaleResource Name="Account.CustomerOrders.ReturnItems">
     <Value>Return Item(s)</Value>
   </LocaleResource>
   <LocaleResource Name="Account.CustomerProductReviews">
@@ -363,8 +363,8 @@
   <LocaleResource Name="Account.Fields.LastName.Required">
     <Value>Last name is required.</Value>
   </LocaleResource>
-  <LocaleResource Name="Account.Fields.Boletín informativo">
-    <Value>Boletín informativo</Value>
+  <LocaleResource Name="Account.Fields.Newsletter">
+    <Value>Newsletter</Value>
   </LocaleResource>
   <LocaleResource Name="Account.Fields.Password">
     <Value>Password</Value>
@@ -490,7 +490,7 @@
     <Value>New Customer</Value>
   </LocaleResource>
   <LocaleResource Name="Account.Login.NewCustomerText">
-    <Value>By creating an account on our website you will be able to shop faster, be up to date on an Pedidos status, and keep track of the Pedidos you have previously made.</Value>
+    <Value>By creating an account on our website you will be able to shop faster, be up to date on an Orders status, and keep track of the Orders you have previously made.</Value>
   </LocaleResource>
   <LocaleResource Name="Account.Login.ReturningCustomer">
     <Value>Returning Customer</Value>
@@ -1017,8 +1017,8 @@
   <LocaleResource Name="ActivityLog.Impersonation.Finished.Customer">
     <Value>Impersonation by store owner was finished (Email: {0}, ID = {1})</Value>
   </LocaleResource>
-  <LocaleResource Name="ActivityLog.ImportCategorias">
-    <Value>{0} Categorias were imported</Value>
+  <LocaleResource Name="ActivityLog.ImportCategories">
+    <Value>{0} Categories were imported</Value>
   </LocaleResource>
   <LocaleResource Name="ActivityLog.ImportManufacturers">
     <Value>{0} manufacturers were imported</Value>
@@ -1431,22 +1431,22 @@
   <LocaleResource Name="Admin.Affiliates.Info">
     <Value>Affiliate info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.List.LoadOnlyWithPedidos">
-    <Value>Load only with Pedidos</Value>
+  <LocaleResource Name="Admin.Affiliates.List.LoadOnlyWithOrders">
+    <Value>Load only with Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.List.LoadOnlyWithPedidos.Hint">
-    <Value>Check to load affiliates only with Pedidos placed (by affiliated customers).</Value>
+  <LocaleResource Name="Admin.Affiliates.List.LoadOnlyWithOrders.Hint">
+    <Value>Check to load affiliates only with Orders placed (by affiliated customers).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.List.PedidosCreatedFromUtc">
-    <Value>Pedidos start date</Value>
+  <LocaleResource Name="Admin.Affiliates.List.OrdersCreatedFromUtc">
+    <Value>Orders start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.List.PedidosCreatedFromUtc.Hint">
+  <LocaleResource Name="Admin.Affiliates.List.OrdersCreatedFromUtc.Hint">
     <Value>The start date for the order search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.List.PedidosCreatedToUtc">
-    <Value>Pedidos end date</Value>
+  <LocaleResource Name="Admin.Affiliates.List.OrdersCreatedToUtc">
+    <Value>Orders end date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.List.PedidosCreatedToUtc.Hint">
+  <LocaleResource Name="Admin.Affiliates.List.OrdersCreatedToUtc.Hint">
     <Value>The end date for the order search.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Affiliates.List.SearchFirstName">
@@ -1467,46 +1467,46 @@
   <LocaleResource Name="Admin.Affiliates.List.SearchLastName.Hint">
     <Value>Search by a last name.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos">
-    <Value>Affiliated Pedidos</Value>
+  <LocaleResource Name="Admin.Affiliates.Orders">
+    <Value>Affiliated Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.CreatedOn">
+  <LocaleResource Name="Admin.Affiliates.Orders.CreatedOn">
     <Value>Created on</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.CustomOrderNumber">
+  <LocaleResource Name="Admin.Affiliates.Orders.CustomOrderNumber">
     <Value>Order #</Value>
   </LocaleResource>   
-  <LocaleResource Name="Admin.Affiliates.Pedidos.EndDate">
+  <LocaleResource Name="Admin.Affiliates.Orders.EndDate">
     <Value>End date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.EndDate.Hint">
+  <LocaleResource Name="Admin.Affiliates.Orders.EndDate.Hint">
     <Value>The end date for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.Pedidostatus">
+  <LocaleResource Name="Admin.Affiliates.Orders.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.Pedidostatus.Hint">
+  <LocaleResource Name="Admin.Affiliates.Orders.Orderstatus.Hint">
     <Value>Search by a specific order status e.g. Complete.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.OrderTotal">
+  <LocaleResource Name="Admin.Affiliates.Orders.OrderTotal">
     <Value>Order total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.PaymentStatus">
+  <LocaleResource Name="Admin.Affiliates.Orders.PaymentStatus">
     <Value>Payment status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.PaymentStatus.Hint">
+  <LocaleResource Name="Admin.Affiliates.Orders.PaymentStatus.Hint">
     <Value>Search by a specific payment status e.g. Paid.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.ShippingStatus">
+  <LocaleResource Name="Admin.Affiliates.Orders.ShippingStatus">
     <Value>Shipping status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.ShippingStatus.Hint">
+  <LocaleResource Name="Admin.Affiliates.Orders.ShippingStatus.Hint">
     <Value>Search by a specific shipping status e.g. Not yet shipped.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.StartDate">
+  <LocaleResource Name="Admin.Affiliates.Orders.StartDate">
     <Value>Start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Affiliates.Pedidos.StartDate.Hint">
+  <LocaleResource Name="Admin.Affiliates.Orders.StartDate.Hint">
     <Value>The start date for the search.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Affiliates.Updated">
@@ -1639,7 +1639,7 @@
     <Value>Tax category</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Attributes.CheckoutAttributes.Fields.TaxCategory.Hint">
-    <Value>The tax classification for this attribute (used to calculate tax). You can manage tax Categorias by selecting Configuration : Tax : Tax Categorias.</Value>
+    <Value>The tax classification for this attribute (used to calculate tax). You can manage tax Categories by selecting Configuration : Tax : Tax Categories.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Attributes.CheckoutAttributes.Fields.TextPrompt">
     <Value>Text prompt</Value>
@@ -1938,214 +1938,214 @@
   <LocaleResource Name="Admin.Catalog.BulkEdit.List.SearchProductName.Hint">
     <Value>A product name.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias">
-    <Value>Categorias</Value>
+  <LocaleResource Name="Admin.Catalog.Categories">
+    <Value>Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Added">
+  <LocaleResource Name="Admin.Catalog.Categories.Added">
     <Value>The new category has been added successfully.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.AddNew">
+  <LocaleResource Name="Admin.Catalog.Categories.AddNew">
     <Value>Add a new category</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.BackToList">
+  <LocaleResource Name="Admin.Catalog.Categories.BackToList">
     <Value>back to category list</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Breadcrumb">
+  <LocaleResource Name="Admin.Catalog.Categories.Breadcrumb">
     <Value>Breadcrumb</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Deleted">
+  <LocaleResource Name="Admin.Catalog.Categories.Deleted">
     <Value>The category has been deleted successfully.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.EditCategoryDetails">
+  <LocaleResource Name="Admin.Catalog.Categories.EditCategoryDetails">
     <Value>Edit category details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.AclCustomerRoles">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.AclCustomerRoles">
     <Value>Limited to customer roles</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.AclCustomerRoles.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.AclCustomerRoles.Hint">
     <Value>Select customer roles for which the category will be shown. Leave empty if you want this category to be visible to all users.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.AllowCustomersToSelectPageSize">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.AllowCustomersToSelectPageSize">
     <Value>Allow customers to select page size</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.AllowCustomersToSelectPageSize.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.AllowCustomersToSelectPageSize.Hint">
     <Value>Whether customers are allowed to select the page size from a predefined list of options.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.CategoryTemplate">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.CategoryTemplate">
     <Value>Category template</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.CategoryTemplate.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.CategoryTemplate.Hint">
     <Value>Choose a category template. This template defines how this category (and its products) will be displayed.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.CreatedOn">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.CreatedOn">
     <Value>Created on</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Deleted">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Deleted">
     <Value>Deleted</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Description">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Description">
     <Value>Description</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Description.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Description.Hint">
     <Value>The description of the category.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Discounts">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Discounts">
     <Value>Discounts</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Discounts.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Discounts.Hint">
     <Value>Select discounts to apply to this category. You can manage discounts by selecting Discounts from the Promotions menu.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Discounts.NoDiscounts">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Discounts.NoDiscounts">
     <Value>No discounts available. Create at least one discount before mapping.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.DisplayOrder">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.DisplayOrder">
     <Value>Display order</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.DisplayOrder.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.DisplayOrder.Hint">
     <Value>Set the category's display order. 1 represents the top of the list.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.IncludeInTopMenu">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.IncludeInTopMenu">
     <Value>Include in top menu</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.IncludeInTopMenu.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.IncludeInTopMenu.Hint">
     <Value>Display in the top menu bar. If this category is a subcategory, then ensure that its parent category also has this property enabled.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.LimitedToStores">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.LimitedToStores">
     <Value>Limited to stores</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.LimitedToStores.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.LimitedToStores.Hint">
     <Value>Option to limit this category to a certain store. If you have multiple stores, choose one or several from the list. If you don't use this option just leave this field empty.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.MetaDescription">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.MetaDescription">
     <Value>Meta description</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.MetaDescription.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.MetaDescription.Hint">
     <Value>Meta description to be added to category page header.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.MetaKeywords">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.MetaKeywords">
     <Value>Meta keywords</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.MetaKeywords.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.MetaKeywords.Hint">
     <Value>Meta keywords to be added to category page header.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.MetaTitle">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.MetaTitle">
     <Value>Meta title</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.MetaTitle.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.MetaTitle.Hint">
     <Value>Override the page title. The default is the name of the category.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Name">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Name">
     <Value>Name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Name.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Name.Hint">
     <Value>The category's name.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Name.Required">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Name.Required">
     <Value>Please provide a name.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PageSize">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PageSize">
     <Value>Page size</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PageSize.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PageSize.Hint">
     <Value>Set the page size for products in this category e.g. '4' products per page.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PageSize.Positive">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PageSize.Positive">
     <Value>Page size should have a positive value.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PageSizeOptions">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PageSizeOptions">
     <Value>Page Size options (comma separated)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PageSizeOptions.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PageSizeOptions.Hint">
     <Value>Comma separated list of page size options (e.g. 10, 5, 15, 20). First option is the default page size if none are selected.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PageSizeOptions.ShouldHaveUniqueItems">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PageSizeOptions.ShouldHaveUniqueItems">
     <Value>Page Size options should not have duplicate items.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Parent">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Parent">
     <Value>Parent category</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Parent.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Parent.Hint">
     <Value>Select a parent category for this category. Leave this field empty to make this the root level category.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Parent.None">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Parent.None">
     <Value>[None]</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Picture">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Picture">
     <Value>Picture</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Picture.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Picture.Hint">
     <Value>The category picture.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PriceRanges">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PriceRanges">
     <Value>Price ranges</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.PriceRanges.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.PriceRanges.Hint">
     <Value>Define the price ranges for the store price range filter. Separate ranges with a semicolon e.g. '0-199;200-300;301-;' (301- means 301 and over).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Published">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Published">
     <Value>Published</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.Published.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.Published.Hint">
     <Value>Check to publish this category (visible in store). Uncheck to unpublish (category not available in store).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.SeName">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.SeName">
     <Value>Search engine friendly page name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.SeName.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.SeName.Hint">
     <Value>Set a search engine friendly page name e.g. 'the-best-category' to make your page URL 'http://www.yourStore.com/the-best-category'. Leave empty to generate it automatically based on the name of the category.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.ShowOnHomePage">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.ShowOnHomePage">
     <Value>Show on home page</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Fields.ShowOnHomePage.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.Fields.ShowOnHomePage.Hint">
     <Value>Check if you want to show a category on home page.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Imported">
-    <Value>Categorias have been imported successfully.</Value>
+  <LocaleResource Name="Admin.Catalog.Categories.Imported">
+    <Value>Categories have been imported successfully.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Info">
+  <LocaleResource Name="Admin.Catalog.Categories.Info">
     <Value>Category info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.List.ImportFromExcelTip">
-    <Value>Imported Categorias are distinguished by ID. If the ID already exists, then its corresponding category will be updated. You should not specify ID (leave 0) for new Categorias.</Value>
+  <LocaleResource Name="Admin.Catalog.Categories.List.ImportFromExcelTip">
+    <Value>Imported Categories are distinguished by ID. If the ID already exists, then its corresponding category will be updated. You should not specify ID (leave 0) for new Categories.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.List.SearchCategoryName">
+  <LocaleResource Name="Admin.Catalog.Categories.List.SearchCategoryName">
     <Value>Category name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.List.SearchCategoryName.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.List.SearchCategoryName.Hint">
     <Value>A category name.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.List.SearchStore">
+  <LocaleResource Name="Admin.Catalog.Categories.List.SearchStore">
     <Value>Store</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.List.SearchStore.Hint">
+  <LocaleResource Name="Admin.Catalog.Categories.List.SearchStore.Hint">
     <Value>Search by a specific store.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Manage">
-    <Value>Manage Categorias</Value>
+  <LocaleResource Name="Admin.Catalog.Categories.Manage">
+    <Value>Manage Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Products">
+  <LocaleResource Name="Admin.Catalog.Categories.Products">
     <Value>Products</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Products.AddNew">
+  <LocaleResource Name="Admin.Catalog.Categories.Products.AddNew">
     <Value>Add a new product</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Products.Fields.DisplayOrder">
+  <LocaleResource Name="Admin.Catalog.Categories.Products.Fields.DisplayOrder">
     <Value>Display order</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Products.Fields.IsFeaturedProduct">
+  <LocaleResource Name="Admin.Catalog.Categories.Products.Fields.IsFeaturedProduct">
     <Value>Is featured product?</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Products.Fields.Product">
+  <LocaleResource Name="Admin.Catalog.Categories.Products.Fields.Product">
     <Value>Product</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Products.SaveBeforeEdit">
+  <LocaleResource Name="Admin.Catalog.Categories.Products.SaveBeforeEdit">
     <Value>You need to save the category before you can add products for this category page.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.SwitchToListView">
+  <LocaleResource Name="Admin.Catalog.Categories.SwitchToListView">
     <Value>switch to list view</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Categorias.Updated">
+  <LocaleResource Name="Admin.Catalog.Categories.Updated">
     <Value>The category has been updated successfully.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.LowStockReport">
@@ -2493,14 +2493,14 @@
   <LocaleResource Name="Admin.Catalog.Products.BackToList">
     <Value>back to product list</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.Fields.Categorias">
-    <Value>Categorias</Value>
+  <LocaleResource Name="Admin.Catalog.Products.Fields.Categories">
+    <Value>Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.Fields.Categorias.Hint">
-    <Value>Choose Categorias. You can manage product Categorias by selecting Catalog > Categorias.</Value>
+  <LocaleResource Name="Admin.Catalog.Products.Fields.Categories.Hint">
+    <Value>Choose Categories. You can manage product Categories by selecting Catalog > Categories.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.Fields.Categorias.NoCategoriasAvailable">
-    <Value>No Categorias available.</Value>
+  <LocaleResource Name="Admin.Catalog.Products.Fields.Categories.NoCategoriesAvailable">
+    <Value>No Categories available.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.CommonInfo">
     <Value>General Information</Value>
@@ -2635,7 +2635,7 @@
     <Value>The start of the product's availability in Coordinated Universal Time (UTC).</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.BackorderMode">
-    <Value>BackPedidos</Value>
+    <Value>BackOrders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.BackorderMode.Hint">
     <Value>Select backorder mode.</Value>
@@ -2818,7 +2818,7 @@
     <Value>Recurring product</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.IsRecurring.Hint">
-    <Value>Check if it is a recurring product. For any product, you can define a recurring cycle to enable the system to automatically create Pedidos that repeat when a customer purchases such products.</Value>
+    <Value>Check if it is a recurring product. For any product, you can define a recurring cycle to enable the system to automatically create Orders that repeat when a customer purchases such products.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.IsRental">
     <Value>Is rental</Value>
@@ -3148,7 +3148,7 @@
     <Value>Tax category</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.TaxCategory.Hint">
-    <Value>The tax classification for the product. You can manage tax Categorias by selecting Configuration > Tax > Tax Categorias.</Value>
+    <Value>The tax classification for the product. You can manage tax Categories by selecting Configuration > Tax > Tax Categories.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.UnlimitedDownloads">
     <Value>Unlimited downloads</Value>
@@ -3234,11 +3234,11 @@
   <LocaleResource Name="Admin.Catalog.Products.List.SearchCategory.Hint">
     <Value>Search by a specific category.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.List.SearchIncludeSubCategorias">
-    <Value>Search sub Categorias</Value>
+  <LocaleResource Name="Admin.Catalog.Products.List.SearchIncludeSubCategories">
+    <Value>Search sub Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.List.SearchIncludeSubCategorias.Hint">
-    <Value>Check to search in sub Categorias.</Value>
+  <LocaleResource Name="Admin.Catalog.Products.List.SearchIncludeSubCategories.Hint">
+    <Value>Check to search in sub Categories.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.List.SearchManufacturer">
     <Value>Manufacturer</Value>
@@ -3348,11 +3348,11 @@
   <LocaleResource Name="Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Description">
     <Value>Note that some attribute control types that support custom user input (e.g. file upload, textboxes, date picker) are useless with attribute combinations</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockPedidos">
+  <LocaleResource Name="Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockOrders">
     <Value>Allow out of stock</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockPedidos.Hint">
-    <Value>A value indicating whether to allow Pedidos when out of stock.</Value>
+  <LocaleResource Name="Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockOrders.Hint">
+    <Value>A value indicating whether to allow Orders when out of stock.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.Attributes">
     <Value>Attributes</Value>
@@ -3645,11 +3645,11 @@
   <LocaleResource Name="Admin.Catalog.Products.ProductWarehouseInventory.Hint">
     <Value>Manage inventory per warehouse.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.PurchasedWithPedidos">
-    <Value>Purchased with Pedidos</Value>
+  <LocaleResource Name="Admin.Catalog.Products.PurchasedWithOrders">
+    <Value>Purchased with Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.Products.PurchasedWithPedidos.Hint">
-    <Value>Here you can see a list of Pedidos in which this product was purchased.</Value>
+  <LocaleResource Name="Admin.Catalog.Products.PurchasedWithOrders.Hint">
+    <Value>Here you can see a list of Orders in which this product was purchased.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.RecurringProduct">
     <Value>Recurring product</Value>
@@ -5358,10 +5358,10 @@
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowCategoryProductNumber.Hint">
     <Value>Check to show the number of products besides each category (category navigation block).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowCategoryProductNumberIncludingSubCategorias">
-    <Value>Include subCategorias (number of distinct products)</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowCategoryProductNumberIncludingSubCategories">
+    <Value>Include subCategories (number of distinct products)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowCategoryProductNumberIncludingSubCategorias.Hint">
+  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowCategoryProductNumberIncludingSubCategories.Hint">
     <Value>Check to including when showing the number of products besides each category.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowFreeShippingNotification">
@@ -5388,11 +5388,11 @@
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowProductImagesInSearchAutoComplete.Hint">
     <Value>Determines whether product images should be displayed in the autocomplete search box.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowProductsFromSubCategorias">
-    <Value>Include products from subCategorias</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowProductsFromSubCategories">
+    <Value>Include products from subCategories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowProductsFromSubCategorias.Hint">
-    <Value>Check if you want a category details page to include products from subCategorias.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowProductsFromSubCategories.Hint">
+    <Value>Check if you want a category details page to include products from subCategories.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ShowSkuOnCatalogPages">
     <Value>Show SKU on catalog pages</Value>
@@ -5742,29 +5742,29 @@
   <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.HideDownloadableProductsTab.Hint">
     <Value>Check to hide 'Downloadable products' tab on 'Mi cuenta' page.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.HideBoletín informativoBlock">
-    <Value>Hide Boletín informativo box</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.HideNewsletterBlock">
+    <Value>Hide Newsletter box</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.HideBoletín informativoBlock.Hint">
-    <Value>Check if you want to hide the Boletín informativo subscription box.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.HideNewsletterBlock.Hint">
+    <Value>Check if you want to hide the Newsletter subscription box.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.Boletín informativoBlockAllowToUnsubscribe">
-    <Value>Boletín informativo box. Allow to unsubscribe</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NewsletterBlockAllowToUnsubscribe">
+    <Value>Newsletter box. Allow to unsubscribe</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.Boletín informativoBlockAllowToUnsubscribe.Hint">
-    <Value>Check if you want to allow customers to display "unsubscribe" option in the Boletín informativo block.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NewsletterBlockAllowToUnsubscribe.Hint">
+    <Value>Check if you want to allow customers to display "unsubscribe" option in the Newsletter block.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.Boletín informativoEnabled">
-    <Value>'Boletín informativo' enabled</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NewsletterEnabled">
+    <Value>'Newsletter' enabled</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.Boletín informativoEnabled.Hint">
-    <Value>Set if 'Boletín informativo' is enabled.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NewsletterEnabled.Hint">
+    <Value>Set if 'Newsletter' is enabled.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.Boletín informativoTickedByDefault">
-    <Value>Boletín informativo ticked by default</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NewsletterTickedByDefault">
+    <Value>Newsletter ticked by default</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.Boletín informativoTickedByDefault.Hint">
-    <Value>A value indicating whether 'Boletín informativo' checkbox is ticked by default on the registration page.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NewsletterTickedByDefault.Hint">
+    <Value>A value indicating whether 'Newsletter' checkbox is ticked by default on the registration page.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.CustomerUser.NotifyNewCustomerRegistration">
     <Value>Notify about new customer registration</Value>
@@ -6184,13 +6184,13 @@
     <Value>Default meta description</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DefaultMetaDescription.Hint">
-    <Value>The default meta description for pages in yNuestra tienda. You can override this for individual Categorias / products / manufacturer pages.</Value>
+    <Value>The default meta description for pages in yNuestra tienda. You can override this for individual Categories / products / manufacturer pages.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DefaultMetaKeywords">
     <Value>Default meta keywords</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DefaultMetaKeywords.Hint">
-    <Value>The default meta keywords for pages in yNuestra tienda. You can override these for individual Categorias / products / manufacturer pages.</Value>
+    <Value>The default meta keywords for pages in yNuestra tienda. You can override these for individual Categories / products / manufacturer pages.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DefaultStoreTheme">
     <Value>Default store theme</Value>
@@ -6207,11 +6207,11 @@
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DefaultTitle.Hint">
     <Value>The default title for pages in yNuestra tienda.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisablePdfInvoicesForPendingPedidos">
-    <Value>Disable PDF invoices for pending Pedidos</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisablePdfInvoicesForPendingOrders">
+    <Value>Disable PDF invoices for pending Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisablePdfInvoicesForPendingPedidos.Hint">
-    <Value>If checked, customers won't be allowed to print PDF invoices for pending Pedidos.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisablePdfInvoicesForPendingOrders.Hint">
+    <Value>If checked, customers won't be allowed to print PDF invoices for pending Orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultMenuItemSettings.DisplayBlogMenuItem">
     <Value>Display "Blog"</Value>
@@ -6462,11 +6462,11 @@
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapEnabled.Hint">
     <Value>Check to enable sitemap.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapIncludeCategorias">
-    <Value>Sitemap includes Categorias</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapIncludeCategories">
+    <Value>Sitemap includes Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapIncludeCategorias.Hint">
-    <Value>Check if you want to include Categorias in sitemap.</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapIncludeCategories.Hint">
+    <Value>Check if you want to include Categories in sitemap.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapIncludeManufacturers">
     <Value>Sitemap includes manufacturers</Value>
@@ -6823,27 +6823,27 @@
     <Value>When disabled, customers will be automatically redirected to the order details page.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.ExportWithProducts">
-    <Value>Export Pedidos with products</Value>
+    <Value>Export Orders with products</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.ExportWithProducts.Hint">
-    <Value>Check if Pedidos should be exported with products.</Value>
+    <Value>Check if Orders should be exported with products.</Value>
   </LocaleResource>  
   <LocaleResource Name="Admin.Configuration.Settings.Order.IsReOrderAllowed">
     <Value>Is re-order allowed</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.IsReOrderAllowed.Hint">
-    <Value>Check if you want to allow customers to make re-Pedidos.</Value>
+    <Value>Check if you want to allow customers to make re-Orders.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Order.MinPedidosubtotalAmount">
+  <LocaleResource Name="Admin.Configuration.Settings.Order.MinOrdersubtotalAmount">
     <Value>Min order sub-total amount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Order.MinPedidosubtotalAmount.Hint">
+  <LocaleResource Name="Admin.Configuration.Settings.Order.MinOrdersubtotalAmount.Hint">
     <Value>Min order total amount.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Order.MinPedidosubtotalAmountIncludingTax">
+  <LocaleResource Name="Admin.Configuration.Settings.Order.MinOrdersubtotalAmountIncludingTax">
     <Value>Calculate 'Min order sub-total amount' including tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Order.MinPedidosubtotalAmountIncludingTax.Hint">
+  <LocaleResource Name="Admin.Configuration.Settings.Order.MinOrdersubtotalAmountIncludingTax.Hint">
     <Value>Check to calculate 'Min order sub-total amount' value including tax; otherwise excluding tax.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.MinOrderTotalAmount">
@@ -6856,7 +6856,7 @@
     <Value>Number of days that the return request is available</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.NumberOfDaysReturnRequestAvailable.Hint">
-    <Value>Set a certain number of days that the Return Request Link will be available in the customer area. For example, if the store owner allows returns within 30 days of purchase, they would set this to 30. Logged in customers, viewing Pedidos in Mi cuenta, would then not see Return Request buttons for Pedidos completed more than thirty days ago.</Value>
+    <Value>Set a certain number of days that the Return Request Link will be available in the customer area. For example, if the store owner allows returns within 30 days of purchase, they would set this to 30. Logged in customers, viewing Orders in Mi cuenta, would then not see Return Request buttons for Orders completed more than thirty days ago.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab">
     <Value>Order totals on payment info tab</Value>
@@ -6874,9 +6874,9 @@
     <Value>Order ID</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.OrderIdent.Hint">
-    <Value>Set the order ID counter. This is useful if you want your Pedidos to start at a certain number. This only affects Pedidos created going forward. The value must be greater than the current maximum order ID.</Value>
+    <Value>Set the order ID counter. This is useful if you want your Orders to start at a certain number. This only affects Orders created going forward. The value must be greater than the current maximum order ID.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Order.Pedidosettings">
+  <LocaleResource Name="Admin.Configuration.Settings.Order.Ordersettings">
     <Value>Order settings</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.ReturnRequestActions">
@@ -6988,7 +6988,7 @@
     <Value>The returns system will allow your customers to request a return on items they've purchased. These are also known as RMA requests.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.ReturnRequestsDescription2">
-    <Value>NOTE: This option is available for completed Pedidos.</Value>
+    <Value>NOTE: This option is available for completed Orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Order.ReturnRequestsEnabled">
     <Value>Enable Returns System</Value>
@@ -7041,8 +7041,8 @@
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.AvailableStartDate">
     <Value>Available start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.BackPedidos">
-    <Value>BackPedidos</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.BackOrders">
+    <Value>BackOrders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.BlockTitle.CommonInfo">
     <Value>General Information</Value>
@@ -7200,8 +7200,8 @@
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.Published">
     <Value>Published</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.PurchasedWithPedidos">
-    <Value>Purchased with Pedidos</Value>
+  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.PurchasedWithOrders">
+    <Value>Purchased with Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.RecurringProduct">
     <Value>Recurring product</Value>
@@ -7396,7 +7396,7 @@
     <Value>Envíos a todo el país. over 'X'</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXEnabled.Hint">
-    <Value>Check to enable Envíos a todo el país. for all Pedidos over 'X'. Set the value to X below.</Value>
+    <Value>Check to enable Envíos a todo el país. for all Orders over 'X'. Set the value to X below.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXIncludingTax">
     <Value>Calculate 'X' including tax</Value>
@@ -7408,7 +7408,7 @@
     <Value>Value of 'X'</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.FreeShippingOverXValue.Hint">
-    <Value>All Pedidos with a total greater than the value of 'X' will qualify for Envíos a todo el país..</Value>
+    <Value>All Orders with a total greater than the value of 'X' will qualify for Envíos a todo el país..</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Shipping.GoogleMapsApiKey">
     <Value>Google maps API key</Value>
@@ -7656,16 +7656,16 @@
   <LocaleResource Name="Admin.Configuration.Settings.Tax.EuVatUseWebService.Hint">
     <Value>Check if you want to use the EU web service to validate VAT numbers. WARNING: If this option is enabled, then DO NOT disable country form field available during registration (public store).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Tax.ForceTaxExclusionFromPedidosubtotal">
+  <LocaleResource Name="Admin.Configuration.Settings.Tax.ForceTaxExclusionFromOrdersubtotal">
     <Value>Force tax exclusion from order subtotal</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Tax.ForceTaxExclusionFromPedidosubtotal.Hint">
+  <LocaleResource Name="Admin.Configuration.Settings.Tax.ForceTaxExclusionFromOrdersubtotal.Hint">
     <Value>Check to always exclude tax from order subtotal (no matter of selected tax dispay type). This setting effects only pages where order totals are displayed.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Tax.HideTaxInPedidosummary">
+  <LocaleResource Name="Admin.Configuration.Settings.Tax.HideTaxInOrdersummary">
     <Value>Hide tax in order summary</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Tax.HideTaxInPedidosummary.Hint">
+  <LocaleResource Name="Admin.Configuration.Settings.Tax.HideTaxInOrdersummary.Hint">
     <Value>A value indicating whether to hide tax in order summary when prices are shown tax inclusive.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Tax.HideZeroTax">
@@ -7728,7 +7728,7 @@
   <LocaleResource Name="Admin.Configuration.Settings.Tax.TaxBasedOnPickupPointAddress.Hint">
     <Value>A value indicating whether to use pickup point address (when pickup point is chosen) for tax calculation.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Settings.Tax.TaxCategorias.None">
+  <LocaleResource Name="Admin.Configuration.Settings.Tax.TaxCategories.None">
     <Value>[None]</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Tax.TaxDisplayType">
@@ -8157,16 +8157,16 @@
   <LocaleResource Name="Admin.Configuration.Tax">
     <Value>Tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Tax.Categorias">
-    <Value>Tax Categorias</Value>
+  <LocaleResource Name="Admin.Configuration.Tax.Categories">
+    <Value>Tax Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Tax.Categorias.Fields.DisplayOrder">
+  <LocaleResource Name="Admin.Configuration.Tax.Categories.Fields.DisplayOrder">
     <Value>Display order</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Tax.Categorias.Fields.Name">
+  <LocaleResource Name="Admin.Configuration.Tax.Categories.Fields.Name">
     <Value>Name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Configuration.Tax.Categorias.Fields.Name.Required">
+  <LocaleResource Name="Admin.Configuration.Tax.Categories.Fields.Name.Required">
     <Value>Please provide a name.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Tax.Providers">
@@ -8547,44 +8547,44 @@
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.News.NewsComment">
 	  <Value><![CDATA[This message template is used when a new comment to the certain news item is created. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new news comments</strong> in Configuration - Settings - News settings.]]></Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Boletín informativoSubscription.ActivationMessage">
-	  <Value>This message template is used when a customer subscribes to the Boletín informativo to confirm the subscription.</Value>
+  <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.NewsletterSubscription.ActivationMessage">
+	  <Value>This message template is used when a customer subscribes to the Newsletter to confirm the subscription.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Boletín informativoSubscription.DeactivationMessage">
-	  <Value><![CDATA[This message template is used when a customer unsubscribes to the Boletín informativo to confirm the subscription deactivation. You can allow users to unsubscribe by ticking the checkbox <strong>Boletín informativo box. Allow to unsubscribe</strong> in Configuration - Settings - Customer settings.]]></Value>
+  <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.NewsletterSubscription.DeactivationMessage">
+	  <Value><![CDATA[This message template is used when a customer unsubscribes to the Newsletter to confirm the subscription deactivation. You can allow users to unsubscribe by ticking the checkbox <strong>Newsletter box. Allow to unsubscribe</strong> in Configuration - Settings - Customer settings.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.NewVATSubmitted.StoreOwnerNotification">
 	  <Value><![CDATA[This message template is used when a new VAT is submitted. The message is received by a store owner. You can set up this option by clicking <strong>Notify admin when a new VAT number is submitted</strong> in Configuration - Settings - Tax settings.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderCancelled.CustomerNotification">
-	  <Value>This message template is used to notify a customer that the certain order was canceled. The order can ba canceled by a customer on the account page or by store owner in Customers - Customers in Pedidos tab or in Sales - Pedidos.</Value>
+	  <Value>This message template is used to notify a customer that the certain order was canceled. The order can ba canceled by a customer on the account page or by store owner in Customers - Customers in Orders tab or in Sales - Orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderCompleted.CustomerNotification">
-	  <Value>This message template is used to notify a customer that the certain order was completed. The order gets the order status Complete when it''s paid and delivered, or it can be changed manually to Complete in Sales - Pedidos.</Value>
+	  <Value>This message template is used to notify a customer that the certain order was completed. The order gets the order status Complete when it''s paid and delivered, or it can be changed manually to Complete in Sales - Orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderPaid.CustomerNotification">
-	  <Value>This message template is used to notify a customer that the certain order was paid. The order gets the payment status Paid when the amount was charged, or it can be changed manually Sales - Pedidos by clicking Mark as paid button in Payment status.</Value>
+	  <Value>This message template is used to notify a customer that the certain order was paid. The order gets the payment status Paid when the amount was charged, or it can be changed manually Sales - Orders by clicking Mark as paid button in Payment status.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderPaid.StoreOwnerNotification">
-	  <Value>This message template is used to notify a store owner that the certain order was paid. The order gets the status Paid when the amount was charged, or it can be changed manually Sales - Pedidos by clicking Mark as paid button in Payment status.</Value>
+	  <Value>This message template is used to notify a store owner that the certain order was paid. The order gets the status Paid when the amount was charged, or it can be changed manually Sales - Orders by clicking Mark as paid button in Payment status.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderPaid.VendorNotification">
 	  <Value>This message template is used to notify a vendor that the certain order was paid. The order gets the status Paid when the amount was charged.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderPlaced.CustomerNotification">
-	  <Value>This message template is used to notify a customer that the certain order was placed. Pedidos can be viewed by a customer on the account page.</Value>
+	  <Value>This message template is used to notify a customer that the certain order was placed. Orders can be viewed by a customer on the account page.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderPlaced.StoreOwnerNotification">
-	  <Value>This message template is used to notify a store owner that the certain order was placed. Pedidos can be viewed by a store owner in Sales - Pedidos or in Customers menu.</Value>
+	  <Value>This message template is used to notify a store owner that the certain order was placed. Orders can be viewed by a store owner in Sales - Orders or in Customers menu.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderPlaced.VendorNotification">
-	  <Value>This message template is used to notify a vendor that the certain order was placed. Pedidos can be viewed by a vendor in Sales - Pedidos. You can allow them to access this part of Admin Area in Configuration - Access control list.</Value>
+	  <Value>This message template is used to notify a vendor that the certain order was placed. Orders can be viewed by a vendor in Sales - Orders. You can allow them to access this part of Admin Area in Configuration - Access control list.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderRefunded.CustomerNotification">
-	  <Value>This message template is used to notify a customer that the certain order was refunded. The customer can submit to refund the order when the payment status is paid on the account page, or it can be done by a store owner in Sales - Pedidos by clicking "Refund" button.</Value>
+	  <Value>This message template is used to notify a customer that the certain order was refunded. The customer can submit to refund the order when the payment status is paid on the account page, or it can be done by a store owner in Sales - Orders by clicking "Refund" button.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.OrderRefunded.StoreOwnerNotification">
-	  <Value>This message template is used to notify a store owner that the certain order was refunded. The customer can submit to refund the order when the payment status is paid on the account page, or it can be done by a store owner in Sales - Pedidos by clicking "Refund" button.</Value>
+	  <Value>This message template is used to notify a store owner that the certain order was refunded. The customer can submit to refund the order when the payment status is paid on the account page, or it can be done by a store owner in Sales - Orders by clicking "Refund" button.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Product.ProductReview">
 	  <Value><![CDATA[This message template is used to notify a store owner that a new product review is created. You can set up this option by ticking the checkbox <strong>Notify about new product reviews</strong> in Configuration - Settings - Catalog settings.]]></Value>
@@ -9394,7 +9394,7 @@
     <Value>Envíos a todo el país.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.CustomerRoles.Fields.FreeShipping.Hint">
-    <Value>Check to allow customers in this role to get Envíos a todo el país. on their Pedidos.</Value>
+    <Value>Check to allow customers in this role to get Envíos a todo el país. on their Orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.CustomerRoles.Fields.IsSystemRole">
     <Value>Is system role</Value>
@@ -9699,11 +9699,11 @@
   <LocaleResource Name="Admin.Customers.Customers.Fields.LastVisitedPage.Hint">
     <Value>The last visited date (public store).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Fields.Boletín informativo">
-    <Value>Boletín informativo</Value>
+  <LocaleResource Name="Admin.Customers.Customers.Fields.Newsletter">
+    <Value>Newsletter</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Fields.Boletín informativo.Hint">
-    <Value>Check to subscribe to Boletín informativo.</Value>
+  <LocaleResource Name="Admin.Customers.Customers.Fields.Newsletter.Hint">
+    <Value>Check to subscribe to Newsletter.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Customers.Fields.Password">
     <Value>Password</Value>
@@ -9793,7 +9793,7 @@
     <Value>Manager of vendor</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Customers.Fields.Vendor.Hint">
-    <Value>Choose a vendor associated to this customer account. When associated this customer will be able to login to the chosen vendor portal and manage his products and Pedidos.</Value>
+    <Value>Choose a vendor associated to this customer account. When associated this customer will be able to login to the chosen vendor portal and manage his products and Orders.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Customers.Fields.Vendor.None">
     <Value>Not a vendor</Value>
@@ -9894,28 +9894,28 @@
   <LocaleResource Name="Admin.Customers.Customers.NonAdminNotImpersonateAsAdminError">
     <Value>A non-admin user cannot impersonate as an administrator</Value>
   </LocaleResource>  
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos">
-    <Value>Pedidos</Value>
+  <LocaleResource Name="Admin.Customers.Customers.Orders">
+    <Value>Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.CreatedOn">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.CreatedOn">
     <Value>Created on</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.CustomOrderNumber">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.CustomOrderNumber">
     <Value>Order #</Value>
   </LocaleResource>     
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.Pedidostatus">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.OrderTotal">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.OrderTotal">
     <Value>Order total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.PaymentStatus">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.PaymentStatus">
     <Value>Payment status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.ShippingStatus">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.ShippingStatus">
     <Value>Shipping status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Customers.Pedidos.Store">
+  <LocaleResource Name="Admin.Customers.Customers.Orders.Store">
     <Value>Store</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Customers.PasswordChanged">
@@ -10062,8 +10062,8 @@
   <LocaleResource Name="Admin.Customers.Reports">
     <Value>Customer reports</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Reports.BestBy.BestByNumberOfPedidos">
-    <Value>Customers by number of Pedidos</Value>
+  <LocaleResource Name="Admin.Customers.Reports.BestBy.BestByNumberOfOrders">
+    <Value>Customers by number of Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Reports.BestBy.BestByOrderTotal">
     <Value>Customers by order total</Value>
@@ -10078,15 +10078,15 @@
     <Value>Customer</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Reports.BestBy.Fields.OrderCount">
-    <Value>Number of Pedidos</Value>
+    <Value>Number of Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Reports.BestBy.Fields.OrderTotal">
     <Value>Order total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Reports.BestBy.Pedidostatus">
+  <LocaleResource Name="Admin.Customers.Reports.BestBy.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Customers.Reports.BestBy.Pedidostatus.Hint">
+  <LocaleResource Name="Admin.Customers.Reports.BestBy.Orderstatus.Hint">
     <Value>Search by a specific order status e.g. Complete.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Customers.Reports.BestBy.PaymentStatus">
@@ -10149,8 +10149,8 @@
   <LocaleResource Name="Admin.Dashboard.CommonStatistics">
     <Value>Common statistics</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Dashboard.NumberOfPedidos">
-    <Value>Pedidos</Value>
+  <LocaleResource Name="Admin.Dashboard.NumberOfOrders">
+    <Value>Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Dashboard.NumberOfCustomers">
     <Value>Registered customers</Value>
@@ -10164,14 +10164,14 @@
   <LocaleResource Name="Admin.Dashboard.MoreInfo">
     <Value>More info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Dashboard.IncompletePedidos">
-    <Value>Incomplete Pedidos</Value>
+  <LocaleResource Name="Admin.Dashboard.IncompleteOrders">
+    <Value>Incomplete Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Dashboard.LatestPedidos">
-    <Value>Latest Pedidos</Value>
+  <LocaleResource Name="Admin.Dashboard.LatestOrders">
+    <Value>Latest Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Dashboard.LatestPedidos.ViewAll">
-    <Value>View All Pedidos</Value>
+  <LocaleResource Name="Admin.Dashboard.LatestOrders.ViewAll">
+    <Value>View All Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Download.DownloadUploadedFile">
     <Value>Download uploaded file</Value>
@@ -10389,955 +10389,955 @@
   <LocaleResource Name="Admin.NopCommerceNews.ShowAdv">
     <Value>Show advertisements</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos">
-    <Value>Pedidos</Value>
+  <LocaleResource Name="Admin.Orders">
+    <Value>Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Address1">
+  <LocaleResource Name="Admin.Orders.Address.Address1">
     <Value>Address 1</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Address2">
+  <LocaleResource Name="Admin.Orders.Address.Address2">
     <Value>Address 2</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.BackToOrder">
+  <LocaleResource Name="Admin.Orders.Address.BackToOrder">
     <Value>back to order details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.City">
+  <LocaleResource Name="Admin.Orders.Address.City">
     <Value>City</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Company">
+  <LocaleResource Name="Admin.Orders.Address.Company">
     <Value>Company</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Country">
+  <LocaleResource Name="Admin.Orders.Address.Country">
     <Value>Country</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.EditAddress">
+  <LocaleResource Name="Admin.Orders.Address.EditAddress">
     <Value>Edit address</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Email">
+  <LocaleResource Name="Admin.Orders.Address.Email">
     <Value>Email</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Fax">
+  <LocaleResource Name="Admin.Orders.Address.Fax">
     <Value>Fax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.FullName">
+  <LocaleResource Name="Admin.Orders.Address.FullName">
     <Value>Full name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.Phone">
+  <LocaleResource Name="Admin.Orders.Address.Phone">
     <Value>Phone</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.StateProvince">
+  <LocaleResource Name="Admin.Orders.Address.StateProvince">
     <Value>State / province</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Address.ZipPostalCode">
+  <LocaleResource Name="Admin.Orders.Address.ZipPostalCode">
     <Value>Zip / postal code</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.BackToList">
+  <LocaleResource Name="Admin.Orders.BackToList">
     <Value>back to order list</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.BillingInfo">
+  <LocaleResource Name="Admin.Orders.BillingInfo">
     <Value>Billing info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.EditOrderDetails">
+  <LocaleResource Name="Admin.Orders.EditOrderDetails">
     <Value>Edit order details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Affiliate">
+  <LocaleResource Name="Admin.Orders.Fields.Affiliate">
     <Value>Affiliate</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Affiliate.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Affiliate.Hint">
     <Value>The affiliate who the order is linked to.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.AuthorizationTransactionID">
+  <LocaleResource Name="Admin.Orders.Fields.AuthorizationTransactionID">
     <Value>Authorization transaction ID</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.AuthorizationTransactionID.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.AuthorizationTransactionID.Hint">
     <Value>Authorization transaction identifier received from your payment gateway.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.BillingAddress">
+  <LocaleResource Name="Admin.Orders.Fields.BillingAddress">
     <Value>Billing address</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.BillingAddress.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.BillingAddress.Hint">
     <Value>Billing address info.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Capture">
+  <LocaleResource Name="Admin.Orders.Fields.Capture">
     <Value>Capture</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CaptureTransactionID">
+  <LocaleResource Name="Admin.Orders.Fields.CaptureTransactionID">
     <Value>Capture transaction ID</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CaptureTransactionID.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CaptureTransactionID.Hint">
     <Value>Capture transaction identifier received from your payment gateway.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardCVV2">
+  <LocaleResource Name="Admin.Orders.Fields.CardCVV2">
     <Value>Card CVV2</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardCVV2.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CardCVV2.Hint">
     <Value>The card security code of the card used in the transaction.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardExpirationMonth">
+  <LocaleResource Name="Admin.Orders.Fields.CardExpirationMonth">
     <Value>Card expiry month</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardExpirationMonth.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CardExpirationMonth.Hint">
     <Value>The expiry month of the card used in the transaction.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardExpirationYear">
+  <LocaleResource Name="Admin.Orders.Fields.CardExpirationYear">
     <Value>Card expiry year</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardExpirationYear.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CardExpirationYear.Hint">
     <Value>The expiry year of the card used in the transaction.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardName">
+  <LocaleResource Name="Admin.Orders.Fields.CardName">
     <Value>Card name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardName.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CardName.Hint">
     <Value>The name on the card used in the transaction.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardNumber">
+  <LocaleResource Name="Admin.Orders.Fields.CardNumber">
     <Value>Card number</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardNumber.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CardNumber.Hint">
     <Value>The number of the card used in the transaction.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardType">
+  <LocaleResource Name="Admin.Orders.Fields.CardType">
     <Value>Card type</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CardType.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CardType.Hint">
     <Value>The type of a card used in the transaction.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CreatedOn">
+  <LocaleResource Name="Admin.Orders.Fields.CreatedOn">
     <Value>Created on</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CreatedOn.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CreatedOn.Hint">
     <Value>The date/time the order was placed/created.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Customer">
+  <LocaleResource Name="Admin.Orders.Fields.Customer">
     <Value>Customer</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Customer.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Customer.Hint">
     <Value>The customer who placed this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomerEmail">
+  <LocaleResource Name="Admin.Orders.Fields.CustomerEmail">
     <Value>Email</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomerEmail.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CustomerEmail.Hint">
     <Value>Email.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomerIP">
+  <LocaleResource Name="Admin.Orders.Fields.CustomerIP">
     <Value>Customer IP address</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomerIP.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CustomerIP.Hint">
     <Value>Customer IP address from where an order has been placed.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomOrderNumber">
+  <LocaleResource Name="Admin.Orders.Fields.CustomOrderNumber">
     <Value>Order #</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomOrderNumber.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CustomOrderNumber.Hint">
     <Value>The unique number of this order.</Value>
   </LocaleResource>    
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomValues">
+  <LocaleResource Name="Admin.Orders.Fields.CustomValues">
     <Value>Custom values</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.CustomValues.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.CustomValues.Hint">
     <Value>Custom values from the Formas de pago.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.ExclTax">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.ExclTax">
     <Value>excl tax:</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.InclTax">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.InclTax">
     <Value>incl tax:</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.Pedidoshipping">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.Ordershipping">
     <Value>Order shipping</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.Pedidoshipping.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.Ordershipping.Hint">
     <Value>Edit the total shipping cost for this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.Pedidosubtotal">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.Ordersubtotal">
     <Value>Order subtotal</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.Pedidosubtotal.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.Ordersubtotal.Hint">
     <Value>Edit the subtotal of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.PedidosubTotalDiscount">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.OrdersubTotalDiscount">
     <Value>Order subtotal discount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.PedidosubTotalDiscount.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.OrdersubTotalDiscount.Hint">
     <Value>Edit the subtotal discount of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.OrderTotal">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.OrderTotal">
     <Value>Order total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.OrderTotal.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.OrderTotal.Hint">
     <Value>Edit the total cost of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.OrderTotalDiscount">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.OrderTotalDiscount">
     <Value>Order discount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.OrderTotalDiscount.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.OrderTotalDiscount.Hint">
     <Value>Edit the total discount applied to this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.PaymentMethodAdditionalFee">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.PaymentMethodAdditionalFee">
     <Value>Formas de pago additional fee</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.PaymentMethodAdditionalFee.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.PaymentMethodAdditionalFee.Hint">
     <Value>Edit the Formas de pago additional fee for this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.Tax">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.Tax">
     <Value>Order tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.Tax.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.Tax.Hint">
     <Value>Edit the total tax applied to this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.TaxRates">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.TaxRates">
     <Value>Order tax rates</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Edit.TaxRates.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Edit.TaxRates.Hint">
     <Value>Edit the tax rates applied to this order ([rate]:[taxtotal] - separated by semicolon).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.EditCC">
+  <LocaleResource Name="Admin.Orders.Fields.EditCC">
     <Value>Edit credit card</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.EditOrderTotals">
+  <LocaleResource Name="Admin.Orders.Fields.EditOrderTotals">
     <Value>Edit order totals</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.GiftCardInfo">
+  <LocaleResource Name="Admin.Orders.Fields.GiftCardInfo">
     <Value>Gift card</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.GiftCardInfo.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.GiftCardInfo.Hint">
     <Value>Applied gift card.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.MarkAsPaid">
+  <LocaleResource Name="Admin.Orders.Fields.MarkAsPaid">
     <Value>Mark as paid</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.OrderGuid">
+  <LocaleResource Name="Admin.Orders.Fields.OrderGuid">
     <Value>Order GUID</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.OrderGuid.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.OrderGuid.Hint">
     <Value>Internal reference for order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidoshipping">
+  <LocaleResource Name="Admin.Orders.Fields.Ordershipping">
     <Value>Order shipping</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidoshipping.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Ordershipping.Hint">
     <Value>The total shipping cost for this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidoshippingExclTax">
+  <LocaleResource Name="Admin.Orders.Fields.OrdershippingExclTax">
     <Value>excl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidoshippingInclTax">
+  <LocaleResource Name="Admin.Orders.Fields.OrdershippingInclTax">
     <Value>incl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidostatus">
+  <LocaleResource Name="Admin.Orders.Fields.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidostatus.Cancel">
+  <LocaleResource Name="Admin.Orders.Fields.Orderstatus.Cancel">
     <Value>Cancel order</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidostatus.CancelledNotification">
+  <LocaleResource Name="Admin.Orders.Fields.Orderstatus.CancelledNotification">
     <Value>This order is cancelled</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidostatus.Change">
+  <LocaleResource Name="Admin.Orders.Fields.Orderstatus.Change">
     <Value>Change status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidostatus.Change.ForAdvancedUsers">
+  <LocaleResource Name="Admin.Orders.Fields.Orderstatus.Change.ForAdvancedUsers">
     <Value>This option is only for advanced users (not recommended to change manually). All appropriate actions (such as inventory adjustment, sending notification emails, reward points, gift card activation/deactivation, etc) should be done manually in this case.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidostatus.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Orderstatus.Hint">
     <Value>The status of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidosubtotal">
+  <LocaleResource Name="Admin.Orders.Fields.Ordersubtotal">
     <Value>Order subtotal</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Pedidosubtotal.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Ordersubtotal.Hint">
     <Value>The subtotal of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidosubTotalDiscount">
+  <LocaleResource Name="Admin.Orders.Fields.OrdersubTotalDiscount">
     <Value>Order subtotal discount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidosubTotalDiscount.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.OrdersubTotalDiscount.Hint">
     <Value>The subtotal discount of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidosubTotalDiscountExclTax">
+  <LocaleResource Name="Admin.Orders.Fields.OrdersubTotalDiscountExclTax">
     <Value>excl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidosubTotalDiscountInclTax">
+  <LocaleResource Name="Admin.Orders.Fields.OrdersubTotalDiscountInclTax">
     <Value>incl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidosubtotalExclTax">
+  <LocaleResource Name="Admin.Orders.Fields.OrdersubtotalExclTax">
     <Value>excl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PedidosubtotalInclTax">
+  <LocaleResource Name="Admin.Orders.Fields.OrdersubtotalInclTax">
     <Value>incl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.OrderTotal">
+  <LocaleResource Name="Admin.Orders.Fields.OrderTotal">
     <Value>Order total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.OrderTotal.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.OrderTotal.Hint">
     <Value>The total cost of this order (includes discounts, shipping and tax).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.OrderTotalDiscount">
+  <LocaleResource Name="Admin.Orders.Fields.OrderTotalDiscount">
     <Value>Order discount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.OrderTotalDiscount.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.OrderTotalDiscount.Hint">
     <Value>The total discount applied to this order. Manage your discounts from Promotions : Discounts.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PartialRefund">
+  <LocaleResource Name="Admin.Orders.Fields.PartialRefund">
     <Value>Partial refund</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PartialRefund.AmountToRefund">
+  <LocaleResource Name="Admin.Orders.Fields.PartialRefund.AmountToRefund">
     <Value>Amount to refund</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PartialRefund.AmountToRefund.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.PartialRefund.AmountToRefund.Hint">
     <Value>Enter amount to refund.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PartialRefund.AmountToRefund.Max">
+  <LocaleResource Name="Admin.Orders.Fields.PartialRefund.AmountToRefund.Max">
     <Value>Max amount is {0} {1}</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PartialRefund.OrderInfo">
+  <LocaleResource Name="Admin.Orders.Fields.PartialRefund.OrderInfo">
     <Value>Partial refund for order #{0}</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PartialRefundOffline">
+  <LocaleResource Name="Admin.Orders.Fields.PartialRefundOffline">
     <Value>Partial refund (Offline)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentMethod">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentMethod">
     <Value>Formas de pago</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentMethod.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentMethod.Hint">
     <Value>The Formas de pago used for this transaction. You can manage Formas de pagos from Configuration : Payment : Formas de pagos.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentMethodAdditionalFee">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentMethodAdditionalFee">
     <Value>Formas de pago additional fee</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentMethodAdditionalFee.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentMethodAdditionalFee.Hint">
     <Value>The Formas de pago additional fee for this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentMethodAdditionalFeeExclTax">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentMethodAdditionalFeeExclTax">
     <Value>excl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentMethodAdditionalFeeInclTax">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentMethodAdditionalFeeInclTax">
     <Value>incl tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentStatus">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentStatus">
     <Value>Payment status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PaymentStatus.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.PaymentStatus.Hint">
     <Value>The status of the payment.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PickupAddress">
+  <LocaleResource Name="Admin.Orders.Fields.PickupAddress">
     <Value>Pickup point address</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PickupAddress.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.PickupAddress.Hint">
     <Value>Pickup point address info.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.PickupAddress.ViewOnGoogleMaps">
+  <LocaleResource Name="Admin.Orders.Fields.PickupAddress.ViewOnGoogleMaps">
     <Value>View address on Google Maps</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Profit">
+  <LocaleResource Name="Admin.Orders.Fields.Profit">
     <Value>Profit</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Profit.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Profit.Hint">
     <Value>Profit of this order.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RecurringPayment">
+  <LocaleResource Name="Admin.Orders.Fields.RecurringPayment">
     <Value>Recurring payment</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RecurringPayment.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.RecurringPayment.Hint">
     <Value>This is a recurring order. See the appropriate recurring payment record.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RedeemedRewardPoints">
+  <LocaleResource Name="Admin.Orders.Fields.RedeemedRewardPoints">
     <Value>Reward points</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RedeemedRewardPoints.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.RedeemedRewardPoints.Hint">
     <Value>Redeemed reward points.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RedeemedRewardPoints.Points">
+  <LocaleResource Name="Admin.Orders.Fields.RedeemedRewardPoints.Points">
     <Value>points</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Refund">
+  <LocaleResource Name="Admin.Orders.Fields.Refund">
     <Value>Refund</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RefundedAmount">
+  <LocaleResource Name="Admin.Orders.Fields.RefundedAmount">
     <Value>Refunded amount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RefundedAmount.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.RefundedAmount.Hint">
     <Value>The total refunded amount.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.RefundOffline">
+  <LocaleResource Name="Admin.Orders.Fields.RefundOffline">
     <Value>Refund (Offline)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.SaveCC">
+  <LocaleResource Name="Admin.Orders.Fields.SaveCC">
     <Value>Save credit card</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.SaveOrderTotals">
+  <LocaleResource Name="Admin.Orders.Fields.SaveOrderTotals">
     <Value>Save order totals</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingAddress">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingAddress">
     <Value>Shipping address</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingAddress.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingAddress.Hint">
     <Value>Shipping address info.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingAddress.ViewOnGoogleMaps">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingAddress.ViewOnGoogleMaps">
     <Value>View address on Google Maps</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingMethod">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingMethod">
     <Value>Shipping method</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingMethod.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingMethod.Hint">
     <Value>The customers chosen shipping method for this order. You can manage Formas de envío from Configuration : Shipping : Formas de envío.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingStatus">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingStatus">
     <Value>Shipping status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.ShippingStatus.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.ShippingStatus.Hint">
     <Value>The status of the shipping.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Store">
+  <LocaleResource Name="Admin.Orders.Fields.Store">
     <Value>Store</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Store.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Store.Hint">
     <Value>A store name in which this order was placed.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.SubscriptionTransactionID">
+  <LocaleResource Name="Admin.Orders.Fields.SubscriptionTransactionID">
     <Value>Subscription transaction ID</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.SubscriptionTransactionID.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.SubscriptionTransactionID.Hint">
     <Value>Subscription transaction identifier received from your payment gateway.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Tax">
+  <LocaleResource Name="Admin.Orders.Fields.Tax">
     <Value>Order tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Tax.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.Tax.Hint">
     <Value>Total tax applied to this order. Manage your tax settings from Configuration : Tax.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.UsedDiscounts">
+  <LocaleResource Name="Admin.Orders.Fields.UsedDiscounts">
     <Value>Used discounts</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.UsedDiscounts.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.UsedDiscounts.Hint">
     <Value>A list of used discounts.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.VatNumber">
+  <LocaleResource Name="Admin.Orders.Fields.VatNumber">
     <Value>VAT number</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.VatNumber.Hint">
+  <LocaleResource Name="Admin.Orders.Fields.VatNumber.Hint">
     <Value>Used VAT number (the European Union Value Added Tax).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.Void">
+  <LocaleResource Name="Admin.Orders.Fields.Void">
     <Value>Void</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Fields.VoidOffline">
+  <LocaleResource Name="Admin.Orders.Fields.VoidOffline">
     <Value>Void (Offline)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Info">
+  <LocaleResource Name="Admin.Orders.Info">
     <Value>Info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.BillingCountry">
+  <LocaleResource Name="Admin.Orders.List.BillingCountry">
     <Value>Billing country</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.BillingCountry.Hint">
+  <LocaleResource Name="Admin.Orders.List.BillingCountry.Hint">
     <Value>Filter by order billing country.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.BillingEmail">
+  <LocaleResource Name="Admin.Orders.List.BillingEmail">
     <Value>Billing email address</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.BillingEmail.Hint">
+  <LocaleResource Name="Admin.Orders.List.BillingEmail.Hint">
     <Value>Filter by customer billing email address.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.BillingLastName">
+  <LocaleResource Name="Admin.Orders.List.BillingLastName">
     <Value>Billing last name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.BillingLastName.Hint">
+  <LocaleResource Name="Admin.Orders.List.BillingLastName.Hint">
     <Value>Filter by customer billing last name.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.EndDate">
+  <LocaleResource Name="Admin.Orders.List.EndDate">
     <Value>End date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.EndDate.Hint">
+  <LocaleResource Name="Admin.Orders.List.EndDate.Hint">
     <Value>The end date for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.GoDirectlyToNumber">
+  <LocaleResource Name="Admin.Orders.List.GoDirectlyToNumber">
     <Value>Go directly to order #</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.GoDirectlyToNumber.Hint">
+  <LocaleResource Name="Admin.Orders.List.GoDirectlyToNumber.Hint">
     <Value>Go directly to order #.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.OrderNotes">
+  <LocaleResource Name="Admin.Orders.List.OrderNotes">
     <Value>Order notes</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.OrderNotes.Hint">
-    <Value>Search in order notes. Leave empty to load all Pedidos.</Value>
+  <LocaleResource Name="Admin.Orders.List.OrderNotes.Hint">
+    <Value>Search in order notes. Leave empty to load all Orders.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Pedidostatus">
+  <LocaleResource Name="Admin.Orders.List.Orderstatus">
     <Value>Order statuses</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Pedidostatus.Hint">
+  <LocaleResource Name="Admin.Orders.List.Orderstatus.Hint">
     <Value>Search by a specific order statuses e.g. Complete.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.PaymentMethod">
+  <LocaleResource Name="Admin.Orders.List.PaymentMethod">
     <Value>Formas de pago</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.PaymentMethod.Hint">
+  <LocaleResource Name="Admin.Orders.List.PaymentMethod.Hint">
     <Value>Search by a specific Formas de pago.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.PaymentStatus">
+  <LocaleResource Name="Admin.Orders.List.PaymentStatus">
     <Value>Payment statuses</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.PaymentStatus.Hint">
+  <LocaleResource Name="Admin.Orders.List.PaymentStatus.Hint">
     <Value>Search by a specific payment statuses e.g. Paid.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Product">
+  <LocaleResource Name="Admin.Orders.List.Product">
     <Value>Product</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Product.Hint">
+  <LocaleResource Name="Admin.Orders.List.Product.Hint">
     <Value>Search by a specific product.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.ShippingStatus">
+  <LocaleResource Name="Admin.Orders.List.ShippingStatus">
     <Value>Shipping statuses</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.ShippingStatus.Hint">
+  <LocaleResource Name="Admin.Orders.List.ShippingStatus.Hint">
     <Value>Search by a specific shipping statuses e.g. Not yet shipped.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.StartDate">
+  <LocaleResource Name="Admin.Orders.List.StartDate">
     <Value>Start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.StartDate.Hint">
+  <LocaleResource Name="Admin.Orders.List.StartDate.Hint">
     <Value>The start date for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Store">
+  <LocaleResource Name="Admin.Orders.List.Store">
     <Value>Store</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Store.Hint">
+  <LocaleResource Name="Admin.Orders.List.Store.Hint">
     <Value>Search by a specific store.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Vendor">
+  <LocaleResource Name="Admin.Orders.List.Vendor">
     <Value>Vendor</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Vendor.Hint">
-    <Value>Search by a specific vendor. You'll see Pedidos with products from a specified vendor.</Value>
+  <LocaleResource Name="Admin.Orders.List.Vendor.Hint">
+    <Value>Search by a specific vendor. You'll see Orders with products from a specified vendor.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Warehouse">
+  <LocaleResource Name="Admin.Orders.List.Warehouse">
     <Value>Warehouse</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.List.Warehouse.Hint">
-    <Value>Load Pedidos with products from a specified warehouse.</Value>
+  <LocaleResource Name="Admin.Orders.List.Warehouse.Hint">
+    <Value>Load Orders with products from a specified warehouse.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderItem.DeleteAssociatedGiftCardRecordError">
+  <LocaleResource Name="Admin.Orders.OrderItem.DeleteAssociatedGiftCardRecordError">
     <Value>This order item has an associated gift card record. Please delete it first</Value>
   </LocaleResource>  
-  <LocaleResource Name="Admin.Pedidos.OrderNotes">
+  <LocaleResource Name="Admin.Orders.OrderNotes">
     <Value>Order notes</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.AddButton">
+  <LocaleResource Name="Admin.Orders.OrderNotes.AddButton">
     <Value>Add order note</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.AddTitle">
+  <LocaleResource Name="Admin.Orders.OrderNotes.AddTitle">
     <Value>Add order note</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.CreatedOn">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.CreatedOn">
     <Value>Created on</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.DisplayToCustomer">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.DisplayToCustomer">
     <Value>Display to customer</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.DisplayToCustomer.Hint">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.DisplayToCustomer.Hint">
     <Value>A value indicating whether to display this order note to a customer.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Download">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Download">
     <Value>Attached file</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Download.HasDownload">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Download.HasDownload">
     <Value>(check to upload file)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Download.Hint">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Download.Hint">
     <Value>Upload a file attached to this order note.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Download.Link">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Download.Link">
     <Value>Download</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Download.Link.No">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Download.Link.No">
     <Value>No file attached</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Note">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Note">
     <Value>Note</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.OrderNotes.Fields.Note.Hint">
+  <LocaleResource Name="Admin.Orders.OrderNotes.Fields.Note.Hint">
     <Value>Enter this order note message.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.PdfInvoice">
+  <LocaleResource Name="Admin.Orders.PdfInvoice">
     <Value>Invoice (PDF)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.PdfInvoice.NoPedidos">
-    <Value>No Pedidos selected</Value>
+  <LocaleResource Name="Admin.Orders.PdfInvoice.NoOrders">
+    <Value>No Orders selected</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.PdfInvoices">
+  <LocaleResource Name="Admin.Orders.PdfInvoices">
     <Value>Print PDF invoices</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.PdfInvoices.All">
+  <LocaleResource Name="Admin.Orders.PdfInvoices.All">
     <Value>Print PDF invoices (all found)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.PdfInvoices.Selected">
+  <LocaleResource Name="Admin.Orders.PdfInvoices.Selected">
     <Value>Print PDF invoices (selected)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products">
+  <LocaleResource Name="Admin.Orders.Products">
     <Value>Products</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew">
+  <LocaleResource Name="Admin.Orders.Products.AddNew">
     <Value>Add product</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.BackToList">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.BackToList">
     <Value>back to product list</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.BackToOrder">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.BackToOrder">
     <Value>back to order details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.Name">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.Name">
     <Value>Name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.Quantity">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.Quantity">
     <Value>Quantity</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.Quantity.Hint">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.Quantity.Hint">
     <Value>Enter quantity.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.SKU">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.SKU">
     <Value>SKU</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.SubTotalExclTax">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.SubTotalExclTax">
     <Value>Total (excl tax)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.SubTotalExclTax.Hint">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.SubTotalExclTax.Hint">
     <Value>Enter total (excl tax).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.SubTotalInclTax">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.SubTotalInclTax">
     <Value>Total (incl tax)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.SubTotalInclTax.Hint">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.SubTotalInclTax.Hint">
     <Value>Enter total (incl tax).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.Title1">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.Title1">
     <Value>Add a new product to order #{0}</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.Title2">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.Title2">
     <Value>Add product '{0}' to order #{1}</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.UnitPriceExclTax">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.UnitPriceExclTax">
     <Value>Price (excl tax)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.UnitPriceExclTax.Hint">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.UnitPriceExclTax.Hint">
     <Value>Enter product price (excl tax).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.UnitPriceInclTax">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.UnitPriceInclTax">
     <Value>Price (incl tax)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.UnitPriceInclTax.Hint">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.UnitPriceInclTax.Hint">
     <Value>Enter product price (incl tax).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.AddNew.UpdateTotals">
+  <LocaleResource Name="Admin.Orders.Products.AddNew.UpdateTotals">
     <Value>Do not to forget to update order totals after adding this product.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Discount">
+  <LocaleResource Name="Admin.Orders.Products.Discount">
     <Value>Discount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Download">
+  <LocaleResource Name="Admin.Orders.Products.Download">
     <Value>Downloadable product</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Download.Activate">
+  <LocaleResource Name="Admin.Orders.Products.Download.Activate">
     <Value>Activate</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Download.Deactivate">
+  <LocaleResource Name="Admin.Orders.Products.Download.Deactivate">
     <Value>Deactivate</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Download.DownloadCount">
+  <LocaleResource Name="Admin.Orders.Products.Download.DownloadCount">
     <Value>Number of downloads: {0}</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Download.ResetDownloadCount">
+  <LocaleResource Name="Admin.Orders.Products.Download.ResetDownloadCount">
     <Value>Reset</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Download.ResetDownloadCount.Title">
+  <LocaleResource Name="Admin.Orders.Products.Download.ResetDownloadCount.Title">
     <Value>Click to reset download count</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Edit.ExclTax">
+  <LocaleResource Name="Admin.Orders.Products.Edit.ExclTax">
     <Value>Excl tax:</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Edit.InclTax">
+  <LocaleResource Name="Admin.Orders.Products.Edit.InclTax">
     <Value>Incl tax:</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.GiftCards">
+  <LocaleResource Name="Admin.Orders.Products.GiftCards">
     <Value>Gift card(s)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.License">
+  <LocaleResource Name="Admin.Orders.Products.License">
     <Value>License file (optional):</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.License.DownloadLicense">
+  <LocaleResource Name="Admin.Orders.Products.License.DownloadLicense">
     <Value>Download license file</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.License.UploadFile">
+  <LocaleResource Name="Admin.Orders.Products.License.UploadFile">
     <Value>Upload license file</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Picture">
+  <LocaleResource Name="Admin.Orders.Products.Picture">
     <Value>Picture</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Price">
+  <LocaleResource Name="Admin.Orders.Products.Price">
     <Value>Price</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.ProductName">
+  <LocaleResource Name="Admin.Orders.Products.ProductName">
     <Value>Product name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Quantity">
+  <LocaleResource Name="Admin.Orders.Products.Quantity">
     <Value>Quantity</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.RecurringPeriod">
+  <LocaleResource Name="Admin.Orders.Products.RecurringPeriod">
     <Value>[Auto-ship, Every {0} {1}]</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.ReturnRequests">
+  <LocaleResource Name="Admin.Orders.Products.ReturnRequests">
     <Value>Return request(s)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.SKU">
+  <LocaleResource Name="Admin.Orders.Products.SKU">
     <Value>SKU</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Total">
+  <LocaleResource Name="Admin.Orders.Products.Total">
     <Value>Total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Products.Vendor">
+  <LocaleResource Name="Admin.Orders.Products.Vendor">
     <Value>Vendor</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Report.Profit">
+  <LocaleResource Name="Admin.Orders.Report.Profit">
     <Value>Profit</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Report.Shipping">
+  <LocaleResource Name="Admin.Orders.Report.Shipping">
     <Value>Shipping</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Report.Summary">
+  <LocaleResource Name="Admin.Orders.Report.Summary">
     <Value>Summary</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Report.Tax">
+  <LocaleResource Name="Admin.Orders.Report.Tax">
     <Value>Tax</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Report.Total">
+  <LocaleResource Name="Admin.Orders.Report.Total">
     <Value>Total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments">
+  <LocaleResource Name="Admin.Orders.Shipments">
     <Value>Shipments</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Added">
+  <LocaleResource Name="Admin.Orders.Shipments.Added">
     <Value>The new shipment has been added successfully.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.AddNew">
+  <LocaleResource Name="Admin.Orders.Shipments.AddNew">
     <Value>Add shipment</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.AddNew.Title">
+  <LocaleResource Name="Admin.Orders.Shipments.AddNew.Title">
     <Value>Add a new shipment to order #{0}</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.AdminComment">
+  <LocaleResource Name="Admin.Orders.Shipments.AdminComment">
     <Value>Admin comment</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.AdminComment.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.AdminComment.Hint">
     <Value>Admin comment. For internal use.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.AdminComment.Button">
+  <LocaleResource Name="Admin.Orders.Shipments.AdminComment.Button">
     <Value>Set admin comment</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.BackToOrder">
+  <LocaleResource Name="Admin.Orders.Shipments.BackToOrder">
     <Value>back to order details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.CustomOrderNumber">
+  <LocaleResource Name="Admin.Orders.Shipments.CustomOrderNumber">
     <Value>Order #</Value>
   </LocaleResource>  
-  <LocaleResource Name="Admin.Pedidos.Shipments.CustomOrderNumber.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.CustomOrderNumber.Hint">
     <Value>The order associated to this shipment.</Value>
   </LocaleResource>    
-  <LocaleResource Name="Admin.Pedidos.Shipments.Deleted">
+  <LocaleResource Name="Admin.Orders.Shipments.Deleted">
     <Value>The shipment has been deleted successfully.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.DeliveryDate">
+  <LocaleResource Name="Admin.Orders.Shipments.DeliveryDate">
     <Value>Date delivered</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.DeliveryDate.Button">
+  <LocaleResource Name="Admin.Orders.Shipments.DeliveryDate.Button">
     <Value>Set as delivered</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.DeliveryDate.EnterUtc">
+  <LocaleResource Name="Admin.Orders.Shipments.DeliveryDate.EnterUtc">
     <Value>Date and time should entered in Coordinated Universal Time (UTC)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.DeliveryDate.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.DeliveryDate.Hint">
     <Value>The date this shipment was delivered.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.DeliveryDate.NotYet">
+  <LocaleResource Name="Admin.Orders.Shipments.DeliveryDate.NotYet">
     <Value>Not yet</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.DeliverySelected">
+  <LocaleResource Name="Admin.Orders.Shipments.DeliverySelected">
     <Value>Set as delivered (selected)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ID">
+  <LocaleResource Name="Admin.Orders.Shipments.ID">
     <Value>Shipment #</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List">
+  <LocaleResource Name="Admin.Orders.Shipments.List">
     <Value>Shipments</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.City">
+  <LocaleResource Name="Admin.Orders.Shipments.List.City">
     <Value>City</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.City.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.City.Hint">
     <Value>Search by a specific city.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.Country">
+  <LocaleResource Name="Admin.Orders.Shipments.List.Country">
     <Value>Country</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.Country.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.Country.Hint">
     <Value>Search by a specific country.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.EndDate">
+  <LocaleResource Name="Admin.Orders.Shipments.List.EndDate">
     <Value>End date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.EndDate.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.EndDate.Hint">
     <Value>The end date (shipment creation date) for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.LoadNotShipped">
+  <LocaleResource Name="Admin.Orders.Shipments.List.LoadNotShipped">
     <Value>Load not shipped</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.LoadNotShipped.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.LoadNotShipped.Hint">
     <Value>Load only not shipped shipments.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.StartDate">
+  <LocaleResource Name="Admin.Orders.Shipments.List.StartDate">
     <Value>Start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.StartDate.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.StartDate.Hint">
     <Value>The start date (shipment creation date) for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.StateProvince">
+  <LocaleResource Name="Admin.Orders.Shipments.List.StateProvince">
     <Value>State / province</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.StateProvince.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.StateProvince.Hint">
     <Value>Search by a specific state.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.TrackingNumber">
+  <LocaleResource Name="Admin.Orders.Shipments.List.TrackingNumber">
     <Value>Tracking number</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.TrackingNumber.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.TrackingNumber.Hint">
     <Value>Search by a specific tracking number.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.Warehouse">
+  <LocaleResource Name="Admin.Orders.Shipments.List.Warehouse">
     <Value>Warehouse</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.List.Warehouse.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.List.Warehouse.Hint">
     <Value>Load shipments with products from a specified warehouse.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.NoProductsSelected">
+  <LocaleResource Name="Admin.Orders.Shipments.NoProductsSelected">
     <Value>No products selected</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.NoShipmentsSelected">
+  <LocaleResource Name="Admin.Orders.Shipments.NoShipmentsSelected">
     <Value>No shipments selected</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.PrintPackagingSlip">
+  <LocaleResource Name="Admin.Orders.Shipments.PrintPackagingSlip">
     <Value>Print packaging slip</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.PrintPackagingSlips">
+  <LocaleResource Name="Admin.Orders.Shipments.PrintPackagingSlips">
     <Value>Print packaging slips</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.PrintPackagingSlips.All">
+  <LocaleResource Name="Admin.Orders.Shipments.PrintPackagingSlips.All">
     <Value>Print packaging slips (all found)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.PrintPackagingSlips.Selected">
+  <LocaleResource Name="Admin.Orders.Shipments.PrintPackagingSlips.Selected">
     <Value>Print packaging slips (selected)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products">
+  <LocaleResource Name="Admin.Orders.Shipments.Products">
     <Value>Products shipped</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.ItemDimensions">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.ItemDimensions">
     <Value>Item dimensions</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.ItemWeight">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.ItemWeight">
     <Value>Item weight</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.ProductName">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.ProductName">
     <Value>Product</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.QtyOrdered">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.QtyOrdered">
     <Value>Qty ordered</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.QtyShipped">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.QtyShipped">
     <Value>Qty shipped</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.QtyToShip">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.QtyToShip">
     <Value>Qty to ship</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.ShipSeparately">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.ShipSeparately">
     <Value>this product should be shipped separately!</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.ShipSeparately.Warning">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.ShipSeparately.Warning">
     <Value>Warning: </Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.SKU">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.SKU">
     <Value>SKU</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.Warehouse">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.Warehouse">
     <Value>Warehouse</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.Warehouse.ChooseQty">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.Warehouse.ChooseQty">
     <Value>{0} ({1} qty in stock, {2} qty reserved, {3} qty planned)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.Warehouse.NotAvailabe">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.Warehouse.NotAvailabe">
     <Value>No warehouses available. You cannot ship this product.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.Products.Warehouse.QuantityNotEnough">
+  <LocaleResource Name="Admin.Orders.Shipments.Products.Warehouse.QuantityNotEnough">
     <Value>[Reserved - Planned] quantity value of some products are less than specified quantity to be shipped. Are you sure?</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShipmentStatusEvents">
+  <LocaleResource Name="Admin.Orders.Shipments.ShipmentStatusEvents">
     <Value>Shipment status events</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShipmentStatusEvents.Country">
+  <LocaleResource Name="Admin.Orders.Shipments.ShipmentStatusEvents.Country">
     <Value>Country</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShipmentStatusEvents.Date">
+  <LocaleResource Name="Admin.Orders.Shipments.ShipmentStatusEvents.Date">
     <Value>Date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShipmentStatusEvents.Event">
+  <LocaleResource Name="Admin.Orders.Shipments.ShipmentStatusEvents.Event">
     <Value>Event</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShipmentStatusEvents.Location">
+  <LocaleResource Name="Admin.Orders.Shipments.ShipmentStatusEvents.Location">
     <Value>Location</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShippedDate">
+  <LocaleResource Name="Admin.Orders.Shipments.ShippedDate">
     <Value>Date shipped</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShippedDate.Button">
+  <LocaleResource Name="Admin.Orders.Shipments.ShippedDate.Button">
     <Value>Set as shipped</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShippedDate.EnterUtc">
+  <LocaleResource Name="Admin.Orders.Shipments.ShippedDate.EnterUtc">
     <Value>Date and time should entered in Coordinated Universal Time (UTC)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShippedDate.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.ShippedDate.Hint">
     <Value>The date this shipment was shipped.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShippedDate.NotYet">
+  <LocaleResource Name="Admin.Orders.Shipments.ShippedDate.NotYet">
     <Value>Not yet</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ShipSelected">
+  <LocaleResource Name="Admin.Orders.Shipments.ShipSelected">
     <Value>Set as shipped (selected)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.TotalWeight">
+  <LocaleResource Name="Admin.Orders.Shipments.TotalWeight">
     <Value>Total weight</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.TotalWeight.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.TotalWeight.Hint">
     <Value>Shipment total weight.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.TrackingNumber">
+  <LocaleResource Name="Admin.Orders.Shipments.TrackingNumber">
     <Value>Tracking number</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.TrackingNumber.Button">
+  <LocaleResource Name="Admin.Orders.Shipments.TrackingNumber.Button">
     <Value>Set tracking number</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.TrackingNumber.ViewOnline">
+  <LocaleResource Name="Admin.Orders.Shipments.TrackingNumber.ViewOnline">
     <Value>View tracking info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.TrackingNumber.Hint">
+  <LocaleResource Name="Admin.Orders.Shipments.TrackingNumber.Hint">
     <Value>Set a tracking number of the current shipment.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.Shipments.ViewDetails">
+  <LocaleResource Name="Admin.Orders.Shipments.ViewDetails">
     <Value>View shipment details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.ShippingInfo">
+  <LocaleResource Name="Admin.Orders.ShippingInfo">
     <Value>Shipping info</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Pedidos.ShippingInfo.NotRequired">
+  <LocaleResource Name="Admin.Orders.ShippingInfo.NotRequired">
     <Value>Shipping not required</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Pager.All">
@@ -11508,16 +11508,16 @@
   <LocaleResource Name="Admin.Promotions.Discounts.AddNew">
     <Value>Add a new discount</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategorias">
-    <Value>Applied to Categorias</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategories">
+    <Value>Applied to Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategorias.SaveBeforeEdit">
-    <Value>You need to save the discount before you can add Categorias for this discount page.</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategories.SaveBeforeEdit">
+    <Value>You need to save the discount before you can add Categories for this discount page.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategorias.Category">
+  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategories.Category">
     <Value>Category</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategorias.AddNew">
+  <LocaleResource Name="Admin.Promotions.Discounts.AppliedToCategories.AddNew">
     <Value>Add a new category</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Promotions.Discounts.AppliedToManufacturers">
@@ -11553,20 +11553,20 @@
   <LocaleResource Name="Admin.Promotions.Discounts.EditDiscountDetails">
     <Value>Edit discount details</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToCategorias">
-    <Value>Assigned to Categorias</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToCategories">
+    <Value>Assigned to Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToCategorias.Hint">
-    <Value>A list of Categorias to which the discount is to be applied. You can assign this discount on a category details page.</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToCategories.Hint">
+    <Value>A list of Categories to which the discount is to be applied. You can assign this discount on a category details page.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToCategorias.NoRecords">
-    <Value>No Categorias selected</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToCategories.NoRecords">
+    <Value>No Categories selected</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToSubCategorias">
-    <Value>Apply to subCategorias</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToSubCategories">
+    <Value>Apply to subCategories</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToSubCategorias.Hint">
-    <Value>Check to apply discount to subCategorias of the selected parent. But please note that it can affect performance if you have a lot of nested subCategorias.</Value>
+  <LocaleResource Name="Admin.Promotions.Discounts.Fields.AppliedToSubCategories.Hint">
+    <Value>Check to apply discount to subCategories of the selected parent. But please note that it can affect performance if you have a lot of nested subCategories.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Promotions.Discounts.Fields.CouponCode">
     <Value>Coupon code</Value>
@@ -11707,7 +11707,7 @@
     <Value>Default requirement group</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Promotions.Discounts.Requirements.Description">
-    <Value><![CDATA[Set up requirements to a created discount if you want to limit it to certain user Categorias depending on a customer role, the amount spent, etc. You can use single requirement type, or group several types and apply them simultaneously.<br>Requirement group is a useful feature for creating discount requirement templates. You can create a requirement group just once and then use it every time you want this limitation to be applied. You can include one requirement group into another one if needed.]]></Value>
+    <Value><![CDATA[Set up requirements to a created discount if you want to limit it to certain user Categories depending on a customer role, the amount spent, etc. You can use single requirement type, or group several types and apply them simultaneously.<br>Requirement group is a useful feature for creating discount requirement templates. You can create a requirement group just once and then use it every time you want this limitation to be applied. You can include one requirement group into another one if needed.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Promotions.Discounts.Requirements.DiscountRequirementType">
     <Value>Discount requirement type</Value>
@@ -11766,70 +11766,70 @@
   <LocaleResource Name="Admin.Promotions.Discounts.IgnoreDiscounts.Warning">
     <Value>In order to use this functionality you have to disable the following setting: Configuration > Catalog settings > Ignore discounts (sitewide).</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions">
-    <Value>Boletín informativo subscribers</Value>
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions">
+    <Value>Newsletter subscribers</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.Fields.Active">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.Fields.Active">
     <Value>Active</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.Fields.CreatedOn">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.Fields.CreatedOn">
     <Value>Subscribed on</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.Fields.Email">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.Fields.Email">
     <Value>Email</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.Fields.Email.Required">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.Fields.Email.Required">
     <Value>Email is required.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.Fields.Store">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.Fields.Store">
     <Value>Store</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.ImportEmailsSuccess">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.ImportEmailsSuccess">
     <Value>{0} emails have been successfully imported</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.CustomerRoles">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.CustomerRoles">
     <Value>Customer roles</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.CustomerRoles.Hint">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.CustomerRoles.Hint">
     <Value>Search by a specific customer role.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchActive">
     <Value>Active</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.All">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchActive.All">
     <Value>All</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.ActiveOnly">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchActive.ActiveOnly">
     <Value>Active</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.Hint">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchActive.Hint">
     <Value>Search by a specific status e.g. Active.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.NotActiveOnly">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchActive.NotActiveOnly">
     <Value>Not active</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchEmail">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchEmail">
     <Value>Email</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchEmail.Hint">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchEmail.Hint">
     <Value>Search by a specific email.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchStore">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchStore">
     <Value>Store</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.SearchStore.Hint">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.SearchStore.Hint">
     <Value>Search by a specific store.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.StartDate">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.StartDate">
     <Value>Start date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.StartDate.Hint">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.StartDate.Hint">
     <Value>The start date for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.EndDate">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.EndDate">
     <Value>End date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Promotions.Boletín informativoSubscriptions.List.EndDate.Hint">
+  <LocaleResource Name="Admin.Promotions.NewsletterSubscriptions.List.EndDate.Hint">
     <Value>The end date for the search.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.RecurringPayments">
@@ -11928,7 +11928,7 @@
   <LocaleResource Name="Admin.RecurringPayments.History.NextPaymentDate">
     <Value>Next payment date</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.RecurringPayments.History.Pedidostatus">
+  <LocaleResource Name="Admin.RecurringPayments.History.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.RecurringPayments.History.PaymentStatus">
@@ -12090,22 +12090,22 @@
   <LocaleResource Name="Admin.SalesReport.Average">
     <Value>Order totals</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Average.Pedidostatus">
+  <LocaleResource Name="Admin.SalesReport.Average.Orderstatus">
     <Value>Order Status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Average.SumAllTimePedidos">
+  <LocaleResource Name="Admin.SalesReport.Average.SumAllTimeOrders">
     <Value>All time</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Average.SumThisMonthPedidos">
+  <LocaleResource Name="Admin.SalesReport.Average.SumThisMonthOrders">
     <Value>This Month</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Average.SumThisWeekPedidos">
+  <LocaleResource Name="Admin.SalesReport.Average.SumThisWeekOrders">
     <Value>This Week</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Average.SumThisYearPedidos">
+  <LocaleResource Name="Admin.SalesReport.Average.SumThisYearOrders">
     <Value>This Year</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Average.SumTodayPedidos">
+  <LocaleResource Name="Admin.SalesReport.Average.SumTodayOrders">
     <Value>Today</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Bestsellers">
@@ -12150,10 +12150,10 @@
   <LocaleResource Name="Admin.SalesReport.Bestsellers.Manufacturer.Hint">
     <Value>Search in a specific manufacturer.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Bestsellers.Pedidostatus">
+  <LocaleResource Name="Admin.SalesReport.Bestsellers.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Bestsellers.Pedidostatus.Hint">
+  <LocaleResource Name="Admin.SalesReport.Bestsellers.Orderstatus.Hint">
     <Value>Search by a specific order status e.g. Complete.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Bestsellers.PaymentStatus">
@@ -12175,7 +12175,7 @@
     <Value>Store</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Bestsellers.Store.Hint">
-    <Value>Filter report by Pedidos placed in a specific store.</Value>
+    <Value>Filter report by Orders placed in a specific store.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Bestsellers.Vendor">
     <Value>Vendor</Value>
@@ -12195,16 +12195,16 @@
   <LocaleResource Name="Admin.SalesReport.Country.Fields.CountryName">
     <Value>Country</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Country.Fields.SumPedidos">
+  <LocaleResource Name="Admin.SalesReport.Country.Fields.SumOrders">
     <Value>Order total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Country.Fields.TotalPedidos">
-    <Value>Number of Pedidos</Value>
+  <LocaleResource Name="Admin.SalesReport.Country.Fields.TotalOrders">
+    <Value>Number of Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Country.Pedidostatus">
+  <LocaleResource Name="Admin.SalesReport.Country.Orderstatus">
     <Value>Order status</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Country.Pedidostatus.Hint">
+  <LocaleResource Name="Admin.SalesReport.Country.Orderstatus.Hint">
     <Value>Search by a specific order status e.g. Complete.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Country.PaymentStatus">
@@ -12223,7 +12223,7 @@
     <Value>The start date for the search.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Incomplete">
-    <Value>Incomplete Pedidos</Value>
+    <Value>Incomplete Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Incomplete.Count">
     <Value>Count</Value>
@@ -12234,14 +12234,14 @@
   <LocaleResource Name="Admin.SalesReport.Incomplete.Total">
     <Value>Total</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Incomplete.TotalIncompletePedidos">
-    <Value>Total incomplete Pedidos (pending order status)</Value>
+  <LocaleResource Name="Admin.SalesReport.Incomplete.TotalIncompleteOrders">
+    <Value>Total incomplete Orders (pending order status)</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Incomplete.TotalNotShippedPedidos">
-    <Value>Total not yet shipped Pedidos</Value>
+  <LocaleResource Name="Admin.SalesReport.Incomplete.TotalNotShippedOrders">
+    <Value>Total not yet shipped Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Incomplete.TotalUnpaidPedidos">
-    <Value>Total unpaid Pedidos (pending payment status)</Value>
+  <LocaleResource Name="Admin.SalesReport.Incomplete.TotalUnpaidOrders">
+    <Value>Total unpaid Orders (pending payment status)</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SalesReport.Incomplete.View">
     <Value>view all</Value>
@@ -12291,16 +12291,16 @@
   <LocaleResource Name="Admin.SalesReport.NeverSold.StartDate.Hint">
     <Value>The start date for the search.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Pedidostatistics">
-    <Value>Pedidos</Value>
+  <LocaleResource Name="Admin.SalesReport.Orderstatistics">
+    <Value>Orders</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Pedidostatistics.Month">
+  <LocaleResource Name="Admin.SalesReport.Orderstatistics.Month">
     <Value>Month</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Pedidostatistics.Week">
+  <LocaleResource Name="Admin.SalesReport.Orderstatistics.Week">
     <Value>Week</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.SalesReport.Pedidostatistics.Year">
+  <LocaleResource Name="Admin.SalesReport.Orderstatistics.Year">
     <Value>Year</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.SearchTermReport">
@@ -13111,7 +13111,7 @@
     <Value>Customers</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Vendors.Fields.AssociatedCustomerEmails.Hint">
-    <Value>A list of customer accounts which could be used to manage products and Pedidos of this vendor (have access to the vendor portal). You can associate customers to a vendor on a customer details page. If you don't want the vendor to have access to the vendor portal, then do not associate any customer account with it.</Value>
+    <Value>A list of customer accounts which could be used to manage products and Orders of this vendor (have access to the vendor portal). You can associate customers to a vendor on a customer details page. If you don't want the vendor to have access to the vendor portal, then do not associate any customer account with it.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Vendors.Fields.AssociatedCustomerEmails.None">
     <Value>No customer account associated to this vendor.</Value>
@@ -13246,7 +13246,7 @@
     <Value>Receive an email when this arrives in stock</Value>
   </LocaleResource>
   <LocaleResource Name="BackInStockSubscriptions.Tooltip">
-    <Value>You'll receive a onetime e-mail when this product is available for ordering again. We will not send you any other e-mails or add you to our Boletín informativo; you will only be e-mailed about this product!</Value>
+    <Value>You'll receive a onetime e-mail when this product is available for ordering again. We will not send you any other e-mails or add you to our Newsletter; you will only be e-mailed about this product!</Value>
   </LocaleResource>
   <LocaleResource Name="BackInStockSubscriptions.Unsubscribe">
     <Value>Unsubscribe</Value>
@@ -13329,13 +13329,13 @@
   <LocaleResource Name="Catalog.ViewMode.List">
     <Value>List</Value>
   </LocaleResource>
-  <LocaleResource Name="Categorias">
-    <Value>Categorias</Value>
+  <LocaleResource Name="Categories">
+    <Value>Categories</Value>
   </LocaleResource>
-  <LocaleResource Name="Categorias.Breadcrumb.Top">
+  <LocaleResource Name="Categories.Breadcrumb.Top">
     <Value>Home</Value>
   </LocaleResource>
-  <LocaleResource Name="Categorias.TotalProducts">
+  <LocaleResource Name="Categories.TotalProducts">
     <Value>({0})</Value>
   </LocaleResource>
   <LocaleResource Name="Checkout">
@@ -13368,7 +13368,7 @@
   <LocaleResource Name="Checkout.MinOrderPlacementInterval">
     <Value>Please wait several seconds before placing a new order (already placed another order several seconds ago).</Value>
   </LocaleResource>
-  <LocaleResource Name="Checkout.MinPedidosubtotalAmount">
+  <LocaleResource Name="Checkout.MinOrdersubtotalAmount">
     <Value>Minimum order sub-total amount is {0}</Value>
   </LocaleResource>
   <LocaleResource Name="Checkout.MinOrderTotalAmount">
@@ -13386,7 +13386,7 @@
   <LocaleResource Name="Checkout.OrderNumber">
     <Value>Order number</Value>
   </LocaleResource>
-  <LocaleResource Name="Checkout.Pedidosummary">
+  <LocaleResource Name="Checkout.Ordersummary">
     <Value>Order summary</Value>
   </LocaleResource>
   <LocaleResource Name="Checkout.OrEnterNewAddress">
@@ -13812,8 +13812,8 @@
   <LocaleResource Name="Enums.Nop.Core.Domain.Catalog.BackorderMode.AllowQtyBelow0AndNotifyCustomer">
     <Value>Allow qty below 0 and notify customer</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Catalog.BackorderMode.NoBackPedidos">
-    <Value>No backPedidos</Value>
+  <LocaleResource Name="Enums.Nop.Core.Domain.Catalog.BackorderMode.NoBackOrders">
+    <Value>No backOrders</Value>
   </LocaleResource>
   <LocaleResource Name="Enums.Nop.Core.Domain.Catalog.DownloadActivationType.Manually">
     <Value>Manually</Value>
@@ -13974,13 +13974,13 @@
   <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountLimitationType.Unlimited">
     <Value>Unlimited</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToCategorias">
-    <Value>Assigned to Categorias</Value>
+  <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToCategories">
+    <Value>Assigned to Categories</Value>
   </LocaleResource>
   <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToManufacturers">
     <Value>Assigned to manufacturers</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToPedidosubTotal">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToOrdersubTotal">
     <Value>Assigned to order subtotal</Value>
   </LocaleResource>
   <LocaleResource Name="Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToOrderTotal">
@@ -14052,37 +14052,37 @@
   <LocaleResource Name="Enums.Nop.Core.Domain.Messages.QueuedEmailPriority.High">
     <Value>High</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.Pedidostatus.Cancelled">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.Orderstatus.Cancelled">
     <Value>Cancelled</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.Pedidostatus.Complete">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.Orderstatus.Complete">
     <Value>Complete</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.Pedidostatus.Pending">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.Orderstatus.Pending">
     <Value>Pending</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.Pedidostatus.Processing">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.Orderstatus.Processing">
     <Value>Processing</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.Cancelled">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.Cancelled">
     <Value>Cancelled</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.ItemsRefunded">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.ItemsRefunded">
     <Value>Item(s) refunded</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.ItemsRepaired">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.ItemsRepaired">
     <Value>Item(s) repaired</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.Pending">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.Pending">
     <Value>Pending</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.Received">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.Received">
     <Value>Received</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.RequestRejected">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.RequestRejected">
     <Value>Request rejected</Value>
   </LocaleResource>
-  <LocaleResource Name="Enums.Nop.Core.Domain.Pedidos.ReturnRequestStatus.ReturnAuthorized">
+  <LocaleResource Name="Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.ReturnAuthorized">
     <Value>Return authorized</Value>
   </LocaleResource>
   <LocaleResource Name="Enums.Nop.Core.Domain.Payments.PaymentStatus.Authorized">
@@ -14763,41 +14763,41 @@
   <LocaleResource Name="News.ViewAll">
     <Value>View News Archive</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Email.Placeholder">
+  <LocaleResource Name="Newsletter.Email.Placeholder">
     <Value>Enter your email here...</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Email.Wrong">
+  <LocaleResource Name="Newsletter.Email.Wrong">
     <Value>Enter valid email</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Options.Send">
+  <LocaleResource Name="Newsletter.Options.Send">
     <Value>Send</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Options.Subscribe">
+  <LocaleResource Name="Newsletter.Options.Subscribe">
     <Value>Subscribe</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Options.Unsubscribe">
+  <LocaleResource Name="Newsletter.Options.Unsubscribe">
     <Value>Unsubscribe</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.ResultActivated">
+  <LocaleResource Name="Newsletter.ResultActivated">
     <Value>Your subscription has been activated.</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.ResultAlreadyDeactivated">
+  <LocaleResource Name="Newsletter.ResultAlreadyDeactivated">
     <Value>Your subscription already has been deactivated.</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.ResultDeactivated">
+  <LocaleResource Name="Newsletter.ResultDeactivated">
     <Value>Your subscription has been deactivated.</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Subscribe">
-    <Value>Sign up for our Boletín informativo</Value>
+  <LocaleResource Name="Newsletter.Subscribe">
+    <Value>Sign up for our Newsletter</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.SubscribeEmailSent">
+  <LocaleResource Name="Newsletter.SubscribeEmailSent">
     <Value>Thank you for signing up! A verification email has been sent. We appreciate your interest.</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.UnsubscribeEmailSent">
+  <LocaleResource Name="Newsletter.UnsubscribeEmailSent">
     <Value>A verification email has been sent. Thank you!</Value>
   </LocaleResource>
-  <LocaleResource Name="Boletín informativo.Title">
-    <Value>Boletín informativo</Value>
+  <LocaleResource Name="Newsletter.Title">
+    <Value>Newsletter</Value>
   </LocaleResource>
   <LocaleResource Name="Order.BillingAddress">
     <Value>Billing Address</Value>
@@ -14835,7 +14835,7 @@
   <LocaleResource Name="Order.OrderInformation">
     <Value>Order Information</Value>
   </LocaleResource>
-  <LocaleResource Name="Order.Pedidostatus">
+  <LocaleResource Name="Order.Orderstatus">
     <Value>Order Status</Value>
   </LocaleResource>
   <LocaleResource Name="Order.OrderTotal">
@@ -15378,8 +15378,8 @@
   <LocaleResource Name="Permission.ManageCampaigns">
     <Value>Admin area. Manage Campaigns</Value>
   </LocaleResource>
-  <LocaleResource Name="Permission.ManageCategorias">
-    <Value>Admin area. Manage Categorias</Value>
+  <LocaleResource Name="Permission.ManageCategories">
+    <Value>Admin area. Manage Categories</Value>
   </LocaleResource>
   <LocaleResource Name="Permission.ManageCountries">
     <Value>Admin area. Manage Countries</Value>
@@ -15426,11 +15426,11 @@
   <LocaleResource Name="Permission.ManageNews">
     <Value>Admin area. Manage News</Value>
   </LocaleResource>
-  <LocaleResource Name="Permission.ManageBoletín informativoSubscribers">
-    <Value>Admin area. Manage Boletín informativo Subscribers</Value>
+  <LocaleResource Name="Permission.ManageNewsletterSubscribers">
+    <Value>Admin area. Manage Newsletter Subscribers</Value>
   </LocaleResource>
-  <LocaleResource Name="Permission.ManagePedidos">
-    <Value>Admin area. Manage Pedidos</Value>
+  <LocaleResource Name="Permission.ManageOrders">
+    <Value>Admin area. Manage Orders</Value>
   </LocaleResource>
   <LocaleResource Name="Permission.ManagePaymentMethods">
     <Value>Admin area. Manage Formas de pagos</Value>
@@ -16113,8 +16113,8 @@
   <LocaleResource Name="Search.EnterSearchTerms">
     <Value>Please enter some search keyword</Value>
   </LocaleResource>
-  <LocaleResource Name="Search.IncludeSubCategorias">
-    <Value>Automatically search sub Categorias</Value>
+  <LocaleResource Name="Search.IncludeSubCategories">
+    <Value>Automatically search sub Categories</Value>
   </LocaleResource>
   <LocaleResource Name="Search.Manufacturer">
     <Value>Manufacturer</Value>
@@ -16470,8 +16470,8 @@
   <LocaleResource Name="Sitemap">
     <Value>Sitemap</Value>
   </LocaleResource>
-  <LocaleResource Name="Sitemap.Categorias">
-    <Value>Categorias</Value>
+  <LocaleResource Name="Sitemap.Categories">
+    <Value>Categories</Value>
   </LocaleResource>
   <LocaleResource Name="Sitemap.Description">
     <Value>View the sitemap for this website below, with links to each of the pages and brief descriptions of what to find in each section</Value>

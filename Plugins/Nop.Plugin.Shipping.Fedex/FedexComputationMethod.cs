@@ -19,7 +19,7 @@ using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Shipping;
 using Nop.Services.Shipping.Tracking;
 
@@ -97,13 +97,13 @@ namespace Nop.Plugin.Shipping.Fedex
             request.CarrierCodes[0] = RateServiceWebReference.CarrierCodeType.FDXE;
             request.CarrierCodes[1] = RateServiceWebReference.CarrierCodeType.FDXG;
 
-            decimal PedidosubTotalDiscountAmount;
-            List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
+            decimal OrdersubTotalDiscountAmount;
+            List<DiscountForCaching> OrdersubTotalAppliedDiscounts;
             decimal subTotalWithoutDiscountBase;
             decimal subTotalWithDiscountBase;
             //TODO we should use getShippingOptionRequest.Items.GetQuantity() method to get subtotal
             _orderTotalCalculationService.GetShoppingCartSubTotal(getShippingOptionRequest.Items.Select(x=>x.ShoppingCartItem).ToList(),
-                false, out PedidosubTotalDiscountAmount, out PedidosubTotalAppliedDiscounts,
+                false, out OrdersubTotalDiscountAmount, out OrdersubTotalAppliedDiscounts,
                 out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
             decimal subTotalBase = subTotalWithDiscountBase;
 
@@ -145,7 +145,7 @@ namespace Nop.Plugin.Shipping.Fedex
             return request;
         }
 
-        private void SetShipmentDetails(RateRequest request, decimal PedidosubTotal, string currencyCode)
+        private void SetShipmentDetails(RateRequest request, decimal OrdersubTotal, string currencyCode)
         {
             //set drop off type
             switch (_fedexSettings.DropoffType)
@@ -170,13 +170,13 @@ namespace Nop.Plugin.Shipping.Fedex
                     break;
             }
             request.RequestedShipment.TotalInsuredValue = new Money();
-            request.RequestedShipment.TotalInsuredValue.Amount = PedidosubTotal;
+            request.RequestedShipment.TotalInsuredValue.Amount = OrdersubTotal;
             request.RequestedShipment.TotalInsuredValue.Currency = currencyCode;
 
 
             //Saturday pickup is available for certain FedEx Express U.S. service types:
             //http://www.fedex.com/us/developer/product/WebServices/MyWebHelp/Services/Options/c_SaturdayShipAndDeliveryServiceDetails.html
-            //If the customer Pedidos on a Saturday, the rate calculation will use Saturday as the shipping date, and the rates will include a Saturday pickup surcharge
+            //If the customer Orders on a Saturday, the rate calculation will use Saturday as the shipping date, and the rates will include a Saturday pickup surcharge
             //More info: http://www.nopcommerce.com/boards/t/27348/fedex-rate-can-be-excessive-for-express-methods-if-calculated-on-a-saturday.aspx
             var shipTimestamp = DateTime.Now;
             if (shipTimestamp.DayOfWeek == DayOfWeek.Saturday)
@@ -199,7 +199,7 @@ namespace Nop.Plugin.Shipping.Fedex
                     NumberOfPieces = "1",
                     CustomsValue = new Money
                     {
-                        Amount = PedidosubTotal,
+                        Amount = OrdersubTotal,
                         AmountSpecified = true,
                         Currency = currencyCode
                     }
@@ -276,7 +276,7 @@ namespace Nop.Plugin.Shipping.Fedex
                     countryCode.Equals("CA", StringComparison.InvariantCultureIgnoreCase));
         }
 
-        private void SetIndividualPackageLineItems(RateRequest request, GetShippingOptionRequest getShippingOptionRequest, decimal PedidosubTotal, string currencyCode)
+        private void SetIndividualPackageLineItems(RateRequest request, GetShippingOptionRequest getShippingOptionRequest, decimal OrdersubTotal, string currencyCode)
         {
             // Rate request setup - Total Dimensions of Shopping Cart Items determines number of packages
 
@@ -320,7 +320,7 @@ namespace Nop.Plugin.Shipping.Fedex
                 request.RequestedShipment.RequestedPackageLineItems[0].Dimensions.Units = RateServiceWebReference.LinearUnits.IN;
                 request.RequestedShipment.RequestedPackageLineItems[0].Dimensions.UnitsSpecified = true;
                 request.RequestedShipment.RequestedPackageLineItems[0].InsuredValue = new Money(); // insured value
-                request.RequestedShipment.RequestedPackageLineItems[0].InsuredValue.Amount = PedidosubTotal;
+                request.RequestedShipment.RequestedPackageLineItems[0].InsuredValue.Amount = OrdersubTotal;
                 request.RequestedShipment.RequestedPackageLineItems[0].InsuredValue.Currency = currencyCode;
 
             }
@@ -353,7 +353,7 @@ namespace Nop.Plugin.Shipping.Fedex
                 if (length2 < 1)
                     length2 = 1;
 
-                decimal PedidosubTotal2 = PedidosubTotal / totalPackages;
+                decimal OrdersubTotal2 = OrdersubTotal / totalPackages;
 
                 request.RequestedShipment.PackageCount = totalPackages.ToString();
                 request.RequestedShipment.RequestedPackageLineItems = new RequestedPackageLineItem[totalPackages];
@@ -376,7 +376,7 @@ namespace Nop.Plugin.Shipping.Fedex
                     request.RequestedShipment.RequestedPackageLineItems[i].Dimensions.Units = RateServiceWebReference.LinearUnits.IN;
                     request.RequestedShipment.RequestedPackageLineItems[i].Dimensions.UnitsSpecified = true;
                     request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue = new Money(); // insured value
-                    request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue.Amount = PedidosubTotal2;
+                    request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue.Amount = OrdersubTotal2;
                     request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue.Currency = currencyCode;
                 }
             }
@@ -448,7 +448,7 @@ namespace Nop.Plugin.Shipping.Fedex
 
         }
 
-        private void SetIndividualPackageLineItemsCubicRootDimensions(RateRequest request, GetShippingOptionRequest getShippingOptionRequest, decimal PedidosubTotal, string currencyCode)
+        private void SetIndividualPackageLineItemsCubicRootDimensions(RateRequest request, GetShippingOptionRequest getShippingOptionRequest, decimal OrdersubTotal, string currencyCode)
         {
             // Rate request setup - Total Volume of Shopping Cart Items determines number of packages
 
@@ -574,7 +574,7 @@ namespace Nop.Plugin.Shipping.Fedex
 
             int totalPackages = totalPackagesDims > totalPackagesWeights ? totalPackagesDims : totalPackagesWeights;
 
-            decimal PedidosubTotalPerPackage = PedidosubTotal / totalPackages;
+            decimal OrdersubTotalPerPackage = OrdersubTotal / totalPackages;
             int weightPerPackage = weight / totalPackages;
 
             request.RequestedShipment.PackageCount = totalPackages.ToString();
@@ -598,7 +598,7 @@ namespace Nop.Plugin.Shipping.Fedex
                 request.RequestedShipment.RequestedPackageLineItems[i].Dimensions.Units = RateServiceWebReference.LinearUnits.IN;
                 request.RequestedShipment.RequestedPackageLineItems[i].Dimensions.UnitsSpecified = true;
                 request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue = new Money(); // insured value
-                request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue.Amount = PedidosubTotalPerPackage;
+                request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue.Amount = OrdersubTotalPerPackage;
                 request.RequestedShipment.RequestedPackageLineItems[i].InsuredValue.Currency = currencyCode;
             }
 

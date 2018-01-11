@@ -58,12 +58,12 @@ namespace Nop.Core.Domain.Tax
         /// <summary>
         /// Gets or sets a value indicating whether to hide tax in order summary when prices are shown tax inclusive
         /// </summary>
-        public bool HideTaxInPedidosummary { get; set; }
+        public bool HideTaxInOrdersummary { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether we should always exclude tax from order subtotal (no matter of selected tax dispay type)
         /// </summary>
-        public bool ForceTaxExclusionFromPedidosubtotal { get; set; }
+        public bool ForceTaxExclusionFromOrdersubtotal { get; set; }
 
         /// <summary>
         /// Gets or sets a default tax category identifier for products

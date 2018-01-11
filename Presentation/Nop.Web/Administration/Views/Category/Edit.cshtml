@@ -1,9 +1,9 @@
 ﻿@model CategoryModel
 @{
     //page title
-    ViewBag.Title = T("Admin.Catalog.Categorias.EditCategoryDetails").Text;
+    ViewBag.Title = T("Admin.Catalog.Categories.EditCategoryDetails").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Categorias");
+    Html.SetActiveMenuItemSystemName("Categories");
 }
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "category-form" }))
@@ -11,8 +11,8 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Catalog.Categorias.EditCategoryDetails") - @Model.Name
-            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Catalog.Categorias.BackToList").Text, "List")</small>
+            @T("Admin.Catalog.Categories.EditCategoryDetails") - @Model.Name
+            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Catalog.Categories.BackToList").Text, "List")</small>
         </h1>
         <div class="pull-right">
             <button type="button" onclick="javascript:OpenWindow('@Url.RouteUrl("Category", new {SeName = Model.SeName})', 800, 600, true); return false;" class="btn bg-purple">

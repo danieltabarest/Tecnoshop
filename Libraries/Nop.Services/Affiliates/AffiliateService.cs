@@ -3,7 +3,7 @@ using System.Linq;
 using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Affiliates;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Events;
 
 namespace Nop.Services.Affiliates
@@ -95,17 +95,17 @@ namespace Nop.Services.Affiliates
         /// <param name="friendlyUrlName">Friendly URL name; null to load all records</param>
         /// <param name="firstName">First name; null to load all records</param>
         /// <param name="lastName">Last name; null to load all records</param>
-        /// <param name="loadOnlyWithPedidos">Value indicating whether to load affiliates only with Pedidos placed (by affiliated customers)</param>
-        /// <param name="PedidosCreatedFromUtc">Pedidos created date from (UTC); null to load all records. It's used only with "loadOnlyWithPedidos" parameter st to "true".</param>
-        /// <param name="PedidosCreatedToUtc">Pedidos created date to (UTC); null to load all records. It's used only with "loadOnlyWithPedidos" parameter st to "true".</param>
+        /// <param name="loadOnlyWithOrders">Value indicating whether to load affiliates only with Orders placed (by affiliated customers)</param>
+        /// <param name="OrdersCreatedFromUtc">Orders created date from (UTC); null to load all records. It's used only with "loadOnlyWithOrders" parameter st to "true".</param>
+        /// <param name="OrdersCreatedToUtc">Orders created date to (UTC); null to load all records. It's used only with "loadOnlyWithOrders" parameter st to "true".</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Affiliates</returns>
         public virtual IPagedList<Affiliate> GetAllAffiliates(string friendlyUrlName = null,
             string firstName = null, string lastName = null,
-            bool loadOnlyWithPedidos = false,
-            DateTime? PedidosCreatedFromUtc = null, DateTime? PedidosCreatedToUtc = null,
+            bool loadOnlyWithOrders = false,
+            DateTime? OrdersCreatedFromUtc = null, DateTime? OrdersCreatedToUtc = null,
             int pageIndex = 0, int pageSize = int.MaxValue,
             bool showHidden = false)
         {
@@ -120,17 +120,17 @@ namespace Nop.Services.Affiliates
                 query = query.Where(a => a.Active);
             query = query.Where(a => !a.Deleted);
 
-            if (loadOnlyWithPedidos)
+            if (loadOnlyWithOrders)
             {
-                var PedidosQuery = _orderRepository.Table;
-                if (PedidosCreatedFromUtc.HasValue)
-                    PedidosQuery = PedidosQuery.Where(o => PedidosCreatedFromUtc.Value <= o.CreatedOnUtc);
-                if (PedidosCreatedToUtc.HasValue)
-                    PedidosQuery = PedidosQuery.Where(o => PedidosCreatedToUtc.Value >= o.CreatedOnUtc);
-                PedidosQuery = PedidosQuery.Where(o => !o.Deleted);
+                var OrdersQuery = _orderRepository.Table;
+                if (OrdersCreatedFromUtc.HasValue)
+                    OrdersQuery = OrdersQuery.Where(o => OrdersCreatedFromUtc.Value <= o.CreatedOnUtc);
+                if (OrdersCreatedToUtc.HasValue)
+                    OrdersQuery = OrdersQuery.Where(o => OrdersCreatedToUtc.Value >= o.CreatedOnUtc);
+                OrdersQuery = OrdersQuery.Where(o => !o.Deleted);
 
                 query = from a in query
-                        join o in PedidosQuery on a.Id equals o.AffiliateId into a_o
+                        join o in OrdersQuery on a.Id equals o.AffiliateId into a_o
                         where a_o.Any()
                         select a;
             }

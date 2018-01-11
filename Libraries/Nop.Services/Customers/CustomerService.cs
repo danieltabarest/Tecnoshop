@@ -13,7 +13,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
@@ -629,7 +629,7 @@ namespace Nop.Services.Customers
                 query = query.Where(c => c.CustomerRoles.Select(cr => cr.Id).Contains(guestRole.Id));
                 if (onlyWithoutShoppingCart)
                     query = query.Where(c => !c.ShoppingCartItems.Any());
-                //no Pedidos
+                //no Orders
                 query = from c in query
                         join o in _orderRepository.Table on c.Id equals o.CustomerId into c_o
                         from o in c_o.DefaultIfEmpty()

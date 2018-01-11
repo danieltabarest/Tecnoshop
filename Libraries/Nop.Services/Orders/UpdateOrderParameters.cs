@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Discounts;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Parameters for the updating order totals

@@ -1,9 +1,9 @@
 using System;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Reward point service interface

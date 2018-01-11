@@ -13,23 +13,23 @@ namespace Nop.Services.Security
         public static readonly PermissionRecord AccessAdminPanel = new PermissionRecord { Name = "Access admin area", SystemName = "AccessAdminPanel", Category = "Standard" };
         public static readonly PermissionRecord AllowCustomerImpersonation = new PermissionRecord { Name = "Admin area. Allow Customer Impersonation", SystemName = "AllowCustomerImpersonation", Category = "Customers" };
         public static readonly PermissionRecord ManageProducts = new PermissionRecord { Name = "Admin area. Manage Products", SystemName = "ManageProducts", Category = "Catalog" };
-        public static readonly PermissionRecord ManageCategorias = new PermissionRecord { Name = "Admin area. Manage Categorias", SystemName = "ManageCategorias", Category = "Catalog" };
+        public static readonly PermissionRecord ManageCategories = new PermissionRecord { Name = "Admin area. Manage Categories", SystemName = "ManageCategories", Category = "Catalog" };
         public static readonly PermissionRecord ManageManufacturers = new PermissionRecord { Name = "Admin area. Manage Manufacturers", SystemName = "ManageManufacturers", Category = "Catalog" };
         public static readonly PermissionRecord ManageProductReviews = new PermissionRecord { Name = "Admin area. Manage Product Reviews", SystemName = "ManageProductReviews", Category = "Catalog" };
         public static readonly PermissionRecord ManageProductTags = new PermissionRecord { Name = "Admin area. Manage Product Tags", SystemName = "ManageProductTags", Category = "Catalog" };
         public static readonly PermissionRecord ManageAttributes = new PermissionRecord { Name = "Admin area. Manage Attributes", SystemName = "ManageAttributes", Category = "Catalog" };
         public static readonly PermissionRecord ManageCustomers = new PermissionRecord { Name = "Admin area. Manage Customers", SystemName = "ManageCustomers", Category = "Customers" };
         public static readonly PermissionRecord ManageVendors = new PermissionRecord { Name = "Admin area. Manage Vendors", SystemName = "ManageVendors", Category = "Customers" };
-        public static readonly PermissionRecord ManageCurrentCarts = new PermissionRecord { Name = "Admin area. Manage Current Carts", SystemName = "ManageCurrentCarts", Category = "Pedidos" };
-        public static readonly PermissionRecord ManagePedidos = new PermissionRecord { Name = "Admin area. Manage Pedidos", SystemName = "ManagePedidos", Category = "Pedidos" };
-        public static readonly PermissionRecord ManageRecurringPayments = new PermissionRecord { Name = "Admin area. Manage Recurring Payments", SystemName = "ManageRecurringPayments", Category = "Pedidos" };
-        public static readonly PermissionRecord ManageGiftCards = new PermissionRecord { Name = "Admin area. Manage Gift Cards", SystemName = "ManageGiftCards", Category = "Pedidos" };
-        public static readonly PermissionRecord ManageReturnRequests = new PermissionRecord { Name = "Admin area. Manage Return Requests", SystemName = "ManageReturnRequests", Category = "Pedidos" };
-        public static readonly PermissionRecord OrderCountryReport = new PermissionRecord { Name = "Admin area. Access order country report", SystemName = "OrderCountryReport", Category = "Pedidos" };
+        public static readonly PermissionRecord ManageCurrentCarts = new PermissionRecord { Name = "Admin area. Manage Current Carts", SystemName = "ManageCurrentCarts", Category = "Orders" };
+        public static readonly PermissionRecord ManageOrders = new PermissionRecord { Name = "Admin area. Manage Orders", SystemName = "ManageOrders", Category = "Orders" };
+        public static readonly PermissionRecord ManageRecurringPayments = new PermissionRecord { Name = "Admin area. Manage Recurring Payments", SystemName = "ManageRecurringPayments", Category = "Orders" };
+        public static readonly PermissionRecord ManageGiftCards = new PermissionRecord { Name = "Admin area. Manage Gift Cards", SystemName = "ManageGiftCards", Category = "Orders" };
+        public static readonly PermissionRecord ManageReturnRequests = new PermissionRecord { Name = "Admin area. Manage Return Requests", SystemName = "ManageReturnRequests", Category = "Orders" };
+        public static readonly PermissionRecord OrderCountryReport = new PermissionRecord { Name = "Admin area. Access order country report", SystemName = "OrderCountryReport", Category = "Orders" };
         public static readonly PermissionRecord ManageAffiliates = new PermissionRecord { Name = "Admin area. Manage Affiliates", SystemName = "ManageAffiliates", Category = "Promo" };
         public static readonly PermissionRecord ManageCampaigns = new PermissionRecord { Name = "Admin area. Manage Campaigns", SystemName = "ManageCampaigns", Category = "Promo" };
         public static readonly PermissionRecord ManageDiscounts = new PermissionRecord { Name = "Admin area. Manage Discounts", SystemName = "ManageDiscounts", Category = "Promo" };
-        public static readonly PermissionRecord ManageBoletín informativoSubscribers = new PermissionRecord { Name = "Admin area. Manage Boletín informativo Subscribers", SystemName = "ManageBoletín informativoSubscribers", Category = "Promo" };
+        public static readonly PermissionRecord ManageNewsletterSubscribers = new PermissionRecord { Name = "Admin area. Manage Newsletter Subscribers", SystemName = "ManageNewsletterSubscribers", Category = "Promo" };
         public static readonly PermissionRecord ManagePolls = new PermissionRecord { Name = "Admin area. Manage Polls", SystemName = "ManagePolls", Category = "Content Management" };
         public static readonly PermissionRecord ManageNews = new PermissionRecord { Name = "Admin area. Manage News", SystemName = "ManageNews", Category = "Content Management" };
         public static readonly PermissionRecord ManageBlog = new PermissionRecord { Name = "Admin area. Manage Blog", SystemName = "ManageBlog", Category = "Content Management" };
@@ -72,7 +72,7 @@ namespace Nop.Services.Security
                 AccessAdminPanel,
                 AllowCustomerImpersonation,
                 ManageProducts,
-                ManageCategorias,
+                ManageCategories,
                 ManageManufacturers,
                 ManageProductReviews,
                 ManageProductTags,
@@ -80,7 +80,7 @@ namespace Nop.Services.Security
                 ManageCustomers,
                 ManageVendors,
                 ManageCurrentCarts,
-                ManagePedidos,
+                ManageOrders,
                 ManageRecurringPayments,
                 ManageGiftCards,
                 ManageReturnRequests,
@@ -88,7 +88,7 @@ namespace Nop.Services.Security
                 ManageAffiliates,
                 ManageCampaigns,
                 ManageDiscounts,
-                ManageBoletín informativoSubscribers,
+                ManageNewsletterSubscribers,
                 ManagePolls,
                 ManageNews,
                 ManageBlog,
@@ -134,7 +134,7 @@ namespace Nop.Services.Security
                         AccessAdminPanel,
                         AllowCustomerImpersonation,
                         ManageProducts,
-                        ManageCategorias,
+                        ManageCategories,
                         ManageManufacturers,
                         ManageProductReviews,
                         ManageProductTags,
@@ -142,7 +142,7 @@ namespace Nop.Services.Security
                         ManageCustomers,
                         ManageVendors,
                         ManageCurrentCarts,
-                        ManagePedidos,
+                        ManageOrders,
                         ManageRecurringPayments,
                         ManageGiftCards,
                         ManageReturnRequests,
@@ -150,7 +150,7 @@ namespace Nop.Services.Security
                         ManageAffiliates,
                         ManageCampaigns,
                         ManageDiscounts,
-                        ManageBoletín informativoSubscribers,
+                        ManageNewsletterSubscribers,
                         ManagePolls,
                         ManageNews,
                         ManageBlog,
@@ -224,7 +224,7 @@ namespace Nop.Services.Security
                         AccessAdminPanel,
                         ManageProducts,
                         ManageProductReviews,
-                        ManagePedidos
+                        ManageOrders
                     }
                 }
             };

@@ -130,11 +130,11 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct.Controllers
             //a vendor should have access only to his products
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = _categoryService.GetAllCategorias(showHidden: true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(new SelectListItem { Text = c.GetFormattedBreadCrumb(Categorias), Value = c.Id.ToString() });
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = _categoryService.GetAllCategories(showHidden: true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(new SelectListItem { Text = c.GetFormattedBreadCrumb(Categories), Value = c.Id.ToString() });
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });

@@ -582,12 +582,12 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-3">
-                                @Html.OverrideStoreCheckboxFor(model => model.ShowProductsFromSubCategorias_OverrideForStore, model => model.ShowProductsFromSubCategorias, Model.ActiveStoreScopeConfiguration)
-                                @Html.NopLabelFor(model => model.ShowProductsFromSubCategorias)
+                                @Html.OverrideStoreCheckboxFor(model => model.ShowProductsFromSubCategories_OverrideForStore, model => model.ShowProductsFromSubCategories, Model.ActiveStoreScopeConfiguration)
+                                @Html.NopLabelFor(model => model.ShowProductsFromSubCategories)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopEditorFor(model => model.ShowProductsFromSubCategorias)
-                                @Html.ValidationMessageFor(model => model.ShowProductsFromSubCategorias)
+                                @Html.NopEditorFor(model => model.ShowProductsFromSubCategories)
+                                @Html.ValidationMessageFor(model => model.ShowProductsFromSubCategories)
                             </div>
                         </div>
                         <div class="form-group">
@@ -600,14 +600,14 @@
                                 @Html.ValidationMessageFor(model => model.ShowCategoryProductNumber)
                             </div>
                         </div>
-                        <div class="form-group" id="pnlShowCategoryProductNumberIncludingSubCategorias">
+                        <div class="form-group" id="pnlShowCategoryProductNumberIncludingSubCategories">
                             <div class="col-md-3">
-                                @Html.OverrideStoreCheckboxFor(model => model.ShowCategoryProductNumberIncludingSubCategorias_OverrideForStore, model => model.ShowCategoryProductNumberIncludingSubCategorias, Model.ActiveStoreScopeConfiguration)
-                                @Html.NopLabelFor(model => model.ShowCategoryProductNumberIncludingSubCategorias)
+                                @Html.OverrideStoreCheckboxFor(model => model.ShowCategoryProductNumberIncludingSubCategories_OverrideForStore, model => model.ShowCategoryProductNumberIncludingSubCategories, Model.ActiveStoreScopeConfiguration)
+                                @Html.NopLabelFor(model => model.ShowCategoryProductNumberIncludingSubCategories)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopEditorFor(model => model.ShowCategoryProductNumberIncludingSubCategorias)
-                                @Html.ValidationMessageFor(model => model.ShowCategoryProductNumberIncludingSubCategorias)
+                                @Html.NopEditorFor(model => model.ShowCategoryProductNumberIncludingSubCategories)
+                                @Html.ValidationMessageFor(model => model.ShowCategoryProductNumberIncludingSubCategories)
                             </div>
                         </div>
                         <div class="form-group">
@@ -681,7 +681,7 @@
 
                     <script type="text/javascript">
                         $(document).ready(function () {
-                            $("#@Html.FieldIdFor(model => model.ShowCategoryProductNumber)").click(toggleShowCategoryProductNumberIncludingSubCategorias);
+                            $("#@Html.FieldIdFor(model => model.ShowCategoryProductNumber)").click(toggleShowCategoryProductNumberIncludingSubCategories);
                             $("#@Html.FieldIdFor(model => model.EmailAFriendEnabled)").click(toggleEmailAFriend);
                             $("#@Html.FieldIdFor(model => model.RecentlyViewedProductsEnabled)").click(toggleRecentlyViewedProducts);
                             $("#@Html.FieldIdFor(model => model.NewProductsEnabled)").click(toggleNewProducts);
@@ -689,7 +689,7 @@
                             $("#@Html.FieldIdFor(model => model.ProductsAlsoPurchasedEnabled)").click(toggleProductsAlsoPurchasedNumber);
                             $("#@Html.FieldIdFor(model => model.ProductsByTagAllowCustomersToSelectPageSize)").click(toggleProductsByTagPageSize);
 
-                            toggleShowCategoryProductNumberIncludingSubCategorias();
+                            toggleShowCategoryProductNumberIncludingSubCategories();
                             toggleEmailAFriend();
                             toggleRecentlyViewedProducts();
                             toggleNewProducts();
@@ -698,11 +698,11 @@
                             toggleProductsByTagPageSize();
                         });
 
-                        function toggleShowCategoryProductNumberIncludingSubCategorias() {
+                        function toggleShowCategoryProductNumberIncludingSubCategories() {
                             if ($('#@Html.FieldIdFor(model => model.ShowCategoryProductNumber)').is(':checked')) {
-                                $('#pnlShowCategoryProductNumberIncludingSubCategorias').show();
+                                $('#pnlShowCategoryProductNumberIncludingSubCategories').show();
                             } else {
-                                $('#pnlShowCategoryProductNumberIncludingSubCategorias').hide();
+                                $('#pnlShowCategoryProductNumberIncludingSubCategories').hide();
                             }
                         }
 

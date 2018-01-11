@@ -9652,7 +9652,7 @@ jQuery.fn.extend({
 				parentOffset = offsetParent.offset();
 			}
 
-			// Add offsetParent bPedidos
+			// Add offsetParent bOrders
 			parentOffset.top  += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true );
 			parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true );
 		}

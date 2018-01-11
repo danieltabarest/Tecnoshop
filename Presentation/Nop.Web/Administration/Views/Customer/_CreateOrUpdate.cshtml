@@ -1,4 +1,4 @@
-﻿@using Nop.Core.Domain.Pedidos;
+﻿@using Nop.Core.Domain.Orders;
 @using Nop.Services.Stores
 @model CustomerModel
 
@@ -18,7 +18,7 @@
                 @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Customers.Customers.Info"), true)
                 @if (Model.Id > 0)
                 {
-                    @Html.RenderBootstrapTabHeader("tab-Pedidos", @T("Admin.Customers.Customers.Pedidos"))
+                    @Html.RenderBootstrapTabHeader("tab-Orders", @T("Admin.Customers.Customers.Orders"))
                     @Html.RenderBootstrapTabHeader("tab-address", @T("Admin.Customers.Customers.Addresses"))
                     @Html.RenderBootstrapTabHeader("tab-cart", @T("Admin.Customers.Customers.CurrentShoppingCart"))
                     @Html.RenderBootstrapTabHeader("tab-wishlist", @T("Admin.Customers.Customers.CurrentWishlist"))
@@ -35,7 +35,7 @@
                 @Html.RenderBootstrapTabContent("tab-info", @TabInfo(), true)
                 @if (Model.Id > 0)
                 {
-                    @Html.RenderBootstrapTabContent("tab-Pedidos", @TabPedidos())
+                    @Html.RenderBootstrapTabContent("tab-Orders", @TabOrders())
                     @Html.RenderBootstrapTabContent("tab-address", @TabAddresses())
                     @Html.RenderBootstrapTabContent("tab-cart", @TabCurrentShoppingCart())
                     @Html.RenderBootstrapTabContent("tab-wishlist", @TabCurrentWishlist())
@@ -498,18 +498,18 @@
                         </div>
                     </div>
                 }
-                @if (Model.AvailableBoletín informativoSubscriptionStores != null && Model.AvailableBoletín informativoSubscriptionStores.Count > 0)
+                @if (Model.AvailableNewsletterSubscriptionStores != null && Model.AvailableNewsletterSubscriptionStores.Count > 0)
                 {
                     <div class="form-group">
                         <div class="col-md-3">
-                            @Html.NopLabelFor(model => model.SelectedBoletín informativoSubscriptionStoreIds)
+                            @Html.NopLabelFor(model => model.SelectedNewsletterSubscriptionStoreIds)
                         </div>
                         <div class="col-md-9">
-                            @foreach (var store in Model.AvailableBoletín informativoSubscriptionStores)
+                            @foreach (var store in Model.AvailableNewsletterSubscriptionStores)
                             {
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="SelectedBoletín informativoSubscriptionStoreIds" value="@store.Id" checked="@(Model.SelectedBoletín informativoSubscriptionStoreIds != null && Model.SelectedBoletín informativoSubscriptionStoreIds.Contains(store.Id))" />
+                                        <input type="checkbox" name="SelectedNewsletterSubscriptionStoreIds" value="@store.Id" checked="@(Model.SelectedNewsletterSubscriptionStoreIds != null && Model.SelectedNewsletterSubscriptionStoreIds.Contains(store.Id))" />
                                         (@(store.Name))
                                     </label>
                                 </div>
@@ -590,7 +590,7 @@
     </div>
 }
 
-@helper TabPedidos()
+@helper TabOrders()
 {
     var defaultGridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
     var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
@@ -641,34 +641,34 @@
                             scrollable: false,
                             columns: [{
                                 field: "CustomOrderNumber",
-                                title: "@T("Admin.Customers.Customers.Pedidos.CustomOrderNumber")",
+                                title: "@T("Admin.Customers.Customers.Orders.CustomOrderNumber")",
                                 width: 200
                             }, {
                                 field: "OrderTotal",
-                                title: "@T("Admin.Customers.Customers.Pedidos.OrderTotal")",
+                                title: "@T("Admin.Customers.Customers.Orders.OrderTotal")",
                                 width: 200
                             }, {
-                                field: "Pedidostatus",
-                                title: "@T("Admin.Customers.Customers.Pedidos.Pedidostatus")",
+                                field: "Orderstatus",
+                                title: "@T("Admin.Customers.Customers.Orders.Orderstatus")",
                                 width: 200,
                                 template: '<span class="grid-report-item ' +
-                                                    '# if(PedidostatusId == 10) {# yellow #} #' +
-                                                    '# if(PedidostatusId == 20) {# blue #} #' +
-                                                    '# if(PedidostatusId == 30) {# green #} #' +
-                                                    '# if(PedidostatusId == 40) {# red #} #' +
-                                                    '">#=Pedidostatus#</span>'
+                                                    '# if(OrderstatusId == 10) {# yellow #} #' +
+                                                    '# if(OrderstatusId == 20) {# blue #} #' +
+                                                    '# if(OrderstatusId == 30) {# green #} #' +
+                                                    '# if(OrderstatusId == 40) {# red #} #' +
+                                                    '">#=Orderstatus#</span>'
                             }, {
                                 field: "PaymentStatus",
-                                title: "@T("Admin.Customers.Customers.Pedidos.PaymentStatus")",
+                                title: "@T("Admin.Customers.Customers.Orders.PaymentStatus")",
                                 width: 200
                             }, {
                                 field: "ShippingStatus",
-                                title: "@T("Admin.Customers.Customers.Pedidos.ShippingStatus")",
+                                title: "@T("Admin.Customers.Customers.Orders.ShippingStatus")",
                                 width: 200
                             },{
                                 field: "StoreName",
                                 hidden: @(stores.Count > 1 ? "false" : "true"),
-                                title: "@T("Admin.Customers.Customers.Pedidos.Store")",
+                                title: "@T("Admin.Customers.Customers.Orders.Store")",
                                 width: 200
                             }, {
                                 field: "CreatedOn",

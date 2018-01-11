@@ -74,8 +74,8 @@ namespace Nop.Admin.Models.Discounts
         [UIHint("Int32Nullable")]
         public int? MaximumDiscountedQuantity { get; set; }
         
-        [NopResourceDisplayName("Admin.Promotions.Discounts.Fields.AppliedToSubCategorias")]
-        public bool AppliedToSubCategorias { get; set; }
+        [NopResourceDisplayName("Admin.Promotions.Discounts.Fields.AppliedToSubCategories")]
+        public bool AppliedToSubCategories { get; set; }
 
         [NopResourceDisplayName("Admin.Promotions.Discounts.Requirements.DiscountRequirementType")]
         public string AddDiscountRequirement { get; set; }
@@ -134,7 +134,7 @@ namespace Nop.Admin.Models.Discounts
         }
         public partial class AddCategoryToDiscountModel : BaseNopModel
         {
-            [NopResourceDisplayName("Admin.Catalog.Categorias.List.SearchCategoryName")]
+            [NopResourceDisplayName("Admin.Catalog.Categories.List.SearchCategoryName")]
             [AllowHtml]
             public string SearchCategoryName { get; set; }
 
@@ -172,7 +172,7 @@ namespace Nop.Admin.Models.Discounts
         {
             public AddProductToDiscountModel()
             {
-                AvailableCategorias = new List<SelectListItem>();
+                AvailableCategories = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -193,7 +193,7 @@ namespace Nop.Admin.Models.Discounts
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategorias { get; set; }
+            public IList<SelectListItem> AvailableCategories { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }

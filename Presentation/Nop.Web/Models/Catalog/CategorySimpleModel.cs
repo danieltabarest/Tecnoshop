@@ -7,7 +7,7 @@ namespace Nop.Web.Models.Catalog
     {
         public CategorySimpleModel()
         {
-            SubCategorias = new List<CategorySimpleModel>();
+            SubCategories = new List<CategorySimpleModel>();
         }
 
         public string Name { get; set; }
@@ -18,6 +18,6 @@ namespace Nop.Web.Models.Catalog
 
         public bool IncludeInTopMenu { get; set; }
 
-        public List<CategorySimpleModel> SubCategorias { get; set; }
+        public List<CategorySimpleModel> SubCategories { get; set; }
     }
 }

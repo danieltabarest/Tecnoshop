@@ -29,12 +29,12 @@
         <div id="customer-reports" class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 @Html.RenderBootstrapTabHeader("tab-ordertotal", @T("Admin.Customers.Reports.BestBy.BestByOrderTotal"), true)
-                @Html.RenderBootstrapTabHeader("tab-numberofPedidos", @T("Admin.Customers.Reports.BestBy.BestByNumberOfPedidos"))
+                @Html.RenderBootstrapTabHeader("tab-numberofOrders", @T("Admin.Customers.Reports.BestBy.BestByNumberOfOrders"))
                 @Html.RenderBootstrapTabHeader("tab-registeredcustomers", @T("Admin.Customers.Reports.RegisteredCustomers"))
             </ul>
             <div class="tab-content">
                 @Html.RenderBootstrapTabContent("tab-ordertotal", @TabBestByOrderTotal(), true)
-                @Html.RenderBootstrapTabContent("tab-numberofPedidos", @TabBestByNumberOfPedidos())
+                @Html.RenderBootstrapTabContent("tab-numberofOrders", @TabBestByNumberOfOrders())
                 @Html.RenderBootstrapTabContent("tab-registeredcustomers", @TabRegisteredCustomers())
             </div>
         </div>
@@ -60,11 +60,11 @@
     @Html.Partial("_ReportBestCustomersByOrderTotal", Model.BestCustomersByOrderTotal, dataDictAttributes)
 }
 
-@helper TabBestByNumberOfPedidos()
+@helper TabBestByNumberOfOrders()
 {
     var dataDictAttributes = new ViewDataDictionary();
-    dataDictAttributes.TemplateInfo.HtmlFieldPrefix = "bestbynumberofPedidos";
-    @Html.Partial("_ReportBestCustomersByNumberOfPedidos", Model.BestCustomersByOrderTotal, dataDictAttributes)
+    dataDictAttributes.TemplateInfo.HtmlFieldPrefix = "bestbynumberofOrders";
+    @Html.Partial("_ReportBestCustomersByNumberOfOrders", Model.BestCustomersByOrderTotal, dataDictAttributes)
 }
 
 @helper TabRegisteredCustomers()

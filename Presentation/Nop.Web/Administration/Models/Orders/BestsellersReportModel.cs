@@ -5,16 +5,16 @@ using System.Web.Mvc;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Pedidos
+namespace Nop.Admin.Models.Orders
 {
     public partial class BestsellersReportModel : BaseNopModel
     {
         public BestsellersReportModel()
         {
             AvailableStores = new List<SelectListItem>();
-            AvailablePedidostatuses = new List<SelectListItem>();
+            AvailableOrderstatuses = new List<SelectListItem>();
             AvailablePaymentStatuses = new List<SelectListItem>();
-            AvailableCategorias = new List<SelectListItem>();
+            AvailableCategories = new List<SelectListItem>();
             AvailableManufacturers = new List<SelectListItem>();
             AvailableCountries = new List<SelectListItem>();
             AvailableVendors = new List<SelectListItem>();
@@ -31,8 +31,8 @@ namespace Nop.Admin.Models.Pedidos
 
         [NopResourceDisplayName("Admin.SalesReport.Bestsellers.Store")]
         public int StoreId { get; set; }
-        [NopResourceDisplayName("Admin.SalesReport.Bestsellers.Pedidostatus")]
-        public int PedidostatusId { get; set; }
+        [NopResourceDisplayName("Admin.SalesReport.Bestsellers.Orderstatus")]
+        public int OrderstatusId { get; set; }
         [NopResourceDisplayName("Admin.SalesReport.Bestsellers.PaymentStatus")]
         public int PaymentStatusId { get; set; }
         [NopResourceDisplayName("Admin.SalesReport.Bestsellers.Category")]
@@ -45,9 +45,9 @@ namespace Nop.Admin.Models.Pedidos
         public int VendorId { get; set; }
 
         public IList<SelectListItem> AvailableStores { get; set; }
-        public IList<SelectListItem> AvailablePedidostatuses { get; set; }
+        public IList<SelectListItem> AvailableOrderstatuses { get; set; }
         public IList<SelectListItem> AvailablePaymentStatuses { get; set; }
-        public IList<SelectListItem> AvailableCategorias { get; set; }
+        public IList<SelectListItem> AvailableCategories { get; set; }
         public IList<SelectListItem> AvailableManufacturers { get; set; }
         public IList<SelectListItem> AvailableCountries { get; set; }
         public IList<SelectListItem> AvailableVendors { get; set; }

@@ -1,17 +1,17 @@
-﻿using Nop.Web.Models.Boletín informativo;
+﻿using Nop.Web.Models.Newsletter;
 
 namespace Nop.Web.Factories
 {
     /// <summary>
-    /// Represents the interface of the Boletín informativo model factory
+    /// Represents the interface of the Newsletter model factory
     /// </summary>
-    public partial interface IBoletín informativoModelFactory
+    public partial interface INewsletterModelFactory
     {
         /// <summary>
-        /// Prepare the Boletín informativo box model
+        /// Prepare the Newsletter box model
         /// </summary>
-        /// <returns>Boletín informativo box model</returns>
-        Boletín informativoBoxModel PrepareBoletín informativoBoxModel();
+        /// <returns>Newsletter box model</returns>
+        NewsletterBoxModel PrepareNewsletterBoxModel();
 
         /// <summary>
         /// Prepare the subscription activation model

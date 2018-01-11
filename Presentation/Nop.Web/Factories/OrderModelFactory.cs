@@ -4,7 +4,7 @@ using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Services.Catalog;
@@ -12,7 +12,7 @@ using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
@@ -30,7 +30,7 @@ namespace Nop.Web.Factories
         #region Fields
 
         private readonly IAddressModelFactory _addressModelFactory;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IWorkContext _workContext;
         private readonly ICurrencyService _currencyService;
         private readonly IPriceFormatter _priceFormatter;
@@ -46,7 +46,7 @@ namespace Nop.Web.Factories
         private readonly IOrderTotalCalculationService _orderTotalCalculationService;
         private readonly IRewardPointService _rewardPointService;
 
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
         private readonly TaxSettings _taxSettings;
         private readonly CatalogSettings _catalogSettings;
         private readonly ShippingSettings _shippingSettings;
@@ -59,7 +59,7 @@ namespace Nop.Web.Factories
 		#region Constructors
 
         public OrderModelFactory(IAddressModelFactory addressModelFactory, 
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IWorkContext workContext,
             ICurrencyService currencyService,
             IPriceFormatter priceFormatter,
@@ -75,7 +75,7 @@ namespace Nop.Web.Factories
             IOrderTotalCalculationService orderTotalCalculationService,
             IRewardPointService rewardPointService,
             CatalogSettings catalogSettings,
-            Pedidosettings Pedidosettings,
+            Ordersettings Ordersettings,
             TaxSettings taxSettings,
             ShippingSettings shippingSettings, 
             AddressSettings addressSettings,
@@ -83,7 +83,7 @@ namespace Nop.Web.Factories
             PdfSettings pdfSettings)
         {
             this._addressModelFactory = addressModelFactory;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._workContext = workContext;
             this._currencyService = currencyService;
             this._priceFormatter = priceFormatter;
@@ -100,7 +100,7 @@ namespace Nop.Web.Factories
             this._rewardPointService = rewardPointService;
 
             this._catalogSettings = catalogSettings;
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
             this._taxSettings = taxSettings;
             this._shippingSettings = shippingSettings;
             this._addressSettings = addressSettings;
@@ -119,16 +119,16 @@ namespace Nop.Web.Factories
         public virtual CustomerOrderListModel PrepareCustomerOrderListModel()
         {
             var model = new CustomerOrderListModel();
-            var Pedidos = _Pedidoservice.SearchPedidos(storeId: _storeContext.CurrentStore.Id,
+            var Orders = _Orderservice.SearchOrders(storeId: _storeContext.CurrentStore.Id,
                 customerId: _workContext.CurrentCustomer.Id);
-            foreach (var order in Pedidos)
+            foreach (var order in Orders)
             {
                 var orderModel = new CustomerOrderListModel.OrderDetailsModel
                 {
                     Id = order.Id,
                     CreatedOn = _dateTimeHelper.ConvertToUserTime(order.CreatedOnUtc, DateTimeKind.Utc),
-                    PedidostatusEnum = order.Pedidostatus,
-                    Pedidostatus = order.Pedidostatus.GetLocalizedEnum(_localizationService, _workContext),
+                    OrderstatusEnum = order.Orderstatus,
+                    Orderstatus = order.Orderstatus.GetLocalizedEnum(_localizationService, _workContext),
                     PaymentStatus = order.PaymentStatus.GetLocalizedEnum(_localizationService, _workContext),
                     ShippingStatus = order.ShippingStatus.GetLocalizedEnum(_localizationService, _workContext),
                     IsReturnRequestAllowed = _orderProcessingService.IsReturnRequestAllowed(order),
@@ -137,10 +137,10 @@ namespace Nop.Web.Factories
                 var orderTotalInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderTotal, order.CurrencyRate);
                 orderModel.OrderTotal = _priceFormatter.FormatPrice(orderTotalInCustomerCurrency, true, order.CustomerCurrencyCode, false, _workContext.WorkingLanguage);
 
-                model.Pedidos.Add(orderModel);
+                model.Orders.Add(orderModel);
             }
 
-            var recurringPayments = _Pedidoservice.SearchRecurringPayments(_storeContext.CurrentStore.Id,
+            var recurringPayments = _Orderservice.SearchRecurringPayments(_storeContext.CurrentStore.Id,
                 _workContext.CurrentCustomer.Id);
             foreach (var recurringPayment in recurringPayments)
             {
@@ -158,7 +158,7 @@ namespace Nop.Web.Factories
                     CanRetryLastPayment = _orderProcessingService.CanRetryLastRecurringPayment(_workContext.CurrentCustomer, recurringPayment)
                 };
 
-                model.RecurringPedidos.Add(recurringPaymentModel);
+                model.RecurringOrders.Add(recurringPaymentModel);
             }
 
             return model;
@@ -177,10 +177,10 @@ namespace Nop.Web.Factories
 
             model.Id = order.Id;
             model.CreatedOn = _dateTimeHelper.ConvertToUserTime(order.CreatedOnUtc, DateTimeKind.Utc);
-            model.Pedidostatus = order.Pedidostatus.GetLocalizedEnum(_localizationService, _workContext);
-            model.IsReOrderAllowed = _Pedidosettings.IsReOrderAllowed;
+            model.Orderstatus = order.Orderstatus.GetLocalizedEnum(_localizationService, _workContext);
+            model.IsReOrderAllowed = _Ordersettings.IsReOrderAllowed;
             model.IsReturnRequestAllowed = _orderProcessingService.IsReturnRequestAllowed(order);
-            model.PdfInvoiceDisabled = _pdfSettings.DisablePdfInvoicesForPendingPedidos && order.Pedidostatus == Pedidostatus.Pending;
+            model.PdfInvoiceDisabled = _pdfSettings.DisablePdfInvoicesForPendingOrders && order.Orderstatus == Orderstatus.Pending;
             model.CustomOrderNumber = order.CustomOrderNumber;
 
             //shipping info
@@ -244,29 +244,29 @@ namespace Nop.Web.Factories
             model.CustomValues = order.DeserializeCustomValues();
 
             //order subtotal
-            if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal)
+            if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrdersubtotal)
             {
                 //including tax
 
                 //order subtotal
-                var PedidosubtotalInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubtotalInclTax, order.CurrencyRate);
-                model.Pedidosubtotal = _priceFormatter.FormatPrice(PedidosubtotalInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, true);
+                var OrdersubtotalInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubtotalInclTax, order.CurrencyRate);
+                model.Ordersubtotal = _priceFormatter.FormatPrice(OrdersubtotalInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, true);
                 //discount (applied to order subtotal)
-                var PedidosubTotalDiscountInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubTotalDiscountInclTax, order.CurrencyRate);
-                if (PedidosubTotalDiscountInclTaxInCustomerCurrency > decimal.Zero)
-                    model.PedidosubTotalDiscount = _priceFormatter.FormatPrice(-PedidosubTotalDiscountInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, true);
+                var OrdersubTotalDiscountInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubTotalDiscountInclTax, order.CurrencyRate);
+                if (OrdersubTotalDiscountInclTaxInCustomerCurrency > decimal.Zero)
+                    model.OrdersubTotalDiscount = _priceFormatter.FormatPrice(-OrdersubTotalDiscountInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, true);
             }
             else
             {
                 //excluding tax
 
                 //order subtotal
-                var PedidosubtotalExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubtotalExclTax, order.CurrencyRate);
-                model.Pedidosubtotal = _priceFormatter.FormatPrice(PedidosubtotalExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, false);
+                var OrdersubtotalExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubtotalExclTax, order.CurrencyRate);
+                model.Ordersubtotal = _priceFormatter.FormatPrice(OrdersubtotalExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, false);
                 //discount (applied to order subtotal)
-                var PedidosubTotalDiscountExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubTotalDiscountExclTax, order.CurrencyRate);
-                if (PedidosubTotalDiscountExclTaxInCustomerCurrency > decimal.Zero)
-                    model.PedidosubTotalDiscount = _priceFormatter.FormatPrice(-PedidosubTotalDiscountExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, false);
+                var OrdersubTotalDiscountExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubTotalDiscountExclTax, order.CurrencyRate);
+                if (OrdersubTotalDiscountExclTaxInCustomerCurrency > decimal.Zero)
+                    model.OrdersubTotalDiscount = _priceFormatter.FormatPrice(-OrdersubTotalDiscountExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, false);
             }
 
             if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
@@ -274,8 +274,8 @@ namespace Nop.Web.Factories
                 //including tax
 
                 //order shipping
-                var PedidoshippingInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidoshippingInclTax, order.CurrencyRate);
-                model.Pedidoshipping = _priceFormatter.FormatShippingPrice(PedidoshippingInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, true);
+                var OrdershippingInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdershippingInclTax, order.CurrencyRate);
+                model.Ordershipping = _priceFormatter.FormatShippingPrice(OrdershippingInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, true);
                 //Formas de pago additional fee
                 var paymentMethodAdditionalFeeInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PaymentMethodAdditionalFeeInclTax, order.CurrencyRate);
                 if (paymentMethodAdditionalFeeInclTaxInCustomerCurrency > decimal.Zero)
@@ -286,8 +286,8 @@ namespace Nop.Web.Factories
                 //excluding tax
 
                 //order shipping
-                var PedidoshippingExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidoshippingExclTax, order.CurrencyRate);
-                model.Pedidoshipping = _priceFormatter.FormatShippingPrice(PedidoshippingExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, false);
+                var OrdershippingExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdershippingExclTax, order.CurrencyRate);
+                model.Ordershipping = _priceFormatter.FormatShippingPrice(OrdershippingExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, _workContext.WorkingLanguage, false);
                 //Formas de pago additional fee
                 var paymentMethodAdditionalFeeExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PaymentMethodAdditionalFeeExclTax, order.CurrencyRate);
                 if (paymentMethodAdditionalFeeExclTaxInCustomerCurrency > decimal.Zero)
@@ -297,7 +297,7 @@ namespace Nop.Web.Factories
             //tax
             bool displayTax = true;
             bool displayTaxRates = true;
-            if (_taxSettings.HideTaxInPedidosummary && order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
+            if (_taxSettings.HideTaxInOrdersummary && order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
             {
                 displayTax = false;
                 displayTaxRates = false;
@@ -489,7 +489,7 @@ namespace Nop.Web.Factories
             model.ShowSku = _catalogSettings.ShowSkuOnProductDetailsPage;
             foreach (var shipmentItem in shipment.ShipmentItems)
             {
-                var orderItem = _Pedidoservice.GetOrderItemById(shipmentItem.OrderItemId);
+                var orderItem = _Orderservice.GetOrderItemById(shipmentItem.OrderItemId);
                 if (orderItem == null)
                     continue;
 

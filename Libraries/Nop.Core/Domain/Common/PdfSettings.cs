@@ -21,9 +21,9 @@ namespace Nop.Core.Domain.Common
         public bool RenderOrderNotes { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to disallow customers to print PDF invoices for pedning Pedidos
+        /// Gets or sets a value indicating whether to disallow customers to print PDF invoices for pedning Orders
         /// </summary>
-        public bool DisablePdfInvoicesForPendingPedidos { get; set; }
+        public bool DisablePdfInvoicesForPendingOrders { get; set; }
 
         /// <summary>
         /// Gets or sets the font file name that will be used

@@ -26,10 +26,10 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3">
-                    @Html.NopLabelFor(model => model.PedidostatusId)
+                    @Html.NopLabelFor(model => model.OrderstatusId)
                 </div>
                 <div class="col-md-9">
-                    @Html.NopDropDownList("PedidostatusId", Model.AvailablePedidostatuses)
+                    @Html.NopDropDownList("OrderstatusId", Model.AvailableOrderstatuses)
                 </div>
             </div>
             <div class="form-group">
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                    <button type="button" id="search-best-customers-numberofPedidos-grid" class="btn btn-primary btn-search">
+                    <button type="button" id="search-best-customers-numberofOrders-grid" class="btn btn-primary btn-search">
                         <i class="fa fa-line-chart"></i>
                         @T("Admin.Customers.Reports.RunReport")
                     </button>
@@ -61,19 +61,19 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <div id="best-customers-numberofPedidos-grid"></div>
+            <div id="best-customers-numberofOrders-grid"></div>
 
             <script>
                 $(document).ready(function() {
-                    $("#best-customers-numberofPedidos-grid").kendoGrid({
+                    $("#best-customers-numberofOrders-grid").kendoGrid({
                         dataSource: {
                             type: "json",
                             transport: {
                                 read: {
-                                    url: "@Html.Raw(Url.Action("ReportBestCustomersByNumberOfPedidosList", "Customer"))",
+                                    url: "@Html.Raw(Url.Action("ReportBestCustomersByNumberOfOrdersList", "Customer"))",
                                     type: "POST",
                                     dataType: "json",
-                                    data: bestCustomersNumberOfPedidosAdditionalData
+                                    data: bestCustomersNumberOfOrdersAdditionalData
                                 }
                             },
                             schema: {
@@ -126,19 +126,19 @@
 
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $('#search-best-customers-numberofPedidos-grid').click(function() {
-                        var grid = $('#best-customers-numberofPedidos-grid').data('kendoGrid');
+                    $('#search-best-customers-numberofOrders-grid').click(function() {
+                        var grid = $('#best-customers-numberofOrders-grid').data('kendoGrid');
                         grid.dataSource.page(1); //new search. Set page size to 1
                         //grid.dataSource.read(); we already loaded the grid above using "page" function
                         return false;
                     });
                 });
 
-                function bestCustomersNumberOfPedidosAdditionalData(e) {
+                function bestCustomersNumberOfOrdersAdditionalData(e) {
                     var data = {
                         StartDate: $('#@Html.FieldIdFor(model => model.StartDate)').val(),
                         EndDate: $('#@Html.FieldIdFor(model => model.EndDate)').val(),
-                        PedidostatusId: $('#@Html.FieldIdFor(model => model.PedidostatusId)').val(),
+                        OrderstatusId: $('#@Html.FieldIdFor(model => model.OrderstatusId)').val(),
                         PaymentStatusId: $('#@Html.FieldIdFor(model => model.PaymentStatusId)').val(),
                         ShippingStatusId: $('#@Html.FieldIdFor(model => model.ShippingStatusId)').val()
                     };

@@ -260,20 +260,20 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.CustomerSettings.HideBoletín informativoBlock)
+                        @Html.NopLabelFor(model => model.CustomerSettings.HideNewsletterBlock)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopEditorFor(model => model.CustomerSettings.HideBoletín informativoBlock)
-                        @Html.ValidationMessageFor(model => model.CustomerSettings.HideBoletín informativoBlock)
+                        @Html.NopEditorFor(model => model.CustomerSettings.HideNewsletterBlock)
+                        @Html.ValidationMessageFor(model => model.CustomerSettings.HideNewsletterBlock)
                     </div>
                 </div>
-                <div class="form-group" id="pnlBoletín informativoBlockAllowToUnsubscribe">
+                <div class="form-group" id="pnlNewsletterBlockAllowToUnsubscribe">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.CustomerSettings.Boletín informativoBlockAllowToUnsubscribe)
+                        @Html.NopLabelFor(model => model.CustomerSettings.NewsletterBlockAllowToUnsubscribe)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopEditorFor(model => model.CustomerSettings.Boletín informativoBlockAllowToUnsubscribe)
-                        @Html.ValidationMessageFor(model => model.CustomerSettings.Boletín informativoBlockAllowToUnsubscribe)
+                        @Html.NopEditorFor(model => model.CustomerSettings.NewsletterBlockAllowToUnsubscribe)
+                        @Html.ValidationMessageFor(model => model.CustomerSettings.NewsletterBlockAllowToUnsubscribe)
                     </div>
                 </div>
                 <div class="form-group">
@@ -407,14 +407,14 @@
             $("#@Html.FieldIdFor(model => model.CustomerSettings.CityEnabled)").click(toggleCustomerRequiredFormField);
             $("#@Html.FieldIdFor(model => model.CustomerSettings.PhoneEnabled)").click(toggleCustomerRequiredFormField);
             $("#@Html.FieldIdFor(model => model.CustomerSettings.FaxEnabled)").click(toggleCustomerRequiredFormField);
-            $("#@Html.FieldIdFor(model => model.CustomerSettings.Boletín informativoEnabled)").click(toggleBoletín informativoEnabledField);
-            $("#@Html.FieldIdFor(model => model.CustomerSettings.HideBoletín informativoBlock)").click(toggleHideBoletín informativoBlock);
+            $("#@Html.FieldIdFor(model => model.CustomerSettings.NewsletterEnabled)").click(toggleNewsletterEnabledField);
+            $("#@Html.FieldIdFor(model => model.CustomerSettings.HideNewsletterBlock)").click(toggleHideNewsletterBlock);
 
             toggleCustomerCountryFormField();
             toggleCustomerStateProvinceFormField();
             toggleCustomerRequiredFormField();
-            toggleBoletín informativoEnabledField();
-            toggleHideBoletín informativoBlock();
+            toggleNewsletterEnabledField();
+            toggleHideNewsletterBlock();
         });
 
         function toggleCustomerCountryFormField() {
@@ -495,20 +495,20 @@
             }
         }
 
-        function toggleBoletín informativoEnabledField() {
-            if ($('#@Html.FieldIdFor(model => model.CustomerSettings.Boletín informativoEnabled)').is(':checked')) {
-                $('#pnlCustomerBoletín informativoTickedByDefault').show();
+        function toggleNewsletterEnabledField() {
+            if ($('#@Html.FieldIdFor(model => model.CustomerSettings.NewsletterEnabled)').is(':checked')) {
+                $('#pnlCustomerNewsletterTickedByDefault').show();
             } else {
-                $('#pnlCustomerBoletín informativoTickedByDefault').hide();
+                $('#pnlCustomerNewsletterTickedByDefault').hide();
             }
         }
 
-        function toggleHideBoletín informativoBlock() {
-            if ($('#@Html.FieldIdFor(model => model.CustomerSettings.HideBoletín informativoBlock)').is(':checked')) {
-                $('#pnlBoletín informativoBlockAllowToUnsubscribe').hide();
+        function toggleHideNewsletterBlock() {
+            if ($('#@Html.FieldIdFor(model => model.CustomerSettings.HideNewsletterBlock)').is(':checked')) {
+                $('#pnlNewsletterBlockAllowToUnsubscribe').hide();
             }
             else {
-                $('#pnlBoletín informativoBlockAllowToUnsubscribe').show();
+                $('#pnlNewsletterBlockAllowToUnsubscribe').show();
             }
         }
     </script>
@@ -731,20 +731,20 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.CustomerSettings.Boletín informativoEnabled)
+                        @Html.NopLabelFor(model => model.CustomerSettings.NewsletterEnabled)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopEditorFor(model => model.CustomerSettings.Boletín informativoEnabled)
-                        @Html.ValidationMessageFor(model => model.CustomerSettings.Boletín informativoEnabled)
+                        @Html.NopEditorFor(model => model.CustomerSettings.NewsletterEnabled)
+                        @Html.ValidationMessageFor(model => model.CustomerSettings.NewsletterEnabled)
                     </div>
                 </div>
-                <div class="form-group" id="pnlCustomerBoletín informativoTickedByDefault">
+                <div class="form-group" id="pnlCustomerNewsletterTickedByDefault">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.CustomerSettings.Boletín informativoTickedByDefault)
+                        @Html.NopLabelFor(model => model.CustomerSettings.NewsletterTickedByDefault)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopEditorFor(model => model.CustomerSettings.Boletín informativoTickedByDefault)
-                        @Html.ValidationMessageFor(model => model.CustomerSettings.Boletín informativoTickedByDefault)
+                        @Html.NopEditorFor(model => model.CustomerSettings.NewsletterTickedByDefault)
+                        @Html.ValidationMessageFor(model => model.CustomerSettings.NewsletterTickedByDefault)
                     </div>
                 </div>
             </div>

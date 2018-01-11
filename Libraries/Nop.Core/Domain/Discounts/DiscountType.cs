@@ -14,9 +14,9 @@ namespace Nop.Core.Domain.Discounts
         /// </summary>
         AssignedToSkus = 2,
         /// <summary>
-        /// Assigned to Categorias (all products in a category)
+        /// Assigned to Categories (all products in a category)
         /// </summary>
-        AssignedToCategorias = 5,
+        AssignedToCategories = 5,
         /// <summary>
         /// Assigned to manufacturers (all products of a manufacturer)
         /// </summary>
@@ -28,6 +28,6 @@ namespace Nop.Core.Domain.Discounts
         /// <summary>
         /// Assigned to order subtotal
         /// </summary>
-        AssignedToPedidosubTotal = 20,
+        AssignedToOrdersubTotal = 20,
     }
 }

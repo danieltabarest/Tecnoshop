@@ -12,7 +12,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Services.Catalog;
@@ -22,7 +22,7 @@ using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Security;
 using Nop.Services.Seo;
@@ -75,7 +75,7 @@ namespace Nop.Web.Factories
         private readonly MediaSettings _mediaSettings;
         private readonly ShoppingCartSettings _shoppingCartSettings;
         private readonly CatalogSettings _catalogSettings;
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
         private readonly ShippingSettings _shippingSettings;
         private readonly TaxSettings _taxSettings;
         private readonly CaptchaSettings _captchaSettings;
@@ -117,7 +117,7 @@ namespace Nop.Web.Factories
             MediaSettings mediaSettings,
             ShoppingCartSettings shoppingCartSettings,
             CatalogSettings catalogSettings, 
-            Pedidosettings Pedidosettings,
+            Ordersettings Ordersettings,
             ShippingSettings shippingSettings, 
             TaxSettings taxSettings,
             CaptchaSettings captchaSettings, 
@@ -157,7 +157,7 @@ namespace Nop.Web.Factories
             this._mediaSettings = mediaSettings;
             this._shoppingCartSettings = shoppingCartSettings;
             this._catalogSettings = catalogSettings;
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
             this._shippingSettings = shippingSettings;
             this._taxSettings = taxSettings;
             this._captchaSettings = captchaSettings;
@@ -792,7 +792,7 @@ namespace Nop.Web.Factories
                 throw new ArgumentNullException("model");
 
             //simple properties
-            model.OnePageCheckoutEnabled = _Pedidosettings.OnePageCheckoutEnabled;
+            model.OnePageCheckoutEnabled = _Ordersettings.OnePageCheckoutEnabled;
             if (!cart.Any())
                 return model;
             model.IsEditable = isEditable;
@@ -800,14 +800,14 @@ namespace Nop.Web.Factories
             model.ShowSku = _catalogSettings.ShowSkuOnProductDetailsPage;
             var checkoutAttributesXml = _workContext.CurrentCustomer.GetAttribute<string>(SystemCustomerAttributeNames.CheckoutAttributes, _genericAttributeService, _storeContext.CurrentStore.Id);
             model.CheckoutAttributeInfo = _checkoutAttributeFormatter.FormatAttributes(checkoutAttributesXml, _workContext.CurrentCustomer);
-            bool minPedidosubtotalAmountOk = _orderProcessingService.ValidateMinPedidosubtotalAmount(cart);
-            if (!minPedidosubtotalAmountOk)
+            bool minOrdersubtotalAmountOk = _orderProcessingService.ValidateMinOrdersubtotalAmount(cart);
+            if (!minOrdersubtotalAmountOk)
             {
-                decimal minPedidosubtotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Pedidosettings.MinPedidosubtotalAmount, _workContext.WorkingCurrency);
-                model.MinPedidosubtotalWarning = string.Format(_localizationService.GetResource("Checkout.MinPedidosubtotalAmount"), _priceFormatter.FormatPrice(minPedidosubtotalAmount, true, false));
+                decimal minOrdersubtotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Ordersettings.MinOrdersubtotalAmount, _workContext.WorkingCurrency);
+                model.MinOrdersubtotalWarning = string.Format(_localizationService.GetResource("Checkout.MinOrdersubtotalAmount"), _priceFormatter.FormatPrice(minOrdersubtotalAmount, true, false));
             }
-            model.TermsOfServiceOnShoppingCartPage = _Pedidosettings.TermsOfServiceOnShoppingCartPage;
-            model.TermsOfServiceOnOrderConfirmPage = _Pedidosettings.TermsOfServiceOnOrderConfirmPage;
+            model.TermsOfServiceOnShoppingCartPage = _Ordersettings.TermsOfServiceOnShoppingCartPage;
+            model.TermsOfServiceOnOrderConfirmPage = _Ordersettings.TermsOfServiceOnOrderConfirmPage;
             model.DisplayTaxShippingInfo = _catalogSettings.DisplayTaxShippingInfoShoppingCart;
 
             //discount and gift card boxes
@@ -950,7 +950,7 @@ namespace Nop.Web.Factories
                 //let's always display it
                 DisplayShoppingCartButton = true,
                 CurrentCustomerIsGuest = _workContext.CurrentCustomer.IsGuest(),
-                AnonymousCheckoutAllowed = _Pedidosettings.AnonymousCheckoutAllowed,
+                AnonymousCheckoutAllowed = _Ordersettings.AnonymousCheckoutAllowed,
             };
 
 
@@ -965,13 +965,13 @@ namespace Nop.Web.Factories
                 if (cart.Any())
                 {
                     //subtotal
-                    decimal PedidosubTotalDiscountAmountBase;
-                    List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
+                    decimal OrdersubTotalDiscountAmountBase;
+                    List<DiscountForCaching> OrdersubTotalAppliedDiscounts;
                     decimal subTotalWithoutDiscountBase;
                     decimal subTotalWithDiscountBase;
-                    var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal;
+                    var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrdersubtotal;
                     _orderTotalCalculationService.GetShoppingCartSubTotal(cart, subTotalIncludingTax,
-                        out PedidosubTotalDiscountAmountBase, out PedidosubTotalAppliedDiscounts,
+                        out OrdersubTotalDiscountAmountBase, out OrdersubTotalAppliedDiscounts,
                         out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
                     decimal subtotalBase = subTotalWithoutDiscountBase;
                     decimal subtotal = _currencyService.ConvertFromPrimaryStoreCurrency(subtotalBase, _workContext.WorkingCurrency);
@@ -991,12 +991,12 @@ namespace Nop.Web.Factories
                             return checkoutAttributes.Any();
                         });
 
-                    bool minPedidosubtotalAmountOk = _orderProcessingService.ValidateMinPedidosubtotalAmount(cart);
+                    bool minOrdersubtotalAmountOk = _orderProcessingService.ValidateMinOrdersubtotalAmount(cart);
                     bool downloadableProductsRequireRegistration =
                         _customerSettings.RequireRegistrationForDownloadableProducts && cart.Any(sci => sci.Product.IsDownload);
 
-                    model.DisplayCheckoutButton = !_Pedidosettings.TermsOfServiceOnShoppingCartPage &&
-                        minPedidosubtotalAmountOk &&
+                    model.DisplayCheckoutButton = !_Ordersettings.TermsOfServiceOnShoppingCartPage &&
+                        minOrdersubtotalAmountOk &&
                         !checkoutAttributesExist &&
                         !(downloadableProductsRequireRegistration
                             && _workContext.CurrentCustomer.IsGuest());
@@ -1059,22 +1059,22 @@ namespace Nop.Web.Factories
             if (cart.Any())
             {
                 //subtotal
-                decimal PedidosubTotalDiscountAmountBase;
-                List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
+                decimal OrdersubTotalDiscountAmountBase;
+                List<DiscountForCaching> OrdersubTotalAppliedDiscounts;
                 decimal subTotalWithoutDiscountBase;
                 decimal subTotalWithDiscountBase;
-                var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal;
+                var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrdersubtotal;
                 _orderTotalCalculationService.GetShoppingCartSubTotal(cart, subTotalIncludingTax,
-                    out PedidosubTotalDiscountAmountBase, out PedidosubTotalAppliedDiscounts,
+                    out OrdersubTotalDiscountAmountBase, out OrdersubTotalAppliedDiscounts,
                     out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
                 decimal subtotalBase = subTotalWithoutDiscountBase;
                 decimal subtotal = _currencyService.ConvertFromPrimaryStoreCurrency(subtotalBase, _workContext.WorkingCurrency);
                 model.SubTotal = _priceFormatter.FormatPrice(subtotal, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
 
-                if (PedidosubTotalDiscountAmountBase > decimal.Zero)
+                if (OrdersubTotalDiscountAmountBase > decimal.Zero)
                 {
-                    decimal PedidosubTotalDiscountAmount = _currencyService.ConvertFromPrimaryStoreCurrency(PedidosubTotalDiscountAmountBase, _workContext.WorkingCurrency);
-                    model.SubTotalDiscount = _priceFormatter.FormatPrice(-PedidosubTotalDiscountAmount, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
+                    decimal OrdersubTotalDiscountAmount = _currencyService.ConvertFromPrimaryStoreCurrency(OrdersubTotalDiscountAmountBase, _workContext.WorkingCurrency);
+                    model.SubTotalDiscount = _priceFormatter.FormatPrice(-OrdersubTotalDiscountAmount, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
                 }
 
 
@@ -1112,7 +1112,7 @@ namespace Nop.Web.Factories
                 //tax
                 bool displayTax = true;
                 bool displayTaxRates = true;
-                if (_taxSettings.HideTaxInPedidosummary && _workContext.TaxDisplayType == TaxDisplayType.IncludingTax)
+                if (_taxSettings.HideTaxInOrdersummary && _workContext.TaxDisplayType == TaxDisplayType.IncludingTax)
                 {
                     displayTax = false;
                     displayTaxRates = false;

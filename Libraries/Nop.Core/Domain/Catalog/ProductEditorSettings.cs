@@ -216,9 +216,9 @@ namespace Nop.Core.Domain.Catalog
         public bool NotifyAdminForQuantityBelow { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'BackPedidos' field is shown
+        /// Gets or sets a value indicating whether 'BackOrders' field is shown
         /// </summary>
-        public bool BackPedidos { get; set; }
+        public bool BackOrders { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether 'Allow back in stock subscriptions' field is shown
@@ -317,9 +317,9 @@ namespace Nop.Core.Domain.Catalog
         public bool Seo { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Purchased with Pedidos' tab is shown
+        /// Gets or sets a value indicating whether 'Purchased with Orders' tab is shown
         /// </summary>
-        public bool PurchasedWithPedidos { get; set; }
+        public bool PurchasedWithOrders { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether one column is used on the product details page

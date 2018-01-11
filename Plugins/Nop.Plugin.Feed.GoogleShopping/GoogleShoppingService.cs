@@ -273,11 +273,11 @@ namespace Nop.Plugin.Feed.GoogleShopping
 
                         //product type [product_type] - Your category of the item
                         var defaultProductCategory = _categoryService
-                            .GetProductCategoriasByProductId(product.Id, store.Id)
+                            .GetProductCategoriesByProductId(product.Id, store.Id)
                             .FirstOrDefault();
                         if (defaultProductCategory != null)
                         {
-                            //TODO localize Categorias
+                            //TODO localize Categories
                             var category = defaultProductCategory.Category
                                 .GetFormattedBreadCrumb(_categoryService, separator: ">", languageId: languageId);
                             if (!String.IsNullOrEmpty((category)))
@@ -334,7 +334,7 @@ namespace Nop.Plugin.Feed.GoogleShopping
                         //availability [availability] - Availability status of the item
                         string availability = "in stock"; //in stock by default
                         if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock
-                            && product.BackorderMode == BackorderMode.NoBackPedidos
+                            && product.BackorderMode == BackorderMode.NoBackOrders
                             && product.GetTotalStockQuantity() <= 0)
                         {
                             availability = "out of stock";
@@ -425,7 +425,7 @@ namespace Nop.Plugin.Feed.GoogleShopping
 
                         #region Apparel Products
 
-                        /* Apparel includes all products that fall under 'Apparel & Accessories' (including all sub-Categorias)
+                        /* Apparel includes all products that fall under 'Apparel & Accessories' (including all sub-Categories)
                          * in Google’s product taxonomy.
                         */
 

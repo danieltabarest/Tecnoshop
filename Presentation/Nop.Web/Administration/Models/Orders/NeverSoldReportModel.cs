@@ -5,13 +5,13 @@ using System.Web.Mvc;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Pedidos
+namespace Nop.Admin.Models.Orders
 {
     public partial class NeverSoldReportModel : BaseNopModel
     {
         public NeverSoldReportModel()
         {
-            AvailableCategorias = new List<SelectListItem>();
+            AvailableCategories = new List<SelectListItem>();
             AvailableManufacturers = new List<SelectListItem>();
             AvailableStores = new List<SelectListItem>();
             AvailableVendors = new List<SelectListItem>();
@@ -27,7 +27,7 @@ namespace Nop.Admin.Models.Pedidos
 
         [NopResourceDisplayName("Admin.SalesReport.NeverSold.SearchCategory")]
         public int SearchCategoryId { get; set; }
-        public IList<SelectListItem> AvailableCategorias { get; set; }
+        public IList<SelectListItem> AvailableCategories { get; set; }
 
         [NopResourceDisplayName("Admin.SalesReport.NeverSold.SearchManufacturer")]
         public int SearchManufacturerId { get; set; }

@@ -1,7 +1,7 @@
 
 using Nop.Core.Domain.Localization;
 
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
     /// <summary>
     /// Represents a checkout attribute value

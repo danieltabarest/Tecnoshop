@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Nop.Core.Domain.Catalog;
 
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
     /// <summary>
     /// Represents an order item

@@ -12,22 +12,22 @@
 @using Nop.Web.Models.Order;
 @section left
 {
-    @Html.Action("CustomerNavigation", "Customer", new { selectedTabId = CustomerNavigationEnum.Pedidos })
+    @Html.Action("CustomerNavigation", "Customer", new { selectedTabId = CustomerNavigationEnum.Orders })
 }
 <div class="page account-page order-list-page">
     <div class="page-title">
-        <h1>@T("Account.MyAccount") - @T("Account.CustomerPedidos")</h1>
+        <h1>@T("Account.MyAccount") - @T("Account.CustomerOrders")</h1>
     </div>
     <div class="page-body">
-        @if (Model.RecurringPedidos.Count > 0)
+        @if (Model.RecurringOrders.Count > 0)
         {
             <div class="section recurring-payments">
                 <div class="title">
-                    <strong>@T("Account.CustomerPedidos.RecurringPedidos")</strong>
+                    <strong>@T("Account.CustomerOrders.RecurringOrders")</strong>
                 </div>
                 @using (Html.BeginForm())
                 {
-                    var canRetryRecurringPedidos = Model.RecurringPedidos.Any(recurring => recurring.CanRetryLastPayment);
+                    var canRetryRecurringOrders = Model.RecurringOrders.Any(recurring => recurring.CanRetryLastPayment);
 
                     @Html.AntiForgeryToken()
                     <div class="table-wrapper">
@@ -39,42 +39,42 @@
                                 <col />
                                 <col />
                                 <col />
-                                @if (canRetryRecurringPedidos) { <col /> }
+                                @if (canRetryRecurringOrders) { <col /> }
                                 <col />
                             </colgroup>
                             <thead>
                                 <tr>
                                     <th class="start-date">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.StartDate")
+                                        @T("Account.CustomerOrders.RecurringOrders.StartDate")
                                     </th>
                                     <th class="cycle-info">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.CycleInfo")
+                                        @T("Account.CustomerOrders.RecurringOrders.CycleInfo")
                                     </th>
                                     <th class="next-payment">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.NextPayment")
+                                        @T("Account.CustomerOrders.RecurringOrders.NextPayment")
                                     </th>
                                     <th class="total-cycles">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.TotalCycles")
+                                        @T("Account.CustomerOrders.RecurringOrders.TotalCycles")
                                     </th>
                                     <th class="cycles-remaining">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.CyclesRemaining")
+                                        @T("Account.CustomerOrders.RecurringOrders.CyclesRemaining")
                                     </th>
                                     <th class="initial-order">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.InitialOrder")
+                                        @T("Account.CustomerOrders.RecurringOrders.InitialOrder")
                                     </th>
-                                    @if (canRetryRecurringPedidos)
+                                    @if (canRetryRecurringOrders)
                                     {
                                         <th class="retry">
-                                            @T("Account.CustomerPedidos.RecurringPedidos.RetryLastPayment")
+                                            @T("Account.CustomerOrders.RecurringOrders.RetryLastPayment")
                                         </th>
                                     }
                                     <th class="cancel">
-                                        @T("Account.CustomerPedidos.RecurringPedidos.Cancel")
+                                        @T("Account.CustomerOrders.RecurringOrders.Cancel")
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.RecurringPedidos)
+                                @foreach (var item in Model.RecurringOrders)
                                 {
                                     <tr>
                                         <td class="start-date">
@@ -93,21 +93,21 @@
                                             @item.CyclesRemaining
                                         </td>
                                         <td class="initial-order">
-                                            <a href="@Url.RouteUrl("OrderDetails", new { orderId = item.InitialOrderId })">@string.Format(T("Account.CustomerPedidos.RecurringPedidos.ViewInitialOrder").Text, item.InitialOrderNumber)</a>
+                                            <a href="@Url.RouteUrl("OrderDetails", new { orderId = item.InitialOrderId })">@string.Format(T("Account.CustomerOrders.RecurringOrders.ViewInitialOrder").Text, item.InitialOrderNumber)</a>
                                         </td>
-                                        @if (canRetryRecurringPedidos)
+                                        @if (canRetryRecurringOrders)
                                         {
                                             <td class="retry">
                                                 @if (item.CanRetryLastPayment)
                                                 {
-                                                    <input type="submit" name="retryLastPayment_@(item.Id)" value="@T("Account.CustomerPedidos.RecurringPedidos.RetryLastPayment")" class="button-2 retry-recurring-order-button" />
+                                                    <input type="submit" name="retryLastPayment_@(item.Id)" value="@T("Account.CustomerOrders.RecurringOrders.RetryLastPayment")" class="button-2 retry-recurring-order-button" />
                                                 }
                                             </td>
                                         }
                                         <td class="cancel">
                                             @if (item.CanCancel)
                                             {
-                                                <input type="submit" name="cancelRecurringPayment@(item.Id)" value="@T("Account.CustomerPedidos.RecurringPedidos.Cancel")" class="button-2 cancel-recurring-order-button" />
+                                                <input type="submit" name="cancelRecurringPayment@(item.Id)" value="@T("Account.CustomerOrders.RecurringOrders.Cancel")" class="button-2 cancel-recurring-order-button" />
                                             }
                                         </td>
                                     </tr>
@@ -130,26 +130,26 @@
             }
         }
         
-        @if (Model.Pedidos.Count > 0)
+        @if (Model.Orders.Count > 0)
         {
             <div class="order-list">
-                @foreach (var order in Model.Pedidos)
+                @foreach (var order in Model.Orders)
                 {
                 <div class="section order-item">
                     <div class="title">
-                        <strong>@T("Account.CustomerPedidos.OrderNumber"): @order.CustomOrderNumber</strong>
+                        <strong>@T("Account.CustomerOrders.OrderNumber"): @order.CustomOrderNumber</strong>
                     </div>
                     <ul class="info">
-                        <li>@T("Account.CustomerPedidos.Pedidostatus"): <span class="order-status @order.PedidostatusEnum.ToString().ToLowerInvariant()">@order.Pedidostatus</span></li>
-                        <li>@T("Account.CustomerPedidos.OrderDate"): <span class="order-date">@order.CreatedOn.ToString()</span></li>
-                        <li>@T("Account.CustomerPedidos.OrderTotal"): <span class="order-total">@order.OrderTotal</span></li>
+                        <li>@T("Account.CustomerOrders.Orderstatus"): <span class="order-status @order.OrderstatusEnum.ToString().ToLowerInvariant()">@order.Orderstatus</span></li>
+                        <li>@T("Account.CustomerOrders.OrderDate"): <span class="order-date">@order.CreatedOn.ToString()</span></li>
+                        <li>@T("Account.CustomerOrders.OrderTotal"): <span class="order-total">@order.OrderTotal</span></li>
                     </ul>
                     <div class="buttons">
                         @if (order.IsReturnRequestAllowed)
                         {
-                            <input type="button" value="@T("Account.CustomerPedidos.ReturnItems")" class="button-2 return-items-button" onclick="setLocation('@Url.RouteUrl("ReturnRequest", new { orderId = order.Id })')" />
+                            <input type="button" value="@T("Account.CustomerOrders.ReturnItems")" class="button-2 return-items-button" onclick="setLocation('@Url.RouteUrl("ReturnRequest", new { orderId = order.Id })')" />
                         }
-                        <input type="button" value="@T("Account.CustomerPedidos.OrderDetails")" class="button-2 order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')" />
+                        <input type="button" value="@T("Account.CustomerOrders.OrderDetails")" class="button-2 order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')" />
                     </div>
                 </div>
                 }
@@ -158,7 +158,7 @@
         else
         {
             <div class="no-data">
-                @T("Account.CustomerPedidos.NoPedidos")
+                @T("Account.CustomerOrders.NoOrders")
             </div>
         }
     </div>

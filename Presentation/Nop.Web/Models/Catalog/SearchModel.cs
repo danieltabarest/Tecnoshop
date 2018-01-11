@@ -12,7 +12,7 @@ namespace Nop.Web.Models.Catalog
             this.PagingFilteringContext = new CatalogPagingFilteringModel();
             this.Products = new List<ProductOverviewModel>();
 
-            this.AvailableCategorias = new List<SelectListItem>();
+            this.AvailableCategories = new List<SelectListItem>();
             this.AvailableManufacturers = new List<SelectListItem>();
             this.AvailableVendors = new List<SelectListItem>();
         }
@@ -32,7 +32,7 @@ namespace Nop.Web.Models.Catalog
         /// </summary>
         [NopResourceDisplayName("Search.Category")]
         public int cid { get; set; }
-        [NopResourceDisplayName("Search.IncludeSubCategorias")]
+        [NopResourceDisplayName("Search.IncludeSubCategories")]
         public bool isc { get; set; }
         /// <summary>
         /// Manufacturer ID
@@ -68,7 +68,7 @@ namespace Nop.Web.Models.Catalog
         /// A value indicating whether "allow search by vendor" is enabled
         /// </summary>
         public bool asv { get; set; }
-        public IList<SelectListItem> AvailableCategorias { get; set; }
+        public IList<SelectListItem> AvailableCategories { get; set; }
         public IList<SelectListItem> AvailableManufacturers { get; set; }
         public IList<SelectListItem> AvailableVendors { get; set; }
 

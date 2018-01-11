@@ -19,7 +19,7 @@ using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Security;
@@ -317,9 +317,9 @@ namespace Nop.Services.Installation
             _measureWeightRepository.Insert(measureWeights);
         }
 
-        protected virtual void InstallTaxCategorias()
+        protected virtual void InstallTaxCategories()
         {
-            var taxCategorias = new List<TaxCategory>
+            var taxCategories = new List<TaxCategory>
                                {
                                    new TaxCategory
                                        {
@@ -347,7 +347,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 20,
                                        },
                                };
-            _taxCategoryRepository.Insert(taxCategorias);
+            _taxCategoryRepository.Insert(taxCategories);
 
         }
 
@@ -4423,7 +4423,7 @@ namespace Nop.Services.Installation
             _customerRepository.Insert(backgroundTaskUser);
         }
 
-        protected virtual void InstallPedidos()
+        protected virtual void InstallOrders()
         {
             //default store
             var defaultStore = _storeRepository.Table.FirstOrDefault();
@@ -4439,12 +4439,12 @@ namespace Nop.Services.Installation
                 Customer = firstCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                PedidosubtotalInclTax = 1855M,
-                PedidosubtotalExclTax = 1855M,
-                PedidosubTotalDiscountInclTax = decimal.Zero,
-                PedidosubTotalDiscountExclTax = decimal.Zero,
-                PedidoshippingInclTax = decimal.Zero,
-                PedidoshippingExclTax = decimal.Zero,
+                OrdersubtotalInclTax = 1855M,
+                OrdersubtotalExclTax = 1855M,
+                OrdersubTotalDiscountInclTax = decimal.Zero,
+                OrdersubTotalDiscountExclTax = decimal.Zero,
+                OrdershippingInclTax = decimal.Zero,
+                OrdershippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4457,7 +4457,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                Pedidostatus = Pedidostatus.Processing,
+                Orderstatus = Orderstatus.Processing,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -4606,12 +4606,12 @@ namespace Nop.Services.Installation
                 Customer = secondCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                PedidosubtotalInclTax = 2460M,
-                PedidosubtotalExclTax = 2460M,
-                PedidosubTotalDiscountInclTax = decimal.Zero,
-                PedidosubTotalDiscountExclTax = decimal.Zero,
-                PedidoshippingInclTax = decimal.Zero,
-                PedidoshippingExclTax = decimal.Zero,
+                OrdersubtotalInclTax = 2460M,
+                OrdersubtotalExclTax = 2460M,
+                OrdersubTotalDiscountInclTax = decimal.Zero,
+                OrdersubTotalDiscountExclTax = decimal.Zero,
+                OrdershippingInclTax = decimal.Zero,
+                OrdershippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4624,7 +4624,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                Pedidostatus = Pedidostatus.Pending,
+                Orderstatus = Orderstatus.Pending,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -4725,12 +4725,12 @@ namespace Nop.Services.Installation
                 Customer = thirdCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                PedidosubtotalInclTax = 8.80M,
-                PedidosubtotalExclTax = 8.80M,
-                PedidosubTotalDiscountInclTax = decimal.Zero,
-                PedidosubTotalDiscountExclTax = decimal.Zero,
-                PedidoshippingInclTax = decimal.Zero,
-                PedidoshippingExclTax = decimal.Zero,
+                OrdersubtotalInclTax = 8.80M,
+                OrdersubtotalExclTax = 8.80M,
+                OrdersubTotalDiscountInclTax = decimal.Zero,
+                OrdersubTotalDiscountExclTax = decimal.Zero,
+                OrdershippingInclTax = decimal.Zero,
+                OrdershippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4743,7 +4743,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                Pedidostatus = Pedidostatus.Pending,
+                Orderstatus = Orderstatus.Pending,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -4869,12 +4869,12 @@ namespace Nop.Services.Installation
                 Customer = fourthCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                PedidosubtotalInclTax = 102M,
-                PedidosubtotalExclTax = 102M,
-                PedidosubTotalDiscountInclTax = decimal.Zero,
-                PedidosubTotalDiscountExclTax = decimal.Zero,
-                PedidoshippingInclTax = decimal.Zero,
-                PedidoshippingExclTax = decimal.Zero,
+                OrdersubtotalInclTax = 102M,
+                OrdersubtotalExclTax = 102M,
+                OrdersubTotalDiscountInclTax = decimal.Zero,
+                OrdersubTotalDiscountExclTax = decimal.Zero,
+                OrdershippingInclTax = decimal.Zero,
+                OrdershippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4887,7 +4887,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                Pedidostatus = Pedidostatus.Processing,
+                Orderstatus = Orderstatus.Processing,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -5018,7 +5018,7 @@ namespace Nop.Services.Installation
 
             //shipments
             //shipment 1
-            var fourthPedidoshipment1 = new Shipment
+            var fourthOrdershipment1 = new Shipment
             {
                 Order = fourthOrder,
                 TrackingNumber = string.Empty,
@@ -5028,28 +5028,28 @@ namespace Nop.Services.Installation
                 AdminComment = string.Empty,
                 CreatedOnUtc = DateTime.UtcNow
             };
-            _shipmentRepository.Insert(fourthPedidoshipment1);
+            _shipmentRepository.Insert(fourthOrdershipment1);
 
-            var fourthPedidoshipment1Item1 = new ShipmentItem()
+            var fourthOrdershipment1Item1 = new ShipmentItem()
             {
                 OrderItemId = fourthOrderItem1.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fourthPedidoshipment1
+                Shipment = fourthOrdershipment1
             };
-            _shipmentItemRepository.Insert(fourthPedidoshipment1Item1);
+            _shipmentItemRepository.Insert(fourthOrdershipment1Item1);
 
-            var fourthPedidoshipment1Item2 = new ShipmentItem()
+            var fourthOrdershipment1Item2 = new ShipmentItem()
             {
                 OrderItemId = fourthOrderItem2.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fourthPedidoshipment1
+                Shipment = fourthOrdershipment1
             };
-            _shipmentItemRepository.Insert(fourthPedidoshipment1Item2);
+            _shipmentItemRepository.Insert(fourthOrdershipment1Item2);
 
             //shipment 2
-            var fourthPedidoshipment2 = new Shipment
+            var fourthOrdershipment2 = new Shipment
             {
                 Order = fourthOrder,
                 TrackingNumber = string.Empty,
@@ -5059,16 +5059,16 @@ namespace Nop.Services.Installation
                 AdminComment = string.Empty,
                 CreatedOnUtc = DateTime.UtcNow
             };
-            _shipmentRepository.Insert(fourthPedidoshipment2);
+            _shipmentRepository.Insert(fourthOrdershipment2);
 
-            var fourthPedidoshipment2Item1 = new ShipmentItem()
+            var fourthOrdershipment2Item1 = new ShipmentItem()
             {
                 OrderItemId = fourthOrderItem3.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fourthPedidoshipment2
+                Shipment = fourthOrdershipment2
             };
-            _shipmentItemRepository.Insert(fourthPedidoshipment2Item1);
+            _shipmentItemRepository.Insert(fourthOrdershipment2Item1);
 
 
 
@@ -5082,12 +5082,12 @@ namespace Nop.Services.Installation
                 Customer = fifthCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                PedidosubtotalInclTax = 43.50M,
-                PedidosubtotalExclTax = 43.50M,
-                PedidosubTotalDiscountInclTax = decimal.Zero,
-                PedidosubTotalDiscountExclTax = decimal.Zero,
-                PedidoshippingInclTax = decimal.Zero,
-                PedidoshippingExclTax = decimal.Zero,
+                OrdersubtotalInclTax = 43.50M,
+                OrdersubtotalExclTax = 43.50M,
+                OrdersubTotalDiscountInclTax = decimal.Zero,
+                OrdersubTotalDiscountExclTax = decimal.Zero,
+                OrdershippingInclTax = decimal.Zero,
+                OrdershippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -5100,7 +5100,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                Pedidostatus = Pedidostatus.Complete,
+                Orderstatus = Orderstatus.Complete,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -5185,7 +5185,7 @@ namespace Nop.Services.Installation
             _orderItemRepository.Insert(fifthOrderItem1);
 
             //shipment 1
-            var fifthPedidoshipment1 = new Shipment
+            var fifthOrdershipment1 = new Shipment
             {
                 Order = fifthOrder,
                 TrackingNumber = string.Empty,
@@ -5195,16 +5195,16 @@ namespace Nop.Services.Installation
                 AdminComment = string.Empty,
                 CreatedOnUtc = DateTime.UtcNow
             };
-            _shipmentRepository.Insert(fifthPedidoshipment1);
+            _shipmentRepository.Insert(fifthOrdershipment1);
 
-            var fifthPedidoshipment1Item1 = new ShipmentItem()
+            var fifthOrdershipment1Item1 = new ShipmentItem()
             {
                 OrderItemId = fifthOrderItem1.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fifthPedidoshipment1
+                Shipment = fifthOrdershipment1
             };
-            _shipmentItemRepository.Insert(fifthPedidoshipment1Item1);
+            _shipmentItemRepository.Insert(fifthOrdershipment1Item1);
         }
 
         protected virtual void InstallActivityLog(string defaultUserEmail)
@@ -5442,17 +5442,17 @@ namespace Nop.Services.Installation
                 },
                 new MessageTemplate
                 {
-                    Name = MessageTemplateSystemNames.Boletín informativoSubscriptionActivationMessage,
+                    Name = MessageTemplateSystemNames.NewsletterSubscriptionActivationMessage,
                     Subject = "%Store.Name%. Subscription activation message.",
-                    Body = string.Format("<p>{0}<a href=\"%Boletín informativoSubscription.ActivationUrl%\">Click here to confirm your subscription to our list.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
+                    Body = string.Format("<p>{0}<a href=\"%NewsletterSubscription.ActivationUrl%\">Click here to confirm your subscription to our list.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id,
                 },
                 new MessageTemplate
                 {
-                    Name = MessageTemplateSystemNames.Boletín informativoSubscriptionDeactivationMessage,
+                    Name = MessageTemplateSystemNames.NewsletterSubscriptionDeactivationMessage,
                     Subject = "%Store.Name%. Subscription deactivation message.",
-                    Body = string.Format("<p>{0}<a href=\"%Boletín informativoSubscription.DeactivationUrl%\">Click here to unsubscribe from our Boletín informativo.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
+                    Body = string.Format("<p>{0}<a href=\"%NewsletterSubscription.DeactivationUrl%\">Click here to unsubscribe from our Newsletter.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id,
                 },
@@ -5852,9 +5852,9 @@ namespace Nop.Services.Installation
             {
                 UseSystemEmailForContactUsForm = true,
                 UseStoredProceduresIfSupported = true,
-                UseStoredProcedureForLoadingCategorias = false,
+                UseStoredProcedureForLoadingCategories = false,
                 SitemapEnabled = true,
-                SitemapIncludeCategorias = true,
+                SitemapIncludeCategories = true,
                 SitemapIncludeManufacturers = true,
                 SitemapIncludeProducts = false,
                 DisplayJavaScriptDisabledWarning = false,
@@ -5903,7 +5903,7 @@ namespace Nop.Services.Installation
                     "onepagecheckout",
                     "contactus",
                     "passwordrecovery",
-                    "subscribeBoletín informativo",
+                    "subscribeNewsletter",
                     "blog",
                     "boards",
                     "inboxupdate",
@@ -5965,7 +5965,7 @@ namespace Nop.Services.Installation
             {
                 AllowViewUnpublishedProductPage = true,
                 DisplayDiscontinuedMessageForUnpublishedProducts = true,
-                PublishBackProductWhenCancellingPedidos = false,
+                PublishBackProductWhenCancellingOrders = false,
                 ShowSkuOnProductDetailsPage = true,
                 ShowSkuOnCatalogPages = false,
                 ShowManufacturerPartNumber = false,
@@ -5974,9 +5974,9 @@ namespace Nop.Services.Installation
                 AllowProductSorting = true,
                 AllowProductViewModeChanging = true,
                 DefaultViewMode = "grid",
-                ShowProductsFromSubCategorias = false,
+                ShowProductsFromSubCategories = false,
                 ShowCategoryProductNumber = false,
-                ShowCategoryProductNumberIncludingSubCategorias = false,
+                ShowCategoryProductNumberIncludingSubCategories = false,
                 CategoryBreadcrumbEnabled = true,
                 ShowShareButton = true,
                 PageShareCode = "<!-- AddThis Button BEGIN --><div class=\"addthis_toolbox addthis_default_style \"><a class=\"addthis_button_preferred_1\"></a><a class=\"addthis_button_preferred_2\"></a><a class=\"addthis_button_preferred_3\"></a><a class=\"addthis_button_preferred_4\"></a><a class=\"addthis_button_compact\"></a><a class=\"addthis_counter addthis_bubble_style\"></a></div><script type=\"text/javascript\" src=\"http://s7.addthis.com/js/250/addthis_widget.js#pubid=nopsolutions\"></script><!-- AddThis Button END -->",
@@ -6089,10 +6089,10 @@ namespace Nop.Services.Installation
                 PhoneEnabled = false,
                 FaxEnabled = false,
                 AcceptPrivacyPolicyEnabled = false,
-                Boletín informativoEnabled = true,
-                Boletín informativoTickedByDefault = true,
-                HideBoletín informativoBlock = false,
-                Boletín informativoBlockAllowToUnsubscribe = false,
+                NewsletterEnabled = true,
+                NewsletterTickedByDefault = true,
+                HideNewsletterBlock = false,
+                NewsletterBlockAllowToUnsubscribe = false,
                 OnlineCustomerMinutes = 20,
                 StoreLastVisitedPage = false,
                 SuffixDeletedCustomers = false,
@@ -6223,12 +6223,12 @@ namespace Nop.Services.Installation
                 RenderAssociatedAttributeValueQuantity = true
             });
 
-            settingService.SaveSetting(new Pedidosettings
+            settingService.SaveSetting(new Ordersettings
             {
                 ReturnRequestNumberMask = "{ID}",
                 IsReOrderAllowed = true,
-                MinPedidosubtotalAmount = 0,
-                MinPedidosubtotalAmountIncludingTax = false,
+                MinOrdersubtotalAmount = 0,
+                MinOrdersubtotalAmountIncludingTax = false,
                 MinOrderTotalAmount = 0,
                 AutoUpdateOrderTotalsOnEditingOrder = false,
                 AnonymousCheckoutAllowed = true,
@@ -6315,10 +6315,10 @@ namespace Nop.Services.Installation
                 DisplayTaxRates = false,
                 PricesIncludeTax = false,
                 AllowCustomersToSelectTaxDisplayType = false,
-                ForceTaxExclusionFromPedidosubtotal = false,
+                ForceTaxExclusionFromOrdersubtotal = false,
                 DefaultTaxCategoryId = 0,
                 HideZeroTax = false,
-                HideTaxInPedidosummary = false,
+                HideTaxInOrdersummary = false,
                 ShippingIsTaxable = false,
                 ShippingPriceIncludesTax = false,
                 ShippingTaxClassId = 0,
@@ -6634,7 +6634,7 @@ namespace Nop.Services.Installation
             _productAttributeRepository.Insert(productAttributes);
         }
 
-        protected virtual void InstallCategorias()
+        protected virtual void InstallCategories()
         {
             //pictures
             var pictureService = EngineContext.Current.Resolve<IPictureService>();
@@ -6648,8 +6648,8 @@ namespace Nop.Services.Installation
                 throw new Exception("Category template cannot be loaded");
 
 
-            //Categorias
-            var allCategorias = new List<Category>();
+            //Categories
+            var allCategories = new List<Category>();
             var categoryComputers = new Category
             {
                 Name = "Computers",
@@ -6664,7 +6664,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryComputers);
+            allCategories.Add(categoryComputers);
             _categoryRepository.Insert(categoryComputers);
 
 
@@ -6684,7 +6684,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryDesktops);
+            allCategories.Add(categoryDesktops);
             _categoryRepository.Insert(categoryDesktops);
 
 
@@ -6703,7 +6703,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryNotebooks);
+            allCategories.Add(categoryNotebooks);
             _categoryRepository.Insert(categoryNotebooks);
 
 
@@ -6722,7 +6722,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categorySoftware);
+            allCategories.Add(categorySoftware);
             _categoryRepository.Insert(categorySoftware);
 
 
@@ -6741,7 +6741,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryElectronics);
+            allCategories.Add(categoryElectronics);
             _categoryRepository.Insert(categoryElectronics);
 
 
@@ -6761,7 +6761,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryCameraPhoto);
+            allCategories.Add(categoryCameraPhoto);
             _categoryRepository.Insert(categoryCameraPhoto);
 
 
@@ -6780,7 +6780,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryCellPhones);
+            allCategories.Add(categoryCellPhones);
             _categoryRepository.Insert(categoryCellPhones);
 
 
@@ -6800,7 +6800,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryOthers);
+            allCategories.Add(categoryOthers);
             _categoryRepository.Insert(categoryOthers);
 
 
@@ -6819,7 +6819,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryApparel);
+            allCategories.Add(categoryApparel);
             _categoryRepository.Insert(categoryApparel);
 
 
@@ -6839,7 +6839,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryShoes);
+            allCategories.Add(categoryShoes);
             _categoryRepository.Insert(categoryShoes);
 
 
@@ -6858,7 +6858,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryClothing);
+            allCategories.Add(categoryClothing);
             _categoryRepository.Insert(categoryClothing);
 
 
@@ -6878,7 +6878,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryAccessories);
+            allCategories.Add(categoryAccessories);
             _categoryRepository.Insert(categoryAccessories);
 
 
@@ -6897,7 +6897,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryDigitalDownloads);
+            allCategories.Add(categoryDigitalDownloads);
             _categoryRepository.Insert(categoryDigitalDownloads);
 
 
@@ -6918,7 +6918,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryBooks);
+            allCategories.Add(categoryBooks);
             _categoryRepository.Insert(categoryBooks);
 
 
@@ -6937,7 +6937,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryJewelry);
+            allCategories.Add(categoryJewelry);
             _categoryRepository.Insert(categoryJewelry);
 
             var categoryGiftCards = new Category
@@ -6954,13 +6954,13 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategorias.Add(categoryGiftCards);
+            allCategories.Add(categoryGiftCards);
             _categoryRepository.Insert(categoryGiftCards);
 
 
 
             //search engine names
-            foreach (var category in allCategorias)
+            foreach (var category in allCategories)
             {
                 _urlRecordRepository.Insert(new UrlRecord
                 {
@@ -7117,7 +7117,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -7256,7 +7256,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7306,13 +7306,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7357,13 +7357,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7412,14 +7412,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 2,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 ShowOnHomePage = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7508,13 +7508,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7590,14 +7590,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 //ShowOnHomePage = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7673,13 +7673,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7766,13 +7766,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7856,13 +7856,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7939,13 +7939,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -7991,13 +7991,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8046,13 +8046,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8103,12 +8103,12 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8153,7 +8153,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -8190,7 +8190,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -8232,13 +8232,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8284,13 +8284,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8346,7 +8346,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8354,7 +8354,7 @@ namespace Nop.Services.Installation
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8400,14 +8400,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8458,13 +8458,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8513,7 +8513,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8541,7 +8541,7 @@ namespace Nop.Services.Installation
                     }
                 },
                 HasTierPrices = true,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8591,13 +8591,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8641,13 +8641,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8694,7 +8694,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8780,7 +8780,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -8852,7 +8852,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8926,7 +8926,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9017,13 +9017,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9091,7 +9091,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -9144,7 +9144,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9196,7 +9196,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9221,7 +9221,7 @@ namespace Nop.Services.Installation
                     }
                 },
                 HasTierPrices = true,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9265,7 +9265,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9281,7 +9281,7 @@ namespace Nop.Services.Installation
                         IsRequired = true,
                     }
                 },
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9328,7 +9328,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9353,7 +9353,7 @@ namespace Nop.Services.Installation
                     }
                 },
                 HasTierPrices = true,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9406,7 +9406,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9448,7 +9448,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9496,13 +9496,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9548,13 +9548,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9615,7 +9615,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 IsDownload = true,
@@ -9628,7 +9628,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9690,7 +9690,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 IsDownload = true,
@@ -9703,7 +9703,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9757,7 +9757,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 IsDownload = true,
@@ -9768,7 +9768,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9817,13 +9817,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9867,13 +9867,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9921,13 +9921,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -9979,14 +9979,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -10032,13 +10032,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -10086,13 +10086,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackPedidos,
+                BackorderMode = BackorderMode.NoBackOrders,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -10140,7 +10140,7 @@ namespace Nop.Services.Installation
                 ShowOnHomePage = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -10192,7 +10192,7 @@ namespace Nop.Services.Installation
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -10242,7 +10242,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategorias =
+                ProductCategories =
                 {
                     new ProductCategory
                     {
@@ -11759,9 +11759,9 @@ namespace Nop.Services.Installation
                 },
                 new ActivityLogType
                 {
-                    SystemKeyword = "ImportCategorias",
+                    SystemKeyword = "ImportCategories",
                     Enabled = true,
-                    Name = "Categorias were imported"
+                    Name = "Categories were imported"
                 },
                 new ActivityLogType
                 {
@@ -12221,7 +12221,7 @@ namespace Nop.Services.Installation
         {
             InstallStores();
             InstallMeasures();
-            InstallTaxCategorias();
+            InstallTaxCategories();
             InstallLanguages();
             InstallCurrencies();
             InstallCountriesAndStates();
@@ -12248,7 +12248,7 @@ namespace Nop.Services.Installation
                 InstallCheckoutAttributes();
                 InstallSpecificationAttributes();
                 InstallProductAttributes();
-                InstallCategorias();
+                InstallCategories();
                 InstallManufacturers();
                 InstallProducts(defaultUserEmail);
                 InstallForums();
@@ -12259,7 +12259,7 @@ namespace Nop.Services.Installation
                 InstallWarehouses();
                 InstallVendors();
                 InstallAffiliates();
-                InstallPedidos();
+                InstallOrders();
                 InstallActivityLog(defaultUserEmail);
                 InstallSearchTerms();
             }

@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Nop.Core;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Order service interface
     /// </summary>
-    public partial interface IPedidoservice
+    public partial interface IOrderservice
     {
-        #region Pedidos
+        #region Orders
 
         /// <summary>
         /// Gets an order
@@ -27,11 +27,11 @@ namespace Nop.Services.Pedidos
         Order GetOrderByCustomOrderNumber(string customOrderNumber);
 
         /// <summary>
-        /// Get Pedidos by identifiers
+        /// Get Orders by identifiers
         /// </summary>
         /// <param name="orderIds">Order identifiers</param>
         /// <returns>Order</returns>
-        IList<Order> GetPedidosByIds(int[] orderIds);
+        IList<Order> GetOrdersByIds(int[] orderIds);
 
         /// <summary>
         /// Gets an order
@@ -47,28 +47,28 @@ namespace Nop.Services.Pedidos
         void DeleteOrder(Order order);
 
         /// <summary>
-        /// Search Pedidos
+        /// Search Orders
         /// </summary>
-        /// <param name="storeId">Store identifier; null to load all Pedidos</param>
-        /// <param name="vendorId">Vendor identifier; null to load all Pedidos</param>
-        /// <param name="customerId">Customer identifier; null to load all Pedidos</param>
-        /// <param name="productId">Product identifier which was purchased in an order; 0 to load all Pedidos</param>
-        /// <param name="affiliateId">Affiliate identifier; 0 to load all Pedidos</param>
-        /// <param name="billingCountryId">Billing country identifier; 0 to load all Pedidos</param>
-        /// <param name="warehouseId">Warehouse identifier, only Pedidos with products from a specified warehouse will be loaded; 0 to load all Pedidos</param>
+        /// <param name="storeId">Store identifier; null to load all Orders</param>
+        /// <param name="vendorId">Vendor identifier; null to load all Orders</param>
+        /// <param name="customerId">Customer identifier; null to load all Orders</param>
+        /// <param name="productId">Product identifier which was purchased in an order; 0 to load all Orders</param>
+        /// <param name="affiliateId">Affiliate identifier; 0 to load all Orders</param>
+        /// <param name="billingCountryId">Billing country identifier; 0 to load all Orders</param>
+        /// <param name="warehouseId">Warehouse identifier, only Orders with products from a specified warehouse will be loaded; 0 to load all Orders</param>
         /// <param name="paymentMethodSystemName">Formas de pago system name; null to load all records</param>
         /// <param name="createdFromUtc">Created date from (UTC); null to load all records</param>
         /// <param name="createdToUtc">Created date to (UTC); null to load all records</param>
-        /// <param name="osIds">Order status identifiers; null to load all Pedidos</param>
-        /// <param name="psIds">Payment status identifiers; null to load all Pedidos</param>
-        /// <param name="ssIds">Shipping status identifiers; null to load all Pedidos</param>
+        /// <param name="osIds">Order status identifiers; null to load all Orders</param>
+        /// <param name="psIds">Payment status identifiers; null to load all Orders</param>
+        /// <param name="ssIds">Shipping status identifiers; null to load all Orders</param>
         /// <param name="billingEmail">Billing email. Leave empty to load all records.</param>
         /// <param name="billingLastName">Billing last name. Leave empty to load all records.</param>
         /// <param name="orderNotes">Search in order notes. Leave empty to load all records.</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
-        /// <returns>Pedidos</returns>
-        IPagedList<Order> SearchPedidos(int storeId = 0,
+        /// <returns>Orders</returns>
+        IPagedList<Order> SearchOrders(int storeId = 0,
             int vendorId = 0, int customerId = 0,
             int productId = 0, int affiliateId = 0, int warehouseId = 0,
             int billingCountryId = 0, string paymentMethodSystemName = null,
@@ -99,7 +99,7 @@ namespace Nop.Services.Pedidos
 
         #endregion
 
-        #region Pedidos items
+        #region Orders items
 
         /// <summary>
         /// Gets an order item
@@ -180,13 +180,13 @@ namespace Nop.Services.Pedidos
         /// <param name="storeId">The store identifier; 0 to load all records</param>
         /// <param name="customerId">The customer identifier; 0 to load all records</param>
         /// <param name="initialOrderId">The initial order identifier; 0 to load all records</param>
-        /// <param name="initialPedidostatus">Initial order status identifier; null to load all records</param>
+        /// <param name="initialOrderstatus">Initial order status identifier; null to load all records</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Recurring payments</returns>
         IPagedList<RecurringPayment> SearchRecurringPayments(int storeId = 0,
-            int customerId = 0, int initialOrderId = 0, Pedidostatus? initialPedidostatus = null,
+            int customerId = 0, int initialOrderId = 0, Orderstatus? initialOrderstatus = null,
             int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
 
         #endregion

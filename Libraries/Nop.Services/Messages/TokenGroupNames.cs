@@ -41,9 +41,9 @@
         public const string RecurringPaymentTokens = "Recurring payment tokens";
 
         /// <summary>
-        /// Represents tokens with Information about the Boletín informativo subscription
+        /// Represents tokens with Information about the Newsletter subscription
         /// </summary>
-        public const string SubscriptionTokens = "Boletín informativo subscription tokens";
+        public const string SubscriptionTokens = "Newsletter subscription tokens";
 
         /// <summary>
         /// Represents tokens with Information about the product

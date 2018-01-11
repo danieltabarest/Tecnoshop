@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Nop.Admin.Models.Pedidos;
+using Nop.Admin.Models.Orders;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
@@ -13,7 +13,7 @@ using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Kendoui;
@@ -25,7 +25,7 @@ namespace Nop.Admin.Controllers
         #region Fields
 
         private readonly IReturnRequestService _returnRequestService;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly ICustomerService _customerService;
         private readonly ILocalizationService _localizationService;
@@ -40,7 +40,7 @@ namespace Nop.Admin.Controllers
         #region Constructors
 
         public ReturnRequestController(IReturnRequestService returnRequestService,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             ICustomerService customerService,
             IDateTimeHelper dateTimeHelper,
             ILocalizationService localizationService,
@@ -51,7 +51,7 @@ namespace Nop.Admin.Controllers
             IDownloadService downloadService)
         {
             this._returnRequestService = returnRequestService;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._customerService = customerService;
             this._dateTimeHelper = dateTimeHelper;
             this._localizationService = localizationService;
@@ -76,7 +76,7 @@ namespace Nop.Admin.Controllers
             if (returnRequest == null)
                 throw new ArgumentNullException("returnRequest");
 
-            var orderItem = _Pedidoservice.GetOrderItemById(returnRequest.OrderItemId);
+            var orderItem = _Orderservice.GetOrderItemById(returnRequest.OrderItemId);
             if (orderItem != null)
             {
                 model.ProductId = orderItem.ProductId;
@@ -232,7 +232,7 @@ namespace Nop.Admin.Controllers
                 //No return request found with the specified id
                 return RedirectToAction("List");
 
-            var orderItem = _Pedidoservice.GetOrderItemById(returnRequest.OrderItemId);
+            var orderItem = _Orderservice.GetOrderItemById(returnRequest.OrderItemId);
             if (orderItem == null)
             {
                 ErrorNotification(_localizationService.GetResource("Admin.ReturnRequests.OrderItemDeleted"));

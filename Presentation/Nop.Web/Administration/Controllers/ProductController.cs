@@ -10,14 +10,14 @@ using Nop.Admin.Extensions;
 using Nop.Admin.Helpers;
 using Nop.Admin.Infrastructure.Cache;
 using Nop.Admin.Models.Catalog;
-using Nop.Admin.Models.Pedidos;
+using Nop.Admin.Models.Orders;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using Nop.Services;
@@ -32,7 +32,7 @@ using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
@@ -73,7 +73,7 @@ namespace Nop.Admin.Controllers
         private readonly IPermissionService _permissionService;
         private readonly IAclService _aclService;
         private readonly IStoreService _storeService;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IVendorService _vendorService;
         private readonly IDateRangeService _dateRangeService;
@@ -122,7 +122,7 @@ namespace Nop.Admin.Controllers
             IPermissionService permissionService,
             IAclService aclService,
             IStoreService storeService,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IStoreMappingService storeMappingService,
             IVendorService vendorService,
             IDateRangeService dateRangeService,
@@ -167,7 +167,7 @@ namespace Nop.Admin.Controllers
             this._permissionService = permissionService;
             this._aclService = aclService;
             this._storeService = storeService;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._storeMappingService = storeMappingService;
             this._vendorService = vendorService;
             this._dateRangeService = dateRangeService;
@@ -361,33 +361,33 @@ namespace Nop.Admin.Controllers
                 throw new ArgumentNullException("model");
 
             if (!excludeProperties && product != null)
-                model.SelectedCategoryIds = _categoryService.GetProductCategoriasByProductId(product.Id, true).Select(c => c.CategoryId).ToList();
+                model.SelectedCategoryIds = _categoryService.GetProductCategoriesByProductId(product.Id, true).Select(c => c.CategoryId).ToList();
 
-            var allCategorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in allCategorias)
+            var allCategories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in allCategories)
             {
                 c.Selected = model.SelectedCategoryIds.Contains(int.Parse(c.Value));
-                model.AvailableCategorias.Add(c);
+                model.AvailableCategories.Add(c);
             }
         }
 
         [NonAction]
         protected virtual void SaveCategoryMappings(Product product, ProductModel model)
         {
-            var existingProductCategorias = _categoryService.GetProductCategoriasByProductId(product.Id, true);
+            var existingProductCategories = _categoryService.GetProductCategoriesByProductId(product.Id, true);
 
-            //delete Categorias
-            foreach (var existingProductCategory in existingProductCategorias)
+            //delete Categories
+            foreach (var existingProductCategory in existingProductCategories)
                 if (!model.SelectedCategoryIds.Contains(existingProductCategory.CategoryId))
                     _categoryService.DeleteProductCategory(existingProductCategory);
 
-            //add Categorias
+            //add Categories
             foreach (var categoryId in model.SelectedCategoryIds)
-                if (existingProductCategorias.FindProductCategory(product.Id, categoryId) == null)
+                if (existingProductCategories.FindProductCategory(product.Id, categoryId) == null)
                 {
                     //find next display order
                     var displayOrder = 1;
-                    var existingCategoryMapping = _categoryService.GetProductCategoriasByCategoryId(categoryId, showHidden: true);
+                    var existingCategoryMapping = _categoryService.GetProductCategoriesByCategoryId(categoryId, showHidden: true);
                     if (existingCategoryMapping.Any())
                         displayOrder = existingCategoryMapping.Max(x => x.DisplayOrder) + 1;
                     _categoryService.InsertProductCategory(new ProductCategory
@@ -753,11 +753,11 @@ namespace Nop.Admin.Controllers
                 model.ProductTags = result.ToString();
             }
 
-            //tax Categorias
-            var taxCategorias = _taxCategoryService.GetAllTaxCategorias();
-            model.AvailableTaxCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Settings.Tax.TaxCategorias.None"), Value = "0" });
-            foreach (var tc in taxCategorias)
-                model.AvailableTaxCategorias.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString(), Selected = product != null && !setPredefinedValues && tc.Id == product.TaxCategoryId });
+            //tax Categories
+            var taxCategories = _taxCategoryService.GetAllTaxCategories();
+            model.AvailableTaxCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Settings.Tax.TaxCategories.None"), Value = "0" });
+            foreach (var tc in taxCategories)
+                model.AvailableTaxCategories.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString(), Selected = product != null && !setPredefinedValues && tc.Id == product.TaxCategoryId });
 
             //baseprice units
             var measureWeights = _measureService.GetAllMeasureWeights();
@@ -800,14 +800,14 @@ namespace Nop.Admin.Controllers
         [NonAction]
         protected virtual List<int> GetChildCategoryIds(int parentCategoryId)
         {
-            var CategoriasIds = new List<int>();
-            var Categorias = _categoryService.GetAllCategoriasByParentCategoryId(parentCategoryId, true);
-            foreach (var category in Categorias)
+            var CategoriesIds = new List<int>();
+            var Categories = _categoryService.GetAllCategoriesByParentCategoryId(parentCategoryId, true);
+            foreach (var category in Categories)
             {
-                CategoriasIds.Add(category.Id);
-                CategoriasIds.AddRange(GetChildCategoryIds(category.Id));
+                CategoriesIds.Add(category.Id);
+                CategoriesIds.AddRange(GetChildCategoryIds(category.Id));
             }
-            return CategoriasIds;
+            return CategoriesIds;
         }
 
         [NonAction]
@@ -927,11 +927,11 @@ namespace Nop.Admin.Controllers
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
             model.AllowVendorsToImportProducts = _vendorSettings.AllowVendorsToImportProducts;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -983,8 +983,8 @@ namespace Nop.Admin.Controllers
             }
 
             var categoryIds = new List<int> { model.SearchCategoryId };
-            //include subCategorias
-            if (model.SearchIncludeSubCategorias && model.SearchCategoryId > 0)
+            //include subCategories
+            if (model.SearchIncludeSubCategories && model.SearchCategoryId > 0)
                 categoryIds.AddRange(GetChildCategoryIds(model.SearchCategoryId));
 
             //0 - all (according to "ShowHidden" parameter)
@@ -1125,7 +1125,7 @@ namespace Nop.Admin.Controllers
                 _urlRecordService.SaveSlug(product, model.SeName, 0);
                 //locales
                 UpdateLocales(product, model);
-                //Categorias
+                //Categories
                 SaveCategoryMappings(product, model);
                 //manufacturers
                 SaveManufacturerMappings(product, model);
@@ -1268,7 +1268,7 @@ namespace Nop.Admin.Controllers
                 _productTagService.UpdateProductTags(product, ParseProductTags(model.ProductTags));
                 //warehouses
                 SaveProductWarehouseInventory(product, model);
-                //Categorias
+                //Categories
                 SaveCategoryMappings(product, model);
                 //manufacturers
                 SaveManufacturerMappings(product, model);
@@ -1283,7 +1283,7 @@ namespace Nop.Admin.Controllers
 
                 //back in stock notifications
                 if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock &&
-                    product.BackorderMode == BackorderMode.NoBackPedidos &&
+                    product.BackorderMode == BackorderMode.NoBackOrders &&
                     product.AllowBackInStockSubscriptions &&
                     product.GetTotalStockQuantity() > 0 &&
                     prevTotalStockQuantity <= 0 &&
@@ -1480,11 +1480,11 @@ namespace Nop.Admin.Controllers
             //a vendor should have access only to his products
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -1647,11 +1647,11 @@ namespace Nop.Admin.Controllers
             //a vendor should have access only to his products
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -1824,11 +1824,11 @@ namespace Nop.Admin.Controllers
             //a vendor should have access only to his products
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -2023,11 +2023,11 @@ namespace Nop.Admin.Controllers
             //a vendor should have access only to his products
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -2576,7 +2576,7 @@ namespace Nop.Admin.Controllers
         #region Purchased with order
 
         [HttpPost]
-        public virtual ActionResult PurchasedWithPedidos(DataSourceRequest command, int productId)
+        public virtual ActionResult PurchasedWithOrders(DataSourceRequest command, int productId)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return AccessDeniedKendoGridJson();
@@ -2589,20 +2589,20 @@ namespace Nop.Admin.Controllers
             if (_workContext.CurrentVendor != null && product.VendorId != _workContext.CurrentVendor.Id)
                 return Content("This is not your product");
 
-            var Pedidos = _Pedidoservice.SearchPedidos(
+            var Orders = _Orderservice.SearchOrders(
                 productId: productId,
                 pageIndex: command.Page - 1,
                 pageSize: command.PageSize);
             var gridModel = new DataSourceResult
             {
-                Data = Pedidos.Select(x =>
+                Data = Orders.Select(x =>
                 {
                     var store = _storeService.GetStoreById(x.StoreId);
                     return new OrderModel
                     {
                         Id = x.Id,
                         StoreName = store != null ? store.Name : "Unknown",
-                        Pedidostatus = x.Pedidostatus.GetLocalizedEnum(_localizationService, _workContext),
+                        Orderstatus = x.Orderstatus.GetLocalizedEnum(_localizationService, _workContext),
                         PaymentStatus = x.PaymentStatus.GetLocalizedEnum(_localizationService, _workContext),
                         ShippingStatus = x.ShippingStatus.GetLocalizedEnum(_localizationService, _workContext),
                         CustomerEmail = x.BillingAddress.Email,
@@ -2610,7 +2610,7 @@ namespace Nop.Admin.Controllers
                         CustomOrderNumber = x.CustomOrderNumber
                     };
                 }),
-                Total = Pedidos.TotalCount
+                Total = Orders.TotalCount
             };
 
             return Json(gridModel);
@@ -2634,8 +2634,8 @@ namespace Nop.Admin.Controllers
             }
 
             var categoryIds = new List<int> { model.SearchCategoryId };
-            //include subCategorias
-            if (model.SearchIncludeSubCategorias && model.SearchCategoryId > 0)
+            //include subCategories
+            if (model.SearchIncludeSubCategories && model.SearchCategoryId > 0)
                 categoryIds.AddRange(GetChildCategoryIds(model.SearchCategoryId));
 
             //0 - all (according to "ShowHidden" parameter)
@@ -2691,8 +2691,8 @@ namespace Nop.Admin.Controllers
             }
 
             var categoryIds = new List<int> { model.SearchCategoryId };
-            //include subCategorias
-            if (model.SearchIncludeSubCategorias && model.SearchCategoryId > 0)
+            //include subCategories
+            if (model.SearchIncludeSubCategories && model.SearchCategoryId > 0)
                 categoryIds.AddRange(GetChildCategoryIds(model.SearchCategoryId));
 
             //0 - all (according to "ShowHidden" parameter)
@@ -2768,8 +2768,8 @@ namespace Nop.Admin.Controllers
             }
 
             var categoryIds = new List<int> { model.SearchCategoryId };
-            //include subCategorias
-            if (model.SearchIncludeSubCategorias && model.SearchCategoryId > 0)
+            //include subCategories
+            if (model.SearchIncludeSubCategories && model.SearchCategoryId > 0)
                 categoryIds.AddRange(GetChildCategoryIds(model.SearchCategoryId));
 
             //0 - all (according to "ShowHidden" parameter)
@@ -2937,11 +2937,11 @@ namespace Nop.Admin.Controllers
                 return AccessDeniedView();
 
             var model = new BulkEditListModel();
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -3036,7 +3036,7 @@ namespace Nop.Admin.Controllers
 
                         //back in stock notifications
                         if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock &&
-                            product.BackorderMode == BackorderMode.NoBackPedidos &&
+                            product.BackorderMode == BackorderMode.NoBackOrders &&
                             product.AllowBackInStockSubscriptions &&
                             product.GetTotalStockQuantity() > 0 &&
                             prevTotalStockQuantity <= 0 &&
@@ -4268,11 +4268,11 @@ namespace Nop.Admin.Controllers
             //a vendor should have access only to his products
             model.IsLoggedInAsVendor = _workContext.CurrentVendor != null;
 
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -4414,7 +4414,7 @@ namespace Nop.Admin.Controllers
                         ProductId = x.ProductId,
                         AttributesXml = _productAttributeFormatter.FormatAttributes(x.Product, x.AttributesXml, _workContext.CurrentCustomer, "<br />", true, true, true, false),
                         StockQuantity = x.StockQuantity,
-                        AllowOutOfStockPedidos = x.AllowOutOfStockPedidos,
+                        AllowOutOfStockOrders = x.AllowOutOfStockOrders,
                         Sku = x.Sku,
                         ManufacturerPartNumber = x.ManufacturerPartNumber,
                         Gtin = x.Gtin,
@@ -4465,7 +4465,7 @@ namespace Nop.Admin.Controllers
             var previousSrockQuantity = combination.StockQuantity;
 
             combination.StockQuantity = model.StockQuantity;
-            combination.AllowOutOfStockPedidos = model.AllowOutOfStockPedidos;
+            combination.AllowOutOfStockOrders = model.AllowOutOfStockOrders;
             combination.Sku = model.Sku;
             combination.ManufacturerPartNumber = model.ManufacturerPartNumber;
             combination.Gtin = model.Gtin;
@@ -4696,7 +4696,7 @@ namespace Nop.Admin.Controllers
                     ProductId = product.Id,
                     AttributesXml = attributesXml,
                     StockQuantity = model.StockQuantity,
-                    AllowOutOfStockPedidos = model.AllowOutOfStockPedidos,
+                    AllowOutOfStockOrders = model.AllowOutOfStockOrders,
                     Sku = model.Sku,
                     ManufacturerPartNumber = model.ManufacturerPartNumber,
                     Gtin = model.Gtin,
@@ -4755,7 +4755,7 @@ namespace Nop.Admin.Controllers
                     ProductId = product.Id,
                     AttributesXml = attributesXml,
                     StockQuantity = 0,
-                    AllowOutOfStockPedidos = false,
+                    AllowOutOfStockOrders = false,
                     Sku = null,
                     ManufacturerPartNumber = null,
                     Gtin = null,

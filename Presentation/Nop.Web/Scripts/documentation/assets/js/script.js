@@ -52,7 +52,7 @@ $(document).ready(function() {
 		
 		var sectionselector = 'section';
 		
-		//Documentation has subCategorias		
+		//Documentation has subCategories		
 		if(nav.find('ol').length){
 			sectionselector = 'section, h4';
 		}

@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Web.Mvc;
 using Nop.Admin.Extensions;
-using Nop.Admin.Models.Pedidos;
+using Nop.Admin.Models.Orders;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Directory;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 using Nop.Services.Tax;
@@ -111,16 +111,16 @@ namespace Nop.Admin.Controllers
         }
 
         [NonAction]
-        protected virtual void PrepareTaxCategorias(CheckoutAttributeModel model, CheckoutAttribute checkoutAttribute, bool excludeProperties)
+        protected virtual void PrepareTaxCategories(CheckoutAttributeModel model, CheckoutAttribute checkoutAttribute, bool excludeProperties)
         {
             if (model == null)
                 throw new ArgumentNullException("model");
 
-            //tax Categorias
-            var taxCategorias = _taxCategoryService.GetAllTaxCategorias();
-            model.AvailableTaxCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Settings.Tax.TaxCategorias.None"), Value = "0" });
-            foreach (var tc in taxCategorias)
-                model.AvailableTaxCategorias.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString(), Selected = checkoutAttribute != null && !excludeProperties && tc.Id == checkoutAttribute.TaxCategoryId });
+            //tax Categories
+            var taxCategories = _taxCategoryService.GetAllTaxCategories();
+            model.AvailableTaxCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Settings.Tax.TaxCategories.None"), Value = "0" });
+            foreach (var tc in taxCategories)
+                model.AvailableTaxCategories.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString(), Selected = checkoutAttribute != null && !excludeProperties && tc.Id == checkoutAttribute.TaxCategoryId });
         }
 
         [NonAction]
@@ -305,8 +305,8 @@ namespace Nop.Admin.Controllers
             var model = new CheckoutAttributeModel();
             //locales
             AddLocales(_languageService, model.Locales);
-            //tax Categorias
-            PrepareTaxCategorias(model, null, true);
+            //tax Categories
+            PrepareTaxCategories(model, null, true);
             //Stores
             PrepareStoresMappingModel(model, null, false);
             //condition
@@ -346,8 +346,8 @@ namespace Nop.Admin.Controllers
 
             //If we got this far, something failed, redisplay form
 
-            //tax Categorias
-            PrepareTaxCategorias(model, null, true);
+            //tax Categories
+            PrepareTaxCategories(model, null, true);
             //Stores
             PrepareStoresMappingModel(model, null, true);
             return View(model);
@@ -371,8 +371,8 @@ namespace Nop.Admin.Controllers
                 locale.Name = checkoutAttribute.GetLocalized(x => x.Name, languageId, false, false);
                 locale.TextPrompt = checkoutAttribute.GetLocalized(x => x.TextPrompt, languageId, false, false);
             });
-            //tax Categorias
-            PrepareTaxCategorias(model, checkoutAttribute, false);
+            //tax Categories
+            PrepareTaxCategories(model, checkoutAttribute, false);
             //Stores
             PrepareStoresMappingModel(model, checkoutAttribute, false);
             //condition
@@ -418,8 +418,8 @@ namespace Nop.Admin.Controllers
 
             //If we got this far, something failed, redisplay form
 
-            //tax Categorias
-            PrepareTaxCategorias(model, checkoutAttribute, true);
+            //tax Categories
+            PrepareTaxCategories(model, checkoutAttribute, true);
             //Stores
             PrepareStoresMappingModel(model, checkoutAttribute, true);
 

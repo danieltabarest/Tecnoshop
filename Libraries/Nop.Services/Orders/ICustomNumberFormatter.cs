@@ -1,6 +1,6 @@
-﻿using Nop.Core.Domain.Pedidos;
+﻿using Nop.Core.Domain.Orders;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     public partial interface ICustomNumberFormatter
     {

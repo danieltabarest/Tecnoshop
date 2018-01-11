@@ -21,9 +21,9 @@ namespace Nop.Core.Domain.Catalog
         public int StockQuantity { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to allow Pedidos when out of stock
+        /// Gets or sets a value indicating whether to allow Orders when out of stock
         /// </summary>
-        public bool AllowOutOfStockPedidos { get; set; }
+        public bool AllowOutOfStockOrders { get; set; }
         
         /// <summary>
         /// Gets or sets the SKU

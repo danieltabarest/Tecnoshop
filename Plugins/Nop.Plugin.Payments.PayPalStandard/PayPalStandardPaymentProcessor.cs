@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Routing;
 using Nop.Core;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Plugins;
@@ -17,7 +17,7 @@ using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Directory;
 using Nop.Services.Localization;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Tax;
 
@@ -252,16 +252,16 @@ namespace Nop.Plugin.Payments.PayPalStandard
                 //order totals
 
                 //shipping
-                var PedidoshippingExclTax = postProcessPaymentRequest.Order.PedidoshippingExclTax;
-                var PedidoshippingExclTaxRounded = Math.Round(PedidoshippingExclTax, 2);
-                if (PedidoshippingExclTax > decimal.Zero)
+                var OrdershippingExclTax = postProcessPaymentRequest.Order.OrdershippingExclTax;
+                var OrdershippingExclTaxRounded = Math.Round(OrdershippingExclTax, 2);
+                if (OrdershippingExclTax > decimal.Zero)
                 {
                     builder.AppendFormat("&item_name_" + x + "={0}", "Shipping fee");
-                    builder.AppendFormat("&amount_" + x + "={0}", PedidoshippingExclTaxRounded.ToString("0.00", CultureInfo.InvariantCulture));
+                    builder.AppendFormat("&amount_" + x + "={0}", OrdershippingExclTaxRounded.ToString("0.00", CultureInfo.InvariantCulture));
                     builder.AppendFormat("&quantity_" + x + "={0}", 1);
                     x++;
-                    cartTotal += PedidoshippingExclTax;
-                    cartTotalRounded += PedidoshippingExclTaxRounded;
+                    cartTotal += OrdershippingExclTax;
+                    cartTotalRounded += OrdershippingExclTaxRounded;
                 }
 
                 //Formas de pago additional fee

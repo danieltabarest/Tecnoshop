@@ -10,7 +10,7 @@ namespace Nop.Core.Domain.Discounts
     public partial class Discount : BaseEntity
     {
         private ICollection<DiscountRequirement> _discountRequirements;
-        private ICollection<Category> _appliedToCategorias;
+        private ICollection<Category> _appliedToCategories;
         private ICollection<Manufacturer> _appliedToManufacturers;
         private ICollection<Product> _appliedToProducts;
 
@@ -81,15 +81,15 @@ namespace Nop.Core.Domain.Discounts
         
         /// <summary>
         /// Gets or sets the maximum product quantity which could be discounted
-        /// Used with "Assigned to products" or "Assigned to Categorias" type
+        /// Used with "Assigned to products" or "Assigned to Categories" type
         /// </summary>
         public int? MaximumDiscountedQuantity { get; set; }
 
         /// <summary>
-        /// Gets or sets value indicating whether it should be applied to all subCategorias or the selected one
-        /// Used with "Assigned to Categorias" type only.
+        /// Gets or sets value indicating whether it should be applied to all subCategories or the selected one
+        /// Used with "Assigned to Categories" type only.
         /// </summary>
-        public bool AppliedToSubCategorias { get; set; }
+        public bool AppliedToSubCategories { get; set; }
 
         /// <summary>
         /// Gets or sets the discount type
@@ -130,15 +130,15 @@ namespace Nop.Core.Domain.Discounts
             protected set { _discountRequirements = value; }
         }
         /// <summary>
-        /// Gets or sets the Categorias
+        /// Gets or sets the Categories
         /// </summary>
-        public virtual ICollection<Category> AppliedToCategorias
+        public virtual ICollection<Category> AppliedToCategories
         {
-            get { return _appliedToCategorias ?? (_appliedToCategorias = new List<Category>()); }
-            protected set { _appliedToCategorias = value; }
+            get { return _appliedToCategories ?? (_appliedToCategories = new List<Category>()); }
+            protected set { _appliedToCategories = value; }
         }
         /// <summary>
-        /// Gets or sets the Categorias
+        /// Gets or sets the Categories
         /// </summary>
         public virtual ICollection<Manufacturer> AppliedToManufacturers
         {

@@ -65,7 +65,7 @@ namespace Nop.Web.Controllers
                 .GetAllSubscriptionsByCustomerId(_workContext.CurrentCustomer.Id, _storeContext.CurrentStore.Id, 0, 1)
                 .TotalCount;
             if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock &&
-                product.BackorderMode == BackorderMode.NoBackPedidos &&
+                product.BackorderMode == BackorderMode.NoBackOrders &&
                 product.AllowBackInStockSubscriptions &&
                 product.GetTotalStockQuantity() <= 0)
             {
@@ -87,7 +87,7 @@ namespace Nop.Web.Controllers
                 return Content(_localizationService.GetResource("BackInStockSubscriptions.OnlyRegistered"));
 
             if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock &&
-                product.BackorderMode == BackorderMode.NoBackPedidos &&
+                product.BackorderMode == BackorderMode.NoBackOrders &&
                 product.AllowBackInStockSubscriptions &&
                 product.GetTotalStockQuantity() <= 0)
             {

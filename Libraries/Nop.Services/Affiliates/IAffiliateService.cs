@@ -35,17 +35,17 @@ namespace Nop.Services.Affiliates
         /// <param name="friendlyUrlName">Friendly URL name; null to load all records</param>
         /// <param name="firstName">First name; null to load all records</param>
         /// <param name="lastName">Last name; null to load all records</param>
-        /// <param name="loadOnlyWithPedidos">Value indicating whether to load affiliates only with Pedidos placed (by affiliated customers)</param>
-        /// <param name="PedidosCreatedFromUtc">Pedidos created date from (UTC); null to load all records. It's used only with "loadOnlyWithPedidos" parameter st to "true".</param>
-        /// <param name="PedidosCreatedToUtc">Pedidos created date to (UTC); null to load all records. It's used only with "loadOnlyWithPedidos" parameter st to "true".</param>
+        /// <param name="loadOnlyWithOrders">Value indicating whether to load affiliates only with Orders placed (by affiliated customers)</param>
+        /// <param name="OrdersCreatedFromUtc">Orders created date from (UTC); null to load all records. It's used only with "loadOnlyWithOrders" parameter st to "true".</param>
+        /// <param name="OrdersCreatedToUtc">Orders created date to (UTC); null to load all records. It's used only with "loadOnlyWithOrders" parameter st to "true".</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Affiliates</returns>
         IPagedList<Affiliate> GetAllAffiliates(string friendlyUrlName = null,
             string firstName = null, string lastName = null,
-            bool loadOnlyWithPedidos = false,
-            DateTime? PedidosCreatedFromUtc = null, DateTime? PedidosCreatedToUtc = null,
+            bool loadOnlyWithOrders = false,
+            DateTime? OrdersCreatedFromUtc = null, DateTime? OrdersCreatedToUtc = null,
             int pageIndex = 0, int pageSize = int.MaxValue,
             bool showHidden = false);
 

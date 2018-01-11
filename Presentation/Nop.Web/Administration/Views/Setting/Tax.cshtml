@@ -41,7 +41,7 @@
                                 @Html.NopLabelFor(model => model.DefaultTaxCategoryId)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopDropDownListFor(model => model.DefaultTaxCategoryId, Model.TaxCategorias)
+                                @Html.NopDropDownListFor(model => model.DefaultTaxCategoryId, Model.TaxCategories)
                                 @Html.ValidationMessageFor(model => model.DefaultTaxCategoryId)
                             </div>
                         </div>
@@ -145,22 +145,22 @@
                         </div>
                         <div class="form-group advanced-setting">
                             <div class="col-md-3">
-                                @Html.OverrideStoreCheckboxFor(model => model.HideTaxInPedidosummary_OverrideForStore, model => model.HideTaxInPedidosummary, Model.ActiveStoreScopeConfiguration)
-                                @Html.NopLabelFor(model => model.HideTaxInPedidosummary)
+                                @Html.OverrideStoreCheckboxFor(model => model.HideTaxInOrdersummary_OverrideForStore, model => model.HideTaxInOrdersummary, Model.ActiveStoreScopeConfiguration)
+                                @Html.NopLabelFor(model => model.HideTaxInOrdersummary)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopEditorFor(model => model.HideTaxInPedidosummary)
-                                @Html.ValidationMessageFor(model => model.HideTaxInPedidosummary)
+                                @Html.NopEditorFor(model => model.HideTaxInOrdersummary)
+                                @Html.ValidationMessageFor(model => model.HideTaxInOrdersummary)
                             </div>
                         </div>
                         <div class="form-group advanced-setting">
                             <div class="col-md-3">
-                                @Html.OverrideStoreCheckboxFor(model => model.ForceTaxExclusionFromPedidosubtotal_OverrideForStore, model => model.ForceTaxExclusionFromPedidosubtotal, Model.ActiveStoreScopeConfiguration)
-                                @Html.NopLabelFor(model => model.ForceTaxExclusionFromPedidosubtotal)
+                                @Html.OverrideStoreCheckboxFor(model => model.ForceTaxExclusionFromOrdersubtotal_OverrideForStore, model => model.ForceTaxExclusionFromOrdersubtotal, Model.ActiveStoreScopeConfiguration)
+                                @Html.NopLabelFor(model => model.ForceTaxExclusionFromOrdersubtotal)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopEditorFor(model => model.ForceTaxExclusionFromPedidosubtotal)
-                                @Html.ValidationMessageFor(model => model.ForceTaxExclusionFromPedidosubtotal)
+                                @Html.NopEditorFor(model => model.ForceTaxExclusionFromOrdersubtotal)
+                                @Html.ValidationMessageFor(model => model.ForceTaxExclusionFromOrdersubtotal)
                             </div>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                                 @Html.NopLabelFor(model => model.ShippingTaxClassId)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopDropDownListFor(model => model.ShippingTaxClassId, Model.TaxCategorias)
+                                @Html.NopDropDownListFor(model => model.ShippingTaxClassId, Model.TaxCategories)
                                 @Html.ValidationMessageFor(model => model.ShippingTaxClassId)
                             </div>
                         </div>
@@ -265,7 +265,7 @@
                                 @Html.NopLabelFor(model => model.PaymentMethodAdditionalFeeTaxClassId)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopDropDownListFor(model => model.PaymentMethodAdditionalFeeTaxClassId, Model.PaymentMethodAdditionalFeeTaxCategorias)
+                                @Html.NopDropDownListFor(model => model.PaymentMethodAdditionalFeeTaxClassId, Model.PaymentMethodAdditionalFeeTaxCategories)
                                 @Html.ValidationMessageFor(model => model.PaymentMethodAdditionalFeeTaxClassId)
                             </div>
                         </div>

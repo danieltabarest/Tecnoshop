@@ -21,7 +21,7 @@ namespace Nop.Services.Shipping
         /// Search shipments
         /// </summary>
         /// <param name="vendorId">Vendor identifier; 0 to load all records</param>
-        /// <param name="warehouseId">Warehouse identifier, only shipments with products from a specified warehouse will be loaded; 0 to load all Pedidos</param>
+        /// <param name="warehouseId">Warehouse identifier, only shipments with products from a specified warehouse will be loaded; 0 to load all Orders</param>
         /// <param name="shippingCountryId">Shipping country identifier; 0 to load all records</param>
         /// <param name="shippingStateId">Shipping state identifier; 0 to load all records</param>
         /// <param name="shippingCity">Shipping city; null to load all records</param>

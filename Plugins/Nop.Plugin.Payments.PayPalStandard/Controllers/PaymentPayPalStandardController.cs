@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Nop.Core;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Plugin.Payments.PayPalStandard.Models;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Stores;
 using Nop.Web.Framework.Controllers;
@@ -25,7 +25,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
         private readonly IStoreService _storeService;
         private readonly ISettingService _settingService;
         private readonly IPaymentService _paymentService;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IOrderProcessingService _orderProcessingService;
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly ILocalizationService _localizationService;
@@ -40,7 +40,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
             IStoreService storeService, 
             ISettingService settingService, 
             IPaymentService paymentService, 
-            IPedidoservice Pedidoservice, 
+            IOrderservice Orderservice, 
             IOrderProcessingService orderProcessingService,
             IGenericAttributeService genericAttributeService,
             ILocalizationService localizationService,
@@ -55,7 +55,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
             this._storeService = storeService;
             this._settingService = settingService;
             this._paymentService = paymentService;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._orderProcessingService = orderProcessingService;
             this._genericAttributeService = genericAttributeService;
             this._localizationService = localizationService;
@@ -208,7 +208,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                     orderNumberGuid = new Guid(orderNumber);
                 }
                 catch { }
-                Order order = _Pedidoservice.GetOrderByGuid(orderNumberGuid);
+                Order order = _Orderservice.GetOrderByGuid(orderNumberGuid);
                 if (order != null)
                 {
                     decimal mc_gross = decimal.Zero;
@@ -266,7 +266,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
 
                     //load settings for a chosen store scope
                     var storeScope = this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
@@ -286,7 +286,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                             DisplayToCustomer = false,
                             CreatedOnUtc = DateTime.UtcNow
                         });
-                        _Pedidoservice.UpdateOrder(order);
+                        _Orderservice.UpdateOrder(order);
 
                         return RedirectToAction("Index", "Home", new { area = "" });
                     }
@@ -300,7 +300,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                         if (_orderProcessingService.CanMarkOrderAsPaid(order))
                         {
                             order.AuthorizationTransactionId = txn_id;
-                            _Pedidoservice.UpdateOrder(order);
+                            _Orderservice.UpdateOrder(order);
 
                             _orderProcessingService.MarkOrderAsPaid(order);
                         }
@@ -319,7 +319,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                     orderNumberGuid = new Guid(orderNumber);
                 }
                 catch { }
-                Order order = _Pedidoservice.GetOrderByGuid(orderNumberGuid);
+                Order order = _Orderservice.GetOrderByGuid(orderNumberGuid);
                 if (order != null)
                 {
                     //order note
@@ -329,7 +329,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                         DisplayToCustomer = false,
                         CreatedOnUtc = DateTime.UtcNow
                     });
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
                 return RedirectToAction("Index", "Home", new { area = "" });
             }
@@ -411,10 +411,10 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                             {
                             }
 
-                            var initialOrder = _Pedidoservice.GetOrderByGuid(orderNumberGuid);
+                            var initialOrder = _Orderservice.GetOrderByGuid(orderNumberGuid);
                             if (initialOrder != null)
                             {
-                                var recurringPayments = _Pedidoservice.SearchRecurringPayments(initialOrderId: initialOrder.Id);
+                                var recurringPayments = _Orderservice.SearchRecurringPayments(initialOrderId: initialOrder.Id);
                                 foreach (var rp in recurringPayments)
                                 {
                                     switch (newPaymentStatus)
@@ -433,7 +433,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                                         CreatedOnUtc = DateTime.UtcNow
                                                     };
                                                     rp.RecurringPaymentHistory.Add(rph);
-                                                    _Pedidoservice.UpdateRecurringPayment(rp);
+                                                    _Orderservice.UpdateRecurringPayment(rp);
                                                 }
                                                 else
                                                 {
@@ -461,7 +461,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                     }
                                 }
 
-                                //this.Pedidoservice.InsertOrderNote(newOrder.OrderId, sb.ToString(), DateTime.UtcNow);
+                                //this.Orderservice.InsertOrderNote(newOrder.OrderId, sb.ToString(), DateTime.UtcNow);
                                 _logger.Information("PayPal IPN. Recurring info", new NopException(sb.ToString()));
                             }
                             else
@@ -474,10 +474,10 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                         var orderGuid = Guid.Empty;
                         if (Guid.TryParse(rp_invoice_id, out orderGuid))
                         {
-                            var initialOrder = _Pedidoservice.GetOrderByGuid(orderGuid);
+                            var initialOrder = _Orderservice.GetOrderByGuid(orderGuid);
                             if (initialOrder != null)
                             {
-                                var recurringPayment = _Pedidoservice.SearchRecurringPayments(initialOrderId: initialOrder.Id).FirstOrDefault();
+                                var recurringPayment = _Orderservice.SearchRecurringPayments(initialOrderId: initialOrder.Id).FirstOrDefault();
                                 //failed payment
                                 if (recurringPayment != null)
                                     _orderProcessingService.ProcessNextRecurringPayment(recurringPayment, new ProcessPaymentResult { Errors = new[] { txn_type }, RecurringPaymentFailed = true });
@@ -499,7 +499,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                             {
                             }
 
-                            var order = _Pedidoservice.GetOrderByGuid(orderNumberGuid);
+                            var order = _Orderservice.GetOrderByGuid(orderNumberGuid);
                             if (order != null)
                             {
 
@@ -510,7 +510,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                     DisplayToCustomer = false,
                                     CreatedOnUtc = DateTime.UtcNow
                                 });
-                                _Pedidoservice.UpdateOrder(order);
+                                _Orderservice.UpdateOrder(order);
 
                                 switch (newPaymentStatus)
                                 {
@@ -542,7 +542,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                                     DisplayToCustomer = false,
                                                     CreatedOnUtc = DateTime.UtcNow
                                                 });
-                                                _Pedidoservice.UpdateOrder(order);
+                                                _Orderservice.UpdateOrder(order);
                                             }
                                         }
                                         break;
@@ -555,7 +555,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                                 if (_orderProcessingService.CanMarkOrderAsPaid(order))
                                                 {
                                                     order.AuthorizationTransactionId = txn_id;
-                                                    _Pedidoservice.UpdateOrder(order);
+                                                    _Orderservice.UpdateOrder(order);
 
                                                     _orderProcessingService.MarkOrderAsPaid(order);
                                                 }
@@ -573,7 +573,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                                     DisplayToCustomer = false,
                                                     CreatedOnUtc = DateTime.UtcNow
                                                 });
-                                                _Pedidoservice.UpdateOrder(order);
+                                                _Orderservice.UpdateOrder(order);
                                             }
                                         }
                                         break;
@@ -632,7 +632,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
         {
             if (_payPalStandardPaymentSettings.ReturnFromPayPalWithoutPaymentRedirectsToOrderDetailsPage)
             {
-                var order = _Pedidoservice.SearchPedidos(storeId: _storeContext.CurrentStore.Id,
+                var order = _Orderservice.SearchOrders(storeId: _storeContext.CurrentStore.Id,
                     customerId: _workContext.CurrentCustomer.Id, pageSize: 1)
                     .FirstOrDefault();
                 if (order != null)

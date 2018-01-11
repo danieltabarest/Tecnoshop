@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Web.Models.Media;
 using Nop.Web.Models.ShoppingCart;
 

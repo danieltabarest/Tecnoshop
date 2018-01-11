@@ -6,7 +6,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
@@ -34,7 +34,7 @@ namespace Nop.Services.Tests.ExportImport
         private ICustomerService _customerService;
         private IProductAttributeService _productAttributeService;
         private IPictureService _pictureService;
-        private IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private INewsletterSubscriptionService _NewsletterSubscriptionService;
         private IExportManager _exportManager;
         private IStoreService _storeService;
         private ProductEditorSettings _productEditorSettings;
@@ -47,7 +47,7 @@ namespace Nop.Services.Tests.ExportImport
         private CatalogSettings _catalogSettings;
         private IGenericAttributeService _genericAttributeService;
         private ICustomerAttributeFormatter _customerAttributeFormatter;
-        private Pedidosettings _Pedidosettings;
+        private Ordersettings _Ordersettings;
 
         [SetUp]
         public new void SetUp()
@@ -58,7 +58,7 @@ namespace Nop.Services.Tests.ExportImport
             _customerService = MockRepository.GenerateMock<ICustomerService>();
             _productAttributeService = MockRepository.GenerateMock<IProductAttributeService>();
             _pictureService = MockRepository.GenerateMock<IPictureService>();
-            _Boletín informativoSubscriptionService = MockRepository.GenerateMock<IBoletín informativoSubscriptionService>();
+            _NewsletterSubscriptionService = MockRepository.GenerateMock<INewsletterSubscriptionService>();
             _productEditorSettings = new ProductEditorSettings();
             _workContext = MockRepository.GenerateMock<IWorkContext>();
             _vendorService = MockRepository.GenerateMock<IVendorService>();
@@ -69,16 +69,16 @@ namespace Nop.Services.Tests.ExportImport
             _catalogSettings=new CatalogSettings();
             _genericAttributeService = MockRepository.GenerateMock<IGenericAttributeService>();
             _customerAttributeFormatter = MockRepository.GenerateMock<ICustomerAttributeFormatter>();
-            _Pedidosettings = new Pedidosettings();
+            _Ordersettings = new Ordersettings();
 
 
             _exportManager = new ExportManager(_categoryService,
                 _manufacturerService, _customerService, _productAttributeService,
-                _pictureService, _Boletín informativoSubscriptionService,
+                _pictureService, _NewsletterSubscriptionService,
                 _storeService, _workContext, _productEditorSettings,
                 _vendorService, _productTemplateService, _dateRangeService,
                 _taxCategoryService, _measureService, _catalogSettings,
-                _genericAttributeService, _customerAttributeFormatter, _Pedidosettings);
+                _genericAttributeService, _customerAttributeFormatter, _Ordersettings);
         }
 
         //[Test]
@@ -128,15 +128,15 @@ namespace Nop.Services.Tests.ExportImport
         //}
 
         [Test]
-        public void Can_export_Pedidos_xlsx()
+        public void Can_export_Orders_xlsx()
         {
-            var Pedidos = new List<Order>
+            var Orders = new List<Order>
             {
                 new Order
                 {
                 OrderGuid = Guid.NewGuid(),
                 Customer = GetTestCustomer(),
-                Pedidostatus = Pedidostatus.Complete,
+                Orderstatus = Orderstatus.Complete,
                 ShippingStatus = ShippingStatus.Shipped,
                 PaymentStatus = PaymentStatus.Paid,
                 PaymentMethodSystemName = "PaymentMethodSystemName1",
@@ -144,12 +144,12 @@ namespace Nop.Services.Tests.ExportImport
                 CurrencyRate = 1.1M,
                 CustomerTaxDisplayType = TaxDisplayType.ExcludingTax,
                 VatNumber = "123456789",
-                PedidosubtotalInclTax = 2.1M,
-                PedidosubtotalExclTax = 3.1M,
-                PedidosubTotalDiscountInclTax = 4.1M,
-                PedidosubTotalDiscountExclTax = 5.1M,
-                PedidoshippingInclTax = 6.1M,
-                PedidoshippingExclTax = 7.1M,
+                OrdersubtotalInclTax = 2.1M,
+                OrdersubtotalExclTax = 3.1M,
+                OrdersubTotalDiscountInclTax = 4.1M,
+                OrdersubTotalDiscountExclTax = 5.1M,
+                OrdershippingInclTax = 6.1M,
+                OrdershippingExclTax = 7.1M,
                 PaymentMethodAdditionalFeeInclTax = 8.1M,
                 PaymentMethodAdditionalFeeExclTax = 9.1M,
                 TaxRates = "1,3,5,7",
@@ -187,7 +187,7 @@ namespace Nop.Services.Tests.ExportImport
             };
             string fileName = Path.GetTempFileName();
             //TODO uncomment
-            //_exportManager.ExportPedidosToXlsx(fileName, Pedidos);
+            //_exportManager.ExportOrdersToXlsx(fileName, Orders);
         }
 
         protected Address GetTestBillingAddress()

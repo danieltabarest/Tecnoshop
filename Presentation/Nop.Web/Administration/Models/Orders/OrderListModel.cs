@@ -5,16 +5,16 @@ using System.Web.Mvc;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Pedidos
+namespace Nop.Admin.Models.Orders
 {
     public partial class OrderListModel : BaseNopModel
     {
         public OrderListModel()
         {
-            PedidostatusIds = new List<int>();
+            OrderstatusIds = new List<int>();
             PaymentStatusIds = new List<int>();
             ShippingStatusIds = new List<int>();
-            AvailablePedidostatuses = new List<SelectListItem>();
+            AvailableOrderstatuses = new List<SelectListItem>();
             AvailablePaymentStatuses = new List<SelectListItem>();
             AvailableShippingStatuses = new List<SelectListItem>();
             AvailableStores = new List<SelectListItem>();
@@ -24,63 +24,63 @@ namespace Nop.Admin.Models.Pedidos
             AvailableCountries = new List<SelectListItem>();
         }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.StartDate")]
+        [NopResourceDisplayName("Admin.Orders.List.StartDate")]
         [UIHint("DateNullable")]
         public DateTime? StartDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.EndDate")]
+        [NopResourceDisplayName("Admin.Orders.List.EndDate")]
         [UIHint("DateNullable")]
         public DateTime? EndDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.Pedidostatus")]
+        [NopResourceDisplayName("Admin.Orders.List.Orderstatus")]
         [UIHint("MultiSelect")]
-        public List<int> PedidostatusIds { get; set; }
+        public List<int> OrderstatusIds { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.PaymentStatus")]
+        [NopResourceDisplayName("Admin.Orders.List.PaymentStatus")]
         [UIHint("MultiSelect")]
         public List<int> PaymentStatusIds { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.ShippingStatus")]
+        [NopResourceDisplayName("Admin.Orders.List.ShippingStatus")]
         [UIHint("MultiSelect")]
         public List<int> ShippingStatusIds { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.PaymentMethod")]
+        [NopResourceDisplayName("Admin.Orders.List.PaymentMethod")]
         public string PaymentMethodSystemName { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.Store")]
+        [NopResourceDisplayName("Admin.Orders.List.Store")]
         public int StoreId { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.Vendor")]
+        [NopResourceDisplayName("Admin.Orders.List.Vendor")]
         public int VendorId { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.Warehouse")]
+        [NopResourceDisplayName("Admin.Orders.List.Warehouse")]
         public int WarehouseId { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.Product")]
+        [NopResourceDisplayName("Admin.Orders.List.Product")]
         public int ProductId { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.BillingEmail")]
+        [NopResourceDisplayName("Admin.Orders.List.BillingEmail")]
         [AllowHtml]
         public string BillingEmail { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.BillingLastName")]
+        [NopResourceDisplayName("Admin.Orders.List.BillingLastName")]
         [AllowHtml]
         public string BillingLastName { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.BillingCountry")]
+        [NopResourceDisplayName("Admin.Orders.List.BillingCountry")]
         public int BillingCountryId { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.OrderNotes")]
+        [NopResourceDisplayName("Admin.Orders.List.OrderNotes")]
         [AllowHtml]
         public string OrderNotes { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.List.GoDirectlyToNumber")]
+        [NopResourceDisplayName("Admin.Orders.List.GoDirectlyToNumber")]
         public string GoDirectlyToCustomOrderNumber { get; set; }
 
         public bool IsLoggedInAsVendor { get; set; }
 
 
-        public IList<SelectListItem> AvailablePedidostatuses { get; set; }
+        public IList<SelectListItem> AvailableOrderstatuses { get; set; }
         public IList<SelectListItem> AvailablePaymentStatuses { get; set; }
         public IList<SelectListItem> AvailableShippingStatuses { get; set; }
         public IList<SelectListItem> AvailableStores { get; set; }

@@ -1,54 +1,54 @@
-﻿@model Boletín informativoBoxModel
-@using Nop.Web.Models.Boletín informativo;
-<div class="Boletín informativo">
+﻿@model NewsletterBoxModel
+@using Nop.Web.Models.Newsletter;
+<div class="Newsletter">
     <div class="title">
-        <strong>@T("Boletín informativo.Title")</strong>
+        <strong>@T("Newsletter.Title")</strong>
     </div>
-    <div class="Boletín informativo-subscribe" id="Boletín informativo-subscribe-block">
-        <div class="Boletín informativo-email">
-            @Html.TextBoxFor(x => x.Boletín informativoEmail, new { id = "Boletín informativo-email", @class = "Boletín informativo-subscribe-text", placeholder = T("Boletín informativo.Email.Placeholder") })
-            <input type="button" value="@T(Model.AllowToUnsubscribe ? "Boletín informativo.Options.Send" : "Boletín informativo.Options.Subscribe")" id="Boletín informativo-subscribe-button" class="button-1 Boletín informativo-subscribe-button" />
+    <div class="Newsletter-subscribe" id="Newsletter-subscribe-block">
+        <div class="Newsletter-email">
+            @Html.TextBoxFor(x => x.NewsletterEmail, new { id = "Newsletter-email", @class = "Newsletter-subscribe-text", placeholder = T("Newsletter.Email.Placeholder") })
+            <input type="button" value="@T(Model.AllowToUnsubscribe ? "Newsletter.Options.Send" : "Newsletter.Options.Subscribe")" id="Newsletter-subscribe-button" class="button-1 Newsletter-subscribe-button" />
             @if (Model.AllowToUnsubscribe)
             {
                 <div class="options">
                     <span class="subscribe">
-                        <input id="Boletín informativo_subscribe" type="radio" value="Boletín informativo_subscribe" name="Boletín informativo_block" checked="checked" />
-                        <label for="Boletín informativo_subscribe">@T("Boletín informativo.Options.Subscribe")</label>
+                        <input id="Newsletter_subscribe" type="radio" value="Newsletter_subscribe" name="Newsletter_block" checked="checked" />
+                        <label for="Newsletter_subscribe">@T("Newsletter.Options.Subscribe")</label>
                     </span>
                     <span class="unsubscribe">
-                        <input id="Boletín informativo_unsubscribe" type="radio" value="Boletín informativo_unsubscribe" name="Boletín informativo_block" />
-                        <label for="Boletín informativo_unsubscribe">@T("Boletín informativo.Options.Unsubscribe")</label>
+                        <input id="Newsletter_unsubscribe" type="radio" value="Newsletter_unsubscribe" name="Newsletter_block" />
+                        <label for="Newsletter_unsubscribe">@T("Newsletter.Options.Unsubscribe")</label>
                     </span>
                 </div>
             }
         </div>
-        <div class="Boletín informativo-validation">
+        <div class="Newsletter-validation">
             <span id="subscribe-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
-            @Html.ValidationMessageFor(x => x.Boletín informativoEmail)
+            @Html.ValidationMessageFor(x => x.NewsletterEmail)
         </div>
     </div>
-    <div class="Boletín informativo-result" id="Boletín informativo-result-block"></div>
+    <div class="Newsletter-result" id="Newsletter-result-block"></div>
     <script type="text/javascript">
-        function Boletín informativo_subscribe(subscribe) {
+        function Newsletter_subscribe(subscribe) {
             var subscribeProgress = $("#subscribe-loading-progress");
             subscribeProgress.show();
             var postData = {
                 subscribe: subscribe,
-                email: $("#Boletín informativo-email").val()
+                email: $("#Newsletter-email").val()
             };
             $.ajax({
                 cache: false,
                 type: "POST",
-                url: "@(Url.RouteUrl("SubscribeBoletín informativo"))",
+                url: "@(Url.RouteUrl("SubscribeNewsletter"))",
                 data: postData,
                 success: function(data) {
                     subscribeProgress.hide();
-                    $("#Boletín informativo-result-block").html(data.Result);
+                    $("#Newsletter-result-block").html(data.Result);
                     if (data.Success) {
-                        $('#Boletín informativo-subscribe-block').hide();
-                        $('#Boletín informativo-result-block').show();
+                        $('#Newsletter-subscribe-block').hide();
+                        $('#Newsletter-result-block').show();
                     } else {
-                        $('#Boletín informativo-result-block').fadeIn("slow").delay(2000).fadeOut("slow");
+                        $('#Newsletter-result-block').fadeIn("slow").delay(2000).fadeOut("slow");
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
@@ -59,23 +59,23 @@
         }
 
         $(document).ready(function () {
-            $('#Boletín informativo-subscribe-button').click(function () {
+            $('#Newsletter-subscribe-button').click(function () {
                 @if (Model.AllowToUnsubscribe)
                 {
-                    <text>if ($('#Boletín informativo_subscribe').is(':checked')) {
-                        Boletín informativo_subscribe('true');
+                    <text>if ($('#Newsletter_subscribe').is(':checked')) {
+                        Newsletter_subscribe('true');
                     } else {
-                        Boletín informativo_subscribe('false');
+                        Newsletter_subscribe('false');
                     }</text>
                 }
                 else
                 {
-                    <text>Boletín informativo_subscribe('true');</text>
+                    <text>Newsletter_subscribe('true');</text>
                 }
             });
-            $("#Boletín informativo-email").keydown(function (event) {
+            $("#Newsletter-email").keydown(function (event) {
                 if (event.keyCode == 13) {
-                    $("#Boletín informativo-subscribe-button").click();
+                    $("#Newsletter-subscribe-button").click();
                     return false;
                 }
             });

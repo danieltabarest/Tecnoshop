@@ -63,7 +63,7 @@
             </div>
             <ul class="list">
                 <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                <li><a href="@Url.RouteUrl("CustomerPedidos")">@T("Account.CustomerPedidos")</a></li>
+                <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
                 <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
                 @if (Model.ShoppingCartEnabled)
                 {
@@ -90,7 +90,7 @@
                 </div>
                 @Html.Action("Social", "Common")
             </div>
-            @Html.Action("Boletín informativoBox", "Boletín informativo")
+            @Html.Action("NewsletterBox", "Newsletter")
         </div>
     </div>*@
     @*<div class="footer-lower">

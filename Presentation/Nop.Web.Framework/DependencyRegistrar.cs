@@ -38,7 +38,7 @@ using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
 using Nop.Services.News;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Polls;
 using Nop.Services.Security;
@@ -257,7 +257,7 @@ namespace Nop.Web.Framework
 
             builder.RegisterType<MessageTemplateService>().As<IMessageTemplateService>().InstancePerLifetimeScope();
             builder.RegisterType<QueuedEmailService>().As<IQueuedEmailService>().InstancePerLifetimeScope();
-            builder.RegisterType<Boletín informativoSubscriptionService>().As<IBoletín informativoSubscriptionService>().InstancePerLifetimeScope();
+            builder.RegisterType<NewsletterSubscriptionService>().As<INewsletterSubscriptionService>().InstancePerLifetimeScope();
             builder.RegisterType<CampaignService>().As<ICampaignService>().InstancePerLifetimeScope();
             builder.RegisterType<EmailAccountService>().As<IEmailAccountService>().InstancePerLifetimeScope();
             builder.RegisterType<WorkflowMessageService>().As<IWorkflowMessageService>().InstancePerLifetimeScope();
@@ -269,7 +269,7 @@ namespace Nop.Web.Framework
             builder.RegisterType<CheckoutAttributeParser>().As<ICheckoutAttributeParser>().InstancePerLifetimeScope();
             builder.RegisterType<CheckoutAttributeService>().As<ICheckoutAttributeService>().InstancePerLifetimeScope();
             builder.RegisterType<GiftCardService>().As<IGiftCardService>().InstancePerLifetimeScope();
-            builder.RegisterType<Pedidoservice>().As<IPedidoservice>().InstancePerLifetimeScope();
+            builder.RegisterType<Orderservice>().As<IOrderservice>().InstancePerLifetimeScope();
             builder.RegisterType<OrderReportService>().As<IOrderReportService>().InstancePerLifetimeScope();
             builder.RegisterType<OrderProcessingService>().As<IOrderProcessingService>().InstancePerLifetimeScope();
             builder.RegisterType<OrderTotalCalculationService>().As<IOrderTotalCalculationService>().InstancePerLifetimeScope();

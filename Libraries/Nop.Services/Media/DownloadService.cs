@@ -3,7 +3,7 @@ using System.Linq;
 using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Services.Events;
 
@@ -126,7 +126,7 @@ namespace Nop.Services.Media
                 return false;
 
             //order status
-            if (order.Pedidostatus == Pedidostatus.Cancelled)
+            if (order.Orderstatus == Orderstatus.Cancelled)
                 return false;
 
             var product = orderItem.Product;

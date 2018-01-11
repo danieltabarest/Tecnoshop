@@ -12,11 +12,11 @@ namespace Nop.Admin.Models.Catalog
             AvailableStores = new List<SelectListItem>();
         }
 
-        [NopResourceDisplayName("Admin.Catalog.Categorias.List.SearchCategoryName")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.List.SearchCategoryName")]
         [AllowHtml]
         public string SearchCategoryName { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categorias.List.SearchStore")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.List.SearchStore")]
         public int SearchStoreId { get; set; }
         public IList<SelectListItem> AvailableStores { get; set; }
     }

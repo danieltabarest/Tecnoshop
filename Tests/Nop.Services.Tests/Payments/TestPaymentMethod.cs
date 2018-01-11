@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Routing;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Plugins;
 using Nop.Services.Payments;
@@ -112,7 +112,7 @@ namespace Nop.Services.Tests.Payments
         public CancelRecurringPaymentResult CancelRecurringPayment(CancelRecurringPaymentRequest cancelPaymentRequest)
         {
             var result = new CancelRecurringPaymentResult();
-            result.AddError("Cancelling recurring Pedidos not supported");
+            result.AddError("Cancelling recurring Orders not supported");
             return result;
         }
         

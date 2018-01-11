@@ -8,11 +8,11 @@ namespace Nop.Web.Models.Catalog
     {
         public TopMenuModel()
         {
-            Categorias = new List<CategorySimpleModel>();
+            Categories = new List<CategorySimpleModel>();
             Topics = new List<TopMenuTopicModel>();
         }
 
-        public IList<CategorySimpleModel> Categorias { get; set; }
+        public IList<CategorySimpleModel> Categories { get; set; }
         public IList<TopMenuTopicModel> Topics { get; set; }
 
         public bool BlogEnabled { get; set; }
@@ -27,11 +27,11 @@ namespace Nop.Web.Models.Catalog
         public bool DisplayForumsMenuItem { get; set; }
         public bool DisplayContactUsMenuItem { get; set; }
 
-        public bool HasOnlyCategorias
+        public bool HasOnlyCategories
         {
             get
             {
-                return Categorias.Any()
+                return Categories.Any()
                        && !Topics.Any()
                        && !DisplayHomePageMenuItem
                        && !(DisplayNewProductsMenuItem && NewProductsEnabled)

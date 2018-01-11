@@ -10,7 +10,7 @@ using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
     /// <summary>
     /// Represents an order
@@ -103,7 +103,7 @@ namespace Nop.Core.Domain.Pedidos
         /// <summary>
         /// Gets or sets an order status identifier
         /// </summary>
-        public int PedidostatusId { get; set; }
+        public int OrderstatusId { get; set; }
 
         /// <summary>
         /// Gets or sets the shipping status identifier
@@ -143,32 +143,32 @@ namespace Nop.Core.Domain.Pedidos
         /// <summary>
         /// Gets or sets the order subtotal (incl tax)
         /// </summary>
-        public decimal PedidosubtotalInclTax { get; set; }
+        public decimal OrdersubtotalInclTax { get; set; }
 
         /// <summary>
         /// Gets or sets the order subtotal (excl tax)
         /// </summary>
-        public decimal PedidosubtotalExclTax { get; set; }
+        public decimal OrdersubtotalExclTax { get; set; }
 
         /// <summary>
         /// Gets or sets the order subtotal discount (incl tax)
         /// </summary>
-        public decimal PedidosubTotalDiscountInclTax { get; set; }
+        public decimal OrdersubTotalDiscountInclTax { get; set; }
 
         /// <summary>
         /// Gets or sets the order subtotal discount (excl tax)
         /// </summary>
-        public decimal PedidosubTotalDiscountExclTax { get; set; }
+        public decimal OrdersubTotalDiscountExclTax { get; set; }
 
         /// <summary>
         /// Gets or sets the order shipping (incl tax)
         /// </summary>
-        public decimal PedidoshippingInclTax { get; set; }
+        public decimal OrdershippingInclTax { get; set; }
 
         /// <summary>
         /// Gets or sets the order shipping (excl tax)
         /// </summary>
-        public decimal PedidoshippingExclTax { get; set; }
+        public decimal OrdershippingExclTax { get; set; }
 
         /// <summary>
         /// Gets or sets the Formas de pago additional fee (incl tax)
@@ -421,15 +421,15 @@ namespace Nop.Core.Domain.Pedidos
         /// <summary>
         /// Gets or sets the order status
         /// </summary>
-        public Pedidostatus Pedidostatus
+        public Orderstatus Orderstatus
         {
             get
             {
-                return (Pedidostatus)this.PedidostatusId;
+                return (Orderstatus)this.OrderstatusId;
             }
             set
             {
-                this.PedidostatusId = (int)value;
+                this.OrderstatusId = (int)value;
             }
         }
 

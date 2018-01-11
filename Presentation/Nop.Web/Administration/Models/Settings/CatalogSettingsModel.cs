@@ -45,17 +45,17 @@ namespace Nop.Admin.Models.Settings
         public bool AllowProductViewModeChanging { get; set; }
         public bool AllowProductViewModeChanging_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.Catalog.ShowProductsFromSubCategorias")]
-        public bool ShowProductsFromSubCategorias { get; set; }
-        public bool ShowProductsFromSubCategorias_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.Catalog.ShowProductsFromSubCategories")]
+        public bool ShowProductsFromSubCategories { get; set; }
+        public bool ShowProductsFromSubCategories_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.Catalog.ShowCategoryProductNumber")]
         public bool ShowCategoryProductNumber { get; set; }
         public bool ShowCategoryProductNumber_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.Catalog.ShowCategoryProductNumberIncludingSubCategorias")]
-        public bool ShowCategoryProductNumberIncludingSubCategorias { get; set; }
-        public bool ShowCategoryProductNumberIncludingSubCategorias_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.Catalog.ShowCategoryProductNumberIncludingSubCategories")]
+        public bool ShowCategoryProductNumberIncludingSubCategories { get; set; }
+        public bool ShowCategoryProductNumberIncludingSubCategories_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.Catalog.CategoryBreadcrumbEnabled")]
         public bool CategoryBreadcrumbEnabled { get; set; }

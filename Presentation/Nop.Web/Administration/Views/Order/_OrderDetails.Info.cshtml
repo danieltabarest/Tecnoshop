@@ -1,24 +1,24 @@
 ﻿@model OrderModel
 
 @using Nop.Core.Domain.Tax;
-@using Nop.Core.Domain.Pedidos;
+@using Nop.Core.Domain.Orders;
 @using Nop.Services
 @if (!Model.IsLoggedInAsVendor)
 {
     <script type="text/javascript">
         $(document).ready(function () {
-            toggleChangePedidostatus(false);
+            toggleChangeOrderstatus(false);
             toggleOrderTotals(false);
             toggleCC(false);
         });
 
-        function toggleChangePedidostatus(editmode) {
+        function toggleChangeOrderstatus(editmode) {
             if (editmode) {
-                $('#pnlChangePedidostatus').show();
-                $('#btnChangePedidostatus').hide();
+                $('#pnlChangeOrderstatus').show();
+                $('#btnChangeOrderstatus').hide();
             } else {
-                $('#pnlChangePedidostatus').hide();
-                $('#btnChangePedidostatus').show();
+                $('#pnlChangeOrderstatus').hide();
+                $('#btnChangeOrderstatus').show();
             }
         }
 
@@ -80,37 +80,37 @@
             {
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.NopLabelFor(model => model.Pedidostatus)
+                        @Html.NopLabelFor(model => model.Orderstatus)
                     </div>
                     <div class="col-md-9">
                         <div class="input-group input-group-short">
                             <div class="input-group-text">
                                 <strong>
-                                    @Html.NopDisplayFor(model => model.Pedidostatus)
+                                    @Html.NopDisplayFor(model => model.Orderstatus)
                                 </strong>
                             </div>
                             <div class="input-group-btn">
                                 @if (Model.CanCancelOrder)
                                 {
                                     <button type="submit" name="cancelorder" id="cancelorder" class="btn bg-red" style="margin-right: 3px;">
-                                        @T("Admin.Pedidos.Fields.Pedidostatus.Cancel")
+                                        @T("Admin.Orders.Fields.Orderstatus.Cancel")
                                     </button>
                                     @Html.ActionConfirmation("cancelorder")
                                 }
-                                <button type="submit" name="btnChangePedidostatus" onclick="toggleChangePedidostatus(true);return false;" id="btnChangePedidostatus" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.Pedidostatus.Change")
+                                <button type="submit" name="btnChangeOrderstatus" onclick="toggleChangeOrderstatus(true);return false;" id="btnChangeOrderstatus" class="btn btn-primary">
+                                    @T("Admin.Orders.Fields.Orderstatus.Change")
                                 </button>
-                                <div id="pnlChangePedidostatus" style="margin-top: 3px;">
-                                    @Html.NopDropDownListFor(model => model.PedidostatusId, ((Pedidostatus) Model.PedidostatusId).ToSelectList())
-                                    <button type="submit" name="btnSavePedidostatus" id="btnSavePedidostatus" class="btn btn-primary" style="margin-left: 3px">
+                                <div id="pnlChangeOrderstatus" style="margin-top: 3px;">
+                                    @Html.NopDropDownListFor(model => model.OrderstatusId, ((Orderstatus) Model.OrderstatusId).ToSelectList())
+                                    <button type="submit" name="btnSaveOrderstatus" id="btnSaveOrderstatus" class="btn btn-primary" style="margin-left: 3px">
                                         @T("Admin.Common.Save")
                                     </button>
-                                    @Html.ActionConfirmation("btnSavePedidostatus")
-                                    <button type="submit" name="btnCancelPedidostatus" onclick="toggleChangePedidostatus(false);return false;" id="btnCancelPedidostatus" class="btn bg-teal" style="margin-left: 3px">
+                                    @Html.ActionConfirmation("btnSaveOrderstatus")
+                                    <button type="submit" name="btnCancelOrderstatus" onclick="toggleChangeOrderstatus(false);return false;" id="btnCancelOrderstatus" class="btn bg-teal" style="margin-left: 3px">
                                         @T("Admin.Common.Cancel")
                                     </button>
                                     <div class="input-group-btn-hint">
-                                        <em>@T("Admin.Pedidos.Fields.Pedidostatus.Change.ForAdvancedUsers")</em>
+                                        <em>@T("Admin.Orders.Fields.Orderstatus.Change.ForAdvancedUsers")</em>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
             else
             {
                 //vendors should see whether or order is cancelled
-                if (Model.PedidostatusId == (int)Pedidostatus.Cancelled)
+                if (Model.OrderstatusId == (int)Orderstatus.Cancelled)
                 {
                     <div class="form-group">
                         <div class="col-md-3">
@@ -129,7 +129,7 @@
                         </div>
                         <div class="col-md-9">
                             <strong>
-                                @T("Admin.Pedidos.Fields.Pedidostatus.CancelledNotification")
+                                @T("Admin.Orders.Fields.Orderstatus.CancelledNotification")
                             </strong>
                         </div>
                     </div>
@@ -221,8 +221,8 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <div class="label-wrapper">
-                            <label class="control-label">@T("Admin.Pedidos.Fields.Pedidosubtotal")</label>
-                            <div class="ico-help" title="@T("Admin.Pedidos.Fields.Pedidosubtotal.Hint")">
+                            <label class="control-label">@T("Admin.Orders.Fields.Ordersubtotal")</label>
+                            <div class="ico-help" title="@T("Admin.Orders.Fields.Ordersubtotal.Hint")">
                                 <i class="fa fa-question-circle"></i>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                             {
                                 <div class="col-md-2">
                                     <div class="form-text-row">
-                                        @Html.DisplayFor(model => model.PedidosubtotalInclTax) <strong>@T("Admin.Pedidos.Fields.PedidosubtotalInclTax")</strong>
+                                        @Html.DisplayFor(model => model.OrdersubtotalInclTax) <strong>@T("Admin.Orders.Fields.OrdersubtotalInclTax")</strong>
                                     </div>
                                 </div>
                             }
@@ -241,40 +241,40 @@
                             {
                                 <div class="col-md-10">
                                     <div class="form-text-row">
-                                        @Html.DisplayFor(model => model.PedidosubtotalExclTax) <strong>@T("Admin.Pedidos.Fields.PedidosubtotalExclTax")</strong>
+                                        @Html.DisplayFor(model => model.OrdersubtotalExclTax) <strong>@T("Admin.Orders.Fields.OrdersubtotalExclTax")</strong>
                                     </div>
                                 </div>
                             }
                         </div>
                     </div>
                 </div>
-                @if (((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.IncludingTax) && !String.IsNullOrEmpty(Model.PedidosubTotalDiscountInclTax)) ||
-                    ((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.ExcludingTax) && !String.IsNullOrEmpty(Model.PedidosubTotalDiscountExclTax)))
+                @if (((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.IncludingTax) && !String.IsNullOrEmpty(Model.OrdersubTotalDiscountInclTax)) ||
+                    ((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.ExcludingTax) && !String.IsNullOrEmpty(Model.OrdersubTotalDiscountExclTax)))
                 {
                     <div class="form-group">
                         <div class="col-md-3">
                             <div class="label-wrapper">
-                                <label class="control-label">@T("Admin.Pedidos.Fields.PedidosubTotalDiscount")</label>
-                                <div class="ico-help" title="@T("Admin.Pedidos.Fields.PedidosubTotalDiscount.Hint")">
+                                <label class="control-label">@T("Admin.Orders.Fields.OrdersubTotalDiscount")</label>
+                                <div class="ico-help" title="@T("Admin.Orders.Fields.OrdersubTotalDiscount.Hint")">
                                     <i class="fa fa-question-circle"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="row">
-                                @if ((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.IncludingTax) && !String.IsNullOrEmpty(Model.PedidosubTotalDiscountInclTax))
+                                @if ((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.IncludingTax) && !String.IsNullOrEmpty(Model.OrdersubTotalDiscountInclTax))
                                 {
                                     <div class="col-md-2">
                                         <div class="form-text-row">
-                                            @Html.DisplayFor(model => model.PedidosubTotalDiscountInclTax) <strong>@T("Admin.Pedidos.Fields.PedidosubTotalDiscountInclTax")</strong>
+                                            @Html.DisplayFor(model => model.OrdersubTotalDiscountInclTax) <strong>@T("Admin.Orders.Fields.OrdersubTotalDiscountInclTax")</strong>
                                         </div>
                                     </div>
                                 }
-                                @if ((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.ExcludingTax) && !String.IsNullOrEmpty(Model.PedidosubTotalDiscountExclTax))
+                                @if ((Model.AllowCustomersToSelectTaxDisplayType || Model.TaxDisplayType == TaxDisplayType.ExcludingTax) && !String.IsNullOrEmpty(Model.OrdersubTotalDiscountExclTax))
                                 {
                                     <div class="col-md-10">
                                         <div class="form-text-row">
-                                            @Html.DisplayFor(model => model.PedidosubTotalDiscountExclTax) <strong>@T("Admin.Pedidos.Fields.PedidosubTotalDiscountExclTax")</strong>
+                                            @Html.DisplayFor(model => model.OrdersubTotalDiscountExclTax) <strong>@T("Admin.Orders.Fields.OrdersubTotalDiscountExclTax")</strong>
                                         </div>
                                     </div>
                                 }
@@ -285,8 +285,8 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <div class="label-wrapper">
-                            <label class="control-label">@T("Admin.Pedidos.Fields.Pedidoshipping")</label>
-                            <div class="ico-help" title="@T("Admin.Pedidos.Fields.Pedidoshipping.Hint")">
+                            <label class="control-label">@T("Admin.Orders.Fields.Ordershipping")</label>
+                            <div class="ico-help" title="@T("Admin.Orders.Fields.Ordershipping.Hint")">
                                 <i class="fa fa-question-circle"></i>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                             {
                                 <div class="col-md-2">
                                     <div class="form-text-row">
-                                        @Html.DisplayFor(model => model.PedidoshippingInclTax) <strong>@T("Admin.Pedidos.Fields.PedidoshippingInclTax")</strong>
+                                        @Html.DisplayFor(model => model.OrdershippingInclTax) <strong>@T("Admin.Orders.Fields.OrdershippingInclTax")</strong>
                                     </div>
                                 </div>
                             }
@@ -305,7 +305,7 @@
                             {
                                 <div class="col-md-2">
                                     <div class="form-text-row">
-                                        @Html.DisplayFor(model => model.PedidoshippingExclTax) <strong>@T("Admin.Pedidos.Fields.PedidoshippingExclTax")</strong>
+                                        @Html.DisplayFor(model => model.OrdershippingExclTax) <strong>@T("Admin.Orders.Fields.OrdershippingExclTax")</strong>
                                     </div>
                                 </div>
                             }
@@ -318,8 +318,8 @@
                     <div class="form-group">
                         <div class="col-md-3">
                             <div class="label-wrapper">
-                                <label class="control-label">@T("Admin.Pedidos.Fields.PaymentMethodAdditionalFee")</label>
-                                <div class="ico-help" title="@T("Admin.Pedidos.Fields.PaymentMethodAdditionalFee.Hint")">
+                                <label class="control-label">@T("Admin.Orders.Fields.PaymentMethodAdditionalFee")</label>
+                                <div class="ico-help" title="@T("Admin.Orders.Fields.PaymentMethodAdditionalFee.Hint")">
                                     <i class="fa fa-question-circle"></i>
                                 </div>
                             </div>
@@ -330,7 +330,7 @@
                                 {
                                     <div class="col-md-2">
                                         <div class="form-text-row">
-                                            @Html.DisplayFor(model => model.PaymentMethodAdditionalFeeInclTax) <strong>@T("Admin.Pedidos.Fields.PaymentMethodAdditionalFeeInclTax")</strong>
+                                            @Html.DisplayFor(model => model.PaymentMethodAdditionalFeeInclTax) <strong>@T("Admin.Orders.Fields.PaymentMethodAdditionalFeeInclTax")</strong>
                                         </div>
                                     </div>
                                 }
@@ -338,7 +338,7 @@
                                 {
                                     <div class="col-md-2">
                                         <div class="form-text-row">
-                                            @Html.DisplayFor(model => model.PaymentMethodAdditionalFeeExclTax) <strong>@T("Admin.Pedidos.Fields.PaymentMethodAdditionalFeeExclTax")</strong>
+                                            @Html.DisplayFor(model => model.PaymentMethodAdditionalFeeExclTax) <strong>@T("Admin.Orders.Fields.PaymentMethodAdditionalFeeExclTax")</strong>
                                         </div>
                                     </div>
                                 }
@@ -401,7 +401,7 @@
                             @Html.NopLabelFor(model => model.RedeemedRewardPoints)
                         </div>
                         <div class="col-md-9">
-                            @Html.NopDisplay(Model.RedeemedRewardPoints + @T("Admin.Pedidos.Fields.RedeemedRewardPoints.Points").Text + "/" + Model.RedeemedRewardPointsAmount)
+                            @Html.NopDisplay(Model.RedeemedRewardPoints + @T("Admin.Orders.Fields.RedeemedRewardPoints.Points").Text + "/" + Model.RedeemedRewardPointsAmount)
                         </div>
                     </div>
                 }
@@ -454,46 +454,46 @@
                 <div id="trEditOrderTotals">
                     <div class="form-group">
                         <div class="col-md-3">
-                            @Html.NopLabelFor(model => model.PedidosubtotalInclTaxValue)
+                            @Html.NopLabelFor(model => model.OrdersubtotalInclTaxValue)
                         </div>
                         <div class="col-md-9">
                             <div class="pull-left margin-r-10">
-                                @T("Admin.Pedidos.Fields.Edit.InclTax")
-                                @Html.NopEditorFor(model => model.PedidosubtotalInclTaxValue)
+                                @T("Admin.Orders.Fields.Edit.InclTax")
+                                @Html.NopEditorFor(model => model.OrdersubtotalInclTaxValue)
                             </div>
                             <div class="pull-left">
-                                @T("Admin.Pedidos.Fields.Edit.ExclTax")
-                                @Html.NopEditorFor(model => model.PedidosubtotalExclTaxValue)
+                                @T("Admin.Orders.Fields.Edit.ExclTax")
+                                @Html.NopEditorFor(model => model.OrdersubtotalExclTaxValue)
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-3">
-                            @Html.NopLabelFor(model => model.PedidosubTotalDiscountInclTaxValue)
+                            @Html.NopLabelFor(model => model.OrdersubTotalDiscountInclTaxValue)
                         </div>
                         <div class="col-md-9">
                             <div class="pull-left margin-r-10">
-                                @T("Admin.Pedidos.Fields.Edit.InclTax")
-                                @Html.NopEditorFor(model => model.PedidosubTotalDiscountInclTaxValue)
+                                @T("Admin.Orders.Fields.Edit.InclTax")
+                                @Html.NopEditorFor(model => model.OrdersubTotalDiscountInclTaxValue)
                             </div>
                             <div class="pull-left">
-                                @T("Admin.Pedidos.Fields.Edit.ExclTax")
-                                @Html.NopEditorFor(model => model.PedidosubTotalDiscountExclTaxValue)
+                                @T("Admin.Orders.Fields.Edit.ExclTax")
+                                @Html.NopEditorFor(model => model.OrdersubTotalDiscountExclTaxValue)
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-3">
-                            @Html.NopLabelFor(model => model.PedidoshippingInclTaxValue)
+                            @Html.NopLabelFor(model => model.OrdershippingInclTaxValue)
                         </div>
                         <div class="col-md-9">
                             <div class="pull-left margin-r-10">
-                                @T("Admin.Pedidos.Fields.Edit.InclTax")
-                                @Html.NopEditorFor(model => model.PedidoshippingInclTaxValue)
+                                @T("Admin.Orders.Fields.Edit.InclTax")
+                                @Html.NopEditorFor(model => model.OrdershippingInclTaxValue)
                             </div>
                             <div class="pull-left">
-                                @T("Admin.Pedidos.Fields.Edit.ExclTax")
-                                @Html.NopEditorFor(model => model.PedidoshippingExclTaxValue)
+                                @T("Admin.Orders.Fields.Edit.ExclTax")
+                                @Html.NopEditorFor(model => model.OrdershippingExclTaxValue)
                             </div>
                         </div>
                     </div>
@@ -503,11 +503,11 @@
                         </div>
                         <div class="col-md-9">
                             <div class="pull-left margin-r-10">
-                                @T("Admin.Pedidos.Fields.Edit.InclTax")
+                                @T("Admin.Orders.Fields.Edit.InclTax")
                                 @Html.NopEditorFor(model => model.PaymentMethodAdditionalFeeInclTaxValue)
                             </div>
                             <div class="pull-left">
-                                @T("Admin.Pedidos.Fields.Edit.ExclTax")
+                                @T("Admin.Orders.Fields.Edit.ExclTax")
                                 @Html.NopEditorFor(model => model.PaymentMethodAdditionalFeeExclTaxValue)
                             </div>
                         </div>
@@ -548,11 +548,11 @@
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
                         <button type="submit" name="btnEditOrderTotals" onclick="toggleOrderTotals(true);return false;" id="btnEditOrderTotals" class="btn btn-primary">
-                            @T("Admin.Pedidos.Fields.EditOrderTotals")
+                            @T("Admin.Orders.Fields.EditOrderTotals")
                         </button>
 
                         <button type="submit" name="btnSaveOrderTotals" id="btnSaveOrderTotals" class="btn btn-primary">
-                            @T("Admin.Pedidos.Fields.SaveOrderTotals")
+                            @T("Admin.Orders.Fields.SaveOrderTotals")
                         </button>
                         @Html.ActionConfirmation("btnSaveOrderTotals")
 
@@ -650,11 +650,11 @@
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
                             <button type="submit" name="btnEditCC" onclick="toggleCC(true);return false;" id="btnEditCC" class="btn btn-primary">
-                                @T("Admin.Pedidos.Fields.EditCC")
+                                @T("Admin.Orders.Fields.EditCC")
                             </button>
 
                             <button type="submit" name="btnSaveCC" id="btnSaveCC" class="btn btn-primary">
-                                @T("Admin.Pedidos.Fields.SaveCC")
+                                @T("Admin.Orders.Fields.SaveCC")
                             </button>
                             @Html.ActionConfirmation("btnSaveCC")
 
@@ -728,7 +728,7 @@
                             if (Model.CanCapture)
                             {
                                 <button type="submit" name="captureorder" id="captureorder" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.Capture")
+                                    @T("Admin.Orders.Fields.Capture")
                                 </button>
                                 <text>&nbsp;</text>
                                 @Html.ActionConfirmation("captureorder")
@@ -736,7 +736,7 @@
                             if (Model.CanMarkOrderAsPaid)
                             {
                                 <button type="submit" name="markorderaspaid" id="markorderaspaid" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.MarkAsPaid")
+                                    @T("Admin.Orders.Fields.MarkAsPaid")
                                 </button>
                                 <text>&nbsp;</text>
                                 @Html.ActionConfirmation("markorderaspaid")
@@ -744,7 +744,7 @@
                             if (Model.CanRefund)
                             {
                                 <button type="submit" name="refundorder" id="refundorder" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.Refund")
+                                    @T("Admin.Orders.Fields.Refund")
                                 </button>
                                 <text>&nbsp;</text>
                                 @Html.ActionConfirmation("refundorder")
@@ -752,7 +752,7 @@
                             if (Model.CanRefundOffline)
                             {
                                 <button type="submit" name="refundorderoffline" id="refundorderoffline" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.RefundOffline")
+                                    @T("Admin.Orders.Fields.RefundOffline")
                                 </button>
                                 <text>&nbsp;</text>
                                 @Html.ActionConfirmation("refundorderoffline")
@@ -760,21 +760,21 @@
                             if (Model.CanPartiallyRefund)
                             {
                                 <button type="submit" id="partiallyrefundorder" name="partiallyrefundorder" onclick="javascript:OpenWindow('@(Url.Action("PartiallyRefundOrderPopup", "Order", new {id = Model.Id, online = true, btnId = "btnRefreshPage", formId = "order-form"}))', 500, 300, true); return false;" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.PartialRefund")
+                                    @T("Admin.Orders.Fields.PartialRefund")
                                 </button>
                                 <text>&nbsp;</text>
                             }
                             if (Model.CanPartiallyRefundOffline)
                             {
                                 <button type="submit" id="partiallyrefundorderoffline" name="partiallyrefundorderoffline" onclick="javascript:OpenWindow('@(Url.Action("PartiallyRefundOrderPopup", "Order", new {id = Model.Id, online = false, btnId = "btnRefreshPage", formId = "order-form"}))', 500, 300, true); return false;" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.PartialRefundOffline")
+                                    @T("Admin.Orders.Fields.PartialRefundOffline")
                                 </button>
                                 <text>&nbsp;</text>
                             }
                             if (Model.CanVoid)
                             {
                                 <button type="submit" name="voidorder" id="voidorder" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.Void")
+                                    @T("Admin.Orders.Fields.Void")
                                 </button>
                                 <text>&nbsp;</text>
                                 @Html.ActionConfirmation("voidorder")
@@ -782,7 +782,7 @@
                             if (Model.CanVoidOffline)
                             {
                                 <button type="submit" name="voidorderoffline" id="voidorderoffline" class="btn btn-primary">
-                                    @T("Admin.Pedidos.Fields.VoidOffline")
+                                    @T("Admin.Orders.Fields.VoidOffline")
                                 </button>
                                 <text>&nbsp;</text>
                                 @Html.ActionConfirmation("voidorderoffline")

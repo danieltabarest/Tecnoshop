@@ -53,10 +53,10 @@
                             </div>
                             <div class="form-group" @(Model.IsLoggedInAsVendor ? Html.Raw("style='display: none;'") : null)>
                                 <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.PedidostatusId)
+                                    @Html.NopLabelFor(model => model.OrderstatusId)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.NopDropDownList("PedidostatusId", Model.AvailablePedidostatuses)
+                                    @Html.NopDropDownList("OrderstatusId", Model.AvailableOrderstatuses)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -74,7 +74,7 @@
                                     @Html.NopLabelFor(model => model.CategoryId)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.NopDropDownList("CategoryId", Model.AvailableCategorias)
+                                    @Html.NopDropDownList("CategoryId", Model.AvailableCategories)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -192,7 +192,7 @@
                                 StartDate: $('#@Html.FieldIdFor(model => model.StartDate)').val(),
                                 EndDate: $('#@Html.FieldIdFor(model => model.EndDate)').val(),
                                 StoreId: $('#StoreId').val(),
-                                PedidostatusId: $('#PedidostatusId').val(),
+                                OrderstatusId: $('#OrderstatusId').val(),
                                 PaymentStatusId: $('#PaymentStatusId').val(),
                                 CategoryId: $('#CategoryId').val(),
                                 ManufacturerId: $('#ManufacturerId').val(),

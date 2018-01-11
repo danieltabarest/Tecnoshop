@@ -2406,7 +2406,7 @@ qq.status = {
         },
 
         /**
-         * Conditionally Pedidos a manual retry of a failed upload.
+         * Conditionally Orders a manual retry of a failed upload.
          *
          * @param id File ID of the failed upload
          * @param callback Optional callback to invoke if a retry is prudent.

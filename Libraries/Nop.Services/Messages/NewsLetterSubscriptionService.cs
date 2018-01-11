@@ -11,15 +11,15 @@ using Nop.Services.Events;
 namespace Nop.Services.Messages
 {
     /// <summary>
-    /// Boletín informativo subscription service
+    /// Newsletter subscription service
     /// </summary>
-    public class Boletín informativoSubscriptionService : IBoletín informativoSubscriptionService
+    public class NewsletterSubscriptionService : INewsletterSubscriptionService
     {
         #region Fields
 
         private readonly IEventPublisher _eventPublisher;
         private readonly IDbContext _context;
-        private readonly IRepository<Boletín informativoSubscription> _subscriptionRepository;
+        private readonly IRepository<NewsletterSubscription> _subscriptionRepository;
         private readonly IRepository<Customer> _customerRepository;
         private readonly ICustomerService _customerService;
 
@@ -27,8 +27,8 @@ namespace Nop.Services.Messages
 
         #region Ctor
 
-        public Boletín informativoSubscriptionService(IDbContext context,
-            IRepository<Boletín informativoSubscription> subscriptionRepository,
+        public NewsletterSubscriptionService(IDbContext context,
+            IRepository<NewsletterSubscription> subscriptionRepository,
             IRepository<Customer> customerRepository,
             IEventPublisher eventPublisher,
             ICustomerService customerService)
@@ -47,20 +47,20 @@ namespace Nop.Services.Messages
         /// <summary>
         /// Publishes the subscription event.
         /// </summary>
-        /// <param name="subscription">The Boletín informativo subscription.</param>
+        /// <param name="subscription">The Newsletter subscription.</param>
         /// <param name="isSubscribe">if set to <c>true</c> [is subscribe].</param>
         /// <param name="publishSubscriptionEvents">if set to <c>true</c> [publish subscription events].</param>
-        private void PublishSubscriptionEvent(Boletín informativoSubscription subscription, bool isSubscribe, bool publishSubscriptionEvents)
+        private void PublishSubscriptionEvent(NewsletterSubscription subscription, bool isSubscribe, bool publishSubscriptionEvents)
         {
             if (publishSubscriptionEvents)
             {
                 if (isSubscribe)
                 {
-                    _eventPublisher.PublishBoletín informativoSubscribe(subscription);
+                    _eventPublisher.PublishNewsletterSubscribe(subscription);
                 }
                 else
                 {
-                    _eventPublisher.PublishBoletín informativoUnsubscribe(subscription);
+                    _eventPublisher.PublishNewsletterUnsubscribe(subscription);
                 }
             }
         }
@@ -69,149 +69,149 @@ namespace Nop.Services.Messages
         #region Methods
 
         /// <summary>
-        /// Inserts a Boletín informativo subscription
+        /// Inserts a Newsletter subscription
         /// </summary>
-        /// <param name="Boletín informativoSubscription">Boletín informativo subscription</param>
+        /// <param name="NewsletterSubscription">Newsletter subscription</param>
         /// <param name="publishSubscriptionEvents">if set to <c>true</c> [publish subscription events].</param>
-        public virtual void InsertBoletín informativoSubscription(Boletín informativoSubscription Boletín informativoSubscription, bool publishSubscriptionEvents = true)
+        public virtual void InsertNewsletterSubscription(NewsletterSubscription NewsletterSubscription, bool publishSubscriptionEvents = true)
         {
-            if (Boletín informativoSubscription == null)
+            if (NewsletterSubscription == null)
             {
-                throw new ArgumentNullException("Boletín informativoSubscription");
+                throw new ArgumentNullException("NewsletterSubscription");
             }
 
             //Handle e-mail
-            Boletín informativoSubscription.Email = CommonHelper.EnsureSubscriberEmailOrThrow(Boletín informativoSubscription.Email);
+            NewsletterSubscription.Email = CommonHelper.EnsureSubscriberEmailOrThrow(NewsletterSubscription.Email);
 
             //Persist
-            _subscriptionRepository.Insert(Boletín informativoSubscription);
+            _subscriptionRepository.Insert(NewsletterSubscription);
 
             //Publish the subscription event 
-            if (Boletín informativoSubscription.Active)
+            if (NewsletterSubscription.Active)
             {
-                PublishSubscriptionEvent(Boletín informativoSubscription, true, publishSubscriptionEvents);
+                PublishSubscriptionEvent(NewsletterSubscription, true, publishSubscriptionEvents);
             }
 
             //Publish event
-            _eventPublisher.EntityInserted(Boletín informativoSubscription);
+            _eventPublisher.EntityInserted(NewsletterSubscription);
         }
 
         /// <summary>
-        /// Updates a Boletín informativo subscription
+        /// Updates a Newsletter subscription
         /// </summary>
-        /// <param name="Boletín informativoSubscription">Boletín informativo subscription</param>
+        /// <param name="NewsletterSubscription">Newsletter subscription</param>
         /// <param name="publishSubscriptionEvents">if set to <c>true</c> [publish subscription events].</param>
-        public virtual void UpdateBoletín informativoSubscription(Boletín informativoSubscription Boletín informativoSubscription, bool publishSubscriptionEvents = true)
+        public virtual void UpdateNewsletterSubscription(NewsletterSubscription NewsletterSubscription, bool publishSubscriptionEvents = true)
         {
-            if (Boletín informativoSubscription == null)
+            if (NewsletterSubscription == null)
             {
-                throw new ArgumentNullException("Boletín informativoSubscription");
+                throw new ArgumentNullException("NewsletterSubscription");
             }
 
             //Handle e-mail
-            Boletín informativoSubscription.Email = CommonHelper.EnsureSubscriberEmailOrThrow(Boletín informativoSubscription.Email);
+            NewsletterSubscription.Email = CommonHelper.EnsureSubscriberEmailOrThrow(NewsletterSubscription.Email);
 
             //Get original subscription record
-            var originalSubscription = _context.LoadOriginalCopy(Boletín informativoSubscription);
+            var originalSubscription = _context.LoadOriginalCopy(NewsletterSubscription);
 
             //Persist
-            _subscriptionRepository.Update(Boletín informativoSubscription);
+            _subscriptionRepository.Update(NewsletterSubscription);
 
             //Publish the subscription event 
-            if ((originalSubscription.Active == false && Boletín informativoSubscription.Active) ||
-                (Boletín informativoSubscription.Active && (originalSubscription.Email != Boletín informativoSubscription.Email)))
+            if ((originalSubscription.Active == false && NewsletterSubscription.Active) ||
+                (NewsletterSubscription.Active && (originalSubscription.Email != NewsletterSubscription.Email)))
             {
                 //If the previous entry was false, but this one is true, publish a subscribe.
-                PublishSubscriptionEvent(Boletín informativoSubscription, true, publishSubscriptionEvents);
+                PublishSubscriptionEvent(NewsletterSubscription, true, publishSubscriptionEvents);
             }
             
-            if ((originalSubscription.Active && Boletín informativoSubscription.Active) && 
-                (originalSubscription.Email != Boletín informativoSubscription.Email))
+            if ((originalSubscription.Active && NewsletterSubscription.Active) && 
+                (originalSubscription.Email != NewsletterSubscription.Email))
             {
                 //If the two emails are different publish an unsubscribe.
                 PublishSubscriptionEvent(originalSubscription, false, publishSubscriptionEvents);
             }
 
-            if ((originalSubscription.Active && !Boletín informativoSubscription.Active))
+            if ((originalSubscription.Active && !NewsletterSubscription.Active))
             {
                 //If the previous entry was true, but this one is false
                 PublishSubscriptionEvent(originalSubscription, false, publishSubscriptionEvents);
             }
 
             //Publish event
-            _eventPublisher.EntityUpdated(Boletín informativoSubscription);
+            _eventPublisher.EntityUpdated(NewsletterSubscription);
         }
 
         /// <summary>
-        /// Deletes a Boletín informativo subscription
+        /// Deletes a Newsletter subscription
         /// </summary>
-        /// <param name="Boletín informativoSubscription">Boletín informativo subscription</param>
+        /// <param name="NewsletterSubscription">Newsletter subscription</param>
         /// <param name="publishSubscriptionEvents">if set to <c>true</c> [publish subscription events].</param>
-        public virtual void DeleteBoletín informativoSubscription(Boletín informativoSubscription Boletín informativoSubscription, bool publishSubscriptionEvents = true)
+        public virtual void DeleteNewsletterSubscription(NewsletterSubscription NewsletterSubscription, bool publishSubscriptionEvents = true)
         {
-            if (Boletín informativoSubscription == null) throw new ArgumentNullException("Boletín informativoSubscription");
+            if (NewsletterSubscription == null) throw new ArgumentNullException("NewsletterSubscription");
 
-            _subscriptionRepository.Delete(Boletín informativoSubscription);
+            _subscriptionRepository.Delete(NewsletterSubscription);
 
             //Publish the unsubscribe event 
-            PublishSubscriptionEvent(Boletín informativoSubscription, false, publishSubscriptionEvents);
+            PublishSubscriptionEvent(NewsletterSubscription, false, publishSubscriptionEvents);
 
             //event notification
-            _eventPublisher.EntityDeleted(Boletín informativoSubscription);
+            _eventPublisher.EntityDeleted(NewsletterSubscription);
         }
 
         /// <summary>
-        /// Gets a Boletín informativo subscription by Boletín informativo subscription identifier
+        /// Gets a Newsletter subscription by Newsletter subscription identifier
         /// </summary>
-        /// <param name="Boletín informativoSubscriptionId">The Boletín informativo subscription identifier</param>
-        /// <returns>Boletín informativo subscription</returns>
-        public virtual Boletín informativoSubscription GetBoletín informativoSubscriptionById(int Boletín informativoSubscriptionId)
+        /// <param name="NewsletterSubscriptionId">The Newsletter subscription identifier</param>
+        /// <returns>Newsletter subscription</returns>
+        public virtual NewsletterSubscription GetNewsletterSubscriptionById(int NewsletterSubscriptionId)
         {
-            if (Boletín informativoSubscriptionId == 0) return null;
+            if (NewsletterSubscriptionId == 0) return null;
 
-            return _subscriptionRepository.GetById(Boletín informativoSubscriptionId);
+            return _subscriptionRepository.GetById(NewsletterSubscriptionId);
         }
 
         /// <summary>
-        /// Gets a Boletín informativo subscription by Boletín informativo subscription GUID
+        /// Gets a Newsletter subscription by Newsletter subscription GUID
         /// </summary>
-        /// <param name="Boletín informativoSubscriptionGuid">The Boletín informativo subscription GUID</param>
-        /// <returns>Boletín informativo subscription</returns>
-        public virtual Boletín informativoSubscription GetBoletín informativoSubscriptionByGuid(Guid Boletín informativoSubscriptionGuid)
+        /// <param name="NewsletterSubscriptionGuid">The Newsletter subscription GUID</param>
+        /// <returns>Newsletter subscription</returns>
+        public virtual NewsletterSubscription GetNewsletterSubscriptionByGuid(Guid NewsletterSubscriptionGuid)
         {
-            if (Boletín informativoSubscriptionGuid == Guid.Empty) return null;
+            if (NewsletterSubscriptionGuid == Guid.Empty) return null;
 
-            var Boletín informativoSubscriptions = from nls in _subscriptionRepository.Table
-                                          where nls.Boletín informativoSubscriptionGuid == Boletín informativoSubscriptionGuid
+            var NewsletterSubscriptions = from nls in _subscriptionRepository.Table
+                                          where nls.NewsletterSubscriptionGuid == NewsletterSubscriptionGuid
                                           orderby nls.Id
                                           select nls;
 
-            return Boletín informativoSubscriptions.FirstOrDefault();
+            return NewsletterSubscriptions.FirstOrDefault();
         }
 
         /// <summary>
-        /// Gets a Boletín informativo subscription by email and store ID
+        /// Gets a Newsletter subscription by email and store ID
         /// </summary>
-        /// <param name="email">The Boletín informativo subscription email</param>
+        /// <param name="email">The Newsletter subscription email</param>
         /// <param name="storeId">Store identifier</param>
-        /// <returns>Boletín informativo subscription</returns>
-        public virtual Boletín informativoSubscription GetBoletín informativoSubscriptionByEmailAndStoreId(string email, int storeId)
+        /// <returns>Newsletter subscription</returns>
+        public virtual NewsletterSubscription GetNewsletterSubscriptionByEmailAndStoreId(string email, int storeId)
         {
             if (!CommonHelper.IsValidEmail(email)) 
                 return null;
 
             email = email.Trim();
 
-            var Boletín informativoSubscriptions = from nls in _subscriptionRepository.Table
+            var NewsletterSubscriptions = from nls in _subscriptionRepository.Table
                                           where nls.Email == email && nls.StoreId == storeId
                                           orderby nls.Id
                                           select nls;
 
-            return Boletín informativoSubscriptions.FirstOrDefault();
+            return NewsletterSubscriptions.FirstOrDefault();
         }
 
         /// <summary>
-        /// Gets the Boletín informativo subscription list
+        /// Gets the Newsletter subscription list
         /// </summary>
         /// <param name="email">Email to search or string. Empty to load all records.</param>
         /// <param name="createdFromUtc">Created date from (UTC); null to load all records</param>
@@ -221,8 +221,8 @@ namespace Nop.Services.Messages
         /// <param name="isActive">Value indicating whether subscriber record should be active or not; null to load all records</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
-        /// <returns>Boletín informativoSubscription entities</returns>
-        public virtual IPagedList<Boletín informativoSubscription> GetAllBoletín informativoSubscriptions(string email = null,
+        /// <returns>NewsletterSubscription entities</returns>
+        public virtual IPagedList<NewsletterSubscription> GetAllNewsletterSubscriptions(string email = null,
             DateTime? createdFromUtc = null, DateTime? createdToUtc = null,
             int storeId = 0, bool? isActive = null, int customerRoleId = 0,
             int pageIndex = 0, int pageSize = int.MaxValue)
@@ -243,7 +243,7 @@ namespace Nop.Services.Messages
                     query = query.Where(nls => nls.Active == isActive.Value);
                 query = query.OrderBy(nls => nls.Email);
 
-                var subscriptions = new PagedList<Boletín informativoSubscription>(query, pageIndex, pageSize);
+                var subscriptions = new PagedList<NewsletterSubscription>(query, pageIndex, pageSize);
                 return subscriptions;
             }
             else
@@ -270,7 +270,7 @@ namespace Nop.Services.Messages
                     query = query.Where(nls => !_customerRepository.Table.Any(c => c.Email == nls.Email));
                     query = query.OrderBy(nls => nls.Email);
                     
-                    var subscriptions = new PagedList<Boletín informativoSubscription>(query, pageIndex, pageSize);
+                    var subscriptions = new PagedList<NewsletterSubscription>(query, pageIndex, pageSize);
                     return subscriptions;
                 }
                 else
@@ -281,23 +281,23 @@ namespace Nop.Services.Messages
                         c => c.Email,
                         (nls, c) => new
                         {
-                            Boletín informativoSubscribers = nls,
+                            NewsletterSubscribers = nls,
                             Customer = c
                         });
                     query = query.Where(x => x.Customer.CustomerRoles.Any(cr => cr.Id == customerRoleId));
                     if (!String.IsNullOrEmpty(email))
-                        query = query.Where(x => x.Boletín informativoSubscribers.Email.Contains(email));
+                        query = query.Where(x => x.NewsletterSubscribers.Email.Contains(email));
                     if (createdFromUtc.HasValue)
-                        query = query.Where(x => x.Boletín informativoSubscribers.CreatedOnUtc >= createdFromUtc.Value);
+                        query = query.Where(x => x.NewsletterSubscribers.CreatedOnUtc >= createdFromUtc.Value);
                     if (createdToUtc.HasValue)
-                        query = query.Where(x => x.Boletín informativoSubscribers.CreatedOnUtc <= createdToUtc.Value);
+                        query = query.Where(x => x.NewsletterSubscribers.CreatedOnUtc <= createdToUtc.Value);
                     if (storeId > 0)
-                        query = query.Where(x => x.Boletín informativoSubscribers.StoreId == storeId);
+                        query = query.Where(x => x.NewsletterSubscribers.StoreId == storeId);
                     if (isActive.HasValue)
-                        query = query.Where(x => x.Boletín informativoSubscribers.Active == isActive.Value);
-                    query = query.OrderBy(x => x.Boletín informativoSubscribers.Email);
+                        query = query.Where(x => x.NewsletterSubscribers.Active == isActive.Value);
+                    query = query.OrderBy(x => x.NewsletterSubscribers.Email);
 
-                    var subscriptions = new PagedList<Boletín informativoSubscription>(query.Select(x=>x.Boletín informativoSubscribers), pageIndex, pageSize);
+                    var subscriptions = new PagedList<NewsletterSubscription>(query.Select(x=>x.NewsletterSubscribers), pageIndex, pageSize);
                     return subscriptions;
                 }
             }

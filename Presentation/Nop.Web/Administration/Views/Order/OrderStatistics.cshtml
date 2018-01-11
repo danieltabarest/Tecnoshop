@@ -5,7 +5,7 @@
     Html.AppendScriptParts("~/Administration/Scripts/chartjs/Chart.min.js");
 
     const string prefix = "order-statistics";
-    const string hidePanelAttributeName = "HidePedidostatisticsPanel";
+    const string hidePanelAttributeName = "HideOrderstatisticsPanel";
     var hidePanel = EngineContext.Current.Resolve<IWorkContext>().CurrentCustomer.GetAttribute<bool>(hidePanelAttributeName);
 }
 
@@ -13,12 +13,12 @@
     <div class="box-header with-border">
         <h3 class="box-title">
             <i class="fa fa-shopping-cart"></i>
-            @T("Admin.SalesReport.Pedidostatistics")
+            @T("Admin.SalesReport.Orderstatistics")
         </h3>
         <div class="box-tools pull-right">
-            <button class="btn btn-xs btn-info btn-flat margin-r-5" @if (hidePanel) { <text> disabled="disabled" </text> } data-chart-role="toggle-chart" data-chart-period="year">@T("Admin.SalesReport.Pedidostatistics.Year")</button>
-            <button class="btn btn-xs btn-info btn-flat margin-r-5" @if (hidePanel) { <text> disabled="disabled" </text> } data-chart-role="toggle-chart" data-chart-period="month">@T("Admin.SalesReport.Pedidostatistics.Month")</button>
-            <button class="btn btn-xs btn-info btn-flat" @if (hidePanel) { <text> disabled="disabled" </text> } data-chart-role="toggle-chart" data-chart-period="week">@T("Admin.SalesReport.Pedidostatistics.Week")</button>
+            <button class="btn btn-xs btn-info btn-flat margin-r-5" @if (hidePanel) { <text> disabled="disabled" </text> } data-chart-role="toggle-chart" data-chart-period="year">@T("Admin.SalesReport.Orderstatistics.Year")</button>
+            <button class="btn btn-xs btn-info btn-flat margin-r-5" @if (hidePanel) { <text> disabled="disabled" </text> } data-chart-role="toggle-chart" data-chart-period="month">@T("Admin.SalesReport.Orderstatistics.Month")</button>
+            <button class="btn btn-xs btn-info btn-flat" @if (hidePanel) { <text> disabled="disabled" </text> } data-chart-role="toggle-chart" data-chart-period="week">@T("Admin.SalesReport.Orderstatistics.Week")</button>
             <button class="btn btn-box-tool margin-l-10" data-widget="collapse">
                 @if (hidePanel)
                 {
@@ -61,7 +61,7 @@
                 labels: [],
                 datasets: [
                     {
-                        label: "@T("Admin.SalesReport.Pedidostatistics")",
+                        label: "@T("Admin.SalesReport.Orderstatistics")",
                         fillColor: "rgba(60,141,188,0.9)",
                         strokeColor: "rgba(60,141,188,0.8)",
                         pointColor: "#3b8bba",
@@ -86,7 +86,7 @@
                         display: true,
                         ticks: {
                             userCallback: function (dataLabel, index) {
-                                if (window.Pedidostatistics && window.Pedidostatistics.config.data.labels.length > 12) {
+                                if (window.Orderstatistics && window.Orderstatistics.config.data.labels.length > 12) {
                                     return index % 5 === 0 ? dataLabel : '';
                                 }
                                 return dataLabel;
@@ -128,7 +128,7 @@
             $.ajax({
                 cache: false,
                 type: "GET",
-                url: '@Url.Action("LoadPedidostatistics", "Order")',
+                url: '@Url.Action("LoadOrderstatistics", "Order")',
                 data: {
                     period: period
                 },
@@ -138,15 +138,15 @@
                         osData.push(data[i].value);
                     }
 
-                    if (!window.Pedidostatistics) {
+                    if (!window.Orderstatistics) {
                         osConfig.data.labels = osLabels;
                         osConfig.data.datasets[0].data = osData;
                         osConfig.data.scales =
-                        window.Pedidostatistics = new Chart(document.getElementById("@prefix-chart").getContext("2d"), osConfig);
+                        window.Orderstatistics = new Chart(document.getElementById("@prefix-chart").getContext("2d"), osConfig);
                     } else {
-                        window.Pedidostatistics.config.data.labels = osLabels;
-                        window.Pedidostatistics.config.data.datasets[0].data = osData;
-                        window.Pedidostatistics.update();
+                        window.Orderstatistics.config.data.labels = osLabels;
+                        window.Orderstatistics.config.data.datasets[0].data = osData;
+                        window.Orderstatistics.update();
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

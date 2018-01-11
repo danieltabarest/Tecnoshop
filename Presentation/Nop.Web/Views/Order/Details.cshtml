@@ -45,7 +45,7 @@
                     @T("Order.OrderDate"): @Model.CreatedOn.ToString("D")
                 </li>
                 <li class="order-status">
-                    @T("Order.Pedidostatus"): @Model.Pedidostatus
+                    @T("Order.Orderstatus"): @Model.Orderstatus
                 </li>
                 <li class="order-total">
                     @T("Order.OrderTotal"): <strong>@Model.OrderTotal</strong>
@@ -599,17 +599,17 @@
                                     <label>@T("Order.SubTotal"):</label>
                                 </td>
                                 <td class="cart-total-right">
-                                    <span>@Model.Pedidosubtotal</span>
+                                    <span>@Model.Ordersubtotal</span>
                                 </td>
                             </tr>
-                            @if (!string.IsNullOrEmpty(Model.PedidosubTotalDiscount))
+                            @if (!string.IsNullOrEmpty(Model.OrdersubTotalDiscount))
                             {
                                 <tr>
                                     <td class="cart-total-left">
                                         <label>@T("Order.SubTotalDiscount"):</label>
                                     </td>
                                     <td class="cart-total-right">
-                                        <span>@Model.PedidosubTotalDiscount</span>
+                                        <span>@Model.OrdersubTotalDiscount</span>
                                     </td>
                                 </tr>
                             }
@@ -620,7 +620,7 @@
                                         <label>@T("Order.Shipping"):</label>
                                     </td>
                                     <td class="cart-total-right">
-                                        <span>@Model.Pedidoshipping</span>
+                                        <span>@Model.Ordershipping</span>
                                     </td>
                                 </tr>
                             }

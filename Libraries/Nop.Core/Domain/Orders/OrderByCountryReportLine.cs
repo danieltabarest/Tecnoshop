@@ -1,4 +1,4 @@
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
     /// <summary>
     /// Represents an "order by country" report line
@@ -11,13 +11,13 @@ namespace Nop.Core.Domain.Pedidos
         public int? CountryId { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of Pedidos
+        /// Gets or sets the number of Orders
         /// </summary>
-        public int TotalPedidos { get; set; }
+        public int TotalOrders { get; set; }
 
         /// <summary>
         /// Gets or sets the order total summary
         /// </summary>
-        public decimal SumPedidos { get; set; }
+        public decimal SumOrders { get; set; }
     }
 }

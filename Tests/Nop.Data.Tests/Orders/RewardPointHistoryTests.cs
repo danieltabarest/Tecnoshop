@@ -1,7 +1,7 @@
 ﻿using Nop.Tests;
 using NUnit.Framework;
 
-namespace Nop.Data.Tests.Pedidos
+namespace Nop.Data.Tests.Orders
 {
     [TestFixture]
     public class RewardPointHistoryTests : PersistenceTest

@@ -18,7 +18,7 @@ namespace Nop.Admin.Infrastructure.Cache
         IConsumer<EntityInserted<SpecificationAttribute>>,
         IConsumer<EntityUpdated<SpecificationAttribute>>,
         IConsumer<EntityDeleted<SpecificationAttribute>>,
-        //Categorias
+        //Categories
         IConsumer<EntityInserted<Category>>,
         IConsumer<EntityUpdated<Category>>,
         IConsumer<EntityDeleted<Category>>,
@@ -44,13 +44,13 @@ namespace Nop.Admin.Infrastructure.Cache
         public const string SPEC_ATTRIBUTES_PATTERN_KEY = "Nop.pres.admin.product.specs";
 
         /// <summary>
-        /// Key for Categorias caching
+        /// Key for Categories caching
         /// </summary>
         /// <remarks>
         /// {0} : show hidden records?
         /// </remarks>
-        public const string Categorias_LIST_KEY = "Nop.pres.admin.Categorias.list-{0}";
-        public const string Categorias_LIST_PATTERN_KEY = "Nop.pres.admin.Categorias.list";
+        public const string Categories_LIST_KEY = "Nop.pres.admin.Categories.list-{0}";
+        public const string Categories_LIST_PATTERN_KEY = "Nop.pres.admin.Categories.list";
 
         /// <summary>
         /// Key for manufacturers caching
@@ -99,18 +99,18 @@ namespace Nop.Admin.Infrastructure.Cache
             _cacheManager.RemoveByPattern(SPEC_ATTRIBUTES_PATTERN_KEY);
         }
 
-        //Categorias
+        //Categories
         public void HandleEvent(EntityInserted<Category> eventMessage)
         {
-            _cacheManager.RemoveByPattern(Categorias_LIST_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(Categories_LIST_PATTERN_KEY);
         }
         public void HandleEvent(EntityUpdated<Category> eventMessage)
         {
-            _cacheManager.RemoveByPattern(Categorias_LIST_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(Categories_LIST_PATTERN_KEY);
         }
         public void HandleEvent(EntityDeleted<Category> eventMessage)
         {
-            _cacheManager.RemoveByPattern(Categorias_LIST_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(Categories_LIST_PATTERN_KEY);
         }
 
         //manufacturers

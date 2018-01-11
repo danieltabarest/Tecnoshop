@@ -8,13 +8,13 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Localization;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
 using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Messages;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Stores;
@@ -42,7 +42,7 @@ namespace Nop.Web.Controllers
         private readonly ICompareProductsService _compareProductsService;
         private readonly IWorkflowMessageService _workflowMessageService;
         private readonly IOrderReportService _orderReportService;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IAclService _aclService;
         private readonly IStoreMappingService _storeMappingService;
         private readonly IPermissionService _permissionService;
@@ -68,7 +68,7 @@ namespace Nop.Web.Controllers
             ICompareProductsService compareProductsService,
             IWorkflowMessageService workflowMessageService,
             IOrderReportService orderReportService,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IAclService aclService,
             IStoreMappingService storeMappingService,
             IPermissionService permissionService,
@@ -90,7 +90,7 @@ namespace Nop.Web.Controllers
             this._compareProductsService = compareProductsService;
             this._workflowMessageService = workflowMessageService;
             this._orderReportService = orderReportService;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._aclService = aclService;
             this._storeMappingService = storeMappingService;
             this._permissionService = permissionService;
@@ -438,7 +438,7 @@ namespace Nop.Web.Controllers
                 ModelState.AddModelError("", _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
 
             if (_catalogSettings.ProductReviewPossibleOnlyAfterPurchasing &&
-                !_Pedidoservice.SearchPedidos(customerId: _workContext.CurrentCustomer.Id, productId: productId, osIds: new List<int> { (int)Pedidostatus.Complete }).Any())
+                !_Orderservice.SearchOrders(customerId: _workContext.CurrentCustomer.Id, productId: productId, osIds: new List<int> { (int)Orderstatus.Complete }).Any())
                     ModelState.AddModelError(string.Empty, _localizationService.GetResource("Reviews.ProductReviewPossibleOnlyAfterPurchasing"));
             
             //default value
@@ -468,7 +468,7 @@ namespace Nop.Web.Controllers
             }
 
             if (_catalogSettings.ProductReviewPossibleOnlyAfterPurchasing && 
-                !_Pedidoservice.SearchPedidos(customerId: _workContext.CurrentCustomer.Id, productId: productId, osIds: new List<int> { (int)Pedidostatus.Complete }).Any())
+                !_Orderservice.SearchOrders(customerId: _workContext.CurrentCustomer.Id, productId: productId, osIds: new List<int> { (int)Orderstatus.Complete }).Any())
                     ModelState.AddModelError(string.Empty, _localizationService.GetResource("Reviews.ProductReviewPossibleOnlyAfterPurchasing"));
 
             if (ModelState.IsValid)

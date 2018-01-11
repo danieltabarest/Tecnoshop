@@ -85,8 +85,8 @@ namespace Nop.Web.Framework.Localization
                 string applicationPath = httpContext.Request.ApplicationPath;
                 if (virtualPath.IsLocalizedUrl(applicationPath, false))
                 {
-                    //In ASP.NET Development Server, an URL like "http://localhost/Blog.aspx/Categorias/BabyFrog" will return 
-                    //"~/Blog.aspx/Categorias/BabyFrog" as AppRelativeCurrentExecutionFilePath.
+                    //In ASP.NET Development Server, an URL like "http://localhost/Blog.aspx/Categories/BabyFrog" will return 
+                    //"~/Blog.aspx/Categories/BabyFrog" as AppRelativeCurrentExecutionFilePath.
                     //However, in II6, the AppRelativeCurrentExecutionFilePath is "~/Blog.aspx"
                     //It seems that IIS6 think we're process Blog.aspx page.
                     //So, I'll use RawUrl to re-create an AppRelativeCurrentExecutionFilePath like ASP.NET Development Server.

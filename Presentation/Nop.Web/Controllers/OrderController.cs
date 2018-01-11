@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Common;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Shipping;
 using Nop.Web.Factories;
@@ -21,7 +21,7 @@ namespace Nop.Web.Controllers
         #region Fields
 
         private readonly IOrderModelFactory _orderModelFactory;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IShipmentService _shipmentService;
         private readonly IWorkContext _workContext;
         private readonly IOrderProcessingService _orderProcessingService;
@@ -35,7 +35,7 @@ namespace Nop.Web.Controllers
 		#region Constructors
 
         public OrderController(IOrderModelFactory orderModelFactory,
-            IPedidoservice Pedidoservice, 
+            IOrderservice Orderservice, 
             IShipmentService shipmentService, 
             IWorkContext workContext,
             IOrderProcessingService orderProcessingService, 
@@ -45,7 +45,7 @@ namespace Nop.Web.Controllers
             RewardPointsSettings rewardPointsSettings)
         {
             this._orderModelFactory = orderModelFactory;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._shipmentService = shipmentService;
             this._workContext = workContext;
             this._orderProcessingService = orderProcessingService;
@@ -59,9 +59,9 @@ namespace Nop.Web.Controllers
 
         #region Methods
 
-        //Mi cuenta / Pedidos
+        //Mi cuenta / Orders
         [NopHttpsRequirement(SslRequirement.Yes)]
-        public virtual ActionResult CustomerPedidos()
+        public virtual ActionResult CustomerOrders()
         {
             if (!_workContext.CurrentCustomer.IsRegistered())
                 return new HttpUnauthorizedResult();
@@ -70,8 +70,8 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
-        //Mi cuenta / Pedidos / Cancel recurring order
-        [HttpPost, ActionName("CustomerPedidos")]
+        //Mi cuenta / Orders / Cancel recurring order
+        [HttpPost, ActionName("CustomerOrders")]
         [PublicAntiForgery]
         [FormValueRequired(FormValueRequirement.StartsWith, "cancelRecurringPayment")]
         public virtual ActionResult CancelRecurringPayment(FormCollection form)
@@ -85,10 +85,10 @@ namespace Nop.Web.Controllers
                 if (formValue.StartsWith("cancelRecurringPayment", StringComparison.InvariantCultureIgnoreCase))
                     recurringPaymentId = Convert.ToInt32(formValue.Substring("cancelRecurringPayment".Length));
 
-            var recurringPayment = _Pedidoservice.GetRecurringPaymentById(recurringPaymentId);
+            var recurringPayment = _Orderservice.GetRecurringPaymentById(recurringPaymentId);
             if (recurringPayment == null)
             {
-                return RedirectToRoute("CustomerPedidos");
+                return RedirectToRoute("CustomerOrders");
             }
 
             if (_orderProcessingService.CanCancelRecurringPayment(_workContext.CurrentCustomer, recurringPayment))
@@ -102,12 +102,12 @@ namespace Nop.Web.Controllers
             }
             else
             {
-                return RedirectToRoute("CustomerPedidos");
+                return RedirectToRoute("CustomerOrders");
             }
         }
 
-        //Mi cuenta / Pedidos / Retry last recurring order
-        [HttpPost, ActionName("CustomerPedidos")]
+        //Mi cuenta / Orders / Retry last recurring order
+        [HttpPost, ActionName("CustomerOrders")]
         [PublicAntiForgery]
         [FormValueRequired(FormValueRequirement.StartsWith, "retryLastPayment")]
         public virtual ActionResult RetryLastRecurringPayment(FormCollection form)
@@ -120,15 +120,15 @@ namespace Nop.Web.Controllers
             if (!form.AllKeys.Any(formValue => formValue.StartsWith("retryLastPayment", StringComparison.InvariantCultureIgnoreCase) &&
                 int.TryParse(formValue.Substring(formValue.IndexOf('_') + 1), out recurringPaymentId)))
             {
-                return RedirectToRoute("CustomerPedidos");
+                return RedirectToRoute("CustomerOrders");
             }
 
-            var recurringPayment = _Pedidoservice.GetRecurringPaymentById(recurringPaymentId);
+            var recurringPayment = _Orderservice.GetRecurringPaymentById(recurringPaymentId);
             if (recurringPayment == null)
-                return RedirectToRoute("CustomerPedidos");
+                return RedirectToRoute("CustomerOrders");
 
             if (!_orderProcessingService.CanRetryLastRecurringPayment(_workContext.CurrentCustomer, recurringPayment))
-                return RedirectToRoute("CustomerPedidos");
+                return RedirectToRoute("CustomerOrders");
 
             var errors = _orderProcessingService.ProcessNextRecurringPayment(recurringPayment);
             var model = _orderModelFactory.PrepareCustomerOrderListModel();
@@ -155,7 +155,7 @@ namespace Nop.Web.Controllers
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult Details(int orderId)
         {
-            var order = _Pedidoservice.GetOrderById(orderId);
+            var order = _Orderservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 
@@ -167,7 +167,7 @@ namespace Nop.Web.Controllers
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult PrintOrderDetails(int orderId)
         {
-            var order = _Pedidoservice.GetOrderById(orderId);
+            var order = _Orderservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 
@@ -180,16 +180,16 @@ namespace Nop.Web.Controllers
         //Mi cuenta / Order details page / PDF invoice
         public virtual ActionResult GetPdfInvoice(int orderId)
         {
-            var order = _Pedidoservice.GetOrderById(orderId);
+            var order = _Orderservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 
-            var Pedidos = new List<Order>();
-            Pedidos.Add(order);
+            var Orders = new List<Order>();
+            Orders.Add(order);
             byte[] bytes;
             using (var stream = new MemoryStream())
             {
-                _pdfService.PrintPedidosToPdf(stream, Pedidos, _workContext.WorkingLanguage.Id);
+                _pdfService.PrintOrdersToPdf(stream, Orders, _workContext.WorkingLanguage.Id);
                 bytes = stream.ToArray();
             }
             return File(bytes, MimeTypes.ApplicationPdf, string.Format("order_{0}.pdf", order.Id));
@@ -198,7 +198,7 @@ namespace Nop.Web.Controllers
         //Mi cuenta / Order details page / re-order
         public virtual ActionResult ReOrder(int orderId)
         {
-            var order = _Pedidoservice.GetOrderById(orderId);
+            var order = _Orderservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 
@@ -212,7 +212,7 @@ namespace Nop.Web.Controllers
         [FormValueRequired("repost-payment")]
         public virtual ActionResult RePostPayment(int orderId)
         {
-            var order = _Pedidoservice.GetOrderById(orderId);
+            var order = _Orderservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 

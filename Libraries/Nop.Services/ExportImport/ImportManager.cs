@@ -44,7 +44,7 @@ namespace Nop.Services.ExportImport
         private readonly IPictureService _pictureService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IStoreContext _storeContext;
-        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
         private readonly ICountryService _countryService;
         private readonly IStateProvinceService _stateProvinceService;
         private readonly IEncryptionService _encryptionService;
@@ -73,7 +73,7 @@ namespace Nop.Services.ExportImport
             IPictureService pictureService,
             IUrlRecordService urlRecordService,
             IStoreContext storeContext,
-            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+            INewsletterSubscriptionService NewsletterSubscriptionService,
             ICountryService countryService,
             IStateProvinceService stateProvinceService,
             IEncryptionService encryptionService,
@@ -99,7 +99,7 @@ namespace Nop.Services.ExportImport
             this._pictureService = pictureService;
             this._urlRecordService = urlRecordService;
             this._storeContext = storeContext;
-            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+            this._NewsletterSubscriptionService = NewsletterSubscriptionService;
             this._countryService = countryService;
             this._stateProvinceService = stateProvinceService;
             this._encryptionService = encryptionService;
@@ -366,10 +366,10 @@ namespace Nop.Services.ExportImport
                 var managerProductAttribute = new PropertyManager<ExportProductAttribute>(attributProperties);
 
                 var endRow = 2;
-                var allCategoriasNames = new List<string>();
+                var allCategoriesNames = new List<string>();
                 var allSku = new List<string>();
 
-                var tempProperty = manager.GetProperty("Categorias");
+                var tempProperty = manager.GetProperty("Categories");
                 var categoryCellNum = tempProperty.Return(p => p.PropertyOrderPosition, -1);
                 
                 tempProperty = manager.GetProperty("SKU");
@@ -384,7 +384,7 @@ namespace Nop.Services.ExportImport
                 manager.SetSelectList("DownloadActivationType", DownloadActivationType.Manually.ToSelectList(useLocalization: false));
                 manager.SetSelectList("ManageInventoryMethod", ManageInventoryMethod.DontManageStock.ToSelectList(useLocalization: false));
                 manager.SetSelectList("LowStockActivity", LowStockActivity.Nothing.ToSelectList(useLocalization: false));
-                manager.SetSelectList("BackorderMode", BackorderMode.NoBackPedidos.ToSelectList(useLocalization: false));
+                manager.SetSelectList("BackorderMode", BackorderMode.NoBackOrders.ToSelectList(useLocalization: false));
                 manager.SetSelectList("RecurringCyclePeriod", RecurringProductCyclePeriod.Days.ToSelectList(useLocalization: false));
                 manager.SetSelectList("RentalPricePeriod", RentalPricePeriod.Days.ToSelectList(useLocalization: false));
 
@@ -392,7 +392,7 @@ namespace Nop.Services.ExportImport
                 manager.SetSelectList("ProductTemplate", _productTemplateService.GetAllProductTemplates().Select(pt => pt as BaseEntity).ToSelectList(p => (p as ProductTemplate).Return(pt => pt.Name, String.Empty)));
                 manager.SetSelectList("DeliveryDate", _dateRangeService.GetAllDeliveryDates().Select(dd => dd as BaseEntity).ToSelectList(p => (p as DeliveryDate).Return(dd => dd.Name, String.Empty)));
                 manager.SetSelectList("ProductAvailabilityRange", _dateRangeService.GetAllProductAvailabilityRanges().Select(range => range as BaseEntity).ToSelectList(p => (p as ProductAvailabilityRange).Return(range => range.Name, String.Empty)));
-                manager.SetSelectList("TaxCategory", _taxCategoryService.GetAllTaxCategorias().Select(tc => tc as BaseEntity).ToSelectList(p => (p as TaxCategory).Return(tc => tc.Name, String.Empty)));
+                manager.SetSelectList("TaxCategory", _taxCategoryService.GetAllTaxCategories().Select(tc => tc as BaseEntity).ToSelectList(p => (p as TaxCategory).Return(tc => tc.Name, String.Empty)));
                 manager.SetSelectList("BasepriceUnit", _measureService.GetAllMeasureWeights().Select(mw => mw as BaseEntity).ToSelectList(p =>(p as MeasureWeight).Return(mw => mw.Name, String.Empty)));
                 manager.SetSelectList("BasepriceBaseUnit", _measureService.GetAllMeasureWeights().Select(mw => mw as BaseEntity).ToSelectList(p => (p as MeasureWeight).Return(mw => mw.Name, String.Empty)));
 
@@ -448,7 +448,7 @@ namespace Nop.Services.ExportImport
                         var categoryIds = worksheet.Cells[endRow, categoryCellNum].Value.Return(p => p.ToString(), string.Empty);
 
                         if (!categoryIds.IsEmpty())
-                            allCategoriasNames.AddRange(categoryIds.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()));
+                            allCategoriesNames.AddRange(categoryIds.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()));
                     }
 
                     if (skuCellNum > 0)
@@ -472,11 +472,11 @@ namespace Nop.Services.ExportImport
                     endRow++;
                 }
 
-                //performance optimization, the check for the existence of the Categorias in one SQL request
-                var notExistingCategorias = _categoryService.GetNotExistingCategorias(allCategoriasNames.ToArray());
-                if (notExistingCategorias.Any())
+                //performance optimization, the check for the existence of the Categories in one SQL request
+                var notExistingCategories = _categoryService.GetNotExistingCategories(allCategoriesNames.ToArray());
+                if (notExistingCategories.Any())
                 {
-                    throw new ArgumentException(string.Format("The following category name(s) don't exist - {0}", string.Join(", ", notExistingCategorias)));
+                    throw new ArgumentException(string.Format("The following category name(s) don't exist - {0}", string.Join(", ", notExistingCategories)));
                 }
 
                 //performance optimization, the check for the existence of the manufacturers in one SQL request
@@ -505,11 +505,11 @@ namespace Nop.Services.ExportImport
                         throw new ArgumentException(string.Format(_localizationService.GetResource("Admin.Catalog.Products.ExceededMaximumNumber"), _vendorSettings.MaximumProductNumber));
                 }
 
-                //performance optimization, load all Categorias IDs for products in one SQL request
+                //performance optimization, load all Categories IDs for products in one SQL request
                 var allProductsCategoryIds = _categoryService.GetProductCategoryIds(allProductsBySku.Select(p => p.Id).ToArray());
 
-                //performance optimization, load all Categorias in one SQL request
-                var allCategorias = _categoryService.GetAllCategorias(showHidden: true);
+                //performance optimization, load all Categories in one SQL request
+                var allCategories = _categoryService.GetAllCategories(showHidden: true);
 
                 //performance optimization, load all manufacturers IDs for products in one SQL request
                 var allProductsManufacturerIds = _manufacturerService.GetProductManufacturerIds(allProductsBySku.Select(p => p.Id).ToArray());
@@ -986,18 +986,18 @@ namespace Nop.Services.ExportImport
                         _urlRecordService.SaveSlug(product, product.ValidateSeName(seName, product.Name, true), 0);
                     }
 
-                    tempProperty = manager.GetProperty("Categorias");
+                    tempProperty = manager.GetProperty("Categories");
 
                     if (tempProperty != null)
                     { 
                         var categoryNames = tempProperty.StringValue;
 
                         //category mappings
-                        var Categorias = isNew || !allProductsCategoryIds.ContainsKey(product.Id) ? new int[0] : allProductsCategoryIds[product.Id];
-                        var importedCategorias = categoryNames.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => allCategorias.First(c => c.Name == x.Trim()).Id).ToList();
-                        foreach (var categoryId in importedCategorias)
+                        var Categories = isNew || !allProductsCategoryIds.ContainsKey(product.Id) ? new int[0] : allProductsCategoryIds[product.Id];
+                        var importedCategories = categoryNames.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => allCategories.First(c => c.Name == x.Trim()).Id).ToList();
+                        foreach (var categoryId in importedCategories)
                         {
-                            if (Categorias.Any(c => c == categoryId))
+                            if (Categories.Any(c => c == categoryId))
                                 continue;
                        
                             var productCategory = new ProductCategory
@@ -1010,10 +1010,10 @@ namespace Nop.Services.ExportImport
                             _categoryService.InsertProductCategory(productCategory);
                         }
 
-                        //delete product Categorias
-                        var deletedProductCategorias = Categorias.Where(categoryId => !importedCategorias.Contains(categoryId))
-                                .Select(categoryId => product.ProductCategorias.First(pc => pc.CategoryId == categoryId));
-                        foreach (var deletedProductCategory in deletedProductCategorias)
+                        //delete product Categories
+                        var deletedProductCategories = Categories.Where(categoryId => !importedCategories.Contains(categoryId))
+                                .Select(categoryId => product.ProductCategories.First(pc => pc.CategoryId == categoryId));
+                        foreach (var deletedProductCategory in deletedProductCategories)
                         {
                             _categoryService.DeleteProductCategory(deletedProductCategory);
                         }
@@ -1091,11 +1091,11 @@ namespace Nop.Services.ExportImport
         }
         
         /// <summary>
-        /// Import Boletín informativo subscribers from TXT file
+        /// Import Newsletter subscribers from TXT file
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns>Number of imported subscribers</returns>
-        public virtual int ImportBoletín informativoSubscribersFromTxt(Stream stream)
+        public virtual int ImportNewsletterSubscribersFromTxt(Stream stream)
         {
             int count = 0;
             using (var reader = new StreamReader(stream))
@@ -1133,24 +1133,24 @@ namespace Nop.Services.ExportImport
                         throw new NopException("Wrong file format");
 
                     //import
-                    var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(email, storeId);
+                    var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionByEmailAndStoreId(email, storeId);
                     if (subscription != null)
                     {
                         subscription.Email = email;
                         subscription.Active = isActive;
-                        _Boletín informativoSubscriptionService.UpdateBoletín informativoSubscription(subscription);
+                        _NewsletterSubscriptionService.UpdateNewsletterSubscription(subscription);
                     }
                     else
                     {
-                        subscription = new Boletín informativoSubscription
+                        subscription = new NewsletterSubscription
                         {
                             Active = isActive,
                             CreatedOnUtc = DateTime.UtcNow,
                             Email = email,
                             StoreId = storeId,
-                            Boletín informativoSubscriptionGuid = Guid.NewGuid()
+                            NewsletterSubscriptionGuid = Guid.NewGuid()
                         };
-                        _Boletín informativoSubscriptionService.InsertBoletín informativoSubscription(subscription);
+                        _NewsletterSubscriptionService.InsertNewsletterSubscription(subscription);
                     }
                     count++;
                 }
@@ -1351,10 +1351,10 @@ namespace Nop.Services.ExportImport
         }
 
         /// <summary>
-        /// Import Categorias from XLSX file
+        /// Import Categories from XLSX file
         /// </summary>
         /// <param name="stream">Stream</param>
-        public virtual void ImportCategoriasFromXlsx(Stream stream)
+        public virtual void ImportCategoriesFromXlsx(Stream stream)
         {
             using (var xlPackage = new ExcelPackage(stream))
             {
@@ -1476,7 +1476,7 @@ namespace Nop.Services.ExportImport
                 }
 
                 //activity log
-                _customerActivityService.InsertActivity("ImportCategorias", _localizationService.GetResource("ActivityLog.ImportCategorias"), iRow - 2);
+                _customerActivityService.InsertActivity("ImportCategories", _localizationService.GetResource("ActivityLog.ImportCategories"), iRow - 2);
             }
         }
 

@@ -8,7 +8,7 @@ using Nop.Core.Domain.Tax;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Pedidos
+namespace Nop.Admin.Models.Orders
 {
     public partial class OrderModel : BaseNopEntityModel
     {
@@ -26,169 +26,169 @@ namespace Nop.Admin.Models.Pedidos
 
         //identifiers
         public override int Id { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.OrderGuid")]
+        [NopResourceDisplayName("Admin.Orders.Fields.OrderGuid")]
         public Guid OrderGuid { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CustomOrderNumber")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CustomOrderNumber")]
         public string CustomOrderNumber { get; set; }
         
         //store
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Store")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Store")]
         public string StoreName { get; set; }
 
         //customer info
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Customer")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Customer")]
         public int CustomerId { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Customer")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Customer")]
         public string CustomerInfo { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CustomerEmail")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CustomerEmail")]
         public string CustomerEmail { get; set; }
         public string CustomerFullName { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CustomerIP")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CustomerIP")]
         public string CustomerIp { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CustomValues")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CustomValues")]
         public Dictionary<string, object> CustomValues { get; set; }
 
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Affiliate")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Affiliate")]
         public int AffiliateId { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Affiliate")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Affiliate")]
         public string AffiliateName { get; set; }
 
         //Used discounts
-        [NopResourceDisplayName("Admin.Pedidos.Fields.UsedDiscounts")]
+        [NopResourceDisplayName("Admin.Orders.Fields.UsedDiscounts")]
         public IList<UsedDiscountModel> UsedDiscounts { get; set; }
 
         //totals
         public bool AllowCustomersToSelectTaxDisplayType { get; set; }
         public TaxDisplayType TaxDisplayType { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PedidosubtotalInclTax")]
-        public string PedidosubtotalInclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PedidosubtotalExclTax")]
-        public string PedidosubtotalExclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PedidosubTotalDiscountInclTax")]
-        public string PedidosubTotalDiscountInclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PedidosubTotalDiscountExclTax")]
-        public string PedidosubTotalDiscountExclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PedidoshippingInclTax")]
-        public string PedidoshippingInclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PedidoshippingExclTax")]
-        public string PedidoshippingExclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PaymentMethodAdditionalFeeInclTax")]
+        [NopResourceDisplayName("Admin.Orders.Fields.OrdersubtotalInclTax")]
+        public string OrdersubtotalInclTax { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.OrdersubtotalExclTax")]
+        public string OrdersubtotalExclTax { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.OrdersubTotalDiscountInclTax")]
+        public string OrdersubTotalDiscountInclTax { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.OrdersubTotalDiscountExclTax")]
+        public string OrdersubTotalDiscountExclTax { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.OrdershippingInclTax")]
+        public string OrdershippingInclTax { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.OrdershippingExclTax")]
+        public string OrdershippingExclTax { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.PaymentMethodAdditionalFeeInclTax")]
         public string PaymentMethodAdditionalFeeInclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PaymentMethodAdditionalFeeExclTax")]
+        [NopResourceDisplayName("Admin.Orders.Fields.PaymentMethodAdditionalFeeExclTax")]
         public string PaymentMethodAdditionalFeeExclTax { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Tax")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Tax")]
         public string Tax { get; set; }
         public IList<TaxRate> TaxRates { get; set; }
         public bool DisplayTax { get; set; }
         public bool DisplayTaxRates { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.OrderTotalDiscount")]
+        [NopResourceDisplayName("Admin.Orders.Fields.OrderTotalDiscount")]
         public string OrderTotalDiscount { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.RedeemedRewardPoints")]
+        [NopResourceDisplayName("Admin.Orders.Fields.RedeemedRewardPoints")]
         public int RedeemedRewardPoints { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.RedeemedRewardPoints")]
+        [NopResourceDisplayName("Admin.Orders.Fields.RedeemedRewardPoints")]
         public string RedeemedRewardPointsAmount { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.OrderTotal")]
+        [NopResourceDisplayName("Admin.Orders.Fields.OrderTotal")]
         public string OrderTotal { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.RefundedAmount")]
+        [NopResourceDisplayName("Admin.Orders.Fields.RefundedAmount")]
         public string RefundedAmount { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Profit")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Profit")]
         public string Profit { get; set; }
 
         //edit totals
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.Pedidosubtotal")]
-        public decimal PedidosubtotalInclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.Pedidosubtotal")]
-        public decimal PedidosubtotalExclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.PedidosubTotalDiscount")]
-        public decimal PedidosubTotalDiscountInclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.PedidosubTotalDiscount")]
-        public decimal PedidosubTotalDiscountExclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.Pedidoshipping")]
-        public decimal PedidoshippingInclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.Pedidoshipping")]
-        public decimal PedidoshippingExclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.PaymentMethodAdditionalFee")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.Ordersubtotal")]
+        public decimal OrdersubtotalInclTaxValue { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.Ordersubtotal")]
+        public decimal OrdersubtotalExclTaxValue { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.OrdersubTotalDiscount")]
+        public decimal OrdersubTotalDiscountInclTaxValue { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.OrdersubTotalDiscount")]
+        public decimal OrdersubTotalDiscountExclTaxValue { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.Ordershipping")]
+        public decimal OrdershippingInclTaxValue { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.Ordershipping")]
+        public decimal OrdershippingExclTaxValue { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.PaymentMethodAdditionalFee")]
         public decimal PaymentMethodAdditionalFeeInclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.PaymentMethodAdditionalFee")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.PaymentMethodAdditionalFee")]
         public decimal PaymentMethodAdditionalFeeExclTaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.Tax")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.Tax")]
         public decimal TaxValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.TaxRates")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.TaxRates")]
         public string TaxRatesValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.OrderTotalDiscount")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.OrderTotalDiscount")]
         public decimal OrderTotalDiscountValue { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Edit.OrderTotal")]
+        [NopResourceDisplayName("Admin.Orders.Fields.Edit.OrderTotal")]
         public decimal OrderTotalValue { get; set; }
 
         //associated recurring payment id
-        [NopResourceDisplayName("Admin.Pedidos.Fields.RecurringPayment")]
+        [NopResourceDisplayName("Admin.Orders.Fields.RecurringPayment")]
         public int RecurringPaymentId { get; set; }
 
         //order status
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Pedidostatus")]
-        public string Pedidostatus { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.Pedidostatus")]
-        public int PedidostatusId { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Orderstatus")]
+        public string Orderstatus { get; set; }
+        [NopResourceDisplayName("Admin.Orders.Fields.Orderstatus")]
+        public int OrderstatusId { get; set; }
 
         //payment info
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PaymentStatus")]
+        [NopResourceDisplayName("Admin.Orders.Fields.PaymentStatus")]
         public string PaymentStatus { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PaymentStatus")]
+        [NopResourceDisplayName("Admin.Orders.Fields.PaymentStatus")]
         public int PaymentStatusId { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PaymentMethod")]
+        [NopResourceDisplayName("Admin.Orders.Fields.PaymentMethod")]
         public string PaymentMethod { get; set; }
 
         //credit card info
         public bool AllowStoringCreditCardNumber { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CardType")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CardType")]
         [AllowHtml]
         public string CardType { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CardName")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CardName")]
         [AllowHtml]
         public string CardName { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CardNumber")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CardNumber")]
         [AllowHtml]
         public string CardNumber { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CardCVV2")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CardCVV2")]
         [AllowHtml]
         public string CardCvv2 { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CardExpirationMonth")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CardExpirationMonth")]
         [AllowHtml]
         public string CardExpirationMonth { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CardExpirationYear")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CardExpirationYear")]
         [AllowHtml]
         public string CardExpirationYear { get; set; }
 
         //misc payment info
-        [NopResourceDisplayName("Admin.Pedidos.Fields.AuthorizationTransactionID")]
+        [NopResourceDisplayName("Admin.Orders.Fields.AuthorizationTransactionID")]
         public string AuthorizationTransactionId { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CaptureTransactionID")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CaptureTransactionID")]
         public string CaptureTransactionId { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.SubscriptionTransactionID")]
+        [NopResourceDisplayName("Admin.Orders.Fields.SubscriptionTransactionID")]
         public string SubscriptionTransactionId { get; set; }
 
         //shipping info
         public bool IsShippable { get; set; }
         public bool PickUpInStore { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PickupAddress")]
+        [NopResourceDisplayName("Admin.Orders.Fields.PickupAddress")]
         public AddressModel PickupAddress { get; set; }
         public string PickupAddressGoogleMapsUrl { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.ShippingStatus")]
+        [NopResourceDisplayName("Admin.Orders.Fields.ShippingStatus")]
         public string ShippingStatus { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.ShippingStatus")]
+        [NopResourceDisplayName("Admin.Orders.Fields.ShippingStatus")]
         public int ShippingStatusId { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.ShippingAddress")]
+        [NopResourceDisplayName("Admin.Orders.Fields.ShippingAddress")]
         public AddressModel ShippingAddress { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.ShippingMethod")]
+        [NopResourceDisplayName("Admin.Orders.Fields.ShippingMethod")]
         public string ShippingMethod { get; set; }
         public string ShippingAddressGoogleMapsUrl { get; set; }
         public bool CanAddNewShipments { get; set; }
 
         //billing info
-        [NopResourceDisplayName("Admin.Pedidos.Fields.BillingAddress")]
+        [NopResourceDisplayName("Admin.Orders.Fields.BillingAddress")]
         public AddressModel BillingAddress { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.Fields.VatNumber")]
+        [NopResourceDisplayName("Admin.Orders.Fields.VatNumber")]
         public string VatNumber { get; set; }
         
         //gift cards
@@ -199,7 +199,7 @@ namespace Nop.Admin.Models.Pedidos
         public IList<OrderItemModel> Items { get; set; }
 
         //creation date
-        [NopResourceDisplayName("Admin.Pedidos.Fields.CreatedOn")]
+        [NopResourceDisplayName("Admin.Orders.Fields.CreatedOn")]
         public DateTime CreatedOn { get; set; }
 
         //checkout attributes
@@ -207,18 +207,18 @@ namespace Nop.Admin.Models.Pedidos
 
 
         //order notes
-        [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.DisplayToCustomer")]
+        [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.DisplayToCustomer")]
         public bool AddOrderNoteDisplayToCustomer { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.Note")]
+        [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.Note")]
         [AllowHtml]
         public string AddOrderNoteMessage { get; set; }
         public bool AddOrderNoteHasDownload { get; set; }
-        [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.Download")]
+        [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.Download")]
         [UIHint("Download")]
         public int AddOrderNoteDownloadId { get; set; }
 
         //refund info
-        [NopResourceDisplayName("Admin.Pedidos.Fields.PartialRefund.AmountToRefund")]
+        [NopResourceDisplayName("Admin.Orders.Fields.PartialRefund.AmountToRefund")]
         public decimal AmountToRefund { get; set; }
         public decimal MaxAmountToRefund { get; set; }
         public string PrimaryStoreCurrencyCode { get; set; }
@@ -300,7 +300,7 @@ namespace Nop.Admin.Models.Pedidos
 
         public partial class GiftCard : BaseNopModel
         {
-            [NopResourceDisplayName("Admin.Pedidos.Fields.GiftCardInfo")]
+            [NopResourceDisplayName("Admin.Orders.Fields.GiftCardInfo")]
             public string CouponCode { get; set; }
             public string Amount { get; set; }
         }
@@ -308,15 +308,15 @@ namespace Nop.Admin.Models.Pedidos
         public partial class OrderNote : BaseNopEntityModel
         {
             public int OrderId { get; set; }
-            [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.DisplayToCustomer")]
+            [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.DisplayToCustomer")]
             public bool DisplayToCustomer { get; set; }
-            [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.Note")]
+            [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.Note")]
             public string Note { get; set; }
-            [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.Download")]
+            [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.Download")]
             public int DownloadId { get; set; }
-            [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.Download")]
+            [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.Download")]
             public Guid DownloadGuid { get; set; }
-            [NopResourceDisplayName("Admin.Pedidos.OrderNotes.Fields.CreatedOn")]
+            [NopResourceDisplayName("Admin.Orders.OrderNotes.Fields.CreatedOn")]
             public DateTime CreatedOn { get; set; }
         }
 
@@ -335,7 +335,7 @@ namespace Nop.Admin.Models.Pedidos
         {
             public AddOrderProductModel()
             {
-                AvailableCategorias = new List<SelectListItem>();
+                AvailableCategories = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableProductTypes = new List<SelectListItem>();
             }
@@ -350,7 +350,7 @@ namespace Nop.Admin.Models.Pedidos
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategorias { get; set; }
+            public IList<SelectListItem> AvailableCategories { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableProductTypes { get; set; }
 
@@ -360,11 +360,11 @@ namespace Nop.Admin.Models.Pedidos
             
             public partial class ProductModel : BaseNopEntityModel
             {
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.Name")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.Name")]
                 [AllowHtml]
                 public string Name { get; set; }
 
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.SKU")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.SKU")]
                 [AllowHtml]
                 public string Sku { get; set; }
             }
@@ -386,17 +386,17 @@ namespace Nop.Admin.Models.Pedidos
 
                 public string Name { get; set; }
 
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.UnitPriceInclTax")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.UnitPriceInclTax")]
                 public decimal UnitPriceInclTax { get; set; }
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.UnitPriceExclTax")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.UnitPriceExclTax")]
                 public decimal UnitPriceExclTax { get; set; }
 
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.Quantity")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.Quantity")]
                 public int Quantity { get; set; }
 
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.SubTotalInclTax")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.SubTotalInclTax")]
                 public decimal SubTotalInclTax { get; set; }
-                [NopResourceDisplayName("Admin.Pedidos.Products.AddNew.SubTotalExclTax")]
+                [NopResourceDisplayName("Admin.Orders.Products.AddNew.SubTotalExclTax")]
                 public decimal SubTotalExclTax { get; set; }
 
                 //product attributes

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Checkout attribute parser interface

@@ -337,7 +337,7 @@
                                         AttributesXml: { editable: false, type: "string" },
                                         Warnings: { editable: false, type: "string" },
                                         StockQuantity: { editable: true, type: "number" },
-                                        AllowOutOfStockPedidos: { editable: true, type: "boolean" },
+                                        AllowOutOfStockOrders: { editable: true, type: "boolean" },
                                         Sku: { editable: true, type: "string" },
                                         ManufacturerPartNumber: { editable: true, type: "string" },
                                         Gtin: { editable: true, type: "string" },
@@ -387,12 +387,12 @@
                                 //integer format
                                 format: "{0:0}"
                             }, {
-                                field: "AllowOutOfStockPedidos",
-                                title: "@T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockPedidos")",
+                                field: "AllowOutOfStockOrders",
+                                title: "@T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockOrders")",
                                 width: 150,
                                 headerAttributes: { style: "text-align:center" },
                                 attributes: { style: "text-align:center" },
-                                template: '# if(AllowOutOfStockPedidos) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                template: '# if(AllowOutOfStockOrders) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
                             }, {
                                 field: "Sku",
                                 title: "@T("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.Sku")",

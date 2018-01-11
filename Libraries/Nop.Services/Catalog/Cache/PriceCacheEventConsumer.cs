@@ -1,7 +1,7 @@
 ﻿using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Configuration;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Events;
 using Nop.Core.Infrastructure;
 using Nop.Services.Events;
@@ -14,7 +14,7 @@ namespace Nop.Services.Catalog.Cache
     public partial class PriceCacheEventConsumer: 
         //settings
         IConsumer<EntityUpdated<Setting>>,
-        //Categorias
+        //Categories
         IConsumer<EntityInserted<Category>>,
         IConsumer<EntityUpdated<Category>>,
         IConsumer<EntityDeleted<Category>>,
@@ -22,7 +22,7 @@ namespace Nop.Services.Catalog.Cache
         IConsumer<EntityInserted<Manufacturer>>,
         IConsumer<EntityUpdated<Manufacturer>>,
         IConsumer<EntityDeleted<Manufacturer>>,
-        //product Categorias
+        //product Categories
         IConsumer<EntityInserted<ProductCategory>>,
         IConsumer<EntityUpdated<ProductCategory>>,
         IConsumer<EntityDeleted<ProductCategory>>,
@@ -38,7 +38,7 @@ namespace Nop.Services.Catalog.Cache
         IConsumer<EntityInserted<TierPrice>>,
         IConsumer<EntityUpdated<TierPrice>>,
         IConsumer<EntityDeleted<TierPrice>>,
-        //Pedidos
+        //Orders
         IConsumer<EntityInserted<Order>>,
         IConsumer<EntityUpdated<Order>>,
         IConsumer<EntityDeleted<Order>>
@@ -96,7 +96,7 @@ namespace Nop.Services.Catalog.Cache
             _cacheManager.RemoveByPattern(PRODUCT_MANUFACTURER_IDS_PATTERN_KEY);
         }
 
-        //Categorias
+        //Categories
         public void HandleEvent(EntityInserted<Category> eventMessage)
         {
             _cacheManager.RemoveByPattern(PRODUCT_CATEGORY_IDS_PATTERN_KEY);
@@ -124,7 +124,7 @@ namespace Nop.Services.Catalog.Cache
             _cacheManager.RemoveByPattern(PRODUCT_MANUFACTURER_IDS_PATTERN_KEY);
         }
 
-        //product Categorias
+        //product Categories
         public void HandleEvent(EntityInserted<ProductCategory> eventMessage)
         {
             _cacheManager.RemoveByPattern(PRODUCT_PRICE_PATTERN_KEY);
@@ -186,7 +186,7 @@ namespace Nop.Services.Catalog.Cache
             _cacheManager.RemoveByPattern(PRODUCT_PRICE_PATTERN_KEY);
         }
 
-        //Pedidos
+        //Orders
         public void HandleEvent(EntityInserted<Order> eventMessage)
         {
             _cacheManager.RemoveByPattern(PRODUCT_PRICE_PATTERN_KEY);

@@ -11,7 +11,7 @@ namespace Nop.Plugin.Feed.GoogleShopping.Models
         {
             AvailableStores = new List<SelectListItem>();
             AvailableCurrencies = new List<SelectListItem>();
-            AvailableGoogleCategorias = new List<SelectListItem>();
+            AvailableGoogleCategories = new List<SelectListItem>();
             GeneratedFiles = new List<GeneratedFileModel>();
         }
 
@@ -28,7 +28,7 @@ namespace Nop.Plugin.Feed.GoogleShopping.Models
 
         [NopResourceDisplayName("Plugins.Feed.GoogleShopping.DefaultGoogleCategory")]
         public string DefaultGoogleCategory { get; set; }
-        public IList<SelectListItem> AvailableGoogleCategorias { get; set; }
+        public IList<SelectListItem> AvailableGoogleCategories { get; set; }
 
         [NopResourceDisplayName("Plugins.Feed.GoogleShopping.PassShippingInfoWeight")]
         public bool PassShippingInfoWeight { get; set; }

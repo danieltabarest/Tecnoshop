@@ -7,14 +7,14 @@ using Nop.Web.Framework.Validators;
 
 namespace Nop.Admin.Validators.Messages
 {
-    public partial class Boletín informativoSubscriptionValidator : BaseNopValidator<Boletín informativoSubscriptionModel>
+    public partial class NewsletterSubscriptionValidator : BaseNopValidator<NewsletterSubscriptionModel>
     {
-        public Boletín informativoSubscriptionValidator(ILocalizationService localizationService, IDbContext dbContext)
+        public NewsletterSubscriptionValidator(ILocalizationService localizationService, IDbContext dbContext)
         {
-            RuleFor(x => x.Email).NotEmpty().WithMessage(localizationService.GetResource("Admin.Promotions.Boletín informativoSubscriptions.Fields.Email.Required"));
+            RuleFor(x => x.Email).NotEmpty().WithMessage(localizationService.GetResource("Admin.Promotions.NewsletterSubscriptions.Fields.Email.Required"));
             RuleFor(x => x.Email).EmailAddress().WithMessage(localizationService.GetResource("Admin.Common.WrongEmail"));
 
-            SetDatabaseValidationRules<Boletín informativoSubscription>(dbContext);
+            SetDatabaseValidationRules<NewsletterSubscription>(dbContext);
         }
     }
 }

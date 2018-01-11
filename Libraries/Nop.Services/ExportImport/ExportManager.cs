@@ -10,7 +10,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Messages;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
@@ -43,7 +43,7 @@ namespace Nop.Services.ExportImport
         private readonly ICustomerService _customerService;
         private readonly IProductAttributeService _productAttributeService;
         private readonly IPictureService _pictureService;
-        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
         private readonly IStoreService _storeService;
         private readonly IWorkContext _workContext;
         private readonly ProductEditorSettings _productEditorSettings;
@@ -55,7 +55,7 @@ namespace Nop.Services.ExportImport
         private readonly CatalogSettings _catalogSettings;
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly ICustomerAttributeFormatter _customerAttributeFormatter;
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
 
         #endregion
 
@@ -66,7 +66,7 @@ namespace Nop.Services.ExportImport
             ICustomerService customerService,
             IProductAttributeService productAttributeService,
             IPictureService pictureService,
-            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+            INewsletterSubscriptionService NewsletterSubscriptionService,
             IStoreService storeService,
             IWorkContext workContext,
             ProductEditorSettings productEditorSettings,
@@ -78,14 +78,14 @@ namespace Nop.Services.ExportImport
             CatalogSettings catalogSettings,
             IGenericAttributeService genericAttributeService,
             ICustomerAttributeFormatter customerAttributeFormatter,
-            Pedidosettings Pedidosettings)
+            Ordersettings Ordersettings)
         {
             this._categoryService = categoryService;
             this._manufacturerService = manufacturerService;
             this._customerService = customerService;
             this._productAttributeService = productAttributeService;
             this._pictureService = pictureService;
-            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+            this._NewsletterSubscriptionService = NewsletterSubscriptionService;
             this._storeService = storeService;
             this._workContext = workContext;
             this._productEditorSettings = productEditorSettings;
@@ -97,19 +97,19 @@ namespace Nop.Services.ExportImport
             this._catalogSettings = catalogSettings;
             this._genericAttributeService = genericAttributeService;
             this._customerAttributeFormatter = customerAttributeFormatter;
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
         }
 
         #endregion
 
         #region Utilities
 
-        protected virtual void WriteCategorias(XmlWriter xmlWriter, int parentCategoryId)
+        protected virtual void WriteCategories(XmlWriter xmlWriter, int parentCategoryId)
         {
-            var Categorias = _categoryService.GetAllCategoriasByParentCategoryId(parentCategoryId, true);
-            if (Categorias != null && Categorias.Any())
+            var Categories = _categoryService.GetAllCategoriesByParentCategoryId(parentCategoryId, true);
+            if (Categories != null && Categories.Any())
             {
-                foreach (var category in Categorias)
+                foreach (var category in Categories)
                 {
                     xmlWriter.WriteStartElement("Category");
 
@@ -137,8 +137,8 @@ namespace Nop.Services.ExportImport
                     xmlWriter.WriteString("UpdatedOnUtc", category.UpdatedOnUtc, IgnoreExportCategoryProperty());
 
                     xmlWriter.WriteStartElement("Products");
-                    var productCategorias = _categoryService.GetProductCategoriasByCategoryId(category.Id, showHidden: true);
-                    foreach (var productCategory in productCategorias)
+                    var productCategories = _categoryService.GetProductCategoriesByCategoryId(category.Id, showHidden: true);
+                    foreach (var productCategory in productCategories)
                     {
                         var product = productCategory.Product;
                         if (product != null && !product.Deleted)
@@ -154,8 +154,8 @@ namespace Nop.Services.ExportImport
                     }
                     xmlWriter.WriteEndElement();
 
-                    xmlWriter.WriteStartElement("SubCategorias");
-                    WriteCategorias(xmlWriter, category.Id);
+                    xmlWriter.WriteStartElement("SubCategories");
+                    WriteCategories(xmlWriter, category.Id);
                     xmlWriter.WriteEndElement();
                     xmlWriter.WriteEndElement();
                 }
@@ -181,14 +181,14 @@ namespace Nop.Services.ExportImport
         }
 
         /// <summary>
-        /// Returns the list of Categorias for a product separated by a ";"
+        /// Returns the list of Categories for a product separated by a ";"
         /// </summary>
         /// <param name="product">Product</param>
-        /// <returns>List of Categorias</returns>
-        protected virtual string GetCategorias(Product product)
+        /// <returns>List of Categories</returns>
+        protected virtual string GetCategories(Product product)
         {
             string categoryNames = null;
-            foreach (var pc in _categoryService.GetProductCategoriasByProductId(product.Id, true))
+            foreach (var pc in _categoryService.GetProductCategoriesByProductId(product.Id, true))
             {
                 categoryNames += pc.Category.Name;
                 categoryNames += ";";
@@ -614,15 +614,15 @@ namespace Nop.Services.ExportImport
         /// Export category list to xml
         /// </summary>
         /// <returns>Result in XML format</returns>
-        public virtual string ExportCategoriasToXml()
+        public virtual string ExportCategoriesToXml()
         {
             var sb = new StringBuilder();
             var stringWriter = new StringWriter(sb);
             var xmlWriter = new XmlTextWriter(stringWriter);
             xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("Categorias");
+            xmlWriter.WriteStartElement("Categories");
             xmlWriter.WriteAttributeString("Version", NopVersion.CurrentVersion);
-            WriteCategorias(xmlWriter, 0);
+            WriteCategories(xmlWriter, 0);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteEndDocument();
             xmlWriter.Close();
@@ -630,10 +630,10 @@ namespace Nop.Services.ExportImport
         }
 
         /// <summary>
-        /// Export Categorias to XLSX
+        /// Export Categories to XLSX
         /// </summary>
-        /// <param name="Categorias">Categorias</param>
-        public virtual byte[] ExportCategoriasToXlsx(IEnumerable<Category> Categorias)
+        /// <param name="Categories">Categories</param>
+        public virtual byte[] ExportCategoriesToXlsx(IEnumerable<Category> Categories)
         {
             //property array
             var properties = new[]
@@ -657,7 +657,7 @@ namespace Nop.Services.ExportImport
                 new PropertyByName<Category>("Published", p => p.Published, IgnoreExportCategoryProperty()),
                 new PropertyByName<Category>("DisplayOrder", p => p.DisplayOrder)
             };
-            return ExportToXlsx(properties, Categorias);
+            return ExportToXlsx(properties, Categories);
         }
 
         /// <summary>
@@ -739,7 +739,7 @@ namespace Nop.Services.ExportImport
                 xmlWriter.WriteString("MinStockQuantity", product.MinStockQuantity, IgnoreExportPoductProperty(p => p.MinimumStockQuantity));
                 xmlWriter.WriteString("LowStockActivityId", product.LowStockActivityId, IgnoreExportPoductProperty(p => p.LowStockActivity));
                 xmlWriter.WriteString("NotifyAdminForQuantityBelow", product.NotifyAdminForQuantityBelow, IgnoreExportPoductProperty(p => p.NotifyAdminForQuantityBelow));
-                xmlWriter.WriteString("BackorderModeId", product.BackorderModeId, IgnoreExportPoductProperty(p => p.BackPedidos));
+                xmlWriter.WriteString("BackorderModeId", product.BackorderModeId, IgnoreExportPoductProperty(p => p.BackOrders));
                 xmlWriter.WriteString("AllowBackInStockSubscriptions", product.AllowBackInStockSubscriptions, IgnoreExportPoductProperty(p => p.AllowBackInStockSubscriptions));
                 xmlWriter.WriteString("OrderMinimumQuantity", product.OrderMinimumQuantity, IgnoreExportPoductProperty(p => p.MinimumCartQuantity));
                 xmlWriter.WriteString("OrderMaximumQuantity", product.OrderMaximumQuantity, IgnoreExportPoductProperty(p => p.MaximumCartQuantity));
@@ -889,11 +889,11 @@ namespace Nop.Services.ExportImport
                 }
                 xmlWriter.WriteEndElement();
 
-                xmlWriter.WriteStartElement("ProductCategorias");
-                var productCategorias = _categoryService.GetProductCategoriasByProductId(product.Id);
-                if (productCategorias != null)
+                xmlWriter.WriteStartElement("ProductCategories");
+                var productCategories = _categoryService.GetProductCategoriesByProductId(product.Id);
+                if (productCategories != null)
                 {
-                    foreach (var productCategory in productCategorias)
+                    foreach (var productCategory in productCategories)
                     {
                         xmlWriter.WriteStartElement("ProductCategory");
                         xmlWriter.WriteString("ProductCategoryId", productCategory.Id);
@@ -1051,7 +1051,7 @@ namespace Nop.Services.ExportImport
                 new PropertyByName<Product>("IsTaxExempt", p => p.IsTaxExempt),
                 new PropertyByName<Product>("TaxCategory", p => p.TaxCategoryId)
                 {
-                    DropDownElements = _taxCategoryService.GetAllTaxCategorias().Select(tc => tc as BaseEntity).ToSelectList(p => (p as TaxCategory).Return(tc => tc.Name, String.Empty)),
+                    DropDownElements = _taxCategoryService.GetAllTaxCategories().Select(tc => tc as BaseEntity).ToSelectList(p => (p as TaxCategory).Return(tc => tc.Name, String.Empty)),
                     AllowBlank = true
                 },
                 new PropertyByName<Product>("IsTelecommunicationsOrBroadcastingOrElectronicServices", p => p.IsTelecommunicationsOrBroadcastingOrElectronicServices, IgnoreExportPoductProperty(p => p.TelecommunicationsBroadcastingElectronicServices)),
@@ -1075,9 +1075,9 @@ namespace Nop.Services.ExportImport
                     DropDownElements = LowStockActivity.Nothing.ToSelectList(useLocalization: false)
                 },
                 new PropertyByName<Product>("NotifyAdminForQuantityBelow", p => p.NotifyAdminForQuantityBelow, IgnoreExportPoductProperty(p => p.NotifyAdminForQuantityBelow)),
-                new PropertyByName<Product>("BackorderMode", p => p.BackorderModeId, IgnoreExportPoductProperty(p => p.BackPedidos))
+                new PropertyByName<Product>("BackorderMode", p => p.BackorderModeId, IgnoreExportPoductProperty(p => p.BackOrders))
                 {
-                    DropDownElements = BackorderMode.NoBackPedidos.ToSelectList(useLocalization: false)
+                    DropDownElements = BackorderMode.NoBackOrders.ToSelectList(useLocalization: false)
                 },
                 new PropertyByName<Product>("AllowBackInStockSubscriptions", p => p.AllowBackInStockSubscriptions, IgnoreExportPoductProperty(p => p.AllowBackInStockSubscriptions)),
                 new PropertyByName<Product>("OrderMinimumQuantity", p => p.OrderMinimumQuantity, IgnoreExportPoductProperty(p => p.MinimumCartQuantity)),
@@ -1116,7 +1116,7 @@ namespace Nop.Services.ExportImport
                 new PropertyByName<Product>("Length", p => p.Length, IgnoreExportPoductProperty(p => p.Dimensions)),
                 new PropertyByName<Product>("Width", p => p.Width, IgnoreExportPoductProperty(p => p.Dimensions)),
                 new PropertyByName<Product>("Height", p => p.Height, IgnoreExportPoductProperty(p => p.Dimensions)),
-                new PropertyByName<Product>("Categorias", GetCategorias),
+                new PropertyByName<Product>("Categories", GetCategories),
                 new PropertyByName<Product>("Manufacturers", GetManufacturers, IgnoreExportPoductProperty(p => p.Manufacturers)),
                 new PropertyByName<Product>("ProductTags", GetProductTags, IgnoreExportPoductProperty(p => p.ProductTags)),
                 new PropertyByName<Product>("Picture1", p => GetPictures(p)[0]),
@@ -1139,9 +1139,9 @@ namespace Nop.Services.ExportImport
         /// <summary>
         /// Export order list to xml
         /// </summary>
-        /// <param name="Pedidos">Pedidos</param>
+        /// <param name="Orders">Orders</param>
         /// <returns>Result in XML format</returns>
-        public virtual string ExportPedidosToXml(IList<Order> Pedidos)
+        public virtual string ExportOrdersToXml(IList<Order> Orders)
         {
             //a vendor should have access only to part of order Information
             var ignore = _workContext.CurrentVendor != null;
@@ -1150,10 +1150,10 @@ namespace Nop.Services.ExportImport
             var stringWriter = new StringWriter(sb);
             var xmlWriter = new XmlTextWriter(stringWriter);
             xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("Pedidos");
+            xmlWriter.WriteStartElement("Orders");
             xmlWriter.WriteAttributeString("Version", NopVersion.CurrentVersion);
 
-            foreach (var order in Pedidos)
+            foreach (var order in Orders)
             {
                 xmlWriter.WriteStartElement("Order");
 
@@ -1161,18 +1161,18 @@ namespace Nop.Services.ExportImport
                 xmlWriter.WriteString("OrderGuid", order.OrderGuid, ignore);
                 xmlWriter.WriteString("StoreId", order.StoreId);
                 xmlWriter.WriteString("CustomerId", order.CustomerId, ignore);
-                xmlWriter.WriteString("PedidostatusId", order.PedidostatusId, ignore);
+                xmlWriter.WriteString("OrderstatusId", order.OrderstatusId, ignore);
                 xmlWriter.WriteString("PaymentStatusId", order.PaymentStatusId, ignore);
                 xmlWriter.WriteString("ShippingStatusId", order.ShippingStatusId, ignore);
                 xmlWriter.WriteString("CustomerLanguageId", order.CustomerLanguageId, ignore);
                 xmlWriter.WriteString("CustomerTaxDisplayTypeId", order.CustomerTaxDisplayTypeId, ignore);
                 xmlWriter.WriteString("CustomerIp", order.CustomerIp, ignore);
-                xmlWriter.WriteString("PedidosubtotalInclTax", order.PedidosubtotalInclTax, ignore);
-                xmlWriter.WriteString("PedidosubtotalExclTax", order.PedidosubtotalExclTax, ignore);
-                xmlWriter.WriteString("PedidosubTotalDiscountInclTax", order.PedidosubTotalDiscountInclTax, ignore);
-                xmlWriter.WriteString("PedidosubTotalDiscountExclTax", order.PedidosubTotalDiscountExclTax, ignore);
-                xmlWriter.WriteString("PedidoshippingInclTax", order.PedidoshippingInclTax, ignore);
-                xmlWriter.WriteString("PedidoshippingExclTax", order.PedidoshippingExclTax, ignore);
+                xmlWriter.WriteString("OrdersubtotalInclTax", order.OrdersubtotalInclTax, ignore);
+                xmlWriter.WriteString("OrdersubtotalExclTax", order.OrdersubtotalExclTax, ignore);
+                xmlWriter.WriteString("OrdersubTotalDiscountInclTax", order.OrdersubTotalDiscountInclTax, ignore);
+                xmlWriter.WriteString("OrdersubTotalDiscountExclTax", order.OrdersubTotalDiscountExclTax, ignore);
+                xmlWriter.WriteString("OrdershippingInclTax", order.OrdershippingInclTax, ignore);
+                xmlWriter.WriteString("OrdershippingExclTax", order.OrdershippingExclTax, ignore);
                 xmlWriter.WriteString("PaymentMethodAdditionalFeeInclTax", order.PaymentMethodAdditionalFeeInclTax, ignore);
                 xmlWriter.WriteString("PaymentMethodAdditionalFeeExclTax", order.PaymentMethodAdditionalFeeExclTax, ignore);
                 xmlWriter.WriteString("TaxRates", order.TaxRates, ignore);
@@ -1206,7 +1206,7 @@ namespace Nop.Services.ExportImport
                 xmlWriter.WriteString("Deleted", order.Deleted, ignore);
                 xmlWriter.WriteString("CreatedOnUtc", order.CreatedOnUtc);
 
-                if (_Pedidosettings.ExportWithProducts)
+                if (_Ordersettings.ExportWithProducts)
                 {
                     //products
                     var orderItems = order.OrderItems;
@@ -1269,10 +1269,10 @@ namespace Nop.Services.ExportImport
         }
 
         /// <summary>
-        /// Export Pedidos to XLSX
+        /// Export Orders to XLSX
         /// </summary>
-        /// <param name="Pedidos">Pedidos</param>
-        public virtual byte[] ExportPedidosToXlsx(IList<Order> Pedidos)
+        /// <param name="Orders">Orders</param>
+        public virtual byte[] ExportOrdersToXlsx(IList<Order> Orders)
         {
             //a vendor should have access only to part of order Information
             var ignore = _workContext.CurrentVendor != null;
@@ -1284,15 +1284,15 @@ namespace Nop.Services.ExportImport
                 new PropertyByName<Order>("StoreId", p => p.StoreId),
                 new PropertyByName<Order>("OrderGuid", p => p.OrderGuid, ignore),
                 new PropertyByName<Order>("CustomerId", p => p.CustomerId, ignore),
-                new PropertyByName<Order>("PedidostatusId", p => p.PedidostatusId, ignore),
+                new PropertyByName<Order>("OrderstatusId", p => p.OrderstatusId, ignore),
                 new PropertyByName<Order>("PaymentStatusId", p => p.PaymentStatusId),
                 new PropertyByName<Order>("ShippingStatusId", p => p.ShippingStatusId, ignore),
-                new PropertyByName<Order>("PedidosubtotalInclTax", p => p.PedidosubtotalInclTax, ignore),
-                new PropertyByName<Order>("PedidosubtotalExclTax", p => p.PedidosubtotalExclTax, ignore),
-                new PropertyByName<Order>("PedidosubTotalDiscountInclTax", p => p.PedidosubTotalDiscountInclTax, ignore),
-                new PropertyByName<Order>("PedidosubTotalDiscountExclTax", p => p.PedidosubTotalDiscountExclTax, ignore),
-                new PropertyByName<Order>("PedidoshippingInclTax", p => p.PedidoshippingInclTax, ignore),
-                new PropertyByName<Order>("PedidoshippingExclTax", p => p.PedidoshippingExclTax, ignore),
+                new PropertyByName<Order>("OrdersubtotalInclTax", p => p.OrdersubtotalInclTax, ignore),
+                new PropertyByName<Order>("OrdersubtotalExclTax", p => p.OrdersubtotalExclTax, ignore),
+                new PropertyByName<Order>("OrdersubTotalDiscountInclTax", p => p.OrdersubTotalDiscountInclTax, ignore),
+                new PropertyByName<Order>("OrdersubTotalDiscountExclTax", p => p.OrdersubTotalDiscountExclTax, ignore),
+                new PropertyByName<Order>("OrdershippingInclTax", p => p.OrdershippingInclTax, ignore),
+                new PropertyByName<Order>("OrdershippingExclTax", p => p.OrdershippingExclTax, ignore),
                 new PropertyByName<Order>("PaymentMethodAdditionalFeeInclTax", p => p.PaymentMethodAdditionalFeeInclTax, ignore),
                 new PropertyByName<Order>("PaymentMethodAdditionalFeeExclTax", p => p.PaymentMethodAdditionalFeeExclTax, ignore),
                 new PropertyByName<Order>("TaxRates", p => p.TaxRates, ignore),
@@ -1336,7 +1336,7 @@ namespace Nop.Services.ExportImport
                 new PropertyByName<Order>("ShippingFaxNumber", p => p.ShippingAddress.Return(shippingAddress => shippingAddress.FaxNumber, String.Empty))
             };
 
-            return _Pedidosettings.ExportWithProducts ? ExportOrderToXlsxWithProducts(properties, Pedidos) : ExportToXlsx(properties, Pedidos);
+            return _Ordersettings.ExportWithProducts ? ExportOrderToXlsxWithProducts(properties, Orders) : ExportToXlsx(properties, Orders);
         }
 
         /// <summary>
@@ -1446,9 +1446,9 @@ namespace Nop.Services.ExportImport
 
                 foreach (var store in _storeService.GetAllStores())
                 {
-                    var Boletín informativo = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email, store.Id);
-                    bool subscribedToBoletín informativos = Boletín informativo != null && Boletín informativo.Active;
-                    xmlWriter.WriteElementString(string.Format("Boletín informativo-in-store-{0}", store.Id), null, subscribedToBoletín informativos.ToString());
+                    var Newsletter = _NewsletterSubscriptionService.GetNewsletterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
+                    bool subscribedToNewsletters = Newsletter != null && Newsletter.Active;
+                    xmlWriter.WriteElementString(string.Format("Newsletter-in-store-{0}", store.Id), null, subscribedToNewsletters.ToString());
                 }
 
                 xmlWriter.WriteElementString("AvatarPictureId", null, customer.GetAttribute<int>(SystemCustomerAttributeNames.AvatarPictureId).ToString());
@@ -1474,11 +1474,11 @@ namespace Nop.Services.ExportImport
         }
 
         /// <summary>
-        /// Export Boletín informativo subscribers to TXT
+        /// Export Newsletter subscribers to TXT
         /// </summary>
         /// <param name="subscriptions">Subscriptions</param>
         /// <returns>Result in TXT (string) format</returns>
-        public virtual string ExportBoletín informativoSubscribersToTxt(IList<Boletín informativoSubscription> subscriptions)
+        public virtual string ExportNewsletterSubscribersToTxt(IList<NewsletterSubscription> subscriptions)
         {
             if (subscriptions == null)
                 throw new ArgumentNullException("subscriptions");

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Plugins;
@@ -15,7 +15,7 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Shipping;
 using Nop.Web.Extensions;
@@ -46,13 +46,13 @@ namespace Nop.Web.Controllers
         private readonly IPluginFinder _pluginFinder;
         private readonly IOrderTotalCalculationService _orderTotalCalculationService;
         private readonly ILogger _logger;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IWebHelper _webHelper;
         private readonly HttpContextBase _httpContext; 
         private readonly IAddressAttributeParser _addressAttributeParser;
         private readonly IAddressAttributeService _addressAttributeService;
 
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
         private readonly RewardPointsSettings _rewardPointsSettings;
         private readonly PaymentSettings _paymentSettings;
         private readonly ShippingSettings _shippingSettings;
@@ -78,12 +78,12 @@ namespace Nop.Web.Controllers
             IPluginFinder pluginFinder,
             IOrderTotalCalculationService orderTotalCalculationService,
             ILogger logger,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IWebHelper webHelper,
             HttpContextBase httpContext,
             IAddressAttributeParser addressAttributeParser,
             IAddressAttributeService addressAttributeService,
-            Pedidosettings Pedidosettings, 
+            Ordersettings Ordersettings, 
             RewardPointsSettings rewardPointsSettings,
             PaymentSettings paymentSettings,
             ShippingSettings shippingSettings,
@@ -105,13 +105,13 @@ namespace Nop.Web.Controllers
             this._pluginFinder = pluginFinder;
             this._orderTotalCalculationService = orderTotalCalculationService;
             this._logger = logger;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._webHelper = webHelper;
             this._httpContext = httpContext;
             this._addressAttributeParser = addressAttributeParser;
             this._addressAttributeService = addressAttributeService;
 
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
             this._rewardPointsSettings = rewardPointsSettings;
             this._paymentSettings = paymentSettings;
             this._shippingSettings = shippingSettings;
@@ -126,18 +126,18 @@ namespace Nop.Web.Controllers
         [NonAction]
         protected virtual bool IsMinimumOrderPlacementIntervalValid(Customer customer)
         {
-            //prevent 2 Pedidos being placed within an X seconds time frame
-            if (_Pedidosettings.MinimumOrderPlacementInterval == 0)
+            //prevent 2 Orders being placed within an X seconds time frame
+            if (_Ordersettings.MinimumOrderPlacementInterval == 0)
                 return true;
 
-            var lastOrder = _Pedidoservice.SearchPedidos(storeId: _storeContext.CurrentStore.Id,
+            var lastOrder = _Orderservice.SearchOrders(storeId: _storeContext.CurrentStore.Id,
                 customerId: _workContext.CurrentCustomer.Id, pageSize: 1)
                 .FirstOrDefault();
             if (lastOrder == null)
                 return true;
 
             var interval = DateTime.UtcNow - lastOrder.CreatedOnUtc;
-            return interval.TotalSeconds > _Pedidosettings.MinimumOrderPlacementInterval;
+            return interval.TotalSeconds > _Ordersettings.MinimumOrderPlacementInterval;
         }
 
         #endregion
@@ -157,7 +157,7 @@ namespace Nop.Web.Controllers
                 _customerSettings.RequireRegistrationForDownloadableProducts && cart.Any(sci => sci.Product.IsDownload);
 
             if (_workContext.CurrentCustomer.IsGuest() 
-                && (!_Pedidosettings.AnonymousCheckoutAllowed
+                && (!_Ordersettings.AnonymousCheckoutAllowed
                     || downloadableProductsRequireRegistration)
                 )
                 return new HttpUnauthorizedResult();
@@ -205,7 +205,7 @@ namespace Nop.Web.Controllers
                     return RedirectToRoute("ShoppingCart");
             }
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
             
             return RedirectToRoute("CheckoutBillingAddress");
@@ -214,18 +214,18 @@ namespace Nop.Web.Controllers
         public virtual ActionResult Completed(int? orderId)
         {
             //validation
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             Order order = null;
             if (orderId.HasValue)
             {
                 //load order by identifier (if provided)
-                order = _Pedidoservice.GetOrderById(orderId.Value);
+                order = _Orderservice.GetOrderById(orderId.Value);
             }
             if (order == null)
             {
-                order = _Pedidoservice.SearchPedidos(storeId: _storeContext.CurrentStore.Id,
+                order = _Orderservice.SearchOrders(storeId: _storeContext.CurrentStore.Id,
                 customerId: _workContext.CurrentCustomer.Id, pageSize: 1)
                     .FirstOrDefault();
             }
@@ -235,7 +235,7 @@ namespace Nop.Web.Controllers
             }
 
             //disable "order completed" page?
-            if (_Pedidosettings.DisableOrderCompletedPage)
+            if (_Ordersettings.DisableOrderCompletedPage)
             {
                 return RedirectToRoute("OrderDetails", new {orderId = order.Id});
             }
@@ -259,17 +259,17 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //model
             var model = _checkoutModelFactory.PrepareBillingAddressModel(cart, prePopulateNewAddressWithCustomerFields: true);
 
             //check whether "billing address" step is enabled
-            if (_Pedidosettings.DisableBillingAddressCheckoutStep)
+            if (_Ordersettings.DisableBillingAddressCheckoutStep)
             {
                 if (model.ExistingAddresses.Any())
                 {
@@ -327,10 +327,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //custom address attributes
@@ -399,10 +399,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             if (!cart.RequiresShipping())
@@ -448,10 +448,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             if (!cart.RequiresShipping())
@@ -548,10 +548,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             if (!cart.RequiresShipping())
@@ -591,10 +591,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             if (!cart.RequiresShipping())
@@ -650,10 +650,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //Check whether payment workflow is required
@@ -707,10 +707,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //reward points
@@ -757,10 +757,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //Check whether payment workflow is required
@@ -808,10 +808,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //Check whether payment workflow is required
@@ -862,10 +862,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             //model
@@ -885,10 +885,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (_Pedidosettings.OnePageCheckoutEnabled)
+            if (_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("CheckoutOnePage");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
 
@@ -906,7 +906,7 @@ namespace Nop.Web.Controllers
                     processPaymentRequest = new ProcessPaymentRequest();
                 }
                 
-                //prevent 2 Pedidos being placed within an X seconds time frame
+                //prevent 2 Orders being placed within an X seconds time frame
                 if (!IsMinimumOrderPlacementIntervalValid(_workContext.CurrentCustomer))
                     throw new Exception(_localizationService.GetResource("Checkout.MinOrderPlacementInterval"));
 
@@ -1111,10 +1111,10 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            if (!_Pedidosettings.OnePageCheckoutEnabled)
+            if (!_Ordersettings.OnePageCheckoutEnabled)
                 return RedirectToRoute("Checkout");
 
-            if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+            if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                 return new HttpUnauthorizedResult();
 
             var model = _checkoutModelFactory.PrepareOnePageCheckoutModel(cart);
@@ -1147,10 +1147,10 @@ namespace Nop.Web.Controllers
                 if (!cart.Any())
                     throw new Exception("Your cart is empty");
 
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     throw new Exception("One page checkout is disabled");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
 
                 int billingAddressId;
@@ -1291,10 +1291,10 @@ namespace Nop.Web.Controllers
                 if (!cart.Any())
                     throw new Exception("Your cart is empty");
 
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     throw new Exception("One page checkout is disabled");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
 
                 if (!cart.RequiresShipping())
@@ -1437,10 +1437,10 @@ namespace Nop.Web.Controllers
                 if (!cart.Any())
                     throw new Exception("Your cart is empty");
 
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     throw new Exception("One page checkout is disabled");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
                 
                 if (!cart.RequiresShipping())
@@ -1503,10 +1503,10 @@ namespace Nop.Web.Controllers
                 if (!cart.Any())
                     throw new Exception("Your cart is empty");
 
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     throw new Exception("One page checkout is disabled");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
 
                 string paymentmethod = form["paymentmethod"];
@@ -1579,10 +1579,10 @@ namespace Nop.Web.Controllers
                 if (!cart.Any())
                     throw new Exception("Your cart is empty");
 
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     throw new Exception("One page checkout is disabled");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
 
                 var paymentMethodSystemName = _workContext.CurrentCustomer.GetAttribute<string>(
@@ -1650,13 +1650,13 @@ namespace Nop.Web.Controllers
                 if (!cart.Any())
                     throw new Exception("Your cart is empty");
 
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     throw new Exception("One page checkout is disabled");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
 
-                //prevent 2 Pedidos being placed within an X seconds time frame
+                //prevent 2 Orders being placed within an X seconds time frame
                 if (!IsMinimumOrderPlacementIntervalValid(_workContext.CurrentCustomer))
                     throw new Exception(_localizationService.GetResource("Checkout.MinOrderPlacementInterval"));
 
@@ -1738,14 +1738,14 @@ namespace Nop.Web.Controllers
             try
             {
                 //validation
-                if (!_Pedidosettings.OnePageCheckoutEnabled)
+                if (!_Ordersettings.OnePageCheckoutEnabled)
                     return RedirectToRoute("HomePage");
 
-                if (_workContext.CurrentCustomer.IsGuest() && !_Pedidosettings.AnonymousCheckoutAllowed)
+                if (_workContext.CurrentCustomer.IsGuest() && !_Ordersettings.AnonymousCheckoutAllowed)
                     return new HttpUnauthorizedResult();
 
                 //get the order
-                var order = _Pedidoservice.SearchPedidos(storeId: _storeContext.CurrentStore.Id,
+                var order = _Orderservice.SearchOrders(storeId: _storeContext.CurrentStore.Id,
                 customerId: _workContext.CurrentCustomer.Id, pageSize: 1)
                     .FirstOrDefault();
                 if (order == null)

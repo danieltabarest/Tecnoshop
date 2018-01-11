@@ -7,21 +7,21 @@ namespace Nop.Services.Messages
     public static class EventPublisherExtensions
     {
         /// <summary>
-        /// Publishes the Boletín informativo subscribe event.
+        /// Publishes the Newsletter subscribe event.
         /// </summary>
         /// <param name="eventPublisher">The event publisher.</param>
-        /// <param name="subscription">The Boletín informativo subscription.</param>
-        public static void PublishBoletín informativoSubscribe(this IEventPublisher eventPublisher, Boletín informativoSubscription subscription)
+        /// <param name="subscription">The Newsletter subscription.</param>
+        public static void PublishNewsletterSubscribe(this IEventPublisher eventPublisher, NewsletterSubscription subscription)
         {
             eventPublisher.Publish(new EmailSubscribedEvent(subscription));
         }
 
         /// <summary>
-        /// Publishes the Boletín informativo unsubscribe event.
+        /// Publishes the Newsletter unsubscribe event.
         /// </summary>
         /// <param name="eventPublisher">The event publisher.</param>
-        /// <param name="subscription">The Boletín informativo subscription.</param>
-        public static void PublishBoletín informativoUnsubscribe(this IEventPublisher eventPublisher, Boletín informativoSubscription subscription)
+        /// <param name="subscription">The Newsletter subscription.</param>
+        public static void PublishNewsletterUnsubscribe(this IEventPublisher eventPublisher, NewsletterSubscription subscription)
         {
             eventPublisher.Publish(new EmailUnsubscribedEvent(subscription));
         }

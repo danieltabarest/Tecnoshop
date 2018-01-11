@@ -5,7 +5,7 @@
     var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
 
     //page title
-    ViewBag.Title = T("Admin.Pedidos.Shipments.List").Text;
+    ViewBag.Title = T("Admin.Orders.Shipments.List").Text;
     //active menu item (system name)
     Html.SetActiveMenuItemSystemName("Shipments");
 }
@@ -15,13 +15,13 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Pedidos.Shipments.List")
+            @T("Admin.Orders.Shipments.List")
         </h1>
         <div class="pull-right">
             <div class="btn-group">
                 <button type="button" class="btn bg-purple">
                     <i class="fa fa-file-pdf-o"></i>
-                    @T("Admin.Pedidos.Shipments.PrintPackagingSlips")
+                    @T("Admin.Orders.Shipments.PrintPackagingSlips")
                 </button>
                 <button type="button" class="btn bg-purple dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <span class="caret"></span>
@@ -29,23 +29,23 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li><button type="submit" name="exportpackagingslips-all">
-                            @T("Admin.Pedidos.Shipments.PrintPackagingSlips.All")
+                            @T("Admin.Orders.Shipments.PrintPackagingSlips.All")
                         </button>
                     </li>
                     <li>
                         <button type="button" id="exportpackagingslips-selected">
-                            @T("Admin.Pedidos.Shipments.PrintPackagingSlips.Selected")
+                            @T("Admin.Orders.Shipments.PrintPackagingSlips.Selected")
                         </button>
                     </li>
                 </ul>
             </div>
             <button type="button" id="ship-selected" class="btn bg-aqua">
                 <i class="fa fa-truck"></i>
-                @T("Admin.Pedidos.Shipments.ShipSelected")
+                @T("Admin.Orders.Shipments.ShipSelected")
             </button>
             <button type="button" id="deliver-selected" class="btn bg-green">
                 <i class="fa fa-check-square-o"></i>
-                @T("Admin.Pedidos.Shipments.DeliverySelected")
+                @T("Admin.Orders.Shipments.DeliverySelected")
             </button>
         </div>
     </div>
@@ -185,29 +185,29 @@
                                         width: 50
                                     }, {
                                         field: "Id",
-                                        title: "@T("Admin.Pedidos.Shipments.ID")",
+                                        title: "@T("Admin.Orders.Shipments.ID")",
                                         width: 50
                                     }, {
                                         field: "CustomOrderNumber",
-                                        title: "@T("Admin.Pedidos.Shipments.CustomOrderNumber")",
+                                        title: "@T("Admin.Orders.Shipments.CustomOrderNumber")",
                                         width: 100
                                     }, {
                                         field: "TrackingNumber",
-                                        title: "@T("Admin.Pedidos.Shipments.TrackingNumber")",
+                                        title: "@T("Admin.Orders.Shipments.TrackingNumber")",
                                         width: 100
                                     }, {
                                         field: "TotalWeight",
-                                        title: "@T("Admin.Pedidos.Shipments.TotalWeight")",
+                                        title: "@T("Admin.Orders.Shipments.TotalWeight")",
                                         width: 100
                                     }, {
                                         field: "ShippedDate",
-                                        title: "@T("Admin.Pedidos.Shipments.ShippedDate")",
+                                        title: "@T("Admin.Orders.Shipments.ShippedDate")",
                                         width: 200,
                                         type: "date",
                                         format: "{0:G}"
                                     }, {
                                         field: "DeliveryDate",
-                                        title: "@T("Admin.Pedidos.Shipments.DeliveryDate")",
+                                        title: "@T("Admin.Orders.Shipments.DeliveryDate")",
                                         width: 200,
                                         type: "date",
                                         format: "{0:G}"
@@ -261,23 +261,23 @@
                                     columns: [
                                         {
                                             field: "ProductName",
-                                            title: "@T("Admin.Pedidos.Shipments.Products.ProductName")",
+                                            title: "@T("Admin.Orders.Shipments.Products.ProductName")",
                                             width: 400
                                         },{
                                             field: "ShippedFromWarehouse",
-                                            title: "@T("Admin.Pedidos.Shipments.Products.Warehouse")",
+                                            title: "@T("Admin.Orders.Shipments.Products.Warehouse")",
                                             width: 150
                                         },{
                                             field: "QuantityInThisShipment",
-                                            title: "@T("Admin.Pedidos.Shipments.Products.QtyShipped")",
+                                            title: "@T("Admin.Orders.Shipments.Products.QtyShipped")",
                                             width: 150
                                         },{
                                             field: "ItemWeight",
-                                            title: "@T("Admin.Pedidos.Shipments.Products.ItemWeight")",
+                                            title: "@T("Admin.Orders.Shipments.Products.ItemWeight")",
                                             width: 150
                                         },{
                                             field: "ItemDimensions",
-                                            title: "@T("Admin.Pedidos.Shipments.Products.ItemDimensions")",
+                                            title: "@T("Admin.Orders.Shipments.Products.ItemDimensions")",
                                             width: 150
                                         }
                                     ]

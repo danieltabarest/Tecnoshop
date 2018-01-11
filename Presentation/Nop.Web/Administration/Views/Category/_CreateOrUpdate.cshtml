@@ -20,9 +20,9 @@
         </div>
         <div id="category-edit" class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Catalog.Categorias.Info"), true)
+                @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Catalog.Categories.Info"), true)
                 @Html.RenderBootstrapTabHeader("tab-seo", @T("Admin.Common.SEO"), customCssClass: "advanced-setting")
-                @Html.RenderBootstrapTabHeader("tab-products", @T("Admin.Catalog.Categorias.Products"))
+                @Html.RenderBootstrapTabHeader("tab-products", @T("Admin.Catalog.Categories.Products"))
             </ul>
             <div class="tab-content">
                 @Html.RenderBootstrapTabContent("tab-info", @TabInfo(), true)
@@ -136,7 +136,7 @@
                         @Html.NopLabelFor(model => model.ParentCategoryId)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopDropDownListFor(model => model.ParentCategoryId, Model.AvailableCategorias)
+                        @Html.NopDropDownListFor(model => model.ParentCategoryId, Model.AvailableCategories)
                         @Html.ValidationMessageFor(model => model.ParentCategoryId)
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                                     <text>
                                 discountsIdsInput.setOptions({
                                     enable: false,
-                                    placeholder: '@T("Admin.Catalog.Categorias.Fields.Discounts.NoDiscounts")'
+                                    placeholder: '@T("Admin.Catalog.Categories.Fields.Discounts.NoDiscounts")'
                                 });
                                 discountsIdsInput._placeholder();
                                 discountsIdsInput._enable();
@@ -509,17 +509,17 @@
                                 columns: [
                                     {
                                         field: "ProductName",
-                                        title: "@T("Admin.Catalog.Categorias.Products.Fields.Product")"
+                                        title: "@T("Admin.Catalog.Categories.Products.Fields.Product")"
                                     }, {
                                         field: "IsFeaturedProduct",
-                                        title: "@T("Admin.Catalog.Categorias.Products.Fields.IsFeaturedProduct")",
+                                        title: "@T("Admin.Catalog.Categories.Products.Fields.IsFeaturedProduct")",
                                         width: 150,
                                         headerAttributes: { style: "text-align:center" },
                                         attributes: { style: "text-align:center" },
                                         template: '# if(IsFeaturedProduct) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
                                     }, {
                                         field: "DisplayOrder",
-                                        title: "@T("Admin.Catalog.Categorias.Products.Fields.DisplayOrder")",
+                                        title: "@T("Admin.Catalog.Categories.Products.Fields.DisplayOrder")",
                                         //integer format
                                         format: "{0:0}",
                                         width: 150
@@ -556,7 +556,7 @@
                     <button type="submit" id="btnAddNewProduct"
                             onclick="javascript:OpenWindow('@(Url.Action("ProductAddPopup", "Category", new {categoryId = Model.Id, btnId = "btnRefreshProducts", formId = "category-form"}))', 800, 800, true); return false;"
                             class="btn btn-primary">
-                        @T("Admin.Catalog.Categorias.Products.AddNew")
+                        @T("Admin.Catalog.Categories.Products.AddNew")
                     </button>
                     <input type="submit" id="btnRefreshProducts" style="display: none" />
                     <script type="text/javascript">
@@ -578,7 +578,7 @@
                         {
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    @T("Admin.Catalog.Categorias.Products.SaveBeforeEdit")
+                                    @T("Admin.Catalog.Categories.Products.SaveBeforeEdit")
                                 </div>
                             </div>
                         }

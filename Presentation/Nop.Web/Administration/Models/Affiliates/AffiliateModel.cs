@@ -34,24 +34,24 @@ namespace Nop.Admin.Models.Affiliates
         public partial class AffiliatedOrderModel : BaseNopEntityModel
         {
             public override int Id { get; set; }
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.CustomOrderNumber")]
+            [NopResourceDisplayName("Admin.Affiliates.Orders.CustomOrderNumber")]
             public string CustomOrderNumber { get; set; }
 
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.Pedidostatus")]
-            public string Pedidostatus { get; set; }
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.Pedidostatus")]
-            public int PedidostatusId { get; set; }
+            [NopResourceDisplayName("Admin.Affiliates.Orders.Orderstatus")]
+            public string Orderstatus { get; set; }
+            [NopResourceDisplayName("Admin.Affiliates.Orders.Orderstatus")]
+            public int OrderstatusId { get; set; }
 
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.PaymentStatus")]
+            [NopResourceDisplayName("Admin.Affiliates.Orders.PaymentStatus")]
             public string PaymentStatus { get; set; }
 
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.ShippingStatus")]
+            [NopResourceDisplayName("Admin.Affiliates.Orders.ShippingStatus")]
             public string ShippingStatus { get; set; }
 
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.OrderTotal")]
+            [NopResourceDisplayName("Admin.Affiliates.Orders.OrderTotal")]
             public string OrderTotal { get; set; }
 
-            [NopResourceDisplayName("Admin.Affiliates.Pedidos.CreatedOn")]
+            [NopResourceDisplayName("Admin.Affiliates.Orders.CreatedOn")]
             public DateTime CreatedOn { get; set; }
         }
 

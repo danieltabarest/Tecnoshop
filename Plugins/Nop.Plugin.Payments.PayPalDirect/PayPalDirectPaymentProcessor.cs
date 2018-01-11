@@ -7,7 +7,7 @@ using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Plugins;
 using Nop.Plugin.Payments.PayPalDirect.Controllers;
@@ -18,7 +18,7 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Tax;
 using PayPal.Api;
@@ -995,7 +995,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
-        public bool CanRePostProcessPayment(Core.Domain.Pedidos.Order order)
+        public bool CanRePostProcessPayment(Core.Domain.Orders.Order order)
         {
             if (order == null)
                 throw new ArgumentNullException("order");

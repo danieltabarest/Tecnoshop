@@ -14,7 +14,7 @@ using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Security;
@@ -33,7 +33,7 @@ namespace Nop.Data.Tests
         private static readonly Guid _customerGuid = Guid.NewGuid();
         private static readonly Guid _orderGuid = Guid.NewGuid();
         private static readonly Guid _downloadGuid = Guid.NewGuid();
-        private static readonly Guid _Boletín informativoSubscriptionGuid = Guid.NewGuid();
+        private static readonly Guid _NewsletterSubscriptionGuid = Guid.NewGuid();
 
         #region Affiliates
 
@@ -310,7 +310,7 @@ namespace Nop.Data.Tests
             {
                 AttributesXml = "Some XML",
                 StockQuantity = 2,
-                AllowOutOfStockPedidos = true,
+                AllowOutOfStockOrders = true,
                 Sku = "Sku1",
                 ManufacturerPartNumber = "ManufacturerPartNumber1",
                 Gtin = "Gtin1",
@@ -715,7 +715,7 @@ namespace Nop.Data.Tests
         {
             return new Discount
             {
-                DiscountType = DiscountType.AssignedToCategorias,
+                DiscountType = DiscountType.AssignedToCategories,
                 Name = "Discount 1",
                 UsePercentage = true,
                 DiscountPercentage = 1.1M,
@@ -729,7 +729,7 @@ namespace Nop.Data.Tests
                 DiscountLimitation = DiscountLimitationType.Unlimited,
                 LimitationTimes = 3,
                 MaximumDiscountedQuantity = 4,
-                AppliedToSubCategorias = true
+                AppliedToSubCategories = true
             };
         }
 
@@ -978,12 +978,12 @@ namespace Nop.Data.Tests
             };
         }
 
-        public static Boletín informativoSubscription GetTestBoletín informativoSubscription(this PersistenceTest test)
+        public static NewsletterSubscription GetTestNewsletterSubscription(this PersistenceTest test)
         {
-            return new Boletín informativoSubscription
+            return new NewsletterSubscription
             {
                 Email = "me@yourstore.com",
-                Boletín informativoSubscriptionGuid = _Boletín informativoSubscriptionGuid,
+                NewsletterSubscriptionGuid = _NewsletterSubscriptionGuid,
                 CreatedOnUtc = new DateTime(2010, 01, 01),
                 StoreId = 1,
                 Active = true
@@ -1052,7 +1052,7 @@ namespace Nop.Data.Tests
 
         #endregion
 
-        #region Pedidos
+        #region Orders
 
         public static CheckoutAttribute GetTestCheckoutAttribute(this PersistenceTest test)
         {
@@ -1122,7 +1122,7 @@ namespace Nop.Data.Tests
             {
                 OrderGuid = _orderGuid,
                 StoreId = 1,
-                Pedidostatus = Pedidostatus.Complete,
+                Orderstatus = Orderstatus.Complete,
                 ShippingStatus = ShippingStatus.Shipped,
                 PaymentStatus = PaymentStatus.Paid,
                 PaymentMethodSystemName = "PaymentMethodSystemName1",
@@ -1130,12 +1130,12 @@ namespace Nop.Data.Tests
                 CurrencyRate = 1.1M,
                 CustomerTaxDisplayType = TaxDisplayType.ExcludingTax,
                 VatNumber = "123456789",
-                PedidosubtotalInclTax = 2.1M,
-                PedidosubtotalExclTax = 3.1M,
-                PedidosubTotalDiscountInclTax = 4.1M,
-                PedidosubTotalDiscountExclTax = 5.1M,
-                PedidoshippingInclTax = 6.1M,
-                PedidoshippingExclTax = 7.1M,
+                OrdersubtotalInclTax = 2.1M,
+                OrdersubtotalExclTax = 3.1M,
+                OrdersubTotalDiscountInclTax = 4.1M,
+                OrdersubTotalDiscountExclTax = 5.1M,
+                OrdershippingInclTax = 6.1M,
+                OrdershippingExclTax = 7.1M,
                 PaymentMethodAdditionalFeeInclTax = 8.1M,
                 PaymentMethodAdditionalFeeExclTax = 9.1M,
                 TaxRates = "1,3,5,7",

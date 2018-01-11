@@ -31,7 +31,7 @@
         <div class="breadcrumb">
             <ul>
                 <li>
-                    <a href="@Url.RouteUrl("HomePage")" title="@T("Categorias.Breadcrumb.Top")">@T("Categorias.Breadcrumb.Top")</a>
+                    <a href="@Url.RouteUrl("HomePage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
                     <span class="delimiter">@breadcrumbDelimiter</span>
                 </li>
                 @foreach (var cat in Model.CategoryBreadcrumb)
@@ -67,13 +67,13 @@
                 @Html.Raw(Model.Description)
             </div>
         }
-        @Html.Widget("categorydetails_before_subCategorias", Model.Id)
-        @*subCategorias*@
-        @if (Model.SubCategorias.Count > 0)
+        @Html.Widget("categorydetails_before_subCategories", Model.Id)
+        @*subCategories*@
+        @if (Model.SubCategories.Count > 0)
         {
             <div class="category-grid sub-category-grid">
                 <div class="item-grid">
-                    @foreach (var item in Model.SubCategorias)
+                    @foreach (var item in Model.SubCategories)
                     {
                         <div class="item-box">
                             <div class="sub-category-item">

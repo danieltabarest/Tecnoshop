@@ -7,27 +7,27 @@
         <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })">@category.Name
         @if (category.NumberOfProducts.HasValue)
         {
-            <text> </text>@T("Categorias.TotalProducts", category.NumberOfProducts.Value)
+            <text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)
         }
         </a>
         @{
-            //subCategorias
-            var subCategorias = responsiveMobileMenu ?
-                //responsive (all Categorias)
-                category.SubCategorias :
-                //standard design (only Categorias with "IncludeInTopMenu")
-                category.SubCategorias.Where(x => x.IncludeInTopMenu).ToList();
+            //subCategories
+            var subCategories = responsiveMobileMenu ?
+                //responsive (all Categories)
+                category.SubCategories :
+                //standard design (only Categories with "IncludeInTopMenu")
+                category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
 
             var levelClass = "";
             if (level == 0)
             {
                 levelClass = "first-level";
             }
-            if (subCategorias.Count > 0)
+            if (subCategories.Count > 0)
             {
                 <div class="sublist-toggle"></div>
                 <ul class="sublist @levelClass">
-                    @foreach (var subCategory in subCategorias)
+                    @foreach (var subCategory in subCategories)
                     {
                         @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
                     }
@@ -44,9 +44,9 @@
         <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
     }
     @{
-        var rootCategorias = Model.Categorias.Where(x => x.IncludeInTopMenu).ToList();
+        var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
     }
-    @foreach (var category in rootCategorias)
+    @foreach (var category in rootCategories)
     {
         @RenderCategoryLine(category, 0, false)
     }
@@ -82,9 +82,9 @@
 </ul>
 
 @{
-    var rootCategoriasResponsive = Model.Categorias.ToList();
-    //name it "Categorias" if we have only Categorias. Otherwise, "Menu"
-    var responsiveMenuTitle = Model.HasOnlyCategorias ? T("Categorias") : T("Menu");
+    var rootCategoriesResponsive = Model.Categories.ToList();
+    //name it "Categories" if we have only Categories. Otherwise, "Menu"
+    var responsiveMenuTitle = Model.HasOnlyCategories ? T("Categories") : T("Menu");
     <div class="menu-toggle">@responsiveMenuTitle</div>
     <ul class="top-menu mobile">
         @Html.Widget("mob_header_menu_before")
@@ -92,7 +92,7 @@
         {
             <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
         }
-        @foreach (var category in rootCategoriasResponsive)
+        @foreach (var category in rootCategoriesResponsive)
         {
             @RenderCategoryLine(category, 0, true)
         }

@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Plugins;
 using Nop.Services.Configuration;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 
 namespace Nop.Plugin.DiscountRules.HasOneProduct
 {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Payments;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Order processing service interface
@@ -16,7 +16,7 @@ namespace Nop.Services.Pedidos
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Validated order</returns>
-        void CheckPedidostatus(Order order);
+        void CheckOrderstatus(Order order);
 
         /// <summary>
         /// Places an order
@@ -256,7 +256,7 @@ namespace Nop.Services.Pedidos
         /// </summary>
         /// <param name="cart">Shopping cart</param>
         /// <returns>true - OK; false - minimum order sub-total amount is not reached</returns>
-        bool ValidateMinPedidosubtotalAmount(IList<ShoppingCartItem> cart);
+        bool ValidateMinOrdersubtotalAmount(IList<ShoppingCartItem> cart);
 
         /// <summary>
         /// Valdiate minimum order total amount

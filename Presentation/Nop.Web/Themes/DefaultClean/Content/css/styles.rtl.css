@@ -983,17 +983,17 @@ label, label + * {
 	background-position: -152px 0;
 }
 
-.Boletín informativo-email { 
+.Newsletter-email { 
 	display: inline-block;
 	overflow: hidden; 
 }
-.Boletín informativo-email input[type="text"] {
+.Newsletter-email input[type="text"] {
 	float: right;
 	width: 180px;
 	height: 36px;
 	margin: 0 0 0 -1px;
 }
-.Boletín informativo-subscribe-button {
+.Newsletter-subscribe-button {
 	float: right;
 	height: 36px;
 	border: none;
@@ -1003,20 +1003,20 @@ label, label + * {
 	color: #fff;
 	text-transform: uppercase;
 }
-.Boletín informativo-subscribe-button:hover {
+.Newsletter-subscribe-button:hover {
 	background-color: #248ece;
 }
-.Boletín informativo-email .options {
+.Newsletter-email .options {
     clear: both;
     padding: 10px 0 0;
 }
-.Boletín informativo-validation, 
-.Boletín informativo-result { 
+.Newsletter-validation, 
+.Newsletter-result { 
 	width: 100%;
 	overflow: hidden; 
 	line-height: 28px; 
 }
-/*.Boletín informativo-validation .please-wait {
+/*.Newsletter-validation .please-wait {
 	display: none !important; 
 }*/
 
@@ -5310,7 +5310,7 @@ pre {
 .footer-block {
 	width: 85%;
 }
-.Boletín informativo-email input[type="text"] {
+.Newsletter-email input[type="text"] {
 	width: 240px;
 }
 
@@ -6423,17 +6423,17 @@ pre {
 .follow-us .social li {
 	margin: 0 0 0 10px;
 }
-.Boletín informativo-email {
+.Newsletter-email {
 	display: block;
 }
-.Boletín informativo-email input[type="text"] {
+.Newsletter-email input[type="text"] {
 	width: 200px;
 }
-.Boletín informativo-email .Boletín informativo-subscribe-button {
+.Newsletter-email .Newsletter-subscribe-button {
 	width: 100px;
 	padding: 0 5px;
 }
-.Boletín informativo-validation .field-validation-valid {
+.Newsletter-validation .field-validation-valid {
 	text-align: right;
 }
 .footer-lower {

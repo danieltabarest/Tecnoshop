@@ -66,9 +66,9 @@ namespace Nop.Web.Infrastructure
                             "customer/addresses",
                             new { controller = "Customer", action = "Addresses" },
                             new[] { "Nop.Web.Controllers" });
-            routes.MapLocalizedRoute("CustomerPedidos",
+            routes.MapLocalizedRoute("CustomerOrders",
                             "order/history",
-                            new { controller = "Order", action = "CustomerPedidos" },
+                            new { controller = "Order", action = "CustomerOrders" },
                             new[] { "Nop.Web.Controllers" });
 
             //contact us
@@ -274,10 +274,10 @@ namespace Nop.Web.Infrastructure
                             new { orderId = @"\d+" },
                             new[] { "Nop.Web.Controllers" });
 
-            //subscribe Boletín informativos
-            routes.MapLocalizedRoute("SubscribeBoletín informativo",
-                            "subscribeBoletín informativo",
-                            new { controller = "Boletín informativo", action = "SubscribeBoletín informativo" },
+            //subscribe Newsletters
+            routes.MapLocalizedRoute("SubscribeNewsletter",
+                            "subscribeNewsletter",
+                            new { controller = "Newsletter", action = "SubscribeNewsletter" },
                             new[] { "Nop.Web.Controllers" });
 
             //email wishlist
@@ -422,7 +422,7 @@ namespace Nop.Web.Infrastructure
                             new { id = @"\d+", page = @"\d+" },
                             new[] { "Nop.Web.Controllers" });
 
-            //Pedidos
+            //Orders
             routes.MapLocalizedRoute("OrderDetails",
                             "orderdetails/{orderId}",
                             new { controller = "Order", action = "Details" },
@@ -684,10 +684,10 @@ namespace Nop.Web.Infrastructure
                             new { privateMessageId = @"\d+" },
                             new[] { "Nop.Web.Controllers" });
 
-            //activate Boletín informativos
-            routes.MapLocalizedRoute("Boletín informativoActivation",
-                            "Boletín informativo/subscriptionactivation/{token}/{active}",
-                            new { controller = "Boletín informativo", action = "SubscriptionActivation" },
+            //activate Newsletters
+            routes.MapLocalizedRoute("NewsletterActivation",
+                            "Newsletter/subscriptionactivation/{token}/{active}",
+                            new { controller = "Newsletter", action = "SubscriptionActivation" },
                             new { token = new GuidConstraint(false) },
                             new[] { "Nop.Web.Controllers" });
 

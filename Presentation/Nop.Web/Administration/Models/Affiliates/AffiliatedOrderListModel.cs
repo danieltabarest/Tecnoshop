@@ -11,29 +11,29 @@ namespace Nop.Admin.Models.Affiliates
     {
         public AffiliatedOrderListModel()
         {
-            AvailablePedidostatuses = new List<SelectListItem>();
+            AvailableOrderstatuses = new List<SelectListItem>();
             AvailablePaymentStatuses = new List<SelectListItem>();
             AvailableShippingStatuses = new List<SelectListItem>();
         }
 
         public int AffliateId { get; set; }
 
-        [NopResourceDisplayName("Admin.Affiliates.Pedidos.StartDate")]
+        [NopResourceDisplayName("Admin.Affiliates.Orders.StartDate")]
         [UIHint("DateNullable")]
         public DateTime? StartDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Affiliates.Pedidos.EndDate")]
+        [NopResourceDisplayName("Admin.Affiliates.Orders.EndDate")]
         [UIHint("DateNullable")]
         public DateTime? EndDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Affiliates.Pedidos.Pedidostatus")]
-        public int PedidostatusId { get; set; }
-        [NopResourceDisplayName("Admin.Affiliates.Pedidos.PaymentStatus")]
+        [NopResourceDisplayName("Admin.Affiliates.Orders.Orderstatus")]
+        public int OrderstatusId { get; set; }
+        [NopResourceDisplayName("Admin.Affiliates.Orders.PaymentStatus")]
         public int PaymentStatusId { get; set; }
-        [NopResourceDisplayName("Admin.Affiliates.Pedidos.ShippingStatus")]
+        [NopResourceDisplayName("Admin.Affiliates.Orders.ShippingStatus")]
         public int ShippingStatusId { get; set; }
 
-        public IList<SelectListItem> AvailablePedidostatuses { get; set; }
+        public IList<SelectListItem> AvailableOrderstatuses { get; set; }
         public IList<SelectListItem> AvailablePaymentStatuses { get; set; }
         public IList<SelectListItem> AvailableShippingStatuses { get; set; }
     }

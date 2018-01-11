@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Nop.Core;
 using Nop.Core.Caching;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Tax;
 using Nop.Services.Catalog;
 using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Seo;
 using Nop.Web.Infrastructure.Cache;
 using Nop.Web.Models.Order;
@@ -25,7 +25,7 @@ namespace Nop.Web.Factories
 		#region Fields
 
         private readonly IReturnRequestService _returnRequestService;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IWorkContext _workContext;
         private readonly IStoreContext _storeContext;
         private readonly ICurrencyService _currencyService;
@@ -33,7 +33,7 @@ namespace Nop.Web.Factories
         private readonly ILocalizationService _localizationService;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IDownloadService _downloadService;
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
         private readonly ICacheManager _cacheManager;
 
         #endregion
@@ -41,7 +41,7 @@ namespace Nop.Web.Factories
         #region Constructors
 
         public ReturnRequestModelFactory(IReturnRequestService returnRequestService,
-            IPedidoservice Pedidoservice, 
+            IOrderservice Orderservice, 
             IWorkContext workContext, 
             IStoreContext storeContext,
             ICurrencyService currencyService, 
@@ -49,11 +49,11 @@ namespace Nop.Web.Factories
             ILocalizationService localizationService,
             IDateTimeHelper dateTimeHelper,
             IDownloadService downloadService, 
-            Pedidosettings Pedidosettings,
+            Ordersettings Ordersettings,
             ICacheManager cacheManager)
         {
             this._returnRequestService = returnRequestService;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._workContext = workContext;
             this._storeContext = storeContext;
             this._currencyService = currencyService;
@@ -61,7 +61,7 @@ namespace Nop.Web.Factories
             this._localizationService = localizationService;
             this._dateTimeHelper = dateTimeHelper;
             this._downloadService = downloadService;
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
             this._cacheManager = cacheManager;
         }
 
@@ -123,7 +123,7 @@ namespace Nop.Web.Factories
                 throw new ArgumentNullException("model");
 
             model.OrderId = order.Id;
-            model.AllowFiles = _Pedidosettings.ReturnRequestsAllowFiles;
+            model.AllowFiles = _Ordersettings.ReturnRequestsAllowFiles;
             model.CustomOrderNumber = order.CustomOrderNumber;
 
             //return reasons
@@ -176,7 +176,7 @@ namespace Nop.Web.Factories
             var returnRequests = _returnRequestService.SearchReturnRequests(_storeContext.CurrentStore.Id, _workContext.CurrentCustomer.Id);
             foreach (var returnRequest in returnRequests)
             {
-                var orderItem = _Pedidoservice.GetOrderItemById(returnRequest.OrderItemId);
+                var orderItem = _Orderservice.GetOrderItemById(returnRequest.OrderItemId);
                 if (orderItem != null)
                 {
                     var product = orderItem.Product;

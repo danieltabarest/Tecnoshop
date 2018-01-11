@@ -10,8 +10,8 @@ namespace Nop.Admin.Models.Settings
     {
         public TaxSettingsModel()
         {
-            PaymentMethodAdditionalFeeTaxCategorias = new List<SelectListItem>();
-            TaxCategorias = new List<SelectListItem>();
+            PaymentMethodAdditionalFeeTaxCategories = new List<SelectListItem>();
+            TaxCategories = new List<SelectListItem>();
             EuVatShopCountries = new List<SelectListItem>();
             DefaultTaxAddress = new AddressModel();
         }
@@ -44,18 +44,18 @@ namespace Nop.Admin.Models.Settings
         public bool HideZeroTax { get; set; }
         public bool HideZeroTax_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.Tax.HideTaxInPedidosummary")]
-        public bool HideTaxInPedidosummary { get; set; }
-        public bool HideTaxInPedidosummary_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.Tax.HideTaxInOrdersummary")]
+        public bool HideTaxInOrdersummary { get; set; }
+        public bool HideTaxInOrdersummary_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.Tax.ForceTaxExclusionFromPedidosubtotal")]
-        public bool ForceTaxExclusionFromPedidosubtotal { get; set; }
-        public bool ForceTaxExclusionFromPedidosubtotal_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.Tax.ForceTaxExclusionFromOrdersubtotal")]
+        public bool ForceTaxExclusionFromOrdersubtotal { get; set; }
+        public bool ForceTaxExclusionFromOrdersubtotal_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.Tax.DefaultTaxCategory")]
         public int DefaultTaxCategoryId { get; set; }
         public bool DefaultTaxCategoryId_OverrideForStore { get; set; }
-        public IList<SelectListItem> TaxCategorias { get; set; }
+        public IList<SelectListItem> TaxCategories { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.Tax.TaxBasedOn")]
         public int TaxBasedOn { get; set; }
@@ -92,7 +92,7 @@ namespace Nop.Admin.Models.Settings
         [NopResourceDisplayName("Admin.Configuration.Settings.Tax.PaymentMethodAdditionalFeeTaxClass")]
         public int PaymentMethodAdditionalFeeTaxClassId { get; set; }
         public bool PaymentMethodAdditionalFeeTaxClassId_OverrideForStore { get; set; }
-        public IList<SelectListItem> PaymentMethodAdditionalFeeTaxCategorias { get; set; }
+        public IList<SelectListItem> PaymentMethodAdditionalFeeTaxCategories { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.Tax.EuVatEnabled")]
         public bool EuVatEnabled { get; set; }

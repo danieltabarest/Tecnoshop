@@ -18,9 +18,9 @@ using Nop.Web.Framework.Mvc;
 
 namespace Nop.Admin.Controllers
 {
-	public partial class Boletín informativoSubscriptionController : BaseAdminController
+	public partial class NewsletterSubscriptionController : BaseAdminController
 	{
-		private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+		private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
 		private readonly IDateTimeHelper _dateTimeHelper;
         private readonly ILocalizationService _localizationService;
         private readonly IPermissionService _permissionService;
@@ -29,7 +29,7 @@ namespace Nop.Admin.Controllers
         private readonly IExportManager _exportManager;
         private readonly IImportManager _importManager;
 
-		public Boletín informativoSubscriptionController(IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+		public NewsletterSubscriptionController(INewsletterSubscriptionService NewsletterSubscriptionService,
 			IDateTimeHelper dateTimeHelper,
             ILocalizationService localizationService,
             IPermissionService permissionService,
@@ -38,7 +38,7 @@ namespace Nop.Admin.Controllers
             IExportManager exportManager,
             IImportManager importManager)
 		{
-			this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+			this._NewsletterSubscriptionService = NewsletterSubscriptionService;
 			this._dateTimeHelper = dateTimeHelper;
             this._localizationService = localizationService;
             this._permissionService = permissionService;
@@ -55,10 +55,10 @@ namespace Nop.Admin.Controllers
 
 		public virtual ActionResult List()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBoletín informativoSubscribers))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageNewsletterSubscribers))
                 return AccessDeniedView();
 
-            var model = new Boletín informativoSubscriptionListModel();
+            var model = new NewsletterSubscriptionListModel();
 
             //stores
             model.AvailableStores.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -69,17 +69,17 @@ namespace Nop.Admin.Controllers
             model.ActiveList.Add(new SelectListItem
             {
                 Value = "0",
-                Text = _localizationService.GetResource("Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.All")
+                Text = _localizationService.GetResource("Admin.Promotions.NewsletterSubscriptions.List.SearchActive.All")
             });
             model.ActiveList.Add(new SelectListItem
             {
                 Value = "1",
-                Text = _localizationService.GetResource("Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.ActiveOnly")
+                Text = _localizationService.GetResource("Admin.Promotions.NewsletterSubscriptions.List.SearchActive.ActiveOnly")
             });
             model.ActiveList.Add(new SelectListItem
             {
                 Value = "2",
-                Text = _localizationService.GetResource("Admin.Promotions.Boletín informativoSubscriptions.List.SearchActive.NotActiveOnly")
+                Text = _localizationService.GetResource("Admin.Promotions.NewsletterSubscriptions.List.SearchActive.NotActiveOnly")
             });
 
             //customer roles
@@ -91,9 +91,9 @@ namespace Nop.Admin.Controllers
 		}
 
 		[HttpPost]
-		public virtual ActionResult SubscriptionList(DataSourceRequest command, Boletín informativoSubscriptionListModel model)
+		public virtual ActionResult SubscriptionList(DataSourceRequest command, NewsletterSubscriptionListModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBoletín informativoSubscribers))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageNewsletterSubscribers))
                 return AccessDeniedKendoGridJson();
 
             bool? isActive = null;
@@ -107,13 +107,13 @@ namespace Nop.Admin.Controllers
             var endDateValue = (model.EndDate == null) ? null
                 : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
-            var Boletín informativoSubscriptions = _Boletín informativoSubscriptionService.GetAllBoletín informativoSubscriptions(model.SearchEmail,
+            var NewsletterSubscriptions = _NewsletterSubscriptionService.GetAllNewsletterSubscriptions(model.SearchEmail,
                 startDateValue, endDateValue, model.StoreId, isActive, model.CustomerRoleId,
                 command.Page - 1, command.PageSize);
 
             var gridModel = new DataSourceResult
             {
-                Data = Boletín informativoSubscriptions.Select(x =>
+                Data = NewsletterSubscriptions.Select(x =>
 				{
 					var m = x.ToModel();
 				    var store = _storeService.GetStoreById(x.StoreId);
@@ -121,16 +121,16 @@ namespace Nop.Admin.Controllers
 					m.CreatedOn = _dateTimeHelper.ConvertToUserTime(x.CreatedOnUtc, DateTimeKind.Utc);
 					return m;
 				}),
-                Total = Boletín informativoSubscriptions.TotalCount
+                Total = NewsletterSubscriptions.TotalCount
             };
 
             return Json(gridModel);
 		}
 
         [HttpPost]
-        public virtual ActionResult SubscriptionUpdate([Bind(Exclude = "CreatedOn")] Boletín informativoSubscriptionModel model)
+        public virtual ActionResult SubscriptionUpdate([Bind(Exclude = "CreatedOn")] NewsletterSubscriptionModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBoletín informativoSubscribers))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageNewsletterSubscribers))
                 return AccessDeniedView();
 
             if (!ModelState.IsValid)
@@ -138,10 +138,10 @@ namespace Nop.Admin.Controllers
                 return Json(new DataSourceResult { Errors = ModelState.SerializeErrors() });
             }
 
-            var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionById(model.Id);
+            var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionById(model.Id);
             subscription.Email = model.Email;
             subscription.Active = model.Active;
-            _Boletín informativoSubscriptionService.UpdateBoletín informativoSubscription(subscription);
+            _NewsletterSubscriptionService.UpdateNewsletterSubscription(subscription);
 
             return new NullJsonResult();
         }
@@ -149,22 +149,22 @@ namespace Nop.Admin.Controllers
         [HttpPost]
         public virtual ActionResult SubscriptionDelete(int id)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBoletín informativoSubscribers))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageNewsletterSubscribers))
                 return AccessDeniedView();
 
-            var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionById(id);
+            var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionById(id);
             if (subscription == null)
                 throw new ArgumentException("No subscription found with the specified id");
-            _Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(subscription);
+            _NewsletterSubscriptionService.DeleteNewsletterSubscription(subscription);
 
             return new NullJsonResult();
         }
 
         [HttpPost, ActionName("List")]
         [FormValueRequired("exportcsv")]
-		public virtual ActionResult ExportCsv(Boletín informativoSubscriptionListModel model)
+		public virtual ActionResult ExportCsv(NewsletterSubscriptionListModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBoletín informativoSubscribers))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageNewsletterSubscribers))
                 return AccessDeniedView();
 
             bool? isActive = null;
@@ -178,19 +178,19 @@ namespace Nop.Admin.Controllers
             var endDateValue = (model.EndDate == null) ? null
                 : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
-            var subscriptions = _Boletín informativoSubscriptionService.GetAllBoletín informativoSubscriptions(model.SearchEmail,
+            var subscriptions = _NewsletterSubscriptionService.GetAllNewsletterSubscriptions(model.SearchEmail,
                 startDateValue, endDateValue, model.StoreId, isActive, model.CustomerRoleId);
 
-		    string result = _exportManager.ExportBoletín informativoSubscribersToTxt(subscriptions);
+		    string result = _exportManager.ExportNewsletterSubscribersToTxt(subscriptions);
 
-            string fileName = String.Format("Boletín informativo_emails_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
+            string fileName = String.Format("Newsletter_emails_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
 			return File(Encoding.UTF8.GetBytes(result), MimeTypes.TextCsv, fileName);
 		}
 
         [HttpPost]
         public virtual ActionResult ImportCsv(FormCollection form)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBoletín informativoSubscribers))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageNewsletterSubscribers))
                 return AccessDeniedView();
 
             try
@@ -198,8 +198,8 @@ namespace Nop.Admin.Controllers
                 var file = Request.Files["importcsvfile"];
                 if (file != null && file.ContentLength > 0)
                 {
-                    int count = _importManager.ImportBoletín informativoSubscribersFromTxt(file.InputStream);
-                    SuccessNotification(String.Format(_localizationService.GetResource("Admin.Promotions.Boletín informativoSubscriptions.ImportEmailsSuccess"), count));
+                    int count = _importManager.ImportNewsletterSubscribersFromTxt(file.InputStream);
+                    SuccessNotification(String.Format(_localizationService.GetResource("Admin.Promotions.NewsletterSubscriptions.ImportEmailsSuccess"), count));
                     return RedirectToAction("List");
                 }
                 ErrorNotification(_localizationService.GetResource("Admin.Common.UploadFile"));

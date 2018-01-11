@@ -26,7 +26,7 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether "Published" or "Disable buy/wishlist buttons" flags should be updated after order cancellation (deletion).
         /// Of course, when qty > configured minimum stock level
         /// </summary>
-        public bool PublishBackProductWhenCancellingPedidos { get; set; }
+        public bool PublishBackProductWhenCancellingOrders { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to display product SKU on the product details page
@@ -69,9 +69,9 @@ namespace Nop.Core.Domain.Catalog
         public string DefaultViewMode { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether a category details page should include products from subCategorias
+        /// Gets or sets a value indicating whether a category details page should include products from subCategories
         /// </summary>
-        public bool ShowProductsFromSubCategorias { get; set; }
+        public bool ShowProductsFromSubCategories { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether number of products should be displayed beside each category
@@ -79,9 +79,9 @@ namespace Nop.Core.Domain.Catalog
         public bool ShowCategoryProductNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether we include subCategorias (when 'ShowCategoryProductNumber' is 'true')
+        /// Gets or sets a value indicating whether we include subCategories (when 'ShowCategoryProductNumber' is 'true')
         /// </summary>
-        public bool ShowCategoryProductNumberIncludingSubCategorias { get; set; }
+        public bool ShowCategoryProductNumberIncludingSubCategories { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether category breadcrumb is enabled
@@ -323,11 +323,11 @@ namespace Nop.Core.Domain.Catalog
         public bool DisplayTaxShippingInfoOrderDetailsPage { get; set; }
         
         /// <summary>
-        /// Gets or sets the default value to use for Category page size options (for new Categorias)
+        /// Gets or sets the default value to use for Category page size options (for new Categories)
         /// </summary>
         public string DefaultCategoryPageSizeOptions { get; set; }
         /// <summary>
-        /// Gets or sets the default value to use for Category page size (for new Categorias)
+        /// Gets or sets the default value to use for Category page size (for new Categories)
         /// </summary>
         public int DefaultCategoryPageSize { get; set; }
         /// <summary>

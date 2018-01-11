@@ -5,9 +5,9 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 
 namespace Nop.Services.Payments
 {

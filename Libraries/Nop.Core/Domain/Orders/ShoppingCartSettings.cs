@@ -1,7 +1,7 @@
 ﻿
 using Nop.Core.Configuration;
 
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
     public class ShoppingCartSettings : ISettings
     {

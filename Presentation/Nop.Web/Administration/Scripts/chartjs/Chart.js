@@ -1917,7 +1917,7 @@ module.exports = function(Chart) {
 					base: reset ? scaleBase : this.calculateBarBase(this.index, index),
 					width: this.calculateBarWidth(index),
 					backgroundColor: custom.backgroundColor ? custom.backgroundColor : helpers.getValueAtIndexOrDefault(dataset.backgroundColor, index, rectangleElementOptions.backgroundColor),
-					bPedidoskipped: custom.bPedidoskipped ? custom.bPedidoskipped : rectangleElementOptions.bPedidoskipped,
+					bOrderskipped: custom.bOrderskipped ? custom.bOrderskipped : rectangleElementOptions.bOrderskipped,
 					borderColor: custom.borderColor ? custom.borderColor : helpers.getValueAtIndexOrDefault(dataset.borderColor, index, rectangleElementOptions.borderColor),
 					borderWidth: custom.borderWidth ? custom.borderWidth : helpers.getValueAtIndexOrDefault(dataset.borderWidth, index, rectangleElementOptions.borderWidth)
 				}
@@ -2133,7 +2133,7 @@ module.exports = function(Chart) {
 		},
 		elements: {
 			rectangle: {
-				bPedidoskipped: 'left'
+				bOrderskipped: 'left'
 			}
 		},
 		tooltips: {
@@ -2190,7 +2190,7 @@ module.exports = function(Chart) {
 					base: reset ? scaleBase : this.calculateBarBase(this.index, index),
 					height: this.calculateBarHeight(index),
 					backgroundColor: custom.backgroundColor ? custom.backgroundColor : helpers.getValueAtIndexOrDefault(dataset.backgroundColor, index, rectangleElementOptions.backgroundColor),
-					bPedidoskipped: custom.bPedidoskipped ? custom.bPedidoskipped : rectangleElementOptions.bPedidoskipped,
+					bOrderskipped: custom.bOrderskipped ? custom.bOrderskipped : rectangleElementOptions.bOrderskipped,
 					borderColor: custom.borderColor ? custom.borderColor : helpers.getValueAtIndexOrDefault(dataset.borderColor, index, rectangleElementOptions.borderColor),
 					borderWidth: custom.borderWidth ? custom.borderWidth : helpers.getValueAtIndexOrDefault(dataset.borderWidth, index, rectangleElementOptions.borderWidth)
 				},
@@ -2231,8 +2231,8 @@ module.exports = function(Chart) {
 					];
 
 					// Find first (starting) corner with fallback to 'bottom'
-					var bPedidos = ['bottom', 'left', 'top', 'right'];
-					var startCorner = bPedidos.indexOf(vm.bPedidoskipped, 0);
+					var bOrders = ['bottom', 'left', 'top', 'right'];
+					var startCorner = bOrders.indexOf(vm.bOrderskipped, 0);
 					if (startCorner === -1)
 						startCorner = 0;
 
@@ -8149,7 +8149,7 @@ module.exports = function(Chart) {
 			}
 
 			var globalOptionLineElements = globalDefaults.elements.line;
-			// Now draw the line between all the points with any bPedidos
+			// Now draw the line between all the points with any bOrders
 			ctx.lineCap = vm.borderCapStyle || globalOptionLineElements.borderCapStyle;
 
 			// IE 9 and 10 do not support line dash
@@ -8349,7 +8349,7 @@ module.exports = function(Chart) {
 		backgroundColor: globalOpts.defaultColor,
 		borderWidth: 0,
 		borderColor: globalOpts.defaultColor,
-		bPedidoskipped: 'bottom'
+		bOrderskipped: 'bottom'
 	};
 
 	Chart.elements.Rectangle = Chart.Element.extend({
@@ -8387,8 +8387,8 @@ module.exports = function(Chart) {
 			];
 
 			// Find first (starting) corner with fallback to 'bottom' 
-			var bPedidos = ['bottom', 'left', 'top', 'right'];
-			var startCorner = bPedidos.indexOf(vm.bPedidoskipped, 0);
+			var bOrders = ['bottom', 'left', 'top', 'right'];
+			var startCorner = bOrders.indexOf(vm.bOrderskipped, 0);
 			if (startCorner === -1)
 				startCorner = 0;
 

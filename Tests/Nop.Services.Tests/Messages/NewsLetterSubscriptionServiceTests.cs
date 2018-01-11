@@ -11,10 +11,10 @@ using Rhino.Mocks;
 namespace Nop.Services.Tests.Messages 
 {
     [TestFixture]
-    public class Boletín informativoSubscriptionServiceTests : ServiceTest
+    public class NewsletterSubscriptionServiceTests : ServiceTest
     {
         private IEventPublisher _eventPublisher;
-        private IRepository<Boletín informativoSubscription> _Boletín informativoSubscriptionRepository;
+        private IRepository<NewsletterSubscription> _NewsletterSubscriptionRepository;
         private IRepository<Customer> _customerRepository;
         private ICustomerService _customerService;
         private IDbContext _dbContext;
@@ -23,7 +23,7 @@ namespace Nop.Services.Tests.Messages
         public new void SetUp()
         {
             _eventPublisher = MockRepository.GenerateStub<IEventPublisher>();
-            _Boletín informativoSubscriptionRepository = MockRepository.GenerateMock<IRepository<Boletín informativoSubscription>>();
+            _NewsletterSubscriptionRepository = MockRepository.GenerateMock<IRepository<NewsletterSubscription>>();
             _customerRepository = MockRepository.GenerateMock<IRepository<Customer>>();
             _customerService = MockRepository.GenerateMock<ICustomerService>();
             _dbContext = MockRepository.GenerateStub<IDbContext>();
@@ -35,11 +35,11 @@ namespace Nop.Services.Tests.Messages
         [Test]
         public void VerifyActiveInsertTriggersSubscribeEvent()
         {
-            var service = new Boletín informativoSubscriptionService(_dbContext, _Boletín informativoSubscriptionRepository,
+            var service = new NewsletterSubscriptionService(_dbContext, _NewsletterSubscriptionRepository,
                 _customerRepository, _eventPublisher, _customerService);
 
-            var subscription = new Boletín informativoSubscription { Active = true, Email = "test@test.com" };
-            service.InsertBoletín informativoSubscription(subscription, true);
+            var subscription = new NewsletterSubscription { Active = true, Email = "test@test.com" };
+            service.InsertNewsletterSubscription(subscription, true);
 
             _eventPublisher.AssertWasCalled(x => x.Publish(new EmailSubscribedEvent(subscription)));
         }
@@ -50,11 +50,11 @@ namespace Nop.Services.Tests.Messages
         [Test]
         public void VerifyDeleteTriggersUnsubscribeEvent()
         {
-            var service = new Boletín informativoSubscriptionService(_dbContext, _Boletín informativoSubscriptionRepository,
+            var service = new NewsletterSubscriptionService(_dbContext, _NewsletterSubscriptionRepository,
                 _customerRepository, _eventPublisher, _customerService);
 
-            var subscription = new Boletín informativoSubscription { Active = true, Email = "test@test.com" };
-            service.DeleteBoletín informativoSubscription(subscription, true);
+            var subscription = new NewsletterSubscription { Active = true, Email = "test@test.com" };
+            service.DeleteNewsletterSubscription(subscription, true);
 
             _eventPublisher.AssertWasCalled(x => x.Publish(new EmailUnsubscribedEvent(subscription)));
         }
@@ -67,14 +67,14 @@ namespace Nop.Services.Tests.Messages
         public void VerifyEmailUpdateTriggersUnsubscribeAndSubscribeEvent()
         {
             //Prepare the original result
-            var originalSubscription = new Boletín informativoSubscription { Active = true, Email = "test@test.com" };
-            _Boletín informativoSubscriptionRepository.Stub(m => m.GetById(Arg<object>.Is.Anything)).Return(originalSubscription);
+            var originalSubscription = new NewsletterSubscription { Active = true, Email = "test@test.com" };
+            _NewsletterSubscriptionRepository.Stub(m => m.GetById(Arg<object>.Is.Anything)).Return(originalSubscription);
 
-            var service = new Boletín informativoSubscriptionService(_dbContext, _Boletín informativoSubscriptionRepository,
+            var service = new NewsletterSubscriptionService(_dbContext, _NewsletterSubscriptionRepository,
                 _customerRepository, _eventPublisher, _customerService);
 
-            var subscription = new Boletín informativoSubscription { Active = true, Email = "test@somenewdomain.com" };
-            service.UpdateBoletín informativoSubscription(subscription, true);
+            var subscription = new NewsletterSubscription { Active = true, Email = "test@somenewdomain.com" };
+            service.UpdateNewsletterSubscription(subscription, true);
 
             _eventPublisher.AssertWasCalled(x => x.Publish(new EmailUnsubscribedEvent(originalSubscription)));
             _eventPublisher.AssertWasCalled(x => x.Publish(new EmailSubscribedEvent(subscription)));
@@ -88,15 +88,15 @@ namespace Nop.Services.Tests.Messages
         public void VerifyInactiveToActiveUpdateTriggersSubscribeEvent()
         {
             //Prepare the original result
-            var originalSubscription = new Boletín informativoSubscription { Active = false, Email = "test@test.com" };
-            _Boletín informativoSubscriptionRepository.Stub(m => m.GetById(Arg<object>.Is.Anything)).Return(originalSubscription);
+            var originalSubscription = new NewsletterSubscription { Active = false, Email = "test@test.com" };
+            _NewsletterSubscriptionRepository.Stub(m => m.GetById(Arg<object>.Is.Anything)).Return(originalSubscription);
 
-            var service = new Boletín informativoSubscriptionService(_dbContext, _Boletín informativoSubscriptionRepository,
+            var service = new NewsletterSubscriptionService(_dbContext, _NewsletterSubscriptionRepository,
                 _customerRepository, _eventPublisher, _customerService);
 
-            var subscription = new Boletín informativoSubscription { Active = true, Email = "test@test.com" };
+            var subscription = new NewsletterSubscription { Active = true, Email = "test@test.com" };
 
-            service.UpdateBoletín informativoSubscription(subscription, true);
+            service.UpdateNewsletterSubscription(subscription, true);
 
             _eventPublisher.AssertWasCalled(x => x.Publish(new EmailSubscribedEvent(subscription)));
         }
@@ -107,12 +107,12 @@ namespace Nop.Services.Tests.Messages
         [Test]
         public void VerifyInsertEventIsFired()
         {
-            var service = new Boletín informativoSubscriptionService(_dbContext, _Boletín informativoSubscriptionRepository,
+            var service = new NewsletterSubscriptionService(_dbContext, _NewsletterSubscriptionRepository,
                 _customerRepository, _eventPublisher, _customerService);
 
-            service.InsertBoletín informativoSubscription(new Boletín informativoSubscription { Email = "test@test.com" });
+            service.InsertNewsletterSubscription(new NewsletterSubscription { Email = "test@test.com" });
 
-            _eventPublisher.AssertWasCalled(x => x.EntityInserted(Arg<Boletín informativoSubscription>.Is.Anything));
+            _eventPublisher.AssertWasCalled(x => x.EntityInserted(Arg<NewsletterSubscription>.Is.Anything));
         }
 
         /// <summary>
@@ -123,15 +123,15 @@ namespace Nop.Services.Tests.Messages
         public void VerifyUpdateEventIsFired()
         {
             //Prepare the original result
-            var originalSubscription = new Boletín informativoSubscription { Active = false, Email = "test@test.com" };
+            var originalSubscription = new NewsletterSubscription { Active = false, Email = "test@test.com" };
 
-            _Boletín informativoSubscriptionRepository.Stub(m => m.GetById(Arg<object>.Is.Anything)).Return(originalSubscription);
-            var service = new Boletín informativoSubscriptionService(_dbContext, _Boletín informativoSubscriptionRepository,
+            _NewsletterSubscriptionRepository.Stub(m => m.GetById(Arg<object>.Is.Anything)).Return(originalSubscription);
+            var service = new NewsletterSubscriptionService(_dbContext, _NewsletterSubscriptionRepository,
                 _customerRepository, _eventPublisher, _customerService);
 
-            service.UpdateBoletín informativoSubscription(new Boletín informativoSubscription { Email = "test@test.com" });
+            service.UpdateNewsletterSubscription(new NewsletterSubscription { Email = "test@test.com" });
 
-            _eventPublisher.AssertWasCalled(x => x.EntityUpdated(Arg<Boletín informativoSubscription>.Is.Anything));
+            _eventPublisher.AssertWasCalled(x => x.EntityUpdated(Arg<NewsletterSubscription>.Is.Anything));
         }
     }
 }

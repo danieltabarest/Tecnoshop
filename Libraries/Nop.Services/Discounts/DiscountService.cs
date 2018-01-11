@@ -6,14 +6,14 @@ using Nop.Core.Caching;
 using Nop.Core.Data;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Discounts;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Plugins;
 using Nop.Services.Catalog;
 using Nop.Services.Customers;
 using Nop.Services.Discounts.Cache;
 using Nop.Services.Events;
 using Nop.Services.Localization;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 
 namespace Nop.Services.Discounts
 {
@@ -340,17 +340,17 @@ namespace Nop.Services.Discounts
             {
                 var ids = new List<int>();
                 var rootCategoryIds = _discountRepository.Table.Where(x => x.Id == discountId)
-                        .SelectMany(x => x.AppliedToCategorias.Select(c => c.Id))
+                        .SelectMany(x => x.AppliedToCategories.Select(c => c.Id))
                         .ToList();
                 foreach (var categoryId in rootCategoryIds)
                 {
                     if (!ids.Contains(categoryId))
                         ids.Add(categoryId);
-                    if (discount.AppliedToSubCategorias)
+                    if (discount.AppliedToSubCategories)
                     {
-                        //include subCategorias
+                        //include subCategories
                         foreach (var childCategoryId in _categoryService
-                            .GetAllCategoriasByParentCategoryId(categoryId, false, true)
+                            .GetAllCategoriesByParentCategoryId(categoryId, false, true)
                             .Select(x => x.Id))
                         {
                             if (!ids.Contains(childCategoryId))
@@ -540,7 +540,7 @@ namespace Nop.Services.Discounts
 
             //Do not allow discounts applied to order subtotal or total when a customer has gift cards in the cart.
             //Otherwise, this customer can purchase gift cards with discount and get more than paid ("free money").
-            if (discount.DiscountType == DiscountType.AssignedToPedidosubTotal ||
+            if (discount.DiscountType == DiscountType.AssignedToOrdersubTotal ||
                 discount.DiscountType == DiscountType.AssignedToOrderTotal)
             {
                 var cart = customer.ShoppingCartItems

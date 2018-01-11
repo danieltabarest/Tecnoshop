@@ -4,7 +4,7 @@ using System.Linq;
 using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Events;
 
@@ -67,7 +67,7 @@ namespace Nop.Services.Shipping
         /// Search shipments
         /// </summary>
         /// <param name="vendorId">Vendor identifier; 0 to load all records</param>
-        /// <param name="warehouseId">Warehouse identifier, only shipments with products from a specified warehouse will be loaded; 0 to load all Pedidos</param>
+        /// <param name="warehouseId">Warehouse identifier, only shipments with products from a specified warehouse will be loaded; 0 to load all Orders</param>
         /// <param name="shippingCountryId">Shipping country identifier; 0 to load all records</param>
         /// <param name="shippingStateId">Shipping state identifier; 0 to load all records</param>
         /// <param name="shippingCity">Shipping city; null to load all records</param>
@@ -140,14 +140,14 @@ namespace Nop.Services.Shipping
                         select o;
             var shipments = query.ToList();
             //sort by passed identifiers
-            var sortedPedidos = new List<Shipment>();
+            var sortedOrders = new List<Shipment>();
             foreach (int id in shipmentIds)
             {
                 var shipment = shipments.Find(x => x.Id == id);
                 if (shipment != null)
-                    sortedPedidos.Add(shipment);
+                    sortedOrders.Add(shipment);
             }
-            return sortedPedidos;
+            return sortedOrders;
         }
 
         /// <summary>
@@ -276,12 +276,12 @@ namespace Nop.Services.Shipping
             if (!product.UseMultipleWarehouses)
                 return 0;
 
-            const int cancelledPedidostatusId = (int)Pedidostatus.Cancelled;
+            const int cancelledOrderstatusId = (int)Orderstatus.Cancelled;
 
 
             var query = _siRepository.Table;
             query = query.Where(si => !si.Shipment.Order.Deleted);
-            query = query.Where(si => si.Shipment.Order.PedidostatusId != cancelledPedidostatusId);
+            query = query.Where(si => si.Shipment.Order.OrderstatusId != cancelledOrderstatusId);
             if (warehouseId > 0)
                 query = query.Where(si => si.WarehouseId == warehouseId);
             if (ignoreShipped)

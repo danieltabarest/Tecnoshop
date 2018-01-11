@@ -6,19 +6,19 @@ using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Localization;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
 using Nop.Services.Directory;
 using Nop.Services.Events;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Stores;
 using Nop.Services.Tax;
 using Nop.Tests;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Nop.Services.Tests.Pedidos
+namespace Nop.Services.Tests.Orders
 {
     [TestFixture]
     public class CheckoutAttributeParserAndFormatterTests : ServiceTest

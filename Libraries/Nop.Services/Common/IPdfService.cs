@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 
 namespace Nop.Services.Common
@@ -21,13 +21,13 @@ namespace Nop.Services.Common
         string PrintOrderToPdf(Order order, int languageId = 0, int vendorId = 0);
 
         /// <summary>
-        /// Print Pedidos to PDF
+        /// Print Orders to PDF
         /// </summary>
         /// <param name="stream">Stream</param>
-        /// <param name="Pedidos">Pedidos</param>
+        /// <param name="Orders">Orders</param>
         /// <param name="languageId">Language identifier; 0 to use a language used when placing an order</param>
         /// <param name="vendorId">Vendor identifier to limit products; 0 to to print all products. If specified, then totals won't be printed</param>
-        void PrintPedidosToPdf(Stream stream, IList<Order> Pedidos, int languageId = 0, int vendorId = 0);
+        void PrintOrdersToPdf(Stream stream, IList<Order> Orders, int languageId = 0, int vendorId = 0);
 
         /// <summary>
         /// Print packaging slips to PDF

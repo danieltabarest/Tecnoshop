@@ -2,11 +2,11 @@ using Nop.Core.Domain.Messages;
 
 namespace Nop.Data.Mapping.Messages
 {
-    public partial class Boletín informativoSubscriptionMap : NopEntityTypeConfiguration<Boletín informativoSubscription>
+    public partial class NewsletterSubscriptionMap : NopEntityTypeConfiguration<NewsletterSubscription>
     {
-        public Boletín informativoSubscriptionMap()
+        public NewsletterSubscriptionMap()
         {
-            this.ToTable("Boletín informativoSubscription");
+            this.ToTable("NewsletterSubscription");
             this.HasKey(nls => nls.Id);
 
             this.Property(nls => nls.Email).IsRequired().HasMaxLength(255);

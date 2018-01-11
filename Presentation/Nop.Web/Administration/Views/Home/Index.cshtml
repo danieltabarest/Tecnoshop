@@ -9,7 +9,7 @@
     ViewBag.Title = T("Admin.Dashboard").Text;
 
     var permissionService = EngineContext.Current.Resolve<IPermissionService>();
-    var canManagePedidos = permissionService.Authorize(StandardPermissionProvider.ManagePedidos);
+    var canManageOrders = permissionService.Authorize(StandardPermissionProvider.ManageOrders);
     var canManageCustomers = permissionService.Authorize(StandardPermissionProvider.ManageCustomers);
     var canManageProducts = permissionService.Authorize(StandardPermissionProvider.ManageProducts);
     var canManageReturnRequests = permissionService.Authorize(StandardPermissionProvider.ManageReturnRequests);
@@ -35,7 +35,7 @@
                 </div>
             }
             @Html.Widget("admin_dashboard_news_after")
-            @if (!Model.IsLoggedInAsVendor && canManagePedidos && canManageCustomers && canManageProducts && canManageReturnRequests)
+            @if (!Model.IsLoggedInAsVendor && canManageOrders && canManageCustomers && canManageProducts && canManageReturnRequests)
             {
                 <div class="row">
                     <div class="col-md-12">
@@ -44,13 +44,13 @@
                 </div>
             }
             @Html.Widget("admin_dashboard_commonstatistics_after")
-            @if (!Model.IsLoggedInAsVendor && (canManagePedidos || canManageCustomers))
+            @if (!Model.IsLoggedInAsVendor && (canManageOrders || canManageCustomers))
             {
                 <div class="row">
-                    @if (!Model.IsLoggedInAsVendor && canManagePedidos)
+                    @if (!Model.IsLoggedInAsVendor && canManageOrders)
                     {
                         <div class="col-md-6">
-                            @Html.Action("Pedidostatistics", "Order")
+                            @Html.Action("Orderstatistics", "Order")
                         </div>
                     }
                     @if (!Model.IsLoggedInAsVendor && canManageCustomers)
@@ -62,7 +62,7 @@
                 </div>
             }
             @Html.Widget("admin_dashboard_customerordercharts_after")
-            @if (!Model.IsLoggedInAsVendor && canManagePedidos)
+            @if (!Model.IsLoggedInAsVendor && canManageOrders)
             {
                 <div class="row">
                     <div class="col-md-8">
@@ -74,13 +74,13 @@
                 </div>
             }
             @Html.Widget("admin_dashboard_orderreports_after")
-            @if (!Model.IsLoggedInAsVendor && (canManagePedidos || canManageProducts))
+            @if (!Model.IsLoggedInAsVendor && (canManageOrders || canManageProducts))
             {
                 <div class="row">
-                    @if (canManagePedidos)
+                    @if (canManageOrders)
                     {
                         <div class="col-md-8">
-                            @Html.Action("LatestPedidos", "Order")
+                            @Html.Action("LatestOrders", "Order")
                         </div>
                     }
                     <div class="col-md-4">
@@ -91,8 +91,8 @@
                     </div>
                 </div>
             }
-            @Html.Widget("admin_dashboard_latestPedidos_searchterms_after")
-            @if (canManagePedidos)
+            @Html.Widget("admin_dashboard_latestOrders_searchterms_after")
+            @if (canManageOrders)
             {
                 <div class="row">
                     <div class="col-md-6">

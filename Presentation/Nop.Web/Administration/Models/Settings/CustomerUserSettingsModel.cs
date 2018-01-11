@@ -87,17 +87,17 @@ namespace Nop.Admin.Models.Settings
             [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.FailedPasswordLockoutMinutes")]
             public int FailedPasswordLockoutMinutes { get; set; }
             
-            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.Boletín informativoEnabled")]
-            public bool Boletín informativoEnabled { get; set; }
+            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.NewsletterEnabled")]
+            public bool NewsletterEnabled { get; set; }
 
-            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.Boletín informativoTickedByDefault")]
-            public bool Boletín informativoTickedByDefault { get; set; }
+            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.NewsletterTickedByDefault")]
+            public bool NewsletterTickedByDefault { get; set; }
 
-            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.HideBoletín informativoBlock")]
-            public bool HideBoletín informativoBlock { get; set; }
+            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.HideNewsletterBlock")]
+            public bool HideNewsletterBlock { get; set; }
 
-            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.Boletín informativoBlockAllowToUnsubscribe")]
-            public bool Boletín informativoBlockAllowToUnsubscribe { get; set; }
+            [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.NewsletterBlockAllowToUnsubscribe")]
+            public bool NewsletterBlockAllowToUnsubscribe { get; set; }
 
             [NopResourceDisplayName("Admin.Configuration.Settings.CustomerUser.StoreLastVisitedPage")]
             public bool StoreLastVisitedPage { get; set; }

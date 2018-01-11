@@ -3,7 +3,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Messages;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
 namespace Nop.Services.ExportImport
 {
@@ -29,13 +29,13 @@ namespace Nop.Services.ExportImport
         /// Export category list to xml
         /// </summary>
         /// <returns>Result in XML format</returns>
-        string ExportCategoriasToXml();
+        string ExportCategoriesToXml();
 
         /// <summary>
-        /// Export Categorias to XLSX
+        /// Export Categories to XLSX
         /// </summary>
-        /// <param name="Categorias">Categorias</param>
-        byte[] ExportCategoriasToXlsx(IEnumerable<Category> Categorias);
+        /// <param name="Categories">Categories</param>
+        byte[] ExportCategoriesToXlsx(IEnumerable<Category> Categories);
 
         /// <summary>
         /// Export product list to xml
@@ -53,15 +53,15 @@ namespace Nop.Services.ExportImport
         /// <summary>
         /// Export order list to xml
         /// </summary>
-        /// <param name="Pedidos">Pedidos</param>
+        /// <param name="Orders">Orders</param>
         /// <returns>Result in XML format</returns>
-        string ExportPedidosToXml(IList<Order> Pedidos);
+        string ExportOrdersToXml(IList<Order> Orders);
 
         /// <summary>
-        /// Export Pedidos to XLSX
+        /// Export Orders to XLSX
         /// </summary>
-        /// <param name="Pedidos">Pedidos</param>
-        byte[] ExportPedidosToXlsx(IList<Order> Pedidos);
+        /// <param name="Orders">Orders</param>
+        byte[] ExportOrdersToXlsx(IList<Order> Orders);
 
         /// <summary>
         /// Export customer list to XLSX
@@ -77,11 +77,11 @@ namespace Nop.Services.ExportImport
         string ExportCustomersToXml(IList<Customer> customers);
 
         /// <summary>
-        /// Export Boletín informativo subscribers to TXT
+        /// Export Newsletter subscribers to TXT
         /// </summary>
         /// <param name="subscriptions">Subscriptions</param>
         /// <returns>Result in TXT (string) format</returns>
-        string ExportBoletín informativoSubscribersToTxt(IList<Boletín informativoSubscription> subscriptions);
+        string ExportNewsletterSubscribersToTxt(IList<NewsletterSubscription> subscriptions);
 
         /// <summary>
         /// Export states to TXT

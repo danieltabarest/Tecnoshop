@@ -274,7 +274,7 @@
     function toggleManageStock() {
         var dontManageStockId = "@((int)ManageInventoryMethod.DontManageStock)";
         var manageStockId = "@((int)ManageInventoryMethod.ManageStock)";
-        var noBackPedidosId = "@((int)BackorderMode.NoBackPedidos)";
+        var noBackOrdersId = "@((int)BackorderMode.NoBackOrders)";
         var allowQtyBelow0Id = "@((int)BackorderMode.AllowQtyBelow0)";
         var allowQtyBelow0AndNotifyCustomerId = "@((int)BackorderMode.AllowQtyBelow0AndNotifyCustomer)";
 
@@ -291,7 +291,7 @@
             $('#pnlLowStockActivity').hide();
             $('#pnlNotifyForQuantityBelow').hide();
             $('#pnlAllowBackInStockSubscriptions').hide();
-            $('#pnlBackPedidos').hide();
+            $('#pnlBackOrders').hide();
             $('#pnlAllowAddingOnlyExistingAttributeCombinations').hide();
 
             $('[data-tab-name=tab-stock-quantity-history]').hide();
@@ -318,20 +318,20 @@
             $('#pnlMinStockQuantity').show();
             $('#pnlLowStockActivity').show();
             $('#pnlNotifyForQuantityBelow').show();
-            $('#pnlBackPedidos').show();
+            $('#pnlBackOrders').show();
 
             var selectedBackorderModeId = $("#@Html.FieldIdFor(model => model.BackorderModeId)").val();
-            if (selectedBackorderModeId == noBackPedidosId) {
-                //no backPedidos
+            if (selectedBackorderModeId == noBackOrdersId) {
+                //no backOrders
                 $('#pnlAllowBackInStockSubscriptions').show();
                 $('#pnlProductAvailabilityRange').show();
             } else if (selectedBackorderModeId == allowQtyBelow0AndNotifyCustomerId) {
-                //backPedidos are enabled
+                //backOrders are enabled
                 $('#pnlAllowBackInStockSubscriptions').hide();
                 $('#pnlProductAvailabilityRange').show();
             }
             else if (selectedBackorderModeId == allowQtyBelow0Id) {
-                //backPedidos are enabled
+                //backOrders are enabled
                 $('#pnlAllowBackInStockSubscriptions').hide();
                 $('#pnlProductAvailabilityRange').hide();
             }
@@ -356,7 +356,7 @@
             $('#pnlLowStockActivity').hide();
             $('#pnlNotifyForQuantityBelow').hide();
             $('#pnlAllowBackInStockSubscriptions').hide();
-            $('#pnlBackPedidos').hide();
+            $('#pnlBackOrders').hide();
             $('#pnlAllowAddingOnlyExistingAttributeCombinations').show();
 
             $('[data-tab-name=tab-stock-quantity-history]').show();
@@ -1125,7 +1125,7 @@
                             @Html.NopLabelFor(model => model.TaxCategoryId)
                         </div>
                         <div class="col-md-9">
-                            @Html.NopDropDownListFor(model => model.TaxCategoryId, Model.AvailableTaxCategorias)
+                            @Html.NopDropDownListFor(model => model.TaxCategoryId, Model.AvailableTaxCategories)
                             @Html.ValidationMessageFor(model => model.TaxCategoryId)
                         </div>
                     </div>
@@ -1594,7 +1594,7 @@
                             @Html.ValidationMessageFor(model => model.NotifyAdminForQuantityBelow)
                         </div>
                     </div>
-                    <div class="form-group @(Model.ProductEditorSettingsModel.BackPedidos ? null : "advanced-setting")" id="pnlBackPedidos">
+                    <div class="form-group @(Model.ProductEditorSettingsModel.BackOrders ? null : "advanced-setting")" id="pnlBackOrders">
                         <div class="@leftColumnClass">
                             @Html.NopLabelFor(model => model.BackorderModeId)
                         </div>
@@ -1766,7 +1766,7 @@
                             @Html.NopLabelFor(model => model.SelectedCategoryIds)
                         </div>
                         <div class="@rightColumnClass">
-                            @Html.EditorFor(model => model.SelectedCategoryIds, new { SelectList = Model.AvailableCategorias })
+                            @Html.EditorFor(model => model.SelectedCategoryIds, new { SelectList = Model.AvailableCategories })
                             <script>
                                 $(document).ready(function() {
                                     var categoryIdsInput = $('#@Html.FieldIdFor(model => model.SelectedCategoryIds)').data("kendoMultiSelect");
@@ -1774,12 +1774,12 @@
                                         autoClose: false
                                     });
 
-                                    @if (Model.AvailableCategorias.Count == 0)
+                                    @if (Model.AvailableCategories.Count == 0)
                             {
                                 <text>
                                     categoryIdsInput.setOptions({
                                         enable: false,
-                                        placeholder: '@T("Admin.Catalog.Products.Fields.Categorias.NoCategoriasAvailable")'
+                                        placeholder: '@T("Admin.Catalog.Products.Fields.Categories.NoCategoriesAvailable")'
                                     });
                                     categoryIdsInput._placeholder();
                                     categoryIdsInput._enable();

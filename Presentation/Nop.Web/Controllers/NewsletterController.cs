@@ -10,41 +10,41 @@ using Nop.Web.Framework;
 
 namespace Nop.Web.Controllers
 {
-    public partial class Boletín informativoController : BasePublicController
+    public partial class NewsletterController : BasePublicController
     {
-        private readonly IBoletín informativoModelFactory _Boletín informativoModelFactory;
+        private readonly INewsletterModelFactory _NewsletterModelFactory;
         private readonly ILocalizationService _localizationService;
         private readonly IWorkContext _workContext;
-        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
         private readonly IWorkflowMessageService _workflowMessageService;
         private readonly IStoreContext _storeContext;
 
         private readonly CustomerSettings _customerSettings;
 
-        public Boletín informativoController(IBoletín informativoModelFactory Boletín informativoModelFactory,
+        public NewsletterController(INewsletterModelFactory NewsletterModelFactory,
             ILocalizationService localizationService,
             IWorkContext workContext,
-            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+            INewsletterSubscriptionService NewsletterSubscriptionService,
             IWorkflowMessageService workflowMessageService,
             IStoreContext storeContext,
             CustomerSettings customerSettings)
         {
-            this._Boletín informativoModelFactory = Boletín informativoModelFactory;
+            this._NewsletterModelFactory = NewsletterModelFactory;
             this._localizationService = localizationService;
             this._workContext = workContext;
-            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+            this._NewsletterSubscriptionService = NewsletterSubscriptionService;
             this._workflowMessageService = workflowMessageService;
             this._storeContext = storeContext;
             this._customerSettings = customerSettings;
         }
 
         [ChildActionOnly]
-        public virtual ActionResult Boletín informativoBox()
+        public virtual ActionResult NewsletterBox()
         {
-            if (_customerSettings.HideBoletín informativoBlock)
+            if (_customerSettings.HideNewsletterBlock)
                 return Content("");
 
-            var model = _Boletín informativoModelFactory.PrepareBoletín informativoBoxModel();
+            var model = _NewsletterModelFactory.PrepareNewsletterBoxModel();
             return PartialView(model);
         }
 
@@ -52,57 +52,57 @@ namespace Nop.Web.Controllers
         [StoreClosed(true)]
         [HttpPost]
         [ValidateInput(false)]
-        public virtual ActionResult SubscribeBoletín informativo(string email, bool subscribe)
+        public virtual ActionResult SubscribeNewsletter(string email, bool subscribe)
         {
             string result;
             bool success = false;
 
             if (!CommonHelper.IsValidEmail(email))
             {
-                result = _localizationService.GetResource("Boletín informativo.Email.Wrong");
+                result = _localizationService.GetResource("Newsletter.Email.Wrong");
             }
             else
             {
                 email = email.Trim();
 
-                var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(email, _storeContext.CurrentStore.Id);
+                var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionByEmailAndStoreId(email, _storeContext.CurrentStore.Id);
                 if (subscription != null)
                 {
                     if (subscribe)
                     {
                         if (!subscription.Active)
                         {
-                            _workflowMessageService.SendBoletín informativoSubscriptionActivationMessage(subscription, _workContext.WorkingLanguage.Id);
+                            _workflowMessageService.SendNewsletterSubscriptionActivationMessage(subscription, _workContext.WorkingLanguage.Id);
                         }
-                        result = _localizationService.GetResource("Boletín informativo.SubscribeEmailSent");
+                        result = _localizationService.GetResource("Newsletter.SubscribeEmailSent");
                     }
                     else
                     {
                         if (subscription.Active)
                         {
-                            _workflowMessageService.SendBoletín informativoSubscriptionDeactivationMessage(subscription, _workContext.WorkingLanguage.Id);
+                            _workflowMessageService.SendNewsletterSubscriptionDeactivationMessage(subscription, _workContext.WorkingLanguage.Id);
                         }
-                        result = _localizationService.GetResource("Boletín informativo.UnsubscribeEmailSent");
+                        result = _localizationService.GetResource("Newsletter.UnsubscribeEmailSent");
                     }
                 }
                 else if (subscribe)
                 {
-                    subscription = new Boletín informativoSubscription
+                    subscription = new NewsletterSubscription
                     {
-                        Boletín informativoSubscriptionGuid = Guid.NewGuid(),
+                        NewsletterSubscriptionGuid = Guid.NewGuid(),
                         Email = email,
                         Active = false,
                         StoreId = _storeContext.CurrentStore.Id,
                         CreatedOnUtc = DateTime.UtcNow
                     };
-                    _Boletín informativoSubscriptionService.InsertBoletín informativoSubscription(subscription);
-                    _workflowMessageService.SendBoletín informativoSubscriptionActivationMessage(subscription, _workContext.WorkingLanguage.Id);
+                    _NewsletterSubscriptionService.InsertNewsletterSubscription(subscription);
+                    _workflowMessageService.SendNewsletterSubscriptionActivationMessage(subscription, _workContext.WorkingLanguage.Id);
 
-                    result = _localizationService.GetResource("Boletín informativo.SubscribeEmailSent");
+                    result = _localizationService.GetResource("Newsletter.SubscribeEmailSent");
                 }
                 else
                 {
-                    result = _localizationService.GetResource("Boletín informativo.UnsubscribeEmailSent");
+                    result = _localizationService.GetResource("Newsletter.UnsubscribeEmailSent");
                 }
                 success = true;
             }
@@ -118,19 +118,19 @@ namespace Nop.Web.Controllers
         [StoreClosed(true)]
         public virtual ActionResult SubscriptionActivation(Guid token, bool active)
         {
-            var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByGuid(token);
+            var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionByGuid(token);
             if (subscription == null)
                 return RedirectToRoute("HomePage");
 
             if (active)
             {
                 subscription.Active = true;
-                _Boletín informativoSubscriptionService.UpdateBoletín informativoSubscription(subscription);
+                _NewsletterSubscriptionService.UpdateNewsletterSubscription(subscription);
             }
             else
-                _Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(subscription);
+                _NewsletterSubscriptionService.DeleteNewsletterSubscription(subscription);
 
-            var model = _Boletín informativoModelFactory.PrepareSubscriptionActivationModel(active);
+            var model = _NewsletterModelFactory.PrepareSubscriptionActivationModel(active);
             return View(model);
         }
     }

@@ -5,7 +5,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Vendors;
 
@@ -202,24 +202,24 @@ namespace Nop.Services.Messages
 
         #endregion
 
-        #region Boletín informativo workflow
+        #region Newsletter workflow
 
         /// <summary>
-        /// Sends a Boletín informativo subscription activation message
+        /// Sends a Newsletter subscription activation message
         /// </summary>
-        /// <param name="subscription">Boletín informativo subscription</param>
+        /// <param name="subscription">Newsletter subscription</param>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Queued email identifier</returns>
-        int SendBoletín informativoSubscriptionActivationMessage(Boletín informativoSubscription subscription,
+        int SendNewsletterSubscriptionActivationMessage(NewsletterSubscription subscription,
             int languageId);
 
         /// <summary>
-        /// Sends a Boletín informativo subscription deactivation message
+        /// Sends a Newsletter subscription deactivation message
         /// </summary>
-        /// <param name="subscription">Boletín informativo subscription</param>
+        /// <param name="subscription">Newsletter subscription</param>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Queued email identifier</returns>
-        int SendBoletín informativoSubscriptionDeactivationMessage(Boletín informativoSubscription subscription,
+        int SendNewsletterSubscriptionDeactivationMessage(NewsletterSubscription subscription,
             int languageId);
 
         #endregion

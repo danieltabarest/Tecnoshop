@@ -7,7 +7,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Discounts;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Stores;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
@@ -272,7 +272,7 @@ namespace Nop.Services.Tests.Catalog
             //set HasDiscountsApplied property
             product.HasDiscountsApplied = true;
             _discountService.Expect(ds => ds.ValidateDiscount(discount1, customer)).Return(new DiscountValidationResult() {IsValid = true});
-            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategorias)).Return(new List<DiscountForCaching>());
+            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategories)).Return(new List<DiscountForCaching>());
             _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToManufacturers)).Return(new List<DiscountForCaching>());
 
             _priceCalcService.GetFinalPrice(product, customer, 0, true, 1).ShouldEqual(9.34M);
@@ -302,7 +302,7 @@ namespace Nop.Services.Tests.Catalog
                 Quantity = 2,
             };
 
-            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategorias)).Return(new List<DiscountForCaching>());
+            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategories)).Return(new List<DiscountForCaching>());
             _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToManufacturers)).Return(new List<DiscountForCaching>());
 
             _priceCalcService.GetUnitPrice(sci1).ShouldEqual(12.34);
@@ -333,7 +333,7 @@ namespace Nop.Services.Tests.Catalog
                 Quantity = 2,
             };
 
-            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategorias)).Return(new List<DiscountForCaching>());
+            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategories)).Return(new List<DiscountForCaching>());
             _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToManufacturers)).Return(new List<DiscountForCaching>());
 
             _priceCalcService.GetSubTotal(sci1).ShouldEqual(24.68);
@@ -400,7 +400,7 @@ namespace Nop.Services.Tests.Catalog
                 Quantity = quantity
             };
 
-            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategorias)).Return(new List<DiscountForCaching>());
+            _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToCategories)).Return(new List<DiscountForCaching>());
             _discountService.Expect(ds => ds.GetAllDiscountsForCaching(DiscountType.AssignedToManufacturers)).Return(new List<DiscountForCaching>());
 
             return shoppingCartItem;

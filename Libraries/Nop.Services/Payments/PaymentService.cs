@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Plugins;
 using Nop.Services.Catalog;
@@ -211,10 +211,10 @@ namespace Nop.Services.Payments
                 return false;   //this option is available only for redirection Formas de pagos
 
             if (order.Deleted)
-                return false;  //do not allow for deleted Pedidos
+                return false;  //do not allow for deleted Orders
 
-            if (order.Pedidostatus == Pedidostatus.Cancelled)
-                return false;  //do not allow for cancelled Pedidos
+            if (order.Orderstatus == Orderstatus.Cancelled)
+                return false;  //do not allow for cancelled Orders
 
             if (order.PaymentStatus != PaymentStatus.Pending)
                 return false;  //payment status should be Pending

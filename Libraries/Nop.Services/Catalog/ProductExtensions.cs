@@ -122,7 +122,7 @@ namespace Nop.Services.Catalog
                             var productAvailabilityRange = dateRangeService.GetProductAvailabilityRangeById(product.ProductAvailabilityRangeId);
                             switch (product.BackorderMode)
                             {
-                                case BackorderMode.NoBackPedidos:
+                                case BackorderMode.NoBackOrders:
                                     stockMessage = productAvailabilityRange == null ? localizationService.GetResource("Products.Availability.OutOfStock")
                                         : string.Format(localizationService.GetResource("Products.Availability.AvailabilityRange"),
                                             productAvailabilityRange.GetLocalized(range => range.Name));
@@ -163,7 +163,7 @@ namespace Nop.Services.Catalog
                                     //display "in stock" without stock quantity
                                     localizationService.GetResource("Products.Availability.InStock");
                             }
-                            else if (combination.AllowOutOfStockPedidos)
+                            else if (combination.AllowOutOfStockOrders)
                             {
                                 stockMessage = localizationService.GetResource("Products.Availability.InStock");
                             }

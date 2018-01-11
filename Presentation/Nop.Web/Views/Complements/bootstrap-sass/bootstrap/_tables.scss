@@ -83,7 +83,7 @@ th {
 
 // Bordered version
 //
-// Add bPedidos all around the table and between all the columns.
+// Add bOrders all around the table and between all the columns.
 
 .table-bordered {
   border: 1px solid $table-border-color;
@@ -200,7 +200,7 @@ table {
     > .table-bordered {
       border: 0;
 
-      // Nuke the appropriate bPedidos so that the parent can handle them
+      // Nuke the appropriate bOrders so that the parent can handle them
       > thead,
       > tbody,
       > tfoot {

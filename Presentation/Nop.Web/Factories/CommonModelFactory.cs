@@ -15,7 +15,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Vendors;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
@@ -24,7 +24,7 @@ using Nop.Services.Directory;
 using Nop.Services.Forums;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Topics;
@@ -495,11 +495,11 @@ namespace Nop.Web.Factories
                     ForumEnabled = _forumSettings.ForumsEnabled,
                     NewsEnabled = _newsSettings.Enabled,
                 };
-                //Categorias
-                if (_commonSettings.SitemapIncludeCategorias)
+                //Categories
+                if (_commonSettings.SitemapIncludeCategories)
                 {
-                    var Categorias = _categoryService.GetAllCategorias(storeId: _storeContext.CurrentStore.Id);
-                    model.Categorias = Categorias.Select(category => new CategorySimpleModel
+                    var Categories = _categoryService.GetAllCategories(storeId: _storeContext.CurrentStore.Id);
+                    model.Categories = Categories.Select(category => new CategorySimpleModel
                     {
                         Id = category.Id,
                         Name = category.GetLocalized(x => x.Name),
@@ -685,7 +685,7 @@ namespace Nop.Web.Factories
                     "/deletepm",
                     "/emailwishlist",
                     "/inboxupdate",
-                    "/Boletín informativo/subscriptionactivation",
+                    "/Newsletter/subscriptionactivation",
                     "/onepagecheckout",
                     "/order/history",
                     "/orderdetails",
@@ -699,7 +699,7 @@ namespace Nop.Web.Factories
                     "/sentupdate",
                     "/shoppingcart/*",
                     "/storeclosed",
-                    "/subscribeBoletín informativo",
+                    "/subscribeNewsletter",
                     "/topic/authenticate",
                     "/viewpm",
                     "/uploadfilecheckoutattribute",

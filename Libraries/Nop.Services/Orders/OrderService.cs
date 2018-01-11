@@ -5,15 +5,15 @@ using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Events;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Order service
     /// </summary>
-    public partial class Pedidoservice : IPedidoservice
+    public partial class Orderservice : IOrderservice
     {
         #region Fields
 
@@ -39,7 +39,7 @@ namespace Nop.Services.Pedidos
         /// <param name="recurringPaymentRepository">Recurring payment repository</param>
         /// <param name="customerRepository">Customer repository</param>
         /// <param name="eventPublisher">Event published</param>
-        public Pedidoservice(IRepository<Order> orderRepository,
+        public Orderservice(IRepository<Order> orderRepository,
             IRepository<OrderItem> orderItemRepository,
             IRepository<OrderNote> orderNoteRepository,
             IRepository<Product> productRepository,
@@ -60,7 +60,7 @@ namespace Nop.Services.Pedidos
 
         #region Methods
 
-        #region Pedidos
+        #region Orders
 
         /// <summary>
         /// Gets an order
@@ -89,11 +89,11 @@ namespace Nop.Services.Pedidos
         }
 
         /// <summary>
-        /// Get Pedidos by identifiers
+        /// Get Orders by identifiers
         /// </summary>
         /// <param name="orderIds">Order identifiers</param>
         /// <returns>Order</returns>
-        public virtual IList<Order> GetPedidosByIds(int[] orderIds)
+        public virtual IList<Order> GetOrdersByIds(int[] orderIds)
         {
             if (orderIds == null || orderIds.Length == 0)
                 return new List<Order>();
@@ -101,16 +101,16 @@ namespace Nop.Services.Pedidos
             var query = from o in _orderRepository.Table
                         where orderIds.Contains(o.Id) && !o.Deleted
                         select o;
-            var Pedidos = query.ToList();
+            var Orders = query.ToList();
             //sort by passed identifiers
-            var sortedPedidos = new List<Order>();
+            var sortedOrders = new List<Order>();
             foreach (int id in orderIds)
             {
-                var order = Pedidos.Find(x => x.Id == id);
+                var order = Orders.Find(x => x.Id == id);
                 if (order != null)
-                    sortedPedidos.Add(order);
+                    sortedOrders.Add(order);
             }
-            return sortedPedidos;
+            return sortedOrders;
         }
 
         /// <summary>
@@ -147,28 +147,28 @@ namespace Nop.Services.Pedidos
         }
 
         /// <summary>
-        /// Search Pedidos
+        /// Search Orders
         /// </summary>
-        /// <param name="storeId">Store identifier; 0 to load all Pedidos</param>
-        /// <param name="vendorId">Vendor identifier; null to load all Pedidos</param>
-        /// <param name="customerId">Customer identifier; 0 to load all Pedidos</param>
-        /// <param name="productId">Product identifier which was purchased in an order; 0 to load all Pedidos</param>
-        /// <param name="affiliateId">Affiliate identifier; 0 to load all Pedidos</param>
-        /// <param name="billingCountryId">Billing country identifier; 0 to load all Pedidos</param>
-        /// <param name="warehouseId">Warehouse identifier, only Pedidos with products from a specified warehouse will be loaded; 0 to load all Pedidos</param>
+        /// <param name="storeId">Store identifier; 0 to load all Orders</param>
+        /// <param name="vendorId">Vendor identifier; null to load all Orders</param>
+        /// <param name="customerId">Customer identifier; 0 to load all Orders</param>
+        /// <param name="productId">Product identifier which was purchased in an order; 0 to load all Orders</param>
+        /// <param name="affiliateId">Affiliate identifier; 0 to load all Orders</param>
+        /// <param name="billingCountryId">Billing country identifier; 0 to load all Orders</param>
+        /// <param name="warehouseId">Warehouse identifier, only Orders with products from a specified warehouse will be loaded; 0 to load all Orders</param>
         /// <param name="paymentMethodSystemName">Formas de pago system name; null to load all records</param>
         /// <param name="createdFromUtc">Created date from (UTC); null to load all records</param>
         /// <param name="createdToUtc">Created date to (UTC); null to load all records</param>
-        /// <param name="osIds">Order status identifiers; null to load all Pedidos</param>
-        /// <param name="psIds">Payment status identifiers; null to load all Pedidos</param>
-        /// <param name="ssIds">Shipping status identifiers; null to load all Pedidos</param>
+        /// <param name="osIds">Order status identifiers; null to load all Orders</param>
+        /// <param name="psIds">Payment status identifiers; null to load all Orders</param>
+        /// <param name="ssIds">Shipping status identifiers; null to load all Orders</param>
         /// <param name="billingEmail">Billing email. Leave empty to load all records.</param>
         /// <param name="billingLastName">Billing last name. Leave empty to load all records.</param>
         /// <param name="orderNotes">Search in order notes. Leave empty to load all records.</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
-        /// <returns>Pedidos</returns>
-        public virtual IPagedList<Order> SearchPedidos(int storeId = 0,
+        /// <returns>Orders</returns>
+        public virtual IPagedList<Order> SearchOrders(int storeId = 0,
             int vendorId = 0, int customerId = 0,
             int productId = 0, int affiliateId = 0, int warehouseId = 0,
             int billingCountryId = 0, string paymentMethodSystemName = null,
@@ -224,7 +224,7 @@ namespace Nop.Services.Pedidos
             if (createdToUtc.HasValue)
                 query = query.Where(o => createdToUtc.Value >= o.CreatedOnUtc);
             if (osIds != null && osIds.Any())
-                query = query.Where(o => osIds.Contains(o.PedidostatusId));
+                query = query.Where(o => osIds.Contains(o.OrderstatusId));
             if (psIds != null && psIds.Any())
                 query = query.Where(o => psIds.Contains(o.PaymentStatusId));
             if (ssIds != null && ssIds.Any())
@@ -295,7 +295,7 @@ namespace Nop.Services.Pedidos
         
         #endregion
 
-        #region Pedidos items
+        #region Orders items
 
         /// <summary>
         /// Gets an order item
@@ -367,7 +367,7 @@ namespace Nop.Services.Pedidos
 
         #endregion
 
-        #region Pedidos notes
+        #region Orders notes
 
         /// <summary>
         /// Gets an order note
@@ -466,18 +466,18 @@ namespace Nop.Services.Pedidos
         /// <param name="storeId">The store identifier; 0 to load all records</param>
         /// <param name="customerId">The customer identifier; 0 to load all records</param>
         /// <param name="initialOrderId">The initial order identifier; 0 to load all records</param>
-        /// <param name="initialPedidostatus">Initial order status identifier; null to load all records</param>
+        /// <param name="initialOrderstatus">Initial order status identifier; null to load all records</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Recurring payments</returns>
         public virtual IPagedList<RecurringPayment> SearchRecurringPayments(int storeId = 0,
-            int customerId = 0, int initialOrderId = 0, Pedidostatus? initialPedidostatus = null,
+            int customerId = 0, int initialOrderId = 0, Orderstatus? initialOrderstatus = null,
             int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
         {
-            int? initialPedidostatusId = null;
-            if (initialPedidostatus.HasValue)
-                initialPedidostatusId = (int)initialPedidostatus.Value;
+            int? initialOrderstatusId = null;
+            if (initialOrderstatus.HasValue)
+                initialOrderstatusId = (int)initialOrderstatus.Value;
 
             var query1 = from rp in _recurringPaymentRepository.Table
                          join c in _customerRepository.Table on rp.InitialOrder.CustomerId equals c.Id
@@ -489,7 +489,7 @@ namespace Nop.Services.Pedidos
                          (customerId == 0 || rp.InitialOrder.CustomerId == customerId) &&
                          (storeId == 0 || rp.InitialOrder.StoreId == storeId) &&
                          (initialOrderId == 0 || rp.InitialOrder.Id == initialOrderId) &&
-                         (!initialPedidostatusId.HasValue || initialPedidostatusId.Value == 0 || rp.InitialOrder.PedidostatusId == initialPedidostatusId.Value)
+                         (!initialOrderstatusId.HasValue || initialOrderstatusId.Value == 0 || rp.InitialOrder.OrderstatusId == initialOrderstatusId.Value)
                          select rp.Id;
 
             var query2 = from rp in _recurringPaymentRepository.Table

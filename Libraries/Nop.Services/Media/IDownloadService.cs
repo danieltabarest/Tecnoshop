@@ -1,6 +1,6 @@
 using System;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
 namespace Nop.Services.Media
 {

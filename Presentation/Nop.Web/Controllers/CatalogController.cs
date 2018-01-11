@@ -90,7 +90,7 @@ namespace Nop.Web.Controllers
 
         #endregion
 
-        #region Categorias
+        #region Categories
         
         [NopHttpsRequirement(SslRequirement.No)]
         public virtual ActionResult Category(int categoryId, CatalogPagingFilteringModel command)
@@ -106,9 +106,9 @@ namespace Nop.Web.Controllers
                 !_aclService.Authorize(category) ||
                 //Store mapping
                 !_storeMappingService.Authorize(category);
-            //Check whether the current user has a "Manage Categorias" permission (usually a store owner)
+            //Check whether the current user has a "Manage Categories" permission (usually a store owner)
             //We should allows him (her) to use "Preview" functionality
-            if (notAvailable && !_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (notAvailable && !_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return InvokeHttp404();
 
             //'Continue shopping' URL
@@ -118,7 +118,7 @@ namespace Nop.Web.Controllers
                 _storeContext.CurrentStore.Id);
 
             //display "edit" (manage) link
-            if (_permissionService.Authorize(StandardPermissionProvider.AccessAdminPanel) && _permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (_permissionService.Authorize(StandardPermissionProvider.AccessAdminPanel) && _permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 DisplayEditLink(Url.Action("Edit", "Category", new { id = category.Id, area = "Admin" }));
 
             //activity log
@@ -147,7 +147,7 @@ namespace Nop.Web.Controllers
         }
         
         [ChildActionOnly]
-        public virtual ActionResult HomepageCategorias()
+        public virtual ActionResult HomepageCategories()
         {
             var model = _catalogModelFactory.PrepareHomepageCategoryModels();
             if (!model.Any())
@@ -174,7 +174,7 @@ namespace Nop.Web.Controllers
                 !_aclService.Authorize(manufacturer) ||
                 //Store mapping
                 !_storeMappingService.Authorize(manufacturer);
-            //Check whether the current user has a "Manage Categorias" permission (usually a store owner)
+            //Check whether the current user has a "Manage Categories" permission (usually a store owner)
             //We should allows him (her) to use "Preview" functionality
             if (notAvailable && !_permissionService.Authorize(StandardPermissionProvider.ManageManufacturers))
                 return InvokeHttp404();

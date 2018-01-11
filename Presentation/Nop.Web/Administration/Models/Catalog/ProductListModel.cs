@@ -9,7 +9,7 @@ namespace Nop.Admin.Models.Catalog
     {
         public ProductListModel()
         {
-            AvailableCategorias = new List<SelectListItem>();
+            AvailableCategories = new List<SelectListItem>();
             AvailableManufacturers = new List<SelectListItem>();
             AvailableStores = new List<SelectListItem>();
             AvailableWarehouses = new List<SelectListItem>();
@@ -23,8 +23,8 @@ namespace Nop.Admin.Models.Catalog
         public string SearchProductName { get; set; }
         [NopResourceDisplayName("Admin.Catalog.Products.List.SearchCategory")]
         public int SearchCategoryId { get; set; }
-        [NopResourceDisplayName("Admin.Catalog.Products.List.SearchIncludeSubCategorias")]
-        public bool SearchIncludeSubCategorias { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Products.List.SearchIncludeSubCategories")]
+        public bool SearchIncludeSubCategories { get; set; }
         [NopResourceDisplayName("Admin.Catalog.Products.List.SearchManufacturer")]
         public int SearchManufacturerId { get; set; }
         [NopResourceDisplayName("Admin.Catalog.Products.List.SearchStore")]
@@ -46,7 +46,7 @@ namespace Nop.Admin.Models.Catalog
 
         public bool AllowVendorsToImportProducts { get; set; }
 
-        public IList<SelectListItem> AvailableCategorias { get; set; }
+        public IList<SelectListItem> AvailableCategories { get; set; }
         public IList<SelectListItem> AvailableManufacturers { get; set; }
         public IList<SelectListItem> AvailableStores { get; set; }
         public IList<SelectListItem> AvailableWarehouses { get; set; }

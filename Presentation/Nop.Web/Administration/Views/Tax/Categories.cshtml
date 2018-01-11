@@ -1,14 +1,14 @@
 ﻿@{    
     //page title
-    ViewBag.Title = T("Admin.Configuration.Tax.Categorias").Text;
+    ViewBag.Title = T("Admin.Configuration.Tax.Categories").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Tax Categorias");
+    Html.SetActiveMenuItemSystemName("Tax Categories");
 }
 
 @Html.AntiForgeryToken()
 <div class="content-header clearfix">
     <h1 class="pull-left">
-        @T("Admin.Configuration.Tax.Categorias")
+        @T("Admin.Configuration.Tax.Categories")
     </h1>
     <div class="pull-right">
         &nbsp;
@@ -20,16 +20,16 @@
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div id="tax-Categorias-grid"></div>
+                    <div id="tax-Categories-grid"></div>
 
                     <script>
                         $(document).ready(function() {
-                            $("#tax-Categorias-grid").kendoGrid({
+                            $("#tax-Categories-grid").kendoGrid({
                                 dataSource: {
                                     type: "json",
                                     transport: {
                                         read: {
-                                            url: "@Html.Raw(Url.Action("Categorias", "Tax"))",
+                                            url: "@Html.Raw(Url.Action("Categories", "Tax"))",
                                             type: "POST",
                                             dataType: "json",
                                             data: addAntiForgeryToken
@@ -96,11 +96,11 @@
                                 columns: [
                                 {
                                     field: "Name",
-                                    title: "@T("Admin.Configuration.Tax.Categorias.Fields.Name")",
+                                    title: "@T("Admin.Configuration.Tax.Categories.Fields.Name")",
                                     width: 300
                                 }, {
                                     field: "DisplayOrder",
-                                    title: "@T("Admin.Configuration.Tax.Categorias.Fields.DisplayOrder")",
+                                    title: "@T("Admin.Configuration.Tax.Categories.Fields.DisplayOrder")",
                                     //integer format
                                     format: "{0:0}",
                                     width: 100

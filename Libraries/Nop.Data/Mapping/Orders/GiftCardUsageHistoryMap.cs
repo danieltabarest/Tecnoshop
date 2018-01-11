@@ -1,7 +1,7 @@
 
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 
-namespace Nop.Data.Mapping.Pedidos
+namespace Nop.Data.Mapping.Orders
 {
     public partial class GiftCardUsageHistoryMap : NopEntityTypeConfiguration<GiftCardUsageHistory>
     {

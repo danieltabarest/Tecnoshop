@@ -1,13 +1,13 @@
 ﻿using Nop.Core.Domain.Customers;
 using Nop.Services.Localization;
-using Nop.Web.Models.Boletín informativo;
+using Nop.Web.Models.Newsletter;
 
 namespace Nop.Web.Factories
 {
     /// <summary>
-    /// Represents the Boletín informativo model factory
+    /// Represents the Newsletter model factory
     /// </summary>
-    public partial class Boletín informativoModelFactory : IBoletín informativoModelFactory
+    public partial class NewsletterModelFactory : INewsletterModelFactory
     {
         #region Fields
 
@@ -18,7 +18,7 @@ namespace Nop.Web.Factories
 
         #region Ctor
 
-        public Boletín informativoModelFactory(ILocalizationService localizationService,
+        public NewsletterModelFactory(ILocalizationService localizationService,
             CustomerSettings customerSettings)
         {
             this._localizationService = localizationService;
@@ -30,14 +30,14 @@ namespace Nop.Web.Factories
         #region Methods
 
         /// <summary>
-        /// Prepare the Boletín informativo box model
+        /// Prepare the Newsletter box model
         /// </summary>
-        /// <returns>Boletín informativo box model</returns>
-        public virtual Boletín informativoBoxModel PrepareBoletín informativoBoxModel()
+        /// <returns>Newsletter box model</returns>
+        public virtual NewsletterBoxModel PrepareNewsletterBoxModel()
         {
-            var model = new Boletín informativoBoxModel()
+            var model = new NewsletterBoxModel()
             {
-                AllowToUnsubscribe = _customerSettings.Boletín informativoBlockAllowToUnsubscribe
+                AllowToUnsubscribe = _customerSettings.NewsletterBlockAllowToUnsubscribe
             };
             return model;
         }
@@ -51,8 +51,8 @@ namespace Nop.Web.Factories
         {
             var model = new SubscriptionActivationModel();
             model.Result = active
-                ? _localizationService.GetResource("Boletín informativo.ResultActivated")
-                : _localizationService.GetResource("Boletín informativo.ResultDeactivated");
+                ? _localizationService.GetResource("Newsletter.ResultActivated")
+                : _localizationService.GetResource("Newsletter.ResultDeactivated");
 
             return model;
         }

@@ -4,7 +4,7 @@ namespace Nop.Admin.Models.Home
 {
     public partial class CommonStatisticsModel : BaseNopModel
     {
-        public int NumberOfPedidos { get; set; }
+        public int NumberOfOrders { get; set; }
 
         public int NumberOfCustomers { get; set; }
 

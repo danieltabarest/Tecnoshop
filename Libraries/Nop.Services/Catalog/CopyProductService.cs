@@ -329,8 +329,8 @@ namespace Nop.Services.Catalog
             }
             _productService.UpdateProduct(productCopy);
 
-            // product <-> Categorias mappings
-            foreach (var productCategory in product.ProductCategorias)
+            // product <-> Categories mappings
+            foreach (var productCategory in product.ProductCategories)
             {
                 var productCategoryCopy = new ProductCategory
                 {
@@ -573,7 +573,7 @@ namespace Nop.Services.Catalog
                     ProductId = productCopy.Id,
                     AttributesXml = newAttributesXml,
                     StockQuantity = combination.StockQuantity,
-                    AllowOutOfStockPedidos = combination.AllowOutOfStockPedidos,
+                    AllowOutOfStockOrders = combination.AllowOutOfStockOrders,
                     Sku = combination.Sku,
                     ManufacturerPartNumber = combination.ManufacturerPartNumber,
                     Gtin = combination.Gtin,

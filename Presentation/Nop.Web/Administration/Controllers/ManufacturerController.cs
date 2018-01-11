@@ -688,11 +688,11 @@ namespace Nop.Admin.Controllers
                 return AccessDeniedView();
 
             var model = new ManufacturerModel.AddManufacturerProductModel();
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });

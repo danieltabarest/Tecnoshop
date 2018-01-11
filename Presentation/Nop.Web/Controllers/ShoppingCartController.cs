@@ -10,7 +10,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -20,7 +20,7 @@ using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Shipping.Date;
@@ -69,7 +69,7 @@ namespace Nop.Web.Controllers
 
         private readonly MediaSettings _mediaSettings;
         private readonly ShoppingCartSettings _shoppingCartSettings;
-        private readonly Pedidosettings _Pedidosettings;
+        private readonly Ordersettings _Ordersettings;
         private readonly CaptchaSettings _captchaSettings;
         private readonly CustomerSettings _customerSettings;
 
@@ -104,7 +104,7 @@ namespace Nop.Web.Controllers
             IGenericAttributeService genericAttributeService,
             MediaSettings mediaSettings,
             ShoppingCartSettings shoppingCartSettings,
-            Pedidosettings Pedidosettings,
+            Ordersettings Ordersettings,
             CaptchaSettings captchaSettings,
             CustomerSettings customerSettings)
         {
@@ -137,7 +137,7 @@ namespace Nop.Web.Controllers
 
             this._mediaSettings = mediaSettings;
             this._shoppingCartSettings = shoppingCartSettings;
-            this._Pedidosettings = Pedidosettings;
+            this._Ordersettings = Ordersettings;
             this._captchaSettings = captchaSettings;
             this._customerSettings = customerSettings;
         }
@@ -1259,7 +1259,7 @@ namespace Nop.Web.Controllers
         }
 
         [ChildActionOnly]
-        public virtual ActionResult Pedidosummary(bool? prepareAndDisplayOrderReviewData)
+        public virtual ActionResult Ordersummary(bool? prepareAndDisplayOrderReviewData)
         {
             var cart = _workContext.CurrentCustomer.ShoppingCartItems
                 .Where(sci => sci.ShoppingCartType == ShoppingCartType.ShoppingCart)
@@ -1386,7 +1386,7 @@ namespace Nop.Web.Controllers
                 bool downloadableProductsRequireRegistration =
                     _customerSettings.RequireRegistrationForDownloadableProducts && cart.Any(sci => sci.Product.IsDownload);
 
-                if (!_Pedidosettings.AnonymousCheckoutAllowed 
+                if (!_Ordersettings.AnonymousCheckoutAllowed 
                     || downloadableProductsRequireRegistration)
                     return new HttpUnauthorizedResult();
                 

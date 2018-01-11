@@ -902,7 +902,7 @@ BEGIN
 	--guests only
 	(EXISTS(SELECT 1 FROM [Customer_CustomerRole_Mapping] ccrm with (NOLOCK) inner join [Customer] with (NOLOCK) on ccrm.[Customer_Id]=c.[Id] inner join [CustomerRole] cr with (NOLOCK) on cr.[Id]=ccrm.[CustomerRole_Id] WHERE cr.[SystemName] = N'Guests'))
 	AND
-	--no Pedidos
+	--no Orders
 	(NOT EXISTS(SELECT 1 FROM [Order] o with (NOLOCK) inner join [Customer] with (NOLOCK) on o.[CustomerId]=c.[Id]))
 	AND
 	--no blog comments
@@ -971,7 +971,7 @@ BEGIN
 	SELECT CAST(data AS INT) FROM [nop_splitstring_to_table](@CustomerRoleIds, ',')
 	DECLARE @FilteredCustomerRoleIdsCount INT = (SELECT COUNT(1) FROM #FilteredCustomerRoleIds)
 
-    --ordered Categorias
+    --ordered Categories
     CREATE TABLE #OrderedCategoryIds
 	(
 		[Id] int IDENTITY (1, 1) NOT NULL,

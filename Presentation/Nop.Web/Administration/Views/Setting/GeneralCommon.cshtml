@@ -33,10 +33,10 @@
 
         function toggleSitemapSettings() {
             if ($('#@Html.FieldIdFor(model => model.StoreInformationSettings.SitemapEnabled)').is(':checked')) {
-                $("#pnlSitemapIncludeCategorias, #pnlSitemapIncludeManufacturers, #pnlSitemapIncludeProducts").show();
+                $("#pnlSitemapIncludeCategories, #pnlSitemapIncludeManufacturers, #pnlSitemapIncludeProducts").show();
             }
             else {
-                $("#pnlSitemapIncludeCategorias, #pnlSitemapIncludeManufacturers, #pnlSitemapIncludeProducts").hide();
+                $("#pnlSitemapIncludeCategories, #pnlSitemapIncludeManufacturers, #pnlSitemapIncludeProducts").hide();
             }
         }
 
@@ -290,14 +290,14 @@
                                 @Html.ValidationMessageFor(model => model.StoreInformationSettings.SitemapEnabled)
                             </div>
                         </div>
-                        <div class="form-group advanced-setting" id="pnlSitemapIncludeCategorias">
+                        <div class="form-group advanced-setting" id="pnlSitemapIncludeCategories">
                             <div class="col-md-3">
-                                @Html.OverrideStoreCheckboxFor(model => model.StoreInformationSettings.SitemapIncludeCategorias_OverrideForStore, model => model.StoreInformationSettings.SitemapIncludeCategorias, Model.ActiveStoreScopeConfiguration)
-                                @Html.NopLabelFor(model => model.StoreInformationSettings.SitemapIncludeCategorias)
+                                @Html.OverrideStoreCheckboxFor(model => model.StoreInformationSettings.SitemapIncludeCategories_OverrideForStore, model => model.StoreInformationSettings.SitemapIncludeCategories, Model.ActiveStoreScopeConfiguration)
+                                @Html.NopLabelFor(model => model.StoreInformationSettings.SitemapIncludeCategories)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopEditorFor(model => model.StoreInformationSettings.SitemapIncludeCategorias)
-                                @Html.ValidationMessageFor(model => model.StoreInformationSettings.SitemapIncludeCategorias)
+                                @Html.NopEditorFor(model => model.StoreInformationSettings.SitemapIncludeCategories)
+                                @Html.ValidationMessageFor(model => model.StoreInformationSettings.SitemapIncludeCategories)
                             </div>
                         </div>
                         <div class="form-group advanced-setting" id="pnlSitemapIncludeManufacturers">
@@ -747,12 +747,12 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-3">
-                                @Html.OverrideStoreCheckboxFor(model => model.PdfSettings.DisablePdfInvoicesForPendingPedidos_OverrideForStore, model => model.PdfSettings.DisablePdfInvoicesForPendingPedidos, Model.ActiveStoreScopeConfiguration)
-                                @Html.NopLabelFor(model => model.PdfSettings.DisablePdfInvoicesForPendingPedidos)
+                                @Html.OverrideStoreCheckboxFor(model => model.PdfSettings.DisablePdfInvoicesForPendingOrders_OverrideForStore, model => model.PdfSettings.DisablePdfInvoicesForPendingOrders, Model.ActiveStoreScopeConfiguration)
+                                @Html.NopLabelFor(model => model.PdfSettings.DisablePdfInvoicesForPendingOrders)
                             </div>
                             <div class="col-md-9">
-                                @Html.NopEditorFor(model => model.PdfSettings.DisablePdfInvoicesForPendingPedidos)
-                                @Html.ValidationMessageFor(model => model.PdfSettings.DisablePdfInvoicesForPendingPedidos)
+                                @Html.NopEditorFor(model => model.PdfSettings.DisablePdfInvoicesForPendingOrders)
+                                @Html.ValidationMessageFor(model => model.PdfSettings.DisablePdfInvoicesForPendingOrders)
                             </div>
                         </div>
                     </div>

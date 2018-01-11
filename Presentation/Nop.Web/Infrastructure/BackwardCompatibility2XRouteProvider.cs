@@ -22,7 +22,7 @@ namespace Nop.Web.Infrastructure
                 new { productId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });
 
-            //Categorias
+            //Categories
             routes.MapLocalizedRoute("", "c/{categoryId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectCategoryById", SeName = UrlParameter.Optional },
                 new { categoryId = @"\d+" },

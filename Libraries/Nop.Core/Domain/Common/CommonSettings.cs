@@ -27,18 +27,18 @@ namespace Nop.Core.Domain.Common
         public bool UseStoredProceduresIfSupported { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to use stored procedure (if supported) for loading Categorias (it's much faster in admin area with a large number of Categorias than the LINQ implementation)
+        /// Gets or sets a value indicating whether to use stored procedure (if supported) for loading Categories (it's much faster in admin area with a large number of Categories than the LINQ implementation)
         /// </summary>
-        public bool UseStoredProcedureForLoadingCategorias { get; set; }
+        public bool UseStoredProcedureForLoadingCategories { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether sitemap is enabled
         /// </summary>
         public bool SitemapEnabled { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to include Categorias to sitemap
+        /// Gets or sets a value indicating whether to include Categories to sitemap
         /// </summary>
-        public bool SitemapIncludeCategorias { get; set; }
+        public bool SitemapIncludeCategories { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether to include manufacturers to sitemap
         /// </summary>

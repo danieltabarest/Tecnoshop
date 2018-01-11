@@ -1,6 +1,6 @@
 using System;
 
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
     /// <summary>
     /// Represents a recurring payment history

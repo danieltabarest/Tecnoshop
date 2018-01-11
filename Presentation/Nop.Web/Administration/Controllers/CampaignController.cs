@@ -24,7 +24,7 @@ namespace Nop.Admin.Controllers
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IEmailAccountService _emailAccountService;
         private readonly EmailAccountSettings _emailAccountSettings;
-        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
         private readonly ILocalizationService _localizationService;
         private readonly IMessageTokenProvider _messageTokenProvider;
         private readonly IStoreContext _storeContext;
@@ -37,7 +37,7 @@ namespace Nop.Admin.Controllers
             IDateTimeHelper dateTimeHelper, 
             IEmailAccountService emailAccountService,
             EmailAccountSettings emailAccountSettings,
-            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+            INewsletterSubscriptionService NewsletterSubscriptionService,
             ILocalizationService localizationService, 
             IMessageTokenProvider messageTokenProvider,
             IStoreContext storeContext,
@@ -50,7 +50,7 @@ namespace Nop.Admin.Controllers
             this._dateTimeHelper = dateTimeHelper;
             this._emailAccountService = emailAccountService;
             this._emailAccountSettings = emailAccountSettings;
-            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+            this._NewsletterSubscriptionService = NewsletterSubscriptionService;
             this._localizationService = localizationService;
             this._messageTokenProvider = messageTokenProvider;
             this._storeContext = storeContext;
@@ -327,11 +327,11 @@ namespace Nop.Admin.Controllers
             {
 
                 var emailAccount = GetEmailAccount(model.EmailAccountId);
-                var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(model.TestEmail, _storeContext.CurrentStore.Id);
+                var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionByEmailAndStoreId(model.TestEmail, _storeContext.CurrentStore.Id);
                 if (subscription != null)
                 {
                     //there's a subscription. let's use it
-                    var subscriptions = new List<Boletín informativoSubscription>();
+                    var subscriptions = new List<NewsletterSubscription>();
                     subscriptions.Add(subscription);
                     _campaignService.SendCampaign(campaign, emailAccount, subscriptions);
                 }
@@ -380,7 +380,7 @@ namespace Nop.Admin.Controllers
                 //subscribers of certain store?
                 var store = _storeService.GetStoreById(campaign.StoreId);
                 var storeId = store != null ? store.Id : 0;
-                var subscriptions = _Boletín informativoSubscriptionService.GetAllBoletín informativoSubscriptions(storeId: storeId, 
+                var subscriptions = _NewsletterSubscriptionService.GetAllNewsletterSubscriptions(storeId: storeId, 
                     customerRoleId: model.CustomerRoleId,
                     isActive: true);
                 var totalEmailsSent = _campaignService.SendCampaign(campaign, emailAccount, subscriptions);

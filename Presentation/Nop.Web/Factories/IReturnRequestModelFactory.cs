@@ -1,4 +1,4 @@
-﻿using Nop.Core.Domain.Pedidos;
+﻿using Nop.Core.Domain.Orders;
 using Nop.Web.Models.Order;
 
 namespace Nop.Web.Factories

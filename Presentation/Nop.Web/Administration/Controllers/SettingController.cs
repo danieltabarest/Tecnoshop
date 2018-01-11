@@ -18,7 +18,7 @@ using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Seo;
 using Nop.Core.Domain.Shipping;
@@ -33,7 +33,7 @@ using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 using Nop.Services.Tax;
@@ -61,7 +61,7 @@ namespace Nop.Admin.Controllers
         private readonly IPictureService _pictureService;
         private readonly ILocalizationService _localizationService;
         private readonly IDateTimeHelper _dateTimeHelper;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IEncryptionService _encryptionService;
         private readonly IThemeProvider _themeProvider;
         private readonly ICustomerService _customerService;
@@ -89,7 +89,7 @@ namespace Nop.Admin.Controllers
             IPictureService pictureService, 
             ILocalizationService localizationService, 
             IDateTimeHelper dateTimeHelper,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IEncryptionService encryptionService,
             IThemeProvider themeProvider,
             ICustomerService customerService, 
@@ -114,7 +114,7 @@ namespace Nop.Admin.Controllers
             this._pictureService = pictureService;
             this._localizationService = localizationService;
             this._dateTimeHelper = dateTimeHelper;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._encryptionService = encryptionService;
             this._themeProvider = themeProvider;
             this._customerService = customerService;
@@ -634,8 +634,8 @@ namespace Nop.Admin.Controllers
                 model.DisplayTaxSuffix_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.DisplayTaxSuffix, storeScope);
                 model.DisplayTaxRates_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.DisplayTaxRates, storeScope);
                 model.HideZeroTax_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.HideZeroTax, storeScope);
-                model.HideTaxInPedidosummary_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.HideTaxInPedidosummary, storeScope);
-                model.ForceTaxExclusionFromPedidosubtotal_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.ForceTaxExclusionFromPedidosubtotal, storeScope);
+                model.HideTaxInOrdersummary_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.HideTaxInOrdersummary, storeScope);
+                model.ForceTaxExclusionFromOrdersubtotal_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.ForceTaxExclusionFromOrdersubtotal, storeScope);
                 model.DefaultTaxCategoryId_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.DefaultTaxCategoryId, storeScope);
                 model.TaxBasedOn_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.TaxBasedOn, storeScope);
                 model.TaxBasedOnPickupPointAddress_OverrideForStore = _settingService.SettingExists(taxSettings, x => x.TaxBasedOnPickupPointAddress, storeScope);
@@ -657,14 +657,14 @@ namespace Nop.Admin.Controllers
             model.TaxBasedOnValues = taxSettings.TaxBasedOn.ToSelectList();
             model.TaxDisplayTypeValues = taxSettings.TaxDisplayType.ToSelectList();
 
-            //tax Categorias
-            var taxCategorias = _taxCategoryService.GetAllTaxCategorias();
-            model.TaxCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Settings.Tax.TaxCategorias.None"), Value = "0" });
-            foreach (var tc in taxCategorias)
-                model.TaxCategorias.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString() });
-            model.PaymentMethodAdditionalFeeTaxCategorias.Add(new SelectListItem { Text = "---", Value = "0" });
-            foreach (var tc in taxCategorias)
-                model.PaymentMethodAdditionalFeeTaxCategorias.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString(), Selected = tc.Id == taxSettings.PaymentMethodAdditionalFeeTaxClassId });
+            //tax Categories
+            var taxCategories = _taxCategoryService.GetAllTaxCategories();
+            model.TaxCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Settings.Tax.TaxCategories.None"), Value = "0" });
+            foreach (var tc in taxCategories)
+                model.TaxCategories.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString() });
+            model.PaymentMethodAdditionalFeeTaxCategories.Add(new SelectListItem { Text = "---", Value = "0" });
+            foreach (var tc in taxCategories)
+                model.PaymentMethodAdditionalFeeTaxCategories.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString(), Selected = tc.Id == taxSettings.PaymentMethodAdditionalFeeTaxClassId });
 
             //EU VAT countries
             model.EuVatShopCountries.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Address.SelectCountry"), Value = "0" });
@@ -720,8 +720,8 @@ namespace Nop.Admin.Controllers
             _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.DisplayTaxSuffix, model.DisplayTaxSuffix_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.DisplayTaxRates, model.DisplayTaxRates_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.HideZeroTax, model.HideZeroTax_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.HideTaxInPedidosummary, model.HideTaxInPedidosummary_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.ForceTaxExclusionFromPedidosubtotal, model.ForceTaxExclusionFromPedidosubtotal_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.HideTaxInOrdersummary, model.HideTaxInOrdersummary_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.ForceTaxExclusionFromOrdersubtotal, model.ForceTaxExclusionFromOrdersubtotal_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.DefaultTaxCategoryId, model.DefaultTaxCategoryId_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.TaxBasedOn, model.TaxBasedOn_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(taxSettings, x => x.TaxBasedOnPickupPointAddress, model.TaxBasedOnPickupPointAddress_OverrideForStore, storeScope, false);
@@ -799,9 +799,9 @@ namespace Nop.Admin.Controllers
                 model.ShowFreeShippingNotification_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowFreeShippingNotification, storeScope);
                 model.AllowProductSorting_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.AllowProductSorting, storeScope);
                 model.AllowProductViewModeChanging_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.AllowProductViewModeChanging, storeScope);
-                model.ShowProductsFromSubCategorias_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowProductsFromSubCategorias, storeScope);
+                model.ShowProductsFromSubCategories_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowProductsFromSubCategories, storeScope);
                 model.ShowCategoryProductNumber_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowCategoryProductNumber, storeScope);
-                model.ShowCategoryProductNumberIncludingSubCategorias_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowCategoryProductNumberIncludingSubCategorias, storeScope);
+                model.ShowCategoryProductNumberIncludingSubCategories_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowCategoryProductNumberIncludingSubCategories, storeScope);
                 model.CategoryBreadcrumbEnabled_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.CategoryBreadcrumbEnabled, storeScope);
                 model.ShowShareButton_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.ShowShareButton, storeScope);
                 model.PageShareCode_OverrideForStore = _settingService.SettingExists(catalogSettings, x => x.PageShareCode, storeScope);
@@ -871,9 +871,9 @@ namespace Nop.Admin.Controllers
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowFreeShippingNotification, model.ShowFreeShippingNotification_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.AllowProductSorting, model.AllowProductSorting_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.AllowProductViewModeChanging, model.AllowProductViewModeChanging_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowProductsFromSubCategorias, model.ShowProductsFromSubCategorias_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowProductsFromSubCategories, model.ShowProductsFromSubCategories_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowCategoryProductNumber, model.ShowCategoryProductNumber_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowCategoryProductNumberIncludingSubCategorias, model.ShowCategoryProductNumberIncludingSubCategorias_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowCategoryProductNumberIncludingSubCategories, model.ShowCategoryProductNumberIncludingSubCategories_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.CategoryBreadcrumbEnabled, model.CategoryBreadcrumbEnabled_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.ShowShareButton, model.ShowShareButton_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(catalogSettings, x => x.PageShareCode, model.PageShareCode_OverrideForStore, storeScope, false);
@@ -1080,32 +1080,32 @@ namespace Nop.Admin.Controllers
 
             //load settings for a chosen store scope
             var storeScope = this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-            var Pedidosettings = _settingService.LoadSetting<Pedidosettings>(storeScope);
-            var model = Pedidosettings.ToModel();
+            var Ordersettings = _settingService.LoadSetting<Ordersettings>(storeScope);
+            var model = Ordersettings.ToModel();
             model.ActiveStoreScopeConfiguration = storeScope;
             if (storeScope > 0)
             {
-                model.IsReOrderAllowed_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.IsReOrderAllowed, storeScope);
-                model.MinPedidosubtotalAmount_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.MinPedidosubtotalAmount, storeScope);
-                model.MinPedidosubtotalAmountIncludingTax_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.MinPedidosubtotalAmountIncludingTax, storeScope);
-                model.MinOrderTotalAmount_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.MinOrderTotalAmount, storeScope);
-                model.AutoUpdateOrderTotalsOnEditingOrder_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.AutoUpdateOrderTotalsOnEditingOrder, storeScope);
-                model.AnonymousCheckoutAllowed_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.AnonymousCheckoutAllowed, storeScope);
-                model.TermsOfServiceOnShoppingCartPage_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.TermsOfServiceOnShoppingCartPage, storeScope);
-                model.TermsOfServiceOnOrderConfirmPage_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.TermsOfServiceOnOrderConfirmPage, storeScope);
-                model.OnePageCheckoutEnabled_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.OnePageCheckoutEnabled, storeScope);
-                model.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab, storeScope);
-                model.DisableBillingAddressCheckoutStep_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.DisableBillingAddressCheckoutStep, storeScope);
-                model.DisableOrderCompletedPage_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.DisableOrderCompletedPage, storeScope);
-                model.AttachPdfInvoiceToOrderPlacedEmail_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.AttachPdfInvoiceToOrderPlacedEmail, storeScope);
-                model.AttachPdfInvoiceToOrderPaidEmail_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.AttachPdfInvoiceToOrderPaidEmail, storeScope);
-                model.AttachPdfInvoiceToOrderCompletedEmail_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.AttachPdfInvoiceToOrderCompletedEmail, storeScope);
-                model.ReturnRequestsEnabled_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.ReturnRequestsEnabled, storeScope);
-                model.ReturnRequestsAllowFiles_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.ReturnRequestsAllowFiles, storeScope);
-                model.ReturnRequestNumberMask_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.ReturnRequestNumberMask, storeScope);
-                model.NumberOfDaysReturnRequestAvailable_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.NumberOfDaysReturnRequestAvailable, storeScope);
-                model.CustomOrderNumberMask_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.CustomOrderNumberMask, storeScope);
-                model.ExportWithProducts_OverrideForStore = _settingService.SettingExists(Pedidosettings, x => x.ExportWithProducts, storeScope);
+                model.IsReOrderAllowed_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.IsReOrderAllowed, storeScope);
+                model.MinOrdersubtotalAmount_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.MinOrdersubtotalAmount, storeScope);
+                model.MinOrdersubtotalAmountIncludingTax_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.MinOrdersubtotalAmountIncludingTax, storeScope);
+                model.MinOrderTotalAmount_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.MinOrderTotalAmount, storeScope);
+                model.AutoUpdateOrderTotalsOnEditingOrder_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.AutoUpdateOrderTotalsOnEditingOrder, storeScope);
+                model.AnonymousCheckoutAllowed_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.AnonymousCheckoutAllowed, storeScope);
+                model.TermsOfServiceOnShoppingCartPage_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.TermsOfServiceOnShoppingCartPage, storeScope);
+                model.TermsOfServiceOnOrderConfirmPage_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.TermsOfServiceOnOrderConfirmPage, storeScope);
+                model.OnePageCheckoutEnabled_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.OnePageCheckoutEnabled, storeScope);
+                model.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab, storeScope);
+                model.DisableBillingAddressCheckoutStep_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.DisableBillingAddressCheckoutStep, storeScope);
+                model.DisableOrderCompletedPage_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.DisableOrderCompletedPage, storeScope);
+                model.AttachPdfInvoiceToOrderPlacedEmail_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.AttachPdfInvoiceToOrderPlacedEmail, storeScope);
+                model.AttachPdfInvoiceToOrderPaidEmail_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.AttachPdfInvoiceToOrderPaidEmail, storeScope);
+                model.AttachPdfInvoiceToOrderCompletedEmail_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.AttachPdfInvoiceToOrderCompletedEmail, storeScope);
+                model.ReturnRequestsEnabled_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.ReturnRequestsEnabled, storeScope);
+                model.ReturnRequestsAllowFiles_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.ReturnRequestsAllowFiles, storeScope);
+                model.ReturnRequestNumberMask_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.ReturnRequestNumberMask, storeScope);
+                model.NumberOfDaysReturnRequestAvailable_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.NumberOfDaysReturnRequestAvailable, storeScope);
+                model.CustomOrderNumberMask_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.CustomOrderNumberMask, storeScope);
+                model.ExportWithProducts_OverrideForStore = _settingService.SettingExists(Ordersettings, x => x.ExportWithProducts, storeScope);
             }
 
             var currencySettings = _settingService.LoadSetting<CurrencySettings>(storeScope);
@@ -1117,7 +1117,7 @@ namespace Nop.Admin.Controllers
             return View(model);
         }
         [HttpPost]
-        public virtual ActionResult Order(PedidosettingsModel model)
+        public virtual ActionResult Order(OrdersettingsModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
@@ -1126,37 +1126,37 @@ namespace Nop.Admin.Controllers
             {
                 //load settings for a chosen store scope
                 var storeScope = this.GetActiveStoreScopeConfiguration(_storeService, _workContext);
-                var Pedidosettings = _settingService.LoadSetting<Pedidosettings>(storeScope);
-                Pedidosettings = model.ToEntity(Pedidosettings);
+                var Ordersettings = _settingService.LoadSetting<Ordersettings>(storeScope);
+                Ordersettings = model.ToEntity(Ordersettings);
 
                 /* We do not clear cache after each setting update.
                  * This behavior can increase performance because cached settings will not be cleared 
                  * and loaded from database after each update */
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.IsReOrderAllowed, model.IsReOrderAllowed_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.MinPedidosubtotalAmount, model.MinPedidosubtotalAmount_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.MinPedidosubtotalAmountIncludingTax, model.MinPedidosubtotalAmountIncludingTax_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.MinOrderTotalAmount, model.MinOrderTotalAmount_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.AutoUpdateOrderTotalsOnEditingOrder, model.AutoUpdateOrderTotalsOnEditingOrder_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.AnonymousCheckoutAllowed, model.AnonymousCheckoutAllowed_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.TermsOfServiceOnShoppingCartPage, model.TermsOfServiceOnShoppingCartPage_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.TermsOfServiceOnOrderConfirmPage, model.TermsOfServiceOnOrderConfirmPage_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.OnePageCheckoutEnabled, model.OnePageCheckoutEnabled_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab, model.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.DisableBillingAddressCheckoutStep, model.DisableBillingAddressCheckoutStep_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.DisableOrderCompletedPage, model.DisableOrderCompletedPage_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.AttachPdfInvoiceToOrderPlacedEmail, model.AttachPdfInvoiceToOrderPlacedEmail_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.AttachPdfInvoiceToOrderPaidEmail, model.AttachPdfInvoiceToOrderPaidEmail_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.AttachPdfInvoiceToOrderCompletedEmail, model.AttachPdfInvoiceToOrderCompletedEmail_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.ReturnRequestsEnabled, model.ReturnRequestsEnabled_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.ReturnRequestsAllowFiles, model.ReturnRequestsAllowFiles_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.ReturnRequestNumberMask, model.ReturnRequestNumberMask_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.NumberOfDaysReturnRequestAvailable, model.NumberOfDaysReturnRequestAvailable_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.CustomOrderNumberMask, model.CustomOrderNumberMask_OverrideForStore, storeScope, false);
-                _settingService.SaveSettingOverridablePerStore(Pedidosettings, x => x.ExportWithProducts, model.ExportWithProducts_OverrideForStore, storeScope, false);
-                _settingService.SaveSetting(Pedidosettings, x => x.ActivateGiftCardsAfterCompletingOrder, 0, false);
-                _settingService.SaveSetting(Pedidosettings, x => x.DeactivateGiftCardsAfterCancellingOrder, 0, false);
-                _settingService.SaveSetting(Pedidosettings, x => x.DeactivateGiftCardsAfterDeletingOrder, 0, false);
-                _settingService.SaveSetting(Pedidosettings, x => x.CompleteOrderWhenDelivered, 0, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.IsReOrderAllowed, model.IsReOrderAllowed_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.MinOrdersubtotalAmount, model.MinOrdersubtotalAmount_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.MinOrdersubtotalAmountIncludingTax, model.MinOrdersubtotalAmountIncludingTax_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.MinOrderTotalAmount, model.MinOrderTotalAmount_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.AutoUpdateOrderTotalsOnEditingOrder, model.AutoUpdateOrderTotalsOnEditingOrder_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.AnonymousCheckoutAllowed, model.AnonymousCheckoutAllowed_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.TermsOfServiceOnShoppingCartPage, model.TermsOfServiceOnShoppingCartPage_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.TermsOfServiceOnOrderConfirmPage, model.TermsOfServiceOnOrderConfirmPage_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.OnePageCheckoutEnabled, model.OnePageCheckoutEnabled_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab, model.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.DisableBillingAddressCheckoutStep, model.DisableBillingAddressCheckoutStep_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.DisableOrderCompletedPage, model.DisableOrderCompletedPage_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.AttachPdfInvoiceToOrderPlacedEmail, model.AttachPdfInvoiceToOrderPlacedEmail_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.AttachPdfInvoiceToOrderPaidEmail, model.AttachPdfInvoiceToOrderPaidEmail_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.AttachPdfInvoiceToOrderCompletedEmail, model.AttachPdfInvoiceToOrderCompletedEmail_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.ReturnRequestsEnabled, model.ReturnRequestsEnabled_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.ReturnRequestsAllowFiles, model.ReturnRequestsAllowFiles_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.ReturnRequestNumberMask, model.ReturnRequestNumberMask_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.NumberOfDaysReturnRequestAvailable, model.NumberOfDaysReturnRequestAvailable_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.CustomOrderNumberMask, model.CustomOrderNumberMask_OverrideForStore, storeScope, false);
+                _settingService.SaveSettingOverridablePerStore(Ordersettings, x => x.ExportWithProducts, model.ExportWithProducts_OverrideForStore, storeScope, false);
+                _settingService.SaveSetting(Ordersettings, x => x.ActivateGiftCardsAfterCompletingOrder, 0, false);
+                _settingService.SaveSetting(Ordersettings, x => x.DeactivateGiftCardsAfterCancellingOrder, 0, false);
+                _settingService.SaveSetting(Ordersettings, x => x.DeactivateGiftCardsAfterDeletingOrder, 0, false);
+                _settingService.SaveSetting(Ordersettings, x => x.CompleteOrderWhenDelivered, 0, false);
                
                 //now clear settings cache
                 _settingService.ClearCache();
@@ -1733,7 +1733,7 @@ namespace Nop.Admin.Controllers
             model.StoreInformationSettings.UseSystemEmailForContactUsForm = commonSettings.UseSystemEmailForContactUsForm;
             //sitemap
             model.StoreInformationSettings.SitemapEnabled = commonSettings.SitemapEnabled;
-            model.StoreInformationSettings.SitemapIncludeCategorias = commonSettings.SitemapIncludeCategorias;
+            model.StoreInformationSettings.SitemapIncludeCategories = commonSettings.SitemapIncludeCategories;
             model.StoreInformationSettings.SitemapIncludeManufacturers = commonSettings.SitemapIncludeManufacturers;
             model.StoreInformationSettings.SitemapIncludeProducts = commonSettings.SitemapIncludeProducts;
 
@@ -1752,7 +1752,7 @@ namespace Nop.Admin.Controllers
                 model.StoreInformationSettings.SubjectFieldOnContactUsForm_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SubjectFieldOnContactUsForm, storeScope);
                 model.StoreInformationSettings.UseSystemEmailForContactUsForm_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.UseSystemEmailForContactUsForm, storeScope);
                 model.StoreInformationSettings.SitemapEnabled_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SitemapEnabled, storeScope);
-                model.StoreInformationSettings.SitemapIncludeCategorias_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SitemapIncludeCategorias, storeScope);
+                model.StoreInformationSettings.SitemapIncludeCategories_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SitemapIncludeCategories, storeScope);
                 model.StoreInformationSettings.SitemapIncludeManufacturers_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SitemapIncludeManufacturers, storeScope);
                 model.StoreInformationSettings.SitemapIncludeProducts_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SitemapIncludeProducts, storeScope);
             }
@@ -1817,7 +1817,7 @@ namespace Nop.Admin.Controllers
             var pdfSettings = _settingService.LoadSetting<PdfSettings>(storeScope);
             model.PdfSettings.LetterPageSizeEnabled = pdfSettings.LetterPageSizeEnabled;
             model.PdfSettings.LogoPictureId = pdfSettings.LogoPictureId;
-            model.PdfSettings.DisablePdfInvoicesForPendingPedidos = pdfSettings.DisablePdfInvoicesForPendingPedidos;
+            model.PdfSettings.DisablePdfInvoicesForPendingOrders = pdfSettings.DisablePdfInvoicesForPendingOrders;
             model.PdfSettings.InvoiceFooterTextColumn1 = pdfSettings.InvoiceFooterTextColumn1;
             model.PdfSettings.InvoiceFooterTextColumn2 = pdfSettings.InvoiceFooterTextColumn2;
             //override settings
@@ -1825,7 +1825,7 @@ namespace Nop.Admin.Controllers
             {
                 model.PdfSettings.LetterPageSizeEnabled_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.LetterPageSizeEnabled, storeScope);
                 model.PdfSettings.LogoPictureId_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.LogoPictureId, storeScope);
-                model.PdfSettings.DisablePdfInvoicesForPendingPedidos_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.DisablePdfInvoicesForPendingPedidos, storeScope);
+                model.PdfSettings.DisablePdfInvoicesForPendingOrders_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.DisablePdfInvoicesForPendingOrders, storeScope);
                 model.PdfSettings.InvoiceFooterTextColumn1_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.InvoiceFooterTextColumn1, storeScope);
                 model.PdfSettings.InvoiceFooterTextColumn2_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.InvoiceFooterTextColumn2, storeScope);
             }
@@ -1896,7 +1896,7 @@ namespace Nop.Admin.Controllers
             commonSettings.UseSystemEmailForContactUsForm = model.StoreInformationSettings.UseSystemEmailForContactUsForm;
             //sitemap
             commonSettings.SitemapEnabled = model.StoreInformationSettings.SitemapEnabled;
-            commonSettings.SitemapIncludeCategorias = model.StoreInformationSettings.SitemapIncludeCategorias;
+            commonSettings.SitemapIncludeCategories = model.StoreInformationSettings.SitemapIncludeCategories;
             commonSettings.SitemapIncludeManufacturers = model.StoreInformationSettings.SitemapIncludeManufacturers;
             commonSettings.SitemapIncludeProducts = model.StoreInformationSettings.SitemapIncludeProducts;
 
@@ -1916,7 +1916,7 @@ namespace Nop.Admin.Controllers
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SubjectFieldOnContactUsForm, model.StoreInformationSettings.SubjectFieldOnContactUsForm_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.UseSystemEmailForContactUsForm, model.StoreInformationSettings.UseSystemEmailForContactUsForm_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SitemapEnabled, model.StoreInformationSettings.SitemapEnabled_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SitemapIncludeCategorias, model.StoreInformationSettings.SitemapIncludeCategorias_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SitemapIncludeCategories, model.StoreInformationSettings.SitemapIncludeCategories_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SitemapIncludeManufacturers, model.StoreInformationSettings.SitemapIncludeManufacturers_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SitemapIncludeProducts, model.StoreInformationSettings.SitemapIncludeProducts_OverrideForStore, storeScope, false);
 
@@ -1995,7 +1995,7 @@ namespace Nop.Admin.Controllers
             var pdfSettings = _settingService.LoadSetting<PdfSettings>(storeScope);
             pdfSettings.LetterPageSizeEnabled = model.PdfSettings.LetterPageSizeEnabled;
             pdfSettings.LogoPictureId = model.PdfSettings.LogoPictureId;
-            pdfSettings.DisablePdfInvoicesForPendingPedidos = model.PdfSettings.DisablePdfInvoicesForPendingPedidos;
+            pdfSettings.DisablePdfInvoicesForPendingOrders = model.PdfSettings.DisablePdfInvoicesForPendingOrders;
             pdfSettings.InvoiceFooterTextColumn1 = model.PdfSettings.InvoiceFooterTextColumn1;
             pdfSettings.InvoiceFooterTextColumn2 = model.PdfSettings.InvoiceFooterTextColumn2;
             /* We do not clear cache after each setting update.
@@ -2004,7 +2004,7 @@ namespace Nop.Admin.Controllers
             
             _settingService.SaveSettingOverridablePerStore(pdfSettings, x => x.LetterPageSizeEnabled, model.PdfSettings.LetterPageSizeEnabled_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(pdfSettings, x => x.LogoPictureId, model.PdfSettings.LogoPictureId_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(pdfSettings, x => x.DisablePdfInvoicesForPendingPedidos, model.PdfSettings.DisablePdfInvoicesForPendingPedidos_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(pdfSettings, x => x.DisablePdfInvoicesForPendingOrders, model.PdfSettings.DisablePdfInvoicesForPendingOrders_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(pdfSettings, x => x.InvoiceFooterTextColumn1, model.PdfSettings.InvoiceFooterTextColumn1_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(pdfSettings, x => x.InvoiceFooterTextColumn2, model.PdfSettings.InvoiceFooterTextColumn2_OverrideForStore, storeScope, false);
            
@@ -2094,8 +2094,8 @@ namespace Nop.Admin.Controllers
                     throw new NopException(_localizationService.GetResource("Admin.Configuration.Settings.GeneralCommon.EncryptionKey.TheSame"));
 
                 //update encrypted order info
-                var Pedidos = _Pedidoservice.SearchPedidos();
-                foreach (var order in Pedidos)
+                var Orders = _Orderservice.SearchOrders();
+                foreach (var order in Orders)
                 {
                     string decryptedCardType = _encryptionService.DecryptText(order.CardType, oldEncryptionPrivateKey);
                     string decryptedCardName = _encryptionService.DecryptText(order.CardName, oldEncryptionPrivateKey);
@@ -2120,7 +2120,7 @@ namespace Nop.Admin.Controllers
                     order.CardCvv2 = encryptedCardCvv2;
                     order.CardExpirationMonth = encryptedCardExpirationMonth;
                     order.CardExpirationYear = encryptedCardExpirationYear;
-                    _Pedidoservice.UpdateOrder(order);
+                    _Orderservice.UpdateOrder(order);
                 }
 
                 //update password Information

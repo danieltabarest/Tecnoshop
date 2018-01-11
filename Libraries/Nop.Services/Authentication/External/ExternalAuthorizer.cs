@@ -10,7 +10,7 @@ using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Messages;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 
 namespace Nop.Services.Authentication.External
 {

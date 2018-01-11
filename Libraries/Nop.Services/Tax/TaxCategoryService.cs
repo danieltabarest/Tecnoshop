@@ -18,18 +18,18 @@ namespace Nop.Services.Tax
         /// <summary>
         /// Key for caching
         /// </summary>
-        private const string TAXCategorias_ALL_KEY = "Nop.taxcategory.all";
+        private const string TAXCategories_ALL_KEY = "Nop.taxcategory.all";
         /// <summary>
         /// Key for caching
         /// </summary>
         /// <remarks>
         /// {0} : tax category ID
         /// </remarks>
-        private const string TAXCategorias_BY_ID_KEY = "Nop.taxcategory.id-{0}";
+        private const string TAXCategories_BY_ID_KEY = "Nop.taxcategory.id-{0}";
         /// <summary>
         /// Key pattern to clear cache
         /// </summary>
-        private const string TAXCategorias_PATTERN_KEY = "Nop.taxcategory.";
+        private const string TAXCategories_PATTERN_KEY = "Nop.taxcategory.";
 
         #endregion
 
@@ -73,26 +73,26 @@ namespace Nop.Services.Tax
 
             _taxCategoryRepository.Delete(taxCategory);
 
-            _cacheManager.RemoveByPattern(TAXCategorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(TAXCategories_PATTERN_KEY);
 
             //event notification
             _eventPublisher.EntityDeleted(taxCategory);
         }
 
         /// <summary>
-        /// Gets all tax Categorias
+        /// Gets all tax Categories
         /// </summary>
-        /// <returns>Tax Categorias</returns>
-        public virtual IList<TaxCategory> GetAllTaxCategorias()
+        /// <returns>Tax Categories</returns>
+        public virtual IList<TaxCategory> GetAllTaxCategories()
         {
-            string key = string.Format(TAXCategorias_ALL_KEY);
+            string key = string.Format(TAXCategories_ALL_KEY);
             return _cacheManager.Get(key, () =>
             {
                 var query = from tc in _taxCategoryRepository.Table
                             orderby tc.DisplayOrder, tc.Id
                             select tc;
-                var taxCategorias = query.ToList();
-                return taxCategorias;
+                var taxCategories = query.ToList();
+                return taxCategories;
             });
         }
 
@@ -106,7 +106,7 @@ namespace Nop.Services.Tax
             if (taxCategoryId == 0)
                 return null;
             
-            string key = string.Format(TAXCategorias_BY_ID_KEY, taxCategoryId);
+            string key = string.Format(TAXCategories_BY_ID_KEY, taxCategoryId);
             return _cacheManager.Get(key, () => _taxCategoryRepository.GetById(taxCategoryId));
         }
 
@@ -121,7 +121,7 @@ namespace Nop.Services.Tax
 
             _taxCategoryRepository.Insert(taxCategory);
 
-            _cacheManager.RemoveByPattern(TAXCategorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(TAXCategories_PATTERN_KEY);
 
             //event notification
             _eventPublisher.EntityInserted(taxCategory);
@@ -138,7 +138,7 @@ namespace Nop.Services.Tax
 
             _taxCategoryRepository.Update(taxCategory);
 
-            _cacheManager.RemoveByPattern(TAXCategorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(TAXCategories_PATTERN_KEY);
 
             //event notification
             _eventPublisher.EntityUpdated(taxCategory);

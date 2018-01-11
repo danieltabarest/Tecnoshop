@@ -5,7 +5,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Services.Catalog;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 
 namespace Nop.Web.Controllers
 {
@@ -13,21 +13,21 @@ namespace Nop.Web.Controllers
     {
         private readonly IDownloadService _downloadService;
         private readonly IProductService _productService;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IWorkContext _workContext;
         private readonly ILocalizationService _localizationService;
         private readonly CustomerSettings _customerSettings;
 
         public DownloadController(IDownloadService downloadService,
             IProductService productService,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IWorkContext workContext,
             ILocalizationService localizationService,
             CustomerSettings customerSettings)
         {
             this._downloadService = downloadService;
             this._productService = productService;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._workContext = workContext;
             this._localizationService = localizationService;
             this._customerSettings = customerSettings;
@@ -59,7 +59,7 @@ namespace Nop.Web.Controllers
 
         public virtual ActionResult GetDownload(Guid orderItemId, bool agree = false)
         {
-            var orderItem = _Pedidoservice.GetOrderItemByGuid(orderItemId);
+            var orderItem = _Orderservice.GetOrderItemByGuid(orderItemId);
             if (orderItem == null)
                 return InvokeHttp404();
 
@@ -93,7 +93,7 @@ namespace Nop.Web.Controllers
             {
                 //increase download
                 orderItem.DownloadCount++;
-                _Pedidoservice.UpdateOrder(order);
+                _Orderservice.UpdateOrder(order);
 
                 //return result
                 return new RedirectResult(download.DownloadUrl);
@@ -105,7 +105,7 @@ namespace Nop.Web.Controllers
 
             //increase download
             orderItem.DownloadCount++;
-            _Pedidoservice.UpdateOrder(order);
+            _Orderservice.UpdateOrder(order);
 
             //return result
             string fileName = !String.IsNullOrWhiteSpace(download.Filename) ? download.Filename : product.Id.ToString();
@@ -115,7 +115,7 @@ namespace Nop.Web.Controllers
 
         public virtual ActionResult GetLicense(Guid orderItemId)
         {
-            var orderItem = _Pedidoservice.GetOrderItemByGuid(orderItemId);
+            var orderItem = _Orderservice.GetOrderItemByGuid(orderItemId);
             if (orderItem == null)
                 return InvokeHttp404();
 
@@ -168,7 +168,7 @@ namespace Nop.Web.Controllers
 
         public virtual ActionResult GetOrderNoteFile(int orderNoteId)
         {
-            var orderNote = _Pedidoservice.GetOrderNoteById(orderNoteId);
+            var orderNote = _Orderservice.GetOrderNoteById(orderNoteId);
             if (orderNote == null)
                 return InvokeHttp404();
 

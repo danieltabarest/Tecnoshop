@@ -11,7 +11,7 @@ using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Tax;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Checkout attribute helper

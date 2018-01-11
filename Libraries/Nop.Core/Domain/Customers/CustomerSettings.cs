@@ -109,21 +109,21 @@ namespace Nop.Core.Domain.Customers
         public CustomerNameFormat CustomerNameFormat { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Boletín informativo' form field is enabled
+        /// Gets or sets a value indicating whether 'Newsletter' form field is enabled
         /// </summary>
-        public bool Boletín informativoEnabled { get; set; }
+        public bool NewsletterEnabled { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether 'Boletín informativo' checkbox is ticked by default on the registration page
+        /// Gets or sets a value indicating whether 'Newsletter' checkbox is ticked by default on the registration page
         /// </summary>
-        public bool Boletín informativoTickedByDefault { get; set; }
+        public bool NewsletterTickedByDefault { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to hide Boletín informativo box
+        /// Gets or sets a value indicating whether to hide Newsletter box
         /// </summary>
-        public bool HideBoletín informativoBlock { get; set; }
+        public bool HideNewsletterBlock { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether Boletín informativo block should allow to unsubsribe
+        /// Gets or sets a value indicating whether Newsletter block should allow to unsubsribe
         /// </summary>
-        public bool Boletín informativoBlockAllowToUnsubscribe { get; set; }
+        public bool NewsletterBlockAllowToUnsubscribe { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating the number of minutes for 'online customers' module

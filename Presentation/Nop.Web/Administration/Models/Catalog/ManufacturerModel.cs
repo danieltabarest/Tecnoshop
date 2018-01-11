@@ -131,7 +131,7 @@ namespace Nop.Admin.Models.Catalog
         {
             public AddManufacturerProductModel()
             {
-                AvailableCategorias = new List<SelectListItem>();
+                AvailableCategories = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -152,7 +152,7 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategorias { get; set; }
+            public IList<SelectListItem> AvailableCategories { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }

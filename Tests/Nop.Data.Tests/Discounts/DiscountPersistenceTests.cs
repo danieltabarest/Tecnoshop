@@ -47,17 +47,17 @@ namespace Nop.Data.Tests.Discounts
         }
 
         [Test]
-        public void Can_save_and_load_discount_with_appliedCategorias()
+        public void Can_save_and_load_discount_with_appliedCategories()
         {
             var discount = this.GetTestDiscount();
-            discount.AppliedToCategorias.Add(this.GetTestCategory());
+            discount.AppliedToCategories.Add(this.GetTestCategory());
             var fromDb = SaveAndLoadEntity(discount);
             fromDb.ShouldNotBeNull();
             fromDb.PropertiesShouldEqual(this.GetTestDiscount());
 
-            fromDb.AppliedToCategorias.ShouldNotBeNull();
-            (fromDb.AppliedToCategorias.Count == 1).ShouldBeTrue();
-            fromDb.AppliedToCategorias.First().PropertiesShouldEqual(this.GetTestCategory());
+            fromDb.AppliedToCategories.ShouldNotBeNull();
+            (fromDb.AppliedToCategories.Count == 1).ShouldBeTrue();
+            fromDb.AppliedToCategories.First().PropertiesShouldEqual(this.GetTestCategory());
         }
     }
 }

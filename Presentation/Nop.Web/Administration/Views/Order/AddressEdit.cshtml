@@ -2,9 +2,9 @@
 
 @{
     //page title
-    ViewBag.Title = T("Admin.Pedidos.Address.EditAddress").Text;
+    ViewBag.Title = T("Admin.Orders.Address.EditAddress").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Pedidos");
+    Html.SetActiveMenuItemSystemName("Orders");
 }
 
 @using (Html.BeginForm())
@@ -12,8 +12,8 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Pedidos.Address.EditAddress") 
-            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Pedidos.Address.BackToOrder").Text, "Edit", new { id = Model.OrderId })</small>
+            @T("Admin.Orders.Address.EditAddress") 
+            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Orders.Address.BackToOrder").Text, "Edit", new { id = Model.OrderId })</small>
         </h1>
         <div class="pull-right">
             <button type="submit" name="save" class="btn bg-blue">

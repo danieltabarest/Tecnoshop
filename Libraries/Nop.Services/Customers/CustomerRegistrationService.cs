@@ -6,7 +6,7 @@ using Nop.Services.Common;
 using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 
@@ -21,7 +21,7 @@ namespace Nop.Services.Customers
 
         private readonly ICustomerService _customerService;
         private readonly IEncryptionService _encryptionService;
-        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
         private readonly ILocalizationService _localizationService;
         private readonly IStoreService _storeService;
         private readonly IRewardPointService _rewardPointService;
@@ -41,7 +41,7 @@ namespace Nop.Services.Customers
         /// </summary>
         /// <param name="customerService">Customer service</param>
         /// <param name="encryptionService">Encryption service</param>
-        /// <param name="Boletín informativoSubscriptionService">Boletín informativo subscription service</param>
+        /// <param name="NewsletterSubscriptionService">Newsletter subscription service</param>
         /// <param name="localizationService">Localization service</param>
         /// <param name="storeService">Store service</param>
         /// <param name="rewardPointService">Reward points service</param>
@@ -53,7 +53,7 @@ namespace Nop.Services.Customers
         /// <param name="customerSettings">Customer settings</param>
         public CustomerRegistrationService(ICustomerService customerService, 
             IEncryptionService encryptionService, 
-            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+            INewsletterSubscriptionService NewsletterSubscriptionService,
             ILocalizationService localizationService,
             IStoreService storeService,
             IRewardPointService rewardPointService,
@@ -66,7 +66,7 @@ namespace Nop.Services.Customers
         {
             this._customerService = customerService;
             this._encryptionService = encryptionService;
-            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+            this._NewsletterSubscriptionService = NewsletterSubscriptionService;
             this._localizationService = localizationService;
             this._storeService = storeService;
             this._rewardPointService = rewardPointService;
@@ -418,16 +418,16 @@ namespace Nop.Services.Customers
                 customer.Email = newEmail;
                 _customerService.UpdateCustomer(customer);
 
-                //update Boletín informativo subscription (if required)
+                //update Newsletter subscription (if required)
                 if (!String.IsNullOrEmpty(oldEmail) && !oldEmail.Equals(newEmail, StringComparison.InvariantCultureIgnoreCase))
                 {
                     foreach (var store in _storeService.GetAllStores())
                     {
-                        var subscriptionOld = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(oldEmail, store.Id);
+                        var subscriptionOld = _NewsletterSubscriptionService.GetNewsletterSubscriptionByEmailAndStoreId(oldEmail, store.Id);
                         if (subscriptionOld != null)
                         {
                             subscriptionOld.Email = newEmail;
-                            _Boletín informativoSubscriptionService.UpdateBoletín informativoSubscription(subscriptionOld);
+                            _NewsletterSubscriptionService.UpdateNewsletterSubscription(subscriptionOld);
                         }
                     }
                 }

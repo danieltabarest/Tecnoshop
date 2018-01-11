@@ -7,9 +7,9 @@
     var stores = EngineContext.Current.Resolve<IStoreService>().GetAllStores();
 
     //page title
-    ViewBag.Title = T("Admin.Pedidos").Text;
+    ViewBag.Title = T("Admin.Orders").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Pedidos");
+    Html.SetActiveMenuItemSystemName("Orders");
 }
 
 @using (Html.BeginForm())
@@ -17,7 +17,7 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Pedidos")
+            @T("Admin.Orders")
         </h1>
         <div class="pull-right">
             <div class="btn-group">
@@ -60,7 +60,7 @@
             <div class="btn-group">
                 <button type="button" class="btn bg-purple">
                     <i class="fa fa-file-pdf-o"></i>
-                    @T("Admin.Pedidos.PdfInvoices")
+                    @T("Admin.Orders.PdfInvoices")
                 </button>
                 <button type="button" class="btn bg-purple dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <span class="caret"></span>
@@ -69,12 +69,12 @@
                 <ul class="dropdown-menu" role="menu">
                     <li>
                         <button type="submit" name="pdf-invoice-all">
-                            @T("Admin.Pedidos.PdfInvoices.All")
+                            @T("Admin.Orders.PdfInvoices.All")
                         </button>
                     </li>
                     <li>
                         <button type="button" id="pdf-invoice-selected">
-                            @T("Admin.Pedidos.PdfInvoices.Selected")
+                            @T("Admin.Orders.PdfInvoices.Selected")
                         </button>
                     </li>
                 </ul>
@@ -151,10 +151,10 @@
                                 </div>
                                 <div class="form-group" @(Model.IsLoggedInAsVendor ? Html.Raw("style='display: none;'") : null)>
                                     <div class="col-md-4">
-                                        @Html.NopLabelFor(model => model.PedidostatusIds)
+                                        @Html.NopLabelFor(model => model.OrderstatusIds)
                                     </div>
                                     <div class="col-md-8">
-                                        @Html.EditorFor(model => model.PedidostatusIds, new { SelectList = Model.AvailablePedidostatuses })
+                                        @Html.EditorFor(model => model.OrderstatusIds, new { SelectList = Model.AvailableOrderstatuses })
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -250,7 +250,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-7 col-md-offset-5">
-                                <button type="button" id="search-Pedidos" class="btn btn-primary btn-search">
+                                <button type="button" id="search-Orders" class="btn btn-primary btn-search">
                                     <i class="fa fa-search"></i>
                                     @T("Admin.Common.Search")
                                 </button>
@@ -261,11 +261,11 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div id="Pedidos-grid"></div>
+                        <div id="Orders-grid"></div>
 
                         <script>
                             $(document).ready(function() {
-                                $("#Pedidos-grid").kendoGrid({
+                                $("#Orders-grid").kendoGrid({
                                     dataSource: {
                                         type: "json",
                                         transport: {
@@ -321,27 +321,27 @@
                                             width: 50
                                         }, {
                                             field: "CustomOrderNumber",
-                                            title: "@T("Admin.Pedidos.Fields.CustomOrderNumber")",
+                                            title: "@T("Admin.Orders.Fields.CustomOrderNumber")",
                                             width: 80
                                         },
                                         @if (!Model.IsLoggedInAsVendor)
                                         {
                                             //a vendor does not have access to this functionality
                                             <text>{
-                                            field: "Pedidostatus",
-                                            title: "@T("Admin.Pedidos.Fields.Pedidostatus")",
+                                            field: "Orderstatus",
+                                            title: "@T("Admin.Orders.Fields.Orderstatus")",
                                             width: 100,
                                             template: '<span class="grid-report-item ' +
-                                                '# if(PedidostatusId == 10) {# yellow #} #' +
-                                                '# if(PedidostatusId == 20) {# blue #} #' +
-                                                '# if(PedidostatusId == 30) {# green #} #' +
-                                                '# if(PedidostatusId == 40) {# red #} #' +
-                                                '">#=Pedidostatus#</span>'
+                                                '# if(OrderstatusId == 10) {# yellow #} #' +
+                                                '# if(OrderstatusId == 20) {# blue #} #' +
+                                                '# if(OrderstatusId == 30) {# green #} #' +
+                                                '# if(OrderstatusId == 40) {# red #} #' +
+                                                '">#=Orderstatus#</span>'
                                         },</text>
                                         }
                                         {
                                             field: "PaymentStatus",
-                                            title: "@T("Admin.Pedidos.Fields.PaymentStatus")",
+                                            title: "@T("Admin.Orders.Fields.PaymentStatus")",
                                             width: 150
                                         },
                                         @if (!Model.IsLoggedInAsVendor)
@@ -349,24 +349,24 @@
                                             //a vendor does not have access to this functionality
                                             <text>{
                                             field: "ShippingStatus",
-                                            title: "@T("Admin.Pedidos.Fields.ShippingStatus")",
+                                            title: "@T("Admin.Orders.Fields.ShippingStatus")",
                                             width: 150
                                         },</text>
                                         }
                                         {
                                             field: "CustomerEmail",
-                                            title: "@T("Admin.Pedidos.Fields.Customer")",
+                                            title: "@T("Admin.Orders.Fields.Customer")",
                                             width: 250,
                                             template: '#=CustomerFullName# (#=CustomerEmail#)'
                                         },
                                         {
                                             field: "StoreName",
                                             hidden: @(stores.Count > 1 ? "false" : "true"),
-                                            title: "@T("Admin.Pedidos.Fields.Store")",
+                                            title: "@T("Admin.Orders.Fields.Store")",
                                             width: 100
                                         }, {
                                             field: "CreatedOn",
-                                            title: "@T("Admin.Pedidos.Fields.CreatedOn")",
+                                            title: "@T("Admin.Orders.Fields.CreatedOn")",
                                             width: 150,
                                             type: "date",
                                             format: "{0:G}"
@@ -376,13 +376,13 @@
                                             //a vendor does not have access to this functionality
                                             <text>{
                                             field: "OrderTotal",
-                                            title: "@T("Admin.Pedidos.Fields.OrderTotal")",
+                                            title: "@T("Admin.Orders.Fields.OrderTotal")",
                                             width: 100,
-                                            footerTemplate: '<div><strong>@T("Admin.Pedidos.Report.Summary")</strong></div>' +
-                                                                    '<div>@T("Admin.Pedidos.Report.Profit") <span id=\"aggregator-profit-block\"></span></div>' +
-                                                                    '<div>@T("Admin.Pedidos.Report.Shipping") <span id=\"aggregator-shipping-block\"></span></div>' +
-                                                                    '<div>@T("Admin.Pedidos.Report.Tax") <span id=\"aggregator-tax-block\"></span></div>' +
-                                                                    '<div>@T("Admin.Pedidos.Report.Total") <span id=\"aggregator-total-block\"></span></div>'
+                                            footerTemplate: '<div><strong>@T("Admin.Orders.Report.Summary")</strong></div>' +
+                                                                    '<div>@T("Admin.Orders.Report.Profit") <span id=\"aggregator-profit-block\"></span></div>' +
+                                                                    '<div>@T("Admin.Orders.Report.Shipping") <span id=\"aggregator-shipping-block\"></span></div>' +
+                                                                    '<div>@T("Admin.Orders.Report.Tax") <span id=\"aggregator-tax-block\"></span></div>' +
+                                                                    '<div>@T("Admin.Orders.Report.Total") <span id=\"aggregator-total-block\"></span></div>'
                                         },</text>
                                         }
                                         {
@@ -404,9 +404,9 @@
 
                             $(document).ready(function () {
                                 //search button
-                                $('#search-Pedidos').click(function () {
+                                $('#search-Orders').click(function () {
                                     //search
-                                    var grid = $('#Pedidos-grid').data('kendoGrid');
+                                    var grid = $('#Orders-grid').data('kendoGrid');
                                     grid.dataSource.page(1); //new search. Set page size to 1
                                     //grid.dataSource.read(); we already loaded the grid above using "page" function
                                     //clear selected checkboxes
@@ -419,7 +419,7 @@
                                     "#@Html.FieldIdFor(model => model.BillingLastName),",
                                     "#@Html.FieldIdFor(model => model.OrderNotes)")).keydown(function (event) {
                                         if (event.keyCode === 13) {
-                                            $("#search-Pedidos").click();
+                                            $("#search-Orders").click();
                                             return false;
                                         }
                                     });
@@ -436,7 +436,7 @@
                                 });
 
                                 //wire up checkboxes.
-                                $('#Pedidos-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
+                                $('#Orders-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
                                     var $check = $(this);
                                     if ($check.is(":checked") == true) {
                                         var checked = jQuery.inArray($check.val(), selectedIds);
@@ -462,7 +462,7 @@
                                 var data = {
                                     StartDate: $('#@Html.FieldIdFor(model => model.StartDate)').val(),
                                     EndDate: $('#@Html.FieldIdFor(model => model.EndDate)').val(),
-                                    PedidostatusIds: $('#@Html.FieldIdFor(model => model.PedidostatusIds)').val(),
+                                    OrderstatusIds: $('#@Html.FieldIdFor(model => model.OrderstatusIds)').val(),
                                     PaymentStatusIds: $('#@Html.FieldIdFor(model => model.PaymentStatusIds)').val(),
                                     ShippingStatusIds: $('#@Html.FieldIdFor(model => model.ShippingStatusIds)').val(),
                                     StoreId: $('#@Html.FieldIdFor(model => model.StoreId)').val(),
@@ -480,7 +480,7 @@
                             }
 
                             function onDataBound(e) {
-                                $('#Pedidos-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
+                                $('#Orders-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
                                     var currentId = $(this).val();
                                     var checked = jQuery.inArray(currentId, selectedIds);
                                     //set checked based on if current checkbox's value is in selectedIds.
@@ -501,8 +501,8 @@
                             }
 
                             function updateMasterCheckbox() {
-                                var numChkBoxes = $('#Pedidos-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
-                                var numChkBoxesChecked = $('#Pedidos-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
+                                var numChkBoxes = $('#Orders-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
+                                var numChkBoxesChecked = $('#Orders-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
                                 $('#mastercheckbox').attr('checked', numChkBoxes == numChkBoxesChecked && numChkBoxes > 0);
                             }
                         </script>

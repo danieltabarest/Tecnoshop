@@ -17,7 +17,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
@@ -34,7 +34,7 @@ using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Messages;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 using Nop.Services.Tax;
@@ -51,7 +51,7 @@ namespace Nop.Admin.Controllers
         #region Fields
 
         private readonly ICustomerService _customerService;
-        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
+        private readonly INewsletterSubscriptionService _NewsletterSubscriptionService;
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly ICustomerRegistrationService _customerRegistrationService;
         private readonly ICustomerReportService _customerReportService;
@@ -69,7 +69,7 @@ namespace Nop.Admin.Controllers
         private readonly IVendorService _vendorService;
         private readonly IStoreContext _storeContext;
         private readonly IPriceFormatter _priceFormatter;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IExportManager _exportManager;
         private readonly ICustomerActivityService _customerActivityService;
         private readonly IBackInStockSubscriptionService _backInStockSubscriptionService;
@@ -99,7 +99,7 @@ namespace Nop.Admin.Controllers
         #region Constructors
 
         public CustomerController(ICustomerService customerService,
-            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
+            INewsletterSubscriptionService NewsletterSubscriptionService,
             IGenericAttributeService genericAttributeService,
             ICustomerRegistrationService customerRegistrationService,
             ICustomerReportService customerReportService, 
@@ -117,7 +117,7 @@ namespace Nop.Admin.Controllers
             IVendorService vendorService,
             IStoreContext storeContext,
             IPriceFormatter priceFormatter,
-            IPedidoservice Pedidoservice, 
+            IOrderservice Orderservice, 
             IExportManager exportManager,
             ICustomerActivityService customerActivityService,
             IBackInStockSubscriptionService backInStockSubscriptionService,
@@ -143,7 +143,7 @@ namespace Nop.Admin.Controllers
             ICacheManager cacheManager)
         {
             this._customerService = customerService;
-            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
+            this._NewsletterSubscriptionService = NewsletterSubscriptionService;
             this._genericAttributeService = genericAttributeService;
             this._customerRegistrationService = customerRegistrationService;
             this._customerReportService = customerReportService;
@@ -161,7 +161,7 @@ namespace Nop.Admin.Controllers
             this._vendorService = vendorService;
             this._storeContext = storeContext;
             this._priceFormatter = priceFormatter;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._exportManager = exportManager;
             this._customerActivityService = customerActivityService;
             this._backInStockSubscriptionService = backInStockSubscriptionService;
@@ -521,17 +521,17 @@ namespace Nop.Admin.Controllers
 
                     model.SelectedCustomerRoleIds = customer.CustomerRoles.Select(cr => cr.Id).ToList();
 
-                    //Boletín informativo subscriptions
+                    //Newsletter subscriptions
                     if (!String.IsNullOrEmpty(customer.Email))
                     {
-                        var Boletín informativoSubscriptionStoreIds = new List<int>();
+                        var NewsletterSubscriptionStoreIds = new List<int>();
                         foreach (var store in allStores)
                         {
-                            var Boletín informativoSubscription = _Boletín informativoSubscriptionService
-                                .GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email, store.Id);
-                            if (Boletín informativoSubscription != null)
-                                Boletín informativoSubscriptionStoreIds.Add(store.Id);
-                            model.SelectedBoletín informativoSubscriptionStoreIds = Boletín informativoSubscriptionStoreIds.ToArray();
+                            var NewsletterSubscription = _NewsletterSubscriptionService
+                                .GetNewsletterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
+                            if (NewsletterSubscription != null)
+                                NewsletterSubscriptionStoreIds.Add(store.Id);
+                            model.SelectedNewsletterSubscriptionStoreIds = NewsletterSubscriptionStoreIds.ToArray();
                         }
                     }
 
@@ -622,8 +622,8 @@ namespace Nop.Admin.Controllers
                 }
             }
 
-            //Boletín informativo subscriptions
-            model.AvailableBoletín informativoSubscriptionStores = allStores
+            //Newsletter subscriptions
+            model.AvailableNewsletterSubscriptionStores = allStores
                 .Select(s => new CustomerModel.StoreModel() {Id = s.Id, Name = s.Name })
                 .ToList();
 
@@ -946,23 +946,23 @@ namespace Nop.Admin.Controllers
                 _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.CustomCustomerAttributes, customerAttributesXml);
 
 
-                //Boletín informativo subscriptions
+                //Newsletter subscriptions
                 if (!String.IsNullOrEmpty(customer.Email))
                 {
                     var allStores = _storeService.GetAllStores();
                     foreach (var store in allStores)
                     {
-                        var Boletín informativoSubscription = _Boletín informativoSubscriptionService
-                            .GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email, store.Id);
-                        if (model.SelectedBoletín informativoSubscriptionStoreIds != null &&
-                            model.SelectedBoletín informativoSubscriptionStoreIds.Contains(store.Id))
+                        var NewsletterSubscription = _NewsletterSubscriptionService
+                            .GetNewsletterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
+                        if (model.SelectedNewsletterSubscriptionStoreIds != null &&
+                            model.SelectedNewsletterSubscriptionStoreIds.Contains(store.Id))
                         {
                             //subscribed
-                            if (Boletín informativoSubscription == null)
+                            if (NewsletterSubscription == null)
                             {
-                                _Boletín informativoSubscriptionService.InsertBoletín informativoSubscription(new Boletín informativoSubscription
+                                _NewsletterSubscriptionService.InsertNewsletterSubscription(new NewsletterSubscription
                                 {
-                                    Boletín informativoSubscriptionGuid = Guid.NewGuid(),
+                                    NewsletterSubscriptionGuid = Guid.NewGuid(),
                                     Email = customer.Email,
                                     Active = true,
                                     StoreId = store.Id,
@@ -973,9 +973,9 @@ namespace Nop.Admin.Controllers
                         else
                         {
                             //not subscribed
-                            if (Boletín informativoSubscription != null)
+                            if (NewsletterSubscription != null)
                             {
-                                _Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(Boletín informativoSubscription);
+                                _NewsletterSubscriptionService.DeleteNewsletterSubscription(NewsletterSubscription);
                             }
                         }
                     }
@@ -1200,23 +1200,23 @@ namespace Nop.Admin.Controllers
                     //custom customer attributes
                     _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.CustomCustomerAttributes, customerAttributesXml);
 
-                    //Boletín informativo subscriptions
+                    //Newsletter subscriptions
                     if (!String.IsNullOrEmpty(customer.Email))
                     {
                         var allStores = _storeService.GetAllStores();
                         foreach (var store in allStores)
                         {
-                            var Boletín informativoSubscription = _Boletín informativoSubscriptionService
-                                .GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email, store.Id);
-                            if (model.SelectedBoletín informativoSubscriptionStoreIds != null &&
-                                model.SelectedBoletín informativoSubscriptionStoreIds.Contains(store.Id))
+                            var NewsletterSubscription = _NewsletterSubscriptionService
+                                .GetNewsletterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
+                            if (model.SelectedNewsletterSubscriptionStoreIds != null &&
+                                model.SelectedNewsletterSubscriptionStoreIds.Contains(store.Id))
                             {
                                 //subscribed
-                                if (Boletín informativoSubscription == null)
+                                if (NewsletterSubscription == null)
                                 {
-                                    _Boletín informativoSubscriptionService.InsertBoletín informativoSubscription(new Boletín informativoSubscription
+                                    _NewsletterSubscriptionService.InsertNewsletterSubscription(new NewsletterSubscription
                                     {
-                                        Boletín informativoSubscriptionGuid = Guid.NewGuid(),
+                                        NewsletterSubscriptionGuid = Guid.NewGuid(),
                                         Email = customer.Email,
                                         Active = true,
                                         StoreId = store.Id,
@@ -1227,9 +1227,9 @@ namespace Nop.Admin.Controllers
                             else
                             {
                                 //not subscribed
-                                if (Boletín informativoSubscription != null)
+                                if (NewsletterSubscription != null)
                                 {
-                                    _Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(Boletín informativoSubscription);
+                                    _NewsletterSubscriptionService.DeleteNewsletterSubscription(NewsletterSubscription);
                                 }
                             }
                         }
@@ -1435,12 +1435,12 @@ namespace Nop.Admin.Controllers
                 //delete
                 _customerService.DeleteCustomer(customer);
 
-                //remove Boletín informativo subscription (if exists)
+                //remove Newsletter subscription (if exists)
                 foreach (var store in _storeService.GetAllStores())
                 {
-                    var subscription = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email, store.Id);
+                    var subscription = _NewsletterSubscriptionService.GetNewsletterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
                     if (subscription != null)
-                        _Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(subscription);
+                        _NewsletterSubscriptionService.DeleteNewsletterSubscription(subscription);
                 }
 
                 //activity log
@@ -1873,7 +1873,7 @@ namespace Nop.Admin.Controllers
 
         #endregion
 
-        #region Pedidos
+        #region Orders
         
         [HttpPost]
         public virtual ActionResult OrderList(int customerId, DataSourceRequest command)
@@ -1881,19 +1881,19 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
                 return AccessDeniedKendoGridJson();
 
-            var Pedidos = _Pedidoservice.SearchPedidos(customerId: customerId);
+            var Orders = _Orderservice.SearchOrders(customerId: customerId);
 
             var gridModel = new DataSourceResult
             {
-                Data = Pedidos.PagedForCommand(command)
+                Data = Orders.PagedForCommand(command)
                     .Select(order =>
                     {
                         var store = _storeService.GetStoreById(order.StoreId);
                         var orderModel = new CustomerModel.OrderModel
                         {
                             Id = order.Id, 
-                            Pedidostatus = order.Pedidostatus.GetLocalizedEnum(_localizationService, _workContext),
-                            PedidostatusId = order.PedidostatusId,
+                            Orderstatus = order.Orderstatus.GetLocalizedEnum(_localizationService, _workContext),
+                            OrderstatusId = order.OrderstatusId,
                             PaymentStatus = order.PaymentStatus.GetLocalizedEnum(_localizationService, _workContext),
                             ShippingStatus = order.ShippingStatus.GetLocalizedEnum(_localizationService, _workContext),
                             OrderTotal = _priceFormatter.FormatPrice(order.OrderTotal, true, false),
@@ -1903,7 +1903,7 @@ namespace Nop.Admin.Controllers
                         };
                         return orderModel;
                     }),
-                Total = Pedidos.Count
+                Total = Orders.Count
             };
 
 
@@ -1920,19 +1920,19 @@ namespace Nop.Admin.Controllers
                 return AccessDeniedView();
 
             var model = new CustomerReportsModel();
-            //customers by number of Pedidos
-            model.BestCustomersByNumberOfPedidos = new BestCustomersReportModel();
-            model.BestCustomersByNumberOfPedidos.AvailablePedidostatuses = Pedidostatus.Pending.ToSelectList(false).ToList();
-            model.BestCustomersByNumberOfPedidos.AvailablePedidostatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            model.BestCustomersByNumberOfPedidos.AvailablePaymentStatuses = PaymentStatus.Pending.ToSelectList(false).ToList();
-            model.BestCustomersByNumberOfPedidos.AvailablePaymentStatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            model.BestCustomersByNumberOfPedidos.AvailableShippingStatuses = ShippingStatus.NotYetShipped.ToSelectList(false).ToList();
-            model.BestCustomersByNumberOfPedidos.AvailableShippingStatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            //customers by number of Orders
+            model.BestCustomersByNumberOfOrders = new BestCustomersReportModel();
+            model.BestCustomersByNumberOfOrders.AvailableOrderstatuses = Orderstatus.Pending.ToSelectList(false).ToList();
+            model.BestCustomersByNumberOfOrders.AvailableOrderstatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            model.BestCustomersByNumberOfOrders.AvailablePaymentStatuses = PaymentStatus.Pending.ToSelectList(false).ToList();
+            model.BestCustomersByNumberOfOrders.AvailablePaymentStatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            model.BestCustomersByNumberOfOrders.AvailableShippingStatuses = ShippingStatus.NotYetShipped.ToSelectList(false).ToList();
+            model.BestCustomersByNumberOfOrders.AvailableShippingStatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
 
             //customers by order total
             model.BestCustomersByOrderTotal = new BestCustomersReportModel();
-            model.BestCustomersByOrderTotal.AvailablePedidostatuses = Pedidostatus.Pending.ToSelectList(false).ToList();
-            model.BestCustomersByOrderTotal.AvailablePedidostatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            model.BestCustomersByOrderTotal.AvailableOrderstatuses = Orderstatus.Pending.ToSelectList(false).ToList();
+            model.BestCustomersByOrderTotal.AvailableOrderstatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
             model.BestCustomersByOrderTotal.AvailablePaymentStatuses = PaymentStatus.Pending.ToSelectList(false).ToList();
             model.BestCustomersByOrderTotal.AvailablePaymentStatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
             model.BestCustomersByOrderTotal.AvailableShippingStatuses = ShippingStatus.NotYetShipped.ToSelectList(false).ToList();
@@ -1953,13 +1953,13 @@ namespace Nop.Admin.Controllers
             DateTime? endDateValue = (model.EndDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
-            Pedidostatus? Pedidostatus = model.PedidostatusId > 0 ? (Pedidostatus?)(model.PedidostatusId) : null;
+            Orderstatus? Orderstatus = model.OrderstatusId > 0 ? (Orderstatus?)(model.OrderstatusId) : null;
             PaymentStatus? paymentStatus = model.PaymentStatusId > 0 ? (PaymentStatus?)(model.PaymentStatusId) : null;
             ShippingStatus? shippingStatus = model.ShippingStatusId > 0 ? (ShippingStatus?)(model.ShippingStatusId) : null;
 
 
             var items = _customerReportService.GetBestCustomersReport(startDateValue, endDateValue,
-                Pedidostatus, paymentStatus, shippingStatus, 1, command.Page - 1, command.PageSize);
+                Orderstatus, paymentStatus, shippingStatus, 1, command.Page - 1, command.PageSize);
             var gridModel = new DataSourceResult
             {
                 Data = items.Select(x =>
@@ -1983,7 +1983,7 @@ namespace Nop.Admin.Controllers
             return Json(gridModel);
         }
         [HttpPost]
-        public virtual ActionResult ReportBestCustomersByNumberOfPedidosList(DataSourceRequest command, BestCustomersReportModel model)
+        public virtual ActionResult ReportBestCustomersByNumberOfOrdersList(DataSourceRequest command, BestCustomersReportModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
                 return AccessDeniedKendoGridJson();
@@ -1994,13 +1994,13 @@ namespace Nop.Admin.Controllers
             DateTime? endDateValue = (model.EndDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
-            Pedidostatus? Pedidostatus = model.PedidostatusId > 0 ? (Pedidostatus?)(model.PedidostatusId) : null;
+            Orderstatus? Orderstatus = model.OrderstatusId > 0 ? (Orderstatus?)(model.OrderstatusId) : null;
             PaymentStatus? paymentStatus = model.PaymentStatusId > 0 ? (PaymentStatus?)(model.PaymentStatusId) : null;
             ShippingStatus? shippingStatus = model.ShippingStatusId > 0 ? (ShippingStatus?)(model.ShippingStatusId) : null;
 
 
             var items = _customerReportService.GetBestCustomersReport(startDateValue, endDateValue,
-                Pedidostatus, paymentStatus, shippingStatus, 2, command.Page - 1, command.PageSize);
+                Orderstatus, paymentStatus, shippingStatus, 2, command.Page - 1, command.PageSize);
             var gridModel = new DataSourceResult
             {
                 Data = items.Select(x =>
@@ -2052,7 +2052,7 @@ namespace Nop.Admin.Controllers
         [ChildActionOnly]
 	    public virtual ActionResult CustomerStatistics()
 	    {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManagePedidos))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
                 return Content("");
 
             //a vendor doesn't have access to this report

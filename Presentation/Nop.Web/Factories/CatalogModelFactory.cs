@@ -146,14 +146,14 @@ namespace Nop.Web.Factories
                 _storeContext.CurrentStore.Id);
             return _cacheManager.Get(cacheKey, () =>
             {
-                var CategoriasIds = new List<int>();
-                var Categorias = _categoryService.GetAllCategoriasByParentCategoryId(parentCategoryId);
-                foreach (var category in Categorias)
+                var CategoriesIds = new List<int>();
+                var Categories = _categoryService.GetAllCategoriesByParentCategoryId(parentCategoryId);
+                foreach (var category in Categories)
                 {
-                    CategoriasIds.Add(category.Id);
-                    CategoriasIds.AddRange(GetChildCategoryIds(category.Id));
+                    CategoriesIds.Add(category.Id);
+                    CategoriesIds.AddRange(GetChildCategoryIds(category.Id));
                 }
-                return CategoriasIds;
+                return CategoriesIds;
             });
         }
 
@@ -338,7 +338,7 @@ namespace Nop.Web.Factories
 
         #endregion
 
-        #region Categorias
+        #region Categories
 
         /// <summary>
         /// Prepare category model
@@ -414,16 +414,16 @@ namespace Nop.Web.Factories
             
             var pictureSize = _mediaSettings.CategoryThumbPictureSize;
 
-            //subCategorias
-            string subCategoriasCacheKey = string.Format(ModelCacheEventConsumer.CATEGORY_SUBCategorias_KEY,
+            //subCategories
+            string subCategoriesCacheKey = string.Format(ModelCacheEventConsumer.CATEGORY_SUBCategories_KEY,
                 category.Id,
                 pictureSize,
                 string.Join(",", _workContext.CurrentCustomer.GetCustomerRoleIds()),
                 _storeContext.CurrentStore.Id,
                 _workContext.WorkingLanguage.Id,
                 _webHelper.IsCurrentConnectionSecured());
-            model.SubCategorias = _cacheManager.Get(subCategoriasCacheKey, () =>
-                _categoryService.GetAllCategoriasByParentCategoryId(category.Id)
+            model.SubCategories = _cacheManager.Get(subCategoriesCacheKey, () =>
+                _categoryService.GetAllCategoriesByParentCategoryId(category.Id)
                 .Select(x =>
                 {
                     var subCatModel = new CategoryModel.SubCategoryModel
@@ -496,9 +496,9 @@ namespace Nop.Web.Factories
 
             var categoryIds = new List<int>();
             categoryIds.Add(category.Id);
-            if (_catalogSettings.ShowProductsFromSubCategorias)
+            if (_catalogSettings.ShowProductsFromSubCategories)
             {
-                //include subCategorias
+                //include subCategories
                 categoryIds.AddRange(GetChildCategoryIds(category.Id));
             }
             //products
@@ -570,16 +570,16 @@ namespace Nop.Web.Factories
             else if (currentProductId > 0)
             {
                 //product details page
-                var productCategorias = _categoryService.GetProductCategoriasByProductId(currentProductId);
-                if (productCategorias.Any())
-                    activeCategoryId = productCategorias[0].CategoryId;
+                var productCategories = _categoryService.GetProductCategoriesByProductId(currentProductId);
+                if (productCategories.Any())
+                    activeCategoryId = productCategories[0].CategoryId;
             }
 
-            var cachedCategoriasModel = PrepareCategorySimpleModels();
+            var cachedCategoriesModel = PrepareCategorySimpleModels();
             var model = new CategoryNavigationModel
             {
                 CurrentCategoryId = activeCategoryId,
-                Categorias = cachedCategoriasModel
+                Categories = cachedCategoriesModel
             };
 
             return model;
@@ -591,8 +591,8 @@ namespace Nop.Web.Factories
         /// <returns>Top menu model</returns>
         public virtual TopMenuModel PrepareTopMenuModel()
         {
-            //Categorias
-            var cachedCategoriasModel = PrepareCategorySimpleModels();
+            //Categories
+            var cachedCategoriesModel = PrepareCategorySimpleModels();
 
             //top menu topics
             string topicCacheKey = string.Format(ModelCacheEventConsumer.TOPIC_TOP_MENU_MODEL_KEY, 
@@ -612,7 +612,7 @@ namespace Nop.Web.Factories
             );
             var model = new TopMenuModel
             {
-                Categorias = cachedCategoriasModel,
+                Categories = cachedCategoriesModel,
                 Topics = cachedTopicModel,
                 NewProductsEnabled = _catalogSettings.NewProductsEnabled,
                 BlogEnabled = _blogSettings.Enabled,
@@ -636,15 +636,15 @@ namespace Nop.Web.Factories
         {
             var pictureSize = _mediaSettings.CategoryThumbPictureSize;
 
-            string CategoriasCacheKey = string.Format(ModelCacheEventConsumer.CATEGORY_HOMEPAGE_KEY,
+            string CategoriesCacheKey = string.Format(ModelCacheEventConsumer.CATEGORY_HOMEPAGE_KEY,
                 string.Join(",", _workContext.CurrentCustomer.GetCustomerRoleIds()), 
                 pictureSize,
                 _storeContext.CurrentStore.Id,
                 _workContext.WorkingLanguage.Id, 
                 _webHelper.IsCurrentConnectionSecured());
 
-            var model = _cacheManager.Get(CategoriasCacheKey, () =>
-                _categoryService.GetAllCategoriasDisplayedOnHomePage()
+            var model = _cacheManager.Get(CategoriesCacheKey, () =>
+                _categoryService.GetAllCategoriesDisplayedOnHomePage()
                 .Select(category =>
                 {
                     var catModel = new CategoryModel
@@ -699,30 +699,30 @@ namespace Nop.Web.Factories
         /// Prepare category (simple) models
         /// </summary>
         /// <param name="rootCategoryId">Root category identifier</param>
-        /// <param name="loadSubCategorias">A value indicating whether subCategorias should be loaded</param>
-        /// <param name="allCategorias">All available Categorias; pass null to load them internally</param>
+        /// <param name="loadSubCategories">A value indicating whether subCategories should be loaded</param>
+        /// <param name="allCategories">All available Categories; pass null to load them internally</param>
         /// <returns>List of category (simple) models</returns>
         public virtual List<CategorySimpleModel> PrepareCategorySimpleModels(int rootCategoryId,
-            bool loadSubCategorias = true, IList<Category> allCategorias = null)
+            bool loadSubCategories = true, IList<Category> allCategories = null)
         {
             var result = new List<CategorySimpleModel>();
 
             //little hack for performance optimization.
-            //we know that this method is used to load top and left menu for Categorias.
-            //it'll load all Categorias anyway.
-            //so there's no need to invoke "GetAllCategoriasByParentCategoryId" multiple times (extra SQL commands) to load childs
-            //so we load all Categorias at once
+            //we know that this method is used to load top and left menu for Categories.
+            //it'll load all Categories anyway.
+            //so there's no need to invoke "GetAllCategoriesByParentCategoryId" multiple times (extra SQL commands) to load childs
+            //so we load all Categories at once
             //if you don't like this implementation if you can uncomment the line below (old behavior) and comment several next lines (before foreach)
-            //var Categorias = _categoryService.GetAllCategoriasByParentCategoryId(rootCategoryId);
-            if (allCategorias == null)
+            //var Categories = _categoryService.GetAllCategoriesByParentCategoryId(rootCategoryId);
+            if (allCategories == null)
             {
-                //load Categorias if null passed
+                //load Categories if null passed
                 //we implemeneted it this way for performance optimization - recursive iterations (below)
-                //this way all Categorias are loaded only once
-                allCategorias = _categoryService.GetAllCategorias(storeId: _storeContext.CurrentStore.Id);
+                //this way all Categories are loaded only once
+                allCategories = _categoryService.GetAllCategories(storeId: _storeContext.CurrentStore.Id);
             }
-            var Categorias = allCategorias.Where(c => c.ParentCategoryId == rootCategoryId).ToList();
-            foreach (var category in Categorias)
+            var Categories = allCategories.Where(c => c.ParentCategoryId == rootCategoryId).ToList();
+            foreach (var category in Categories)
             {
                 var categoryModel = new CategorySimpleModel
                 {
@@ -743,17 +743,17 @@ namespace Nop.Web.Factories
                     {
                         var categoryIds = new List<int>();
                         categoryIds.Add(category.Id);
-                        //include subCategorias
-                        if (_catalogSettings.ShowCategoryProductNumberIncludingSubCategorias)
+                        //include subCategories
+                        if (_catalogSettings.ShowCategoryProductNumberIncludingSubCategories)
                             categoryIds.AddRange(GetChildCategoryIds(category.Id));
                         return _productService.GetNumberOfProductsInCategory(categoryIds, _storeContext.CurrentStore.Id);
                     });
                 }
 
-                if (loadSubCategorias)
+                if (loadSubCategories)
                 {
-                    var subCategorias = PrepareCategorySimpleModels(category.Id, loadSubCategorias, allCategorias);
-                    categoryModel.SubCategorias.AddRange(subCategorias);
+                    var subCategories = PrepareCategorySimpleModels(category.Id, loadSubCategories, allCategories);
+                    categoryModel.SubCategories.AddRange(subCategories);
                 }
                 result.Add(categoryModel);
             }
@@ -1255,46 +1255,46 @@ namespace Nop.Web.Factories
                 _catalogSettings.SearchPageProductsPerPage);
 
 
-            string cacheKey = string.Format(ModelCacheEventConsumer.SEARCH_Categorias_MODEL_KEY, 
+            string cacheKey = string.Format(ModelCacheEventConsumer.SEARCH_Categories_MODEL_KEY, 
                 _workContext.WorkingLanguage.Id,
                 string.Join(",", _workContext.CurrentCustomer.GetCustomerRoleIds()), 
                 _storeContext.CurrentStore.Id); 
-            var Categorias = _cacheManager.Get(cacheKey, () =>
+            var Categories = _cacheManager.Get(cacheKey, () =>
             {
-                var CategoriasModel = new List<SearchModel.CategoryModel>();
-                //all Categorias
-                var allCategorias = _categoryService.GetAllCategorias(storeId: _storeContext.CurrentStore.Id);
-                foreach (var c in allCategorias)
+                var CategoriesModel = new List<SearchModel.CategoryModel>();
+                //all Categories
+                var allCategories = _categoryService.GetAllCategories(storeId: _storeContext.CurrentStore.Id);
+                foreach (var c in allCategories)
                 {
                     //generate full category name (breadcrumb)
                     string categoryBreadcrumb= "";
-                    var breadcrumb = c.GetCategoryBreadCrumb(allCategorias, _aclService, _storeMappingService);
+                    var breadcrumb = c.GetCategoryBreadCrumb(allCategories, _aclService, _storeMappingService);
                     for (int i = 0; i <= breadcrumb.Count - 1; i++)
                     {
                         categoryBreadcrumb += breadcrumb[i].GetLocalized(x => x.Name);
                         if (i != breadcrumb.Count - 1)
                             categoryBreadcrumb += " >> ";
                     }
-                    CategoriasModel.Add(new SearchModel.CategoryModel
+                    CategoriesModel.Add(new SearchModel.CategoryModel
                     {
                         Id = c.Id,
                         Breadcrumb = categoryBreadcrumb
                     });
                 }
-                return CategoriasModel;
+                return CategoriesModel;
             });
-            if (Categorias.Any())
+            if (Categories.Any())
             {
                 //first empty entry
-                model.AvailableCategorias.Add(new SelectListItem
+                model.AvailableCategories.Add(new SelectListItem
                     {
                          Value = "0",
                          Text = _localizationService.GetResource("Common.All")
                     });
-                //all other Categorias
-                foreach (var c in Categorias)
+                //all other Categories
+                foreach (var c in Categories)
                 {
-                    model.AvailableCategorias.Add(new SelectListItem
+                    model.AvailableCategories.Add(new SelectListItem
                     {
                         Value = c.Id.ToString(),
                         Text = c.Breadcrumb,
@@ -1380,7 +1380,7 @@ namespace Nop.Web.Factories
                             categoryIds.Add(categoryId);
                             if (model.isc)
                             {
-                                //include subCategorias
+                                //include subCategories
                                 categoryIds.AddRange(GetChildCategoryIds(categoryId));
                             }
                         }

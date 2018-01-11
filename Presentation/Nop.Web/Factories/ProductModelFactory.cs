@@ -30,6 +30,7 @@ using Nop.Web.Infrastructure.Cache;
 using Nop.Web.Models.Catalog;
 using Nop.Web.Models.Common;
 using Nop.Web.Models.Media;
+using Nop.Core.Domain.Orders;
 
 namespace Nop.Web.Factories
 {
@@ -1256,7 +1257,7 @@ namespace Nop.Web.Factories
 
             //back in stock subscriptions
             if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock &&
-                product.BackorderMode == BackorderMode.NoBackorders &&
+                product.BackorderMode == BackorderMode.NoBackOrders &&
                 product.AllowBackInStockSubscriptions &&
                 product.GetTotalStockQuantity() <= 0)
             {

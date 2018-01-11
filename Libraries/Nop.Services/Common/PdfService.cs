@@ -12,7 +12,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Html;
@@ -22,7 +22,7 @@ using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Pedidos;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Stores;
 
@@ -38,7 +38,7 @@ namespace Nop.Services.Common
         private readonly ILocalizationService _localizationService;
         private readonly ILanguageService _languageService;
         private readonly IWorkContext _workContext;
-        private readonly IPedidoservice _Pedidoservice;
+        private readonly IOrderservice _Orderservice;
         private readonly IPaymentService _paymentService;
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IPriceFormatter _priceFormatter;
@@ -66,7 +66,7 @@ namespace Nop.Services.Common
         public PdfService(ILocalizationService localizationService, 
             ILanguageService languageService,
             IWorkContext workContext,
-            IPedidoservice Pedidoservice,
+            IOrderservice Orderservice,
             IPaymentService paymentService,
             IDateTimeHelper dateTimeHelper,
             IPriceFormatter priceFormatter,
@@ -89,7 +89,7 @@ namespace Nop.Services.Common
             this._localizationService = localizationService;
             this._languageService = languageService;
             this._workContext = workContext;
-            this._Pedidoservice = Pedidoservice;
+            this._Orderservice = Orderservice;
             this._paymentService = paymentService;
             this._dateTimeHelper = dateTimeHelper;
             this._priceFormatter = priceFormatter;
@@ -186,27 +186,27 @@ namespace Nop.Services.Common
             string filePath = Path.Combine(CommonHelper.MapPath("~/content/files/ExportImport"), fileName);
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
-                var Pedidos = new List<Order>();
-                Pedidos.Add(order);
-                PrintPedidosToPdf(fileStream, Pedidos, languageId, vendorId);
+                var Orders = new List<Order>();
+                Orders.Add(order);
+                PrintOrdersToPdf(fileStream, Orders, languageId, vendorId);
             }
             return filePath;
         }
 
         /// <summary>
-        /// Print Pedidos to PDF
+        /// Print Orders to PDF
         /// </summary>
         /// <param name="stream">Stream</param>
-        /// <param name="Pedidos">Pedidos</param>
+        /// <param name="Orders">Orders</param>
         /// <param name="languageId">Language identifier; 0 to use a language used when placing an order</param>
         /// <param name="vendorId">Vendor identifier to limit products; 0 to to print all products. If specified, then totals won't be printed</param>
-        public virtual void PrintPedidosToPdf(Stream stream, IList<Order> Pedidos, int languageId = 0, int vendorId = 0)
+        public virtual void PrintOrdersToPdf(Stream stream, IList<Order> Orders, int languageId = 0, int vendorId = 0)
         {
             if (stream == null)
                 throw new ArgumentNullException("stream");
 
-            if (Pedidos == null)
-                throw new ArgumentNullException("Pedidos");
+            if (Orders == null)
+                throw new ArgumentNullException("Orders");
 
             var pageSize = PageSize.A4;
 
@@ -228,10 +228,10 @@ namespace Nop.Services.Common
             var attributesFont = GetFont();
             attributesFont.SetStyle(Font.ITALIC);
 
-            int ordCount = Pedidos.Count;
+            int ordCount = Orders.Count;
             int ordNum = 0;
 
-            foreach (var order in Pedidos)
+            foreach (var order in Orders)
             {
                 //by default _pdfSettings contains settings for the current active store
                 //and we need PdfSettings for the store which was used to place an order
@@ -623,14 +623,14 @@ namespace Nop.Services.Common
                     totalsTable.WidthPercentage = 100f;
 
                     //order subtotal
-                    if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal)
+                    if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrdersubtotal)
                     {
                         //including tax
 
-                        var PedidosubtotalInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubtotalInclTax, order.CurrencyRate);
-                        string PedidosubtotalInclTaxStr = _priceFormatter.FormatPrice(PedidosubtotalInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, true);
+                        var OrdersubtotalInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubtotalInclTax, order.CurrencyRate);
+                        string OrdersubtotalInclTaxStr = _priceFormatter.FormatPrice(OrdersubtotalInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, true);
 
-                        var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Sub-Total", lang.Id), PedidosubtotalInclTaxStr), font));
+                        var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Sub-Total", lang.Id), OrdersubtotalInclTaxStr), font));
                         p.HorizontalAlignment = Element.ALIGN_RIGHT;
                         p.Border = Rectangle.NO_BORDER;
                         totalsTable.AddCell(p);
@@ -639,27 +639,27 @@ namespace Nop.Services.Common
                     {
                         //excluding tax
 
-                        var PedidosubtotalExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubtotalExclTax, order.CurrencyRate);
-                        string PedidosubtotalExclTaxStr = _priceFormatter.FormatPrice(PedidosubtotalExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, false);
+                        var OrdersubtotalExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubtotalExclTax, order.CurrencyRate);
+                        string OrdersubtotalExclTaxStr = _priceFormatter.FormatPrice(OrdersubtotalExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, false);
 
-                        var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Sub-Total", lang.Id), PedidosubtotalExclTaxStr), font));
+                        var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Sub-Total", lang.Id), OrdersubtotalExclTaxStr), font));
                         p.HorizontalAlignment = Element.ALIGN_RIGHT;
                         p.Border = Rectangle.NO_BORDER;
                         totalsTable.AddCell(p);
                     }
 
                     //discount (applied to order subtotal)
-                    if (order.PedidosubTotalDiscountExclTax > decimal.Zero)
+                    if (order.OrdersubTotalDiscountExclTax > decimal.Zero)
                     {
                         //order subtotal
-                        if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal)
+                        if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrdersubtotal)
                         {
                             //including tax
 
-                            var PedidosubTotalDiscountInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubTotalDiscountInclTax, order.CurrencyRate);
-                            string PedidosubTotalDiscountInCustomerCurrencyStr = _priceFormatter.FormatPrice(-PedidosubTotalDiscountInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, true);
+                            var OrdersubTotalDiscountInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubTotalDiscountInclTax, order.CurrencyRate);
+                            string OrdersubTotalDiscountInCustomerCurrencyStr = _priceFormatter.FormatPrice(-OrdersubTotalDiscountInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, true);
 
-                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Discount", lang.Id), PedidosubTotalDiscountInCustomerCurrencyStr), font));
+                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Discount", lang.Id), OrdersubTotalDiscountInCustomerCurrencyStr), font));
                             p.HorizontalAlignment = Element.ALIGN_RIGHT;
                             p.Border = Rectangle.NO_BORDER;
                             totalsTable.AddCell(p);
@@ -668,10 +668,10 @@ namespace Nop.Services.Common
                         {
                             //excluding tax
 
-                            var PedidosubTotalDiscountExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubTotalDiscountExclTax, order.CurrencyRate);
-                            string PedidosubTotalDiscountInCustomerCurrencyStr = _priceFormatter.FormatPrice(-PedidosubTotalDiscountExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, false);
+                            var OrdersubTotalDiscountExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdersubTotalDiscountExclTax, order.CurrencyRate);
+                            string OrdersubTotalDiscountInCustomerCurrencyStr = _priceFormatter.FormatPrice(-OrdersubTotalDiscountExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, false);
 
-                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Discount", lang.Id), PedidosubTotalDiscountInCustomerCurrencyStr), font));
+                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Discount", lang.Id), OrdersubTotalDiscountInCustomerCurrencyStr), font));
                             p.HorizontalAlignment = Element.ALIGN_RIGHT;
                             p.Border = Rectangle.NO_BORDER;
                             totalsTable.AddCell(p);
@@ -684,10 +684,10 @@ namespace Nop.Services.Common
                         if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
                         {
                             //including tax
-                            var PedidoshippingInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidoshippingInclTax, order.CurrencyRate);
-                            string PedidoshippingInclTaxStr = _priceFormatter.FormatShippingPrice(PedidoshippingInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, true);
+                            var OrdershippingInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdershippingInclTax, order.CurrencyRate);
+                            string OrdershippingInclTaxStr = _priceFormatter.FormatShippingPrice(OrdershippingInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, true);
 
-                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Shipping", lang.Id), PedidoshippingInclTaxStr), font));
+                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Shipping", lang.Id), OrdershippingInclTaxStr), font));
                             p.HorizontalAlignment = Element.ALIGN_RIGHT;
                             p.Border = Rectangle.NO_BORDER;
                             totalsTable.AddCell(p);
@@ -695,10 +695,10 @@ namespace Nop.Services.Common
                         else
                         {
                             //excluding tax
-                            var PedidoshippingExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidoshippingExclTax, order.CurrencyRate);
-                            string PedidoshippingExclTaxStr = _priceFormatter.FormatShippingPrice(PedidoshippingExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, false);
+                            var OrdershippingExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrdershippingExclTax, order.CurrencyRate);
+                            string OrdershippingExclTaxStr = _priceFormatter.FormatShippingPrice(OrdershippingExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, lang, false);
 
-                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Shipping", lang.Id), PedidoshippingExclTaxStr), font));
+                            var p = new PdfPCell(new Paragraph(String.Format("{0} {1}", _localizationService.GetResource("PDFInvoice.Shipping", lang.Id), OrdershippingExclTaxStr), font));
                             p.HorizontalAlignment = Element.ALIGN_RIGHT;
                             p.Border = Rectangle.NO_BORDER;
                             totalsTable.AddCell(p);
@@ -737,7 +737,7 @@ namespace Nop.Services.Common
                     var taxRates = new SortedDictionary<decimal, decimal>();
                     bool displayTax = true;
                     bool displayTaxRates = true;
-                    if (_taxSettings.HideTaxInPedidosummary && order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
+                    if (_taxSettings.HideTaxInOrdersummary && order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
                     {
                         displayTax = false;
                     }
@@ -1129,7 +1129,7 @@ namespace Nop.Services.Common
                     productAttribTable.DefaultCell.Border = Rectangle.NO_BORDER;
 
                     //product name
-                    var orderItem = _Pedidoservice.GetOrderItemById(si.OrderItemId);
+                    var orderItem = _Orderservice.GetOrderItemById(si.OrderItemId);
                     if (orderItem == null)
                         continue;
 

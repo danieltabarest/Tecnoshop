@@ -152,19 +152,19 @@ namespace Nop.Admin.Controllers
         }
 
         [NonAction]
-        protected virtual void PrepareAllCategoriasModel(CategoryModel model)
+        protected virtual void PrepareAllCategoriesModel(CategoryModel model)
         {
             if (model == null)
                 throw new ArgumentNullException("model");
 
-            model.AvailableCategorias.Add(new SelectListItem
+            model.AvailableCategories.Add(new SelectListItem
             {
-                Text = _localizationService.GetResource("Admin.Catalog.Categorias.Fields.Parent.None"),
+                Text = _localizationService.GetResource("Admin.Catalog.Categories.Fields.Parent.None"),
                 Value = "0"
             });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
         }
 
         [NonAction]
@@ -193,7 +193,7 @@ namespace Nop.Admin.Controllers
             if (!excludeProperties && category != null)
                 model.SelectedDiscountIds = category.AppliedDiscounts.Select(d => d.Id).ToList();
 
-            foreach (var discount in _discountService.GetAllDiscounts(DiscountType.AssignedToCategorias, showHidden: true))
+            foreach (var discount in _discountService.GetAllDiscounts(DiscountType.AssignedToCategories, showHidden: true))
             {
                 model.AvailableDiscounts.Add(new SelectListItem
                 {
@@ -307,7 +307,7 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult List()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var model = new CategoryListModel();
@@ -320,20 +320,20 @@ namespace Nop.Admin.Controllers
         [HttpPost]
         public virtual ActionResult List(DataSourceRequest command, CategoryListModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedKendoGridJson();
 
-            var Categorias = _categoryService.GetAllCategorias(model.SearchCategoryName, 
+            var Categories = _categoryService.GetAllCategories(model.SearchCategoryName, 
                 model.SearchStoreId, command.Page - 1, command.PageSize, true);
             var gridModel = new DataSourceResult
             {
-                Data = Categorias.Select(x =>
+                Data = Categories.Select(x =>
                 {
                     var categoryModel = x.ToModel();
                     categoryModel.Breadcrumb = x.GetFormattedBreadCrumb(_categoryService);
                     return categoryModel;
                 }),
-                Total = Categorias.TotalCount
+                Total = Categories.TotalCount
             };
             return Json(gridModel);
         }
@@ -344,7 +344,7 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult Create()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var model = new CategoryModel();
@@ -352,8 +352,8 @@ namespace Nop.Admin.Controllers
             AddLocales(_languageService, model.Locales);
             //templates
             PrepareTemplatesModel(model);
-            //Categorias
-            PrepareAllCategoriasModel(model);
+            //Categories
+            PrepareAllCategoriesModel(model);
             //discounts
             PrepareDiscountModel(model, null, true);
             //ACL
@@ -373,7 +373,7 @@ namespace Nop.Admin.Controllers
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
         public virtual ActionResult Create(CategoryModel model, bool continueEditing)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             if (ModelState.IsValid)
@@ -388,7 +388,7 @@ namespace Nop.Admin.Controllers
                 //locales
                 UpdateLocales(category, model);
                 //discounts
-                var allDiscounts = _discountService.GetAllDiscounts(DiscountType.AssignedToCategorias, showHidden: true);
+                var allDiscounts = _discountService.GetAllDiscounts(DiscountType.AssignedToCategories, showHidden: true);
                 foreach (var discount in allDiscounts)
                 {
                     if (model.SelectedDiscountIds != null && model.SelectedDiscountIds.Contains(discount.Id))
@@ -405,7 +405,7 @@ namespace Nop.Admin.Controllers
                 //activity log
                 _customerActivityService.InsertActivity("AddNewCategory", _localizationService.GetResource("ActivityLog.AddNewCategory"), category.Name);
 
-                SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categorias.Added"));
+                SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categories.Added"));
 
                 if (continueEditing)
                 {
@@ -420,8 +420,8 @@ namespace Nop.Admin.Controllers
             //If we got this far, something failed, redisplay form
             //templates
             PrepareTemplatesModel(model);
-            //Categorias
-            PrepareAllCategoriasModel(model);
+            //Categories
+            PrepareAllCategoriesModel(model);
             //discounts
             PrepareDiscountModel(model, null, true);
             //ACL
@@ -433,7 +433,7 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult Edit(int id)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var category = _categoryService.GetCategoryById(id);
@@ -454,8 +454,8 @@ namespace Nop.Admin.Controllers
             });
             //templates
             PrepareTemplatesModel(model);
-            //Categorias
-            PrepareAllCategoriasModel(model);
+            //Categories
+            PrepareAllCategoriesModel(model);
             //discounts
             PrepareDiscountModel(model, category, false);
             //ACL
@@ -469,7 +469,7 @@ namespace Nop.Admin.Controllers
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
         public virtual ActionResult Edit(CategoryModel model, bool continueEditing)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var category = _categoryService.GetCategoryById(model.Id);
@@ -489,7 +489,7 @@ namespace Nop.Admin.Controllers
                 //locales
                 UpdateLocales(category, model);
                 //discounts
-                var allDiscounts = _discountService.GetAllDiscounts(DiscountType.AssignedToCategorias, showHidden: true);
+                var allDiscounts = _discountService.GetAllDiscounts(DiscountType.AssignedToCategories, showHidden: true);
                 foreach (var discount in allDiscounts)
                 {
                     if (model.SelectedDiscountIds != null && model.SelectedDiscountIds.Contains(discount.Id))
@@ -523,7 +523,7 @@ namespace Nop.Admin.Controllers
                 //activity log
                 _customerActivityService.InsertActivity("EditCategory", _localizationService.GetResource("ActivityLog.EditCategory"), category.Name);
 
-                SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categorias.Updated"));
+                SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categories.Updated"));
                 if (continueEditing)
                 {
                     //selected tab
@@ -538,8 +538,8 @@ namespace Nop.Admin.Controllers
             //If we got this far, something failed, redisplay form
             //templates
             PrepareTemplatesModel(model);
-            //Categorias
-            PrepareAllCategoriasModel(model);
+            //Categories
+            PrepareAllCategoriesModel(model);
             //discounts
             PrepareDiscountModel(model, category, true);
             //ACL
@@ -553,7 +553,7 @@ namespace Nop.Admin.Controllers
         [HttpPost]
         public virtual ActionResult Delete(int id)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var category = _categoryService.GetCategoryById(id);
@@ -566,7 +566,7 @@ namespace Nop.Admin.Controllers
             //activity log
             _customerActivityService.InsertActivity("DeleteCategory", _localizationService.GetResource("ActivityLog.DeleteCategory"), category.Name);
 
-            SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categorias.Deleted"));
+            SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categories.Deleted"));
             return RedirectToAction("List");
         }
         
@@ -577,13 +577,13 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult ExportXml()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             try
             {
-                var xml = _exportManager.ExportCategoriasToXml();
-                return new XmlDownloadResult(xml, "Categorias.xml");
+                var xml = _exportManager.ExportCategoriesToXml();
+                return new XmlDownloadResult(xml, "Categories.xml");
             }
             catch (Exception exc)
             {
@@ -594,14 +594,14 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult ExportXlsx()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             try
             {
-                var bytes =_exportManager.ExportCategoriasToXlsx(_categoryService.GetAllCategorias(showHidden: true).Where(p=>!p.Deleted));
+                var bytes =_exportManager.ExportCategoriesToXlsx(_categoryService.GetAllCategories(showHidden: true).Where(p=>!p.Deleted));
                  
-                return File(bytes, MimeTypes.TextXlsx, "Categorias.xlsx");
+                return File(bytes, MimeTypes.TextXlsx, "Categories.xlsx");
             }
             catch (Exception exc)
             {
@@ -613,10 +613,10 @@ namespace Nop.Admin.Controllers
         [HttpPost]
         public virtual ActionResult ImportFromXlsx()
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
-            //a vendor cannot import Categorias
+            //a vendor cannot import Categories
             if (_workContext.CurrentVendor != null)
                 return AccessDeniedView();
 
@@ -625,14 +625,14 @@ namespace Nop.Admin.Controllers
                 var file = Request.Files["importexcelfile"];
                 if (file != null && file.ContentLength > 0)
                 {
-                    _importManager.ImportCategoriasFromXlsx(file.InputStream);
+                    _importManager.ImportCategoriesFromXlsx(file.InputStream);
                 }
                 else
                 {
                     ErrorNotification(_localizationService.GetResource("Admin.Common.UploadFile"));
                     return RedirectToAction("List");
                 }
-                SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categorias.Imported"));
+                SuccessNotification(_localizationService.GetResource("Admin.Catalog.Categories.Imported"));
                 return RedirectToAction("List");
             }
             catch (Exception exc)
@@ -648,14 +648,14 @@ namespace Nop.Admin.Controllers
         [HttpPost]
         public virtual ActionResult ProductList(DataSourceRequest command, int categoryId)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedKendoGridJson();
 
-            var productCategorias = _categoryService.GetProductCategoriasByCategoryId(categoryId,
+            var productCategories = _categoryService.GetProductCategoriesByCategoryId(categoryId,
                 command.Page - 1, command.PageSize, true);
             var gridModel = new DataSourceResult
             {
-                Data = productCategorias.Select(x => new CategoryModel.CategoryProductModel
+                Data = productCategories.Select(x => new CategoryModel.CategoryProductModel
                 {
                     Id = x.Id,
                     CategoryId = x.CategoryId,
@@ -664,7 +664,7 @@ namespace Nop.Admin.Controllers
                     IsFeaturedProduct = x.IsFeaturedProduct,
                     DisplayOrder = x.DisplayOrder
                 }),
-                Total = productCategorias.TotalCount
+                Total = productCategories.TotalCount
             };
 
             return Json(gridModel);
@@ -672,7 +672,7 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult ProductUpdate(CategoryModel.CategoryProductModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var productCategory = _categoryService.GetProductCategoryById(model.Id);
@@ -688,7 +688,7 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult ProductDelete(int id)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             var productCategory = _categoryService.GetProductCategoryById(id);
@@ -703,15 +703,15 @@ namespace Nop.Admin.Controllers
 
         public virtual ActionResult ProductAddPopup(int categoryId)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
             
             var model = new CategoryModel.AddCategoryProductModel();
-            //Categorias
-            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in Categorias)
-                model.AvailableCategorias.Add(c);
+            //Categories
+            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categories)
+                model.AvailableCategories.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -740,7 +740,7 @@ namespace Nop.Admin.Controllers
         [HttpPost]
         public virtual ActionResult ProductAddPopupList(DataSourceRequest command, CategoryModel.AddCategoryProductModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedKendoGridJson();
 
             var gridModel = new DataSourceResult();
@@ -765,7 +765,7 @@ namespace Nop.Admin.Controllers
         [FormValueRequired("save")]
         public virtual ActionResult ProductAddPopup(string btnId, string formId, CategoryModel.AddCategoryProductModel model)
         {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategorias))
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageCategories))
                 return AccessDeniedView();
 
             if (model.SelectedProductIds != null)
@@ -775,8 +775,8 @@ namespace Nop.Admin.Controllers
                     var product = _productService.GetProductById(id);
                     if (product != null)
                     {
-                        var existingProductCategorias = _categoryService.GetProductCategoriasByCategoryId(model.CategoryId, showHidden: true);
-                        if (existingProductCategorias.FindProductCategory(id, model.CategoryId) == null)
+                        var existingProductCategories = _categoryService.GetProductCategoriesByCategoryId(model.CategoryId, showHidden: true);
+                        if (existingProductCategories.FindProductCategory(id, model.CategoryId) == null)
                         {
                             _categoryService.InsertProductCategory(
                                 new ProductCategory

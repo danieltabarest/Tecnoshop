@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Nop.Core.Domain.Pedidos;
-using Nop.Services.Pedidos;
+using Nop.Core.Domain.Orders;
+using Nop.Services.Orders;
 using Nop.Tests;
 using NUnit.Framework;
 
-namespace Nop.Services.Tests.Pedidos
+namespace Nop.Services.Tests.Orders
 {
     [TestFixture]
     public class CheckoutAttributeExtensionsTests : ServiceTest

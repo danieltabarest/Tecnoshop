@@ -4,14 +4,14 @@ namespace Nop.Core.Domain.Messages
 {
     public class EmailSubscribedEvent
     {
-        private readonly Boletín informativoSubscription _subscription;
+        private readonly NewsletterSubscription _subscription;
 
-        public EmailSubscribedEvent(Boletín informativoSubscription subscription)
+        public EmailSubscribedEvent(NewsletterSubscription subscription)
         {
             _subscription = subscription;
         }
 
-        public Boletín informativoSubscription Subscription
+        public NewsletterSubscription Subscription
         {
             get { return _subscription; }
         }
@@ -39,14 +39,14 @@ namespace Nop.Core.Domain.Messages
 
     public class EmailUnsubscribedEvent
     {
-        private readonly Boletín informativoSubscription _subscription;
+        private readonly NewsletterSubscription _subscription;
 
-        public EmailUnsubscribedEvent(Boletín informativoSubscription subscription)
+        public EmailUnsubscribedEvent(NewsletterSubscription subscription)
         {
             _subscription = subscription;
         }
 
-        public Boletín informativoSubscription Subscription
+        public NewsletterSubscription Subscription
         {
             get { return _subscription; }
         }

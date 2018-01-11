@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Routing;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Plugins;
 
 namespace Nop.Services.Payments

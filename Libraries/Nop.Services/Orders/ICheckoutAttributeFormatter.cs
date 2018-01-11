@@ -2,7 +2,7 @@
 
 using Nop.Core.Domain.Customers;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Checkout attribute helper

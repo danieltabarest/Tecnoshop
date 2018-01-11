@@ -6,7 +6,7 @@ using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Topics;
 using Nop.Core.Domain.Vendors;
@@ -42,11 +42,11 @@ namespace Nop.Web.Infrastructure.Cache
         IConsumer<EntityInserted<ProductManufacturer>>,
         IConsumer<EntityUpdated<ProductManufacturer>>,
         IConsumer<EntityDeleted<ProductManufacturer>>,
-        //Categorias
+        //Categories
         IConsumer<EntityInserted<Category>>,
         IConsumer<EntityUpdated<Category>>,
         IConsumer<EntityDeleted<Category>>,
-        //product Categorias
+        //product Categories
         IConsumer<EntityInserted<ProductCategory>>,
         IConsumer<EntityUpdated<ProductCategory>>,
         IConsumer<EntityDeleted<ProductCategory>>,
@@ -83,7 +83,7 @@ namespace Nop.Web.Infrastructure.Cache
         IConsumer<EntityInserted<Topic>>,
         IConsumer<EntityUpdated<Topic>>,
         IConsumer<EntityDeleted<Topic>>,
-        //Pedidos
+        //Orders
         IConsumer<EntityInserted<Order>>,
         IConsumer<EntityUpdated<Order>>,
         IConsumer<EntityDeleted<Order>>,
@@ -165,15 +165,15 @@ namespace Nop.Web.Infrastructure.Cache
         #region Cache keys 
 
         /// <summary>
-        /// Key for Categorias on the search page
+        /// Key for Categories on the search page
         /// </summary>
         /// <remarks>
         /// {0} : language id
         /// {1} : roles of the current user
         /// {2} : current store ID
         /// </remarks>
-        public const string SEARCH_Categorias_MODEL_KEY = "Nop.pres.search.Categorias-{0}-{1}-{2}";
-        public const string SEARCH_Categorias_PATTERN_KEY = "Nop.pres.search.Categorias";
+        public const string SEARCH_Categories_MODEL_KEY = "Nop.pres.search.Categories-{0}-{1}-{2}";
+        public const string SEARCH_Categories_PATTERN_KEY = "Nop.pres.search.Categories";
 
         /// <summary>
         /// Key for ManufacturerNavigationModel caching
@@ -252,7 +252,7 @@ namespace Nop.Web.Infrastructure.Cache
         public const string CATEGORY_BREADCRUMB_PATTERN_KEY = "Nop.pres.category.breadcrumb";
 
         /// <summary>
-        /// Key for caching of subCategorias of certain category
+        /// Key for caching of subCategories of certain category
         /// </summary>
         /// <remarks>
         /// {0} : category id
@@ -261,11 +261,11 @@ namespace Nop.Web.Infrastructure.Cache
         /// {3} : language ID
         /// {4} : is connection SSL secured (included in a category picture URL)
         /// </remarks>
-        public const string CATEGORY_SUBCategorias_KEY = "Nop.pres.category.subCategorias-{0}-{1}-{2}-{3}-{4}-{5}";
-        public const string CATEGORY_SUBCategorias_PATTERN_KEY = "Nop.pres.category.subCategorias";
+        public const string CATEGORY_SUBCategories_KEY = "Nop.pres.category.subCategories-{0}-{1}-{2}-{3}-{4}-{5}";
+        public const string CATEGORY_SUBCategories_PATTERN_KEY = "Nop.pres.category.subCategories";
 
         /// <summary>
-        /// Key for caching of Categorias displayed on home page
+        /// Key for caching of Categories displayed on home page
         /// </summary>
         /// <remarks>
         /// {0} : roles of the current user
@@ -778,7 +778,7 @@ namespace Nop.Web.Infrastructure.Cache
         public void HandleEvent(EntityInserted<Language> eventMessage)
         {
             //clear all localizable models
-            _cacheManager.RemoveByPattern(SEARCH_Categorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(SEARCH_Categories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(MANUFACTURER_NAVIGATION_PATTERN_KEY);
             _cacheManager.RemoveByPattern(PRODUCT_SPECS_PATTERN_KEY);
             _cacheManager.RemoveByPattern(SPECS_FILTER_PATTERN_KEY);
@@ -793,7 +793,7 @@ namespace Nop.Web.Infrastructure.Cache
         public void HandleEvent(EntityUpdated<Language> eventMessage)
         {
             //clear all localizable models
-            _cacheManager.RemoveByPattern(SEARCH_Categorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(SEARCH_Categories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(MANUFACTURER_NAVIGATION_PATTERN_KEY);
             _cacheManager.RemoveByPattern(PRODUCT_SPECS_PATTERN_KEY);
             _cacheManager.RemoveByPattern(SPECS_FILTER_PATTERN_KEY);
@@ -808,7 +808,7 @@ namespace Nop.Web.Infrastructure.Cache
         public void HandleEvent(EntityDeleted<Language> eventMessage)
         {
             //clear all localizable models
-            _cacheManager.RemoveByPattern(SEARCH_Categorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(SEARCH_Categories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(MANUFACTURER_NAVIGATION_PATTERN_KEY);
             _cacheManager.RemoveByPattern(PRODUCT_SPECS_PATTERN_KEY);
             _cacheManager.RemoveByPattern(SPECS_FILTER_PATTERN_KEY);
@@ -841,8 +841,8 @@ namespace Nop.Web.Infrastructure.Cache
             _cacheManager.RemoveByPattern(PRODUCTTAG_POPULAR_PATTERN_KEY); //depends on CatalogSettings.NumberOfProductTags
             _cacheManager.RemoveByPattern(MANUFACTURER_NAVIGATION_PATTERN_KEY); //depends on CatalogSettings.ManufacturersBlockItemsToDisplay
             _cacheManager.RemoveByPattern(VENDOR_NAVIGATION_PATTERN_KEY); //depends on VendorSettings.VendorBlockItemsToDisplay
-            _cacheManager.RemoveByPattern(CATEGORY_ALL_PATTERN_KEY); //depends on CatalogSettings.ShowCategoryProductNumber and CatalogSettings.ShowCategoryProductNumberIncludingSubCategorias
-            _cacheManager.RemoveByPattern(CATEGORY_NUMBER_OF_PRODUCTS_PATTERN_KEY); //depends on CatalogSettings.ShowCategoryProductNumberIncludingSubCategorias
+            _cacheManager.RemoveByPattern(CATEGORY_ALL_PATTERN_KEY); //depends on CatalogSettings.ShowCategoryProductNumber and CatalogSettings.ShowCategoryProductNumberIncludingSubCategories
+            _cacheManager.RemoveByPattern(CATEGORY_NUMBER_OF_PRODUCTS_PATTERN_KEY); //depends on CatalogSettings.ShowCategoryProductNumberIncludingSubCategories
             _cacheManager.RemoveByPattern(HOMEPAGE_BESTSELLERS_IDS_PATTERN_KEY); //depends on CatalogSettings.NumberOfBestsellersOnHomepage
             _cacheManager.RemoveByPattern(PRODUCTS_ALSO_PURCHASED_IDS_PATTERN_KEY); //depends on CatalogSettings.ProductsAlsoPurchasedNumber
             _cacheManager.RemoveByPattern(PRODUCTS_RELATED_IDS_PATTERN_KEY);
@@ -906,41 +906,41 @@ namespace Nop.Web.Infrastructure.Cache
             _cacheManager.RemoveByPattern(string.Format(MANUFACTURER_HAS_FEATURED_PRODUCTS_PATTERN_KEY_BY_ID, eventMessage.Entity.ManufacturerId));
         }
         
-        //Categorias
+        //Categories
         public void HandleEvent(EntityInserted<Category> eventMessage)
         {
-            _cacheManager.RemoveByPattern(SEARCH_Categorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(SEARCH_Categories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_ALL_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_CHILD_IDENTIFIERS_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(CATEGORY_SUBCategorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(CATEGORY_SUBCategories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_HOMEPAGE_PATTERN_KEY);
             _cacheManager.RemoveByPattern(SITEMAP_PATTERN_KEY);
         }
         public void HandleEvent(EntityUpdated<Category> eventMessage)
         {
-            _cacheManager.RemoveByPattern(SEARCH_Categorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(SEARCH_Categories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(PRODUCT_BREADCRUMB_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_ALL_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_CHILD_IDENTIFIERS_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_BREADCRUMB_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(CATEGORY_SUBCategorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(CATEGORY_SUBCategories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_HOMEPAGE_PATTERN_KEY);
             _cacheManager.RemoveByPattern(SITEMAP_PATTERN_KEY);
             _cacheManager.RemoveByPattern(string.Format(CATEGORY_PICTURE_PATTERN_KEY_BY_ID, eventMessage.Entity.Id));
         }
         public void HandleEvent(EntityDeleted<Category> eventMessage)
         {
-            _cacheManager.RemoveByPattern(SEARCH_Categorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(SEARCH_Categories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(PRODUCT_BREADCRUMB_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_ALL_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_CHILD_IDENTIFIERS_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_BREADCRUMB_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(CATEGORY_SUBCategorias_PATTERN_KEY);
+            _cacheManager.RemoveByPattern(CATEGORY_SUBCategories_PATTERN_KEY);
             _cacheManager.RemoveByPattern(CATEGORY_HOMEPAGE_PATTERN_KEY);
             _cacheManager.RemoveByPattern(SITEMAP_PATTERN_KEY);
         }
 
-        //product Categorias
+        //product Categories
         public void HandleEvent(EntityInserted<ProductCategory> eventMessage)
         {
             _cacheManager.RemoveByPattern(string.Format(PRODUCT_BREADCRUMB_PATTERN_KEY_BY_ID, eventMessage.Entity.ProductId));
@@ -1104,7 +1104,7 @@ namespace Nop.Web.Infrastructure.Cache
             _cacheManager.RemoveByPattern(SITEMAP_PATTERN_KEY);
         }
         
-        //Pedidos
+        //Orders
         public void HandleEvent(EntityInserted<Order> eventMessage)
         {
             _cacheManager.RemoveByPattern(HOMEPAGE_BESTSELLERS_IDS_PATTERN_KEY);

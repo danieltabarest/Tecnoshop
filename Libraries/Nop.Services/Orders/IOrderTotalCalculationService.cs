@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Services.Discounts;
 
-namespace Nop.Services.Pedidos
+namespace Nop.Services.Orders
 {
     /// <summary>
     /// Order service interface
@@ -194,10 +194,10 @@ namespace Nop.Services.Pedidos
         /// <summary>
         /// Calculate how order total (maximum amount) for which reward points could be earned/reduced
         /// </summary>
-        /// <param name="PedidoshippingInclTax">Order shipping (including tax)</param>
+        /// <param name="OrdershippingInclTax">Order shipping (including tax)</param>
         /// <param name="orderTotal">Order total</param>
         /// <returns>Applicable order total</returns>
-        decimal CalculateApplicableOrderTotalForRewardPoints(decimal PedidoshippingInclTax, decimal orderTotal);
+        decimal CalculateApplicableOrderTotalForRewardPoints(decimal OrdershippingInclTax, decimal orderTotal);
         /// <summary>
         /// Calculate how much reward points will be earned/reduced based on certain amount spent
         /// </summary>

@@ -22,7 +22,7 @@ namespace Nop.Services.Discounts.Cache
         IConsumer<EntityDeleted<DiscountRequirement>>,
         //settings
         IConsumer<EntityUpdated<Setting>>,
-        //Categorias
+        //Categories
         IConsumer<EntityInserted<Category>>,
         IConsumer<EntityUpdated<Category>>,
         IConsumer<EntityDeleted<Category>>,
@@ -128,7 +128,7 @@ namespace Nop.Services.Discounts.Cache
             _cacheManager.RemoveByPattern(DISCOUNT_MANUFACTURER_IDS_PATTERN_KEY);
         }
 
-        //Categorias
+        //Categories
         public void HandleEvent(EntityInserted<Category> eventMessage)
         {
             _cacheManager.RemoveByPattern(DISCOUNT_CATEGORY_IDS_PATTERN_KEY);

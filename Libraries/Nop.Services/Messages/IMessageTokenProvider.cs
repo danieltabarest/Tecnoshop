@@ -5,7 +5,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Pedidos;
+using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
 using Nop.Core.Domain.Vendors;
@@ -91,11 +91,11 @@ namespace Nop.Services.Messages
         void AddVendorTokens(IList<Token> tokens, Vendor vendor);
 
         /// <summary>
-        /// Add Boletín informativo subscription tokens
+        /// Add Newsletter subscription tokens
         /// </summary>
         /// <param name="tokens">List of already added tokens</param>
-        /// <param name="subscription">Boletín informativo subscription</param>
-        void AddBoletín informativoSubscriptionTokens(IList<Token> tokens, Boletín informativoSubscription subscription);
+        /// <param name="subscription">Newsletter subscription</param>
+        void AddNewsletterSubscriptionTokens(IList<Token> tokens, NewsletterSubscription subscription);
 
         /// <summary>
         /// Add product review tokens

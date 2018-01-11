@@ -1,8 +1,8 @@
 ﻿using Nop.Core.Configuration;
 
-namespace Nop.Core.Domain.Pedidos
+namespace Nop.Core.Domain.Orders
 {
-    public class Pedidosettings : ISettings
+    public class Ordersettings : ISettings
     {
         /// <summary>
         /// Gets or sets a value indicating whether customer can make re-order
@@ -12,12 +12,12 @@ namespace Nop.Core.Domain.Pedidos
         /// <summary>
         /// Gets or sets a minimum order subtotal amount
         /// </summary>
-        public decimal MinPedidosubtotalAmount { get; set; }
+        public decimal MinOrdersubtotalAmount { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether 'Minimum order subtotal amount' option
         /// should be evaluated over 'X' value including tax or not
         /// </summary>
-        public bool MinPedidosubtotalAmountIncludingTax { get; set; }
+        public bool MinOrdersubtotalAmountIncludingTax { get; set; }
         /// <summary>
         /// Gets or sets a minimum order total amount
         /// </summary>
@@ -112,7 +112,7 @@ namespace Nop.Core.Domain.Pedidos
         public bool DeactivateGiftCardsAfterDeletingOrder { get; set; }
 
         /// <summary>
-        /// Gets or sets an order placement interval in seconds (prevent 2 Pedidos being placed within an X seconds time frame).
+        /// Gets or sets an order placement interval in seconds (prevent 2 Orders being placed within an X seconds time frame).
         /// </summary>
         public int MinimumOrderPlacementInterval { get; set; }
 
@@ -127,7 +127,7 @@ namespace Nop.Core.Domain.Pedidos
         public string CustomOrderNumberMask { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the Pedidos need to be exported with their products
+        /// Gets or sets a value indicating whether the Orders need to be exported with their products
         /// </summary>
         public bool ExportWithProducts { get; set; }
     }

@@ -18,7 +18,7 @@ namespace Nop.Data.Tests.Catalog
         }
 
         [Test]
-        public void Can_save_and_load_product_with_productCategorias()
+        public void Can_save_and_load_product_with_productCategories()
         {
             var product = this.GetTestProduct();
 
@@ -26,17 +26,17 @@ namespace Nop.Data.Tests.Catalog
             productCategory.Product = product;
             productCategory.Category = this.GetTestCategory();
 
-            product.ProductCategorias.Add(productCategory);
+            product.ProductCategories.Add(productCategory);
             var fromDb = SaveAndLoadEntity(product);
             fromDb.ShouldNotBeNull();
             fromDb.PropertiesShouldEqual(this.GetTestProduct());
 
-            fromDb.ProductCategorias.ShouldNotBeNull();
-            (fromDb.ProductCategorias.Count == 1).ShouldBeTrue();
-            fromDb.ProductCategorias.First().PropertiesShouldEqual(this.GetTestProductCategory());
+            fromDb.ProductCategories.ShouldNotBeNull();
+            (fromDb.ProductCategories.Count == 1).ShouldBeTrue();
+            fromDb.ProductCategories.First().PropertiesShouldEqual(this.GetTestProductCategory());
 
-            fromDb.ProductCategorias.First().Category.ShouldNotBeNull();
-            fromDb.ProductCategorias.First().Category.PropertiesShouldEqual(this.GetTestCategory());
+            fromDb.ProductCategories.First().Category.ShouldNotBeNull();
+            fromDb.ProductCategories.First().Category.PropertiesShouldEqual(this.GetTestCategory());
         }
 
         [Test]

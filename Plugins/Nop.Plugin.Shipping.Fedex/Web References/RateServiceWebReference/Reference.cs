@@ -11378,7 +11378,7 @@ namespace Nop.Plugin.Shipping.Fedex.RateServiceWebReference {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool LabelPedidospecified {
+        public bool LabelOrderspecified {
             get {
                 return this.labelOrderFieldSpecified;
             }
