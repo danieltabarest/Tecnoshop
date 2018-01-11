@@ -74,7 +74,7 @@ namespace Nop.Core.Domain.Directory
         }
 
         /// <summary>
-        /// Gets or sets the restricted shipping methods
+        /// Gets or sets the restricted Formas de envío
         /// </summary>
         public virtual ICollection<ShippingMethod> RestrictedShippingMethods
         {

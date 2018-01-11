@@ -2,7 +2,7 @@ using System;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents a shopping cart item

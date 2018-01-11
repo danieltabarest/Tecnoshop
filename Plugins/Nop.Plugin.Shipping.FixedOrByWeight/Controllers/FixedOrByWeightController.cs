@@ -254,7 +254,7 @@ namespace Nop.Plugin.Shipping.FixedOrByWeight.Controllers
 
             var shippingMethods = _shippingService.GetAllShippingMethods();
             if (!shippingMethods.Any())
-                return Content("No shipping methods can be loaded");
+                return Content("No Formas de envío can be loaded");
 
             //stores
             model.AvailableStores.Add(new SelectListItem { Text = "*", Value = "0" });
@@ -264,7 +264,7 @@ namespace Nop.Plugin.Shipping.FixedOrByWeight.Controllers
             model.AvailableWarehouses.Add(new SelectListItem { Text = "*", Value = "0" });
             foreach (var warehouses in _shippingService.GetAllWarehouses())
                 model.AvailableWarehouses.Add(new SelectListItem { Text = warehouses.Name, Value = warehouses.Id.ToString() });
-            //shipping methods
+            //Formas de envío
             foreach (var sm in shippingMethods)
                 model.AvailableShippingMethods.Add(new SelectListItem { Text = sm.Name, Value = sm.Id.ToString() });
             //countries
@@ -340,7 +340,7 @@ namespace Nop.Plugin.Shipping.FixedOrByWeight.Controllers
 
             var shippingMethods = _shippingService.GetAllShippingMethods();
             if (!shippingMethods.Any())
-                return Content("No shipping methods can be loaded");
+                return Content("No Formas de envío can be loaded");
 
             var selectedStore = _storeService.GetStoreById(sbw.StoreId);
             var selectedWarehouse = _shippingService.GetWarehouseById(sbw.WarehouseId);
@@ -355,7 +355,7 @@ namespace Nop.Plugin.Shipping.FixedOrByWeight.Controllers
             model.AvailableWarehouses.Add(new SelectListItem { Text = "*", Value = "0" });
             foreach (var warehouse in _shippingService.GetAllWarehouses())
                 model.AvailableWarehouses.Add(new SelectListItem { Text = warehouse.Name, Value = warehouse.Id.ToString(), Selected = (selectedWarehouse != null && warehouse.Id == selectedWarehouse.Id) });
-            //shipping methods
+            //Formas de envío
             foreach (var sm in shippingMethods)
                 model.AvailableShippingMethods.Add(new SelectListItem { Text = sm.Name, Value = sm.Id.ToString(), Selected = (selectedShippingMethod != null && sm.Id == selectedShippingMethod.Id) });
             //countries

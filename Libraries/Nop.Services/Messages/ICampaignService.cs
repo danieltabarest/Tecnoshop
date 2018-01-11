@@ -45,7 +45,7 @@ namespace Nop.Services.Messages
         /// <param name="subscriptions">Subscriptions</param>
         /// <returns>Total emails sent</returns>
         int SendCampaign(Campaign campaign, EmailAccount emailAccount,
-            IEnumerable<NewsLetterSubscription> subscriptions);
+            IEnumerable<Boletín informativoSubscription> subscriptions);
 
         /// <summary>
         /// Sends a campaign to specified email

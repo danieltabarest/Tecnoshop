@@ -7,7 +7,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Discounts;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Services.Catalog;
@@ -17,7 +17,7 @@ using Nop.Services.Payments;
 using Nop.Services.Shipping;
 using Nop.Services.Tax;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     /// <summary>
     /// Order service
@@ -108,18 +108,18 @@ namespace Nop.Services.Orders
         /// Gets an order discount (applied to order subtotal)
         /// </summary>
         /// <param name="customer">Customer</param>
-        /// <param name="orderSubTotal">Order subtotal</param>
+        /// <param name="PedidosubTotal">Order subtotal</param>
         /// <param name="appliedDiscounts">Applied discounts</param>
         /// <returns>Order discount</returns>
-        protected virtual decimal GetOrderSubtotalDiscount(Customer customer,
-            decimal orderSubTotal, out List<DiscountForCaching> appliedDiscounts)
+        protected virtual decimal GetPedidosubtotalDiscount(Customer customer,
+            decimal PedidosubTotal, out List<DiscountForCaching> appliedDiscounts)
         {
             appliedDiscounts = new List<DiscountForCaching>();
             decimal discountAmount = decimal.Zero;
             if (_catalogSettings.IgnoreDiscounts)
                 return discountAmount;
 
-            var allDiscounts = _discountService.GetAllDiscountsForCaching(DiscountType.AssignedToOrderSubTotal);
+            var allDiscounts = _discountService.GetAllDiscountsForCaching(DiscountType.AssignedToPedidosubTotal);
             var allowedDiscounts = new List<DiscountForCaching>();
             if (allDiscounts != null)
                 foreach (var discount in allDiscounts)
@@ -129,7 +129,7 @@ namespace Nop.Services.Orders
                         allowedDiscounts.Add(discount);
                     }
 
-            appliedDiscounts = allowedDiscounts.GetPreferredDiscount(orderSubTotal, out discountAmount);
+            appliedDiscounts = allowedDiscounts.GetPreferredDiscount(PedidosubTotal, out discountAmount);
 
             if (discountAmount < decimal.Zero)
                 discountAmount = decimal.Zero;
@@ -330,7 +330,7 @@ namespace Nop.Services.Orders
 
             //We calculate discount amount on order subtotal excl tax (discount first)
             //calculate discount amount ('Applied to order subtotal' discount)
-            decimal discountAmountExclTax = GetOrderSubtotalDiscount(customer, subTotalExclTaxWithoutDiscount, out appliedDiscounts);
+            decimal discountAmountExclTax = GetPedidosubtotalDiscount(customer, subTotalExclTaxWithoutDiscount, out appliedDiscounts);
             if (subTotalExclTaxWithoutDiscount < discountAmountExclTax)
                 discountAmountExclTax = subTotalExclTaxWithoutDiscount;
             decimal discountAmountInclTax = discountAmountExclTax;
@@ -462,7 +462,7 @@ namespace Nop.Services.Orders
             //We calculate discount amount on order subtotal excl tax (discount first)
             //calculate discount amount ('Applied to order subtotal' discount)
             List<DiscountForCaching> subTotalDiscounts;
-            var discountAmountExclTax = GetOrderSubtotalDiscount(customer, subTotalExclTax, out subTotalDiscounts);
+            var discountAmountExclTax = GetPedidosubtotalDiscount(customer, subTotalExclTax, out subTotalDiscounts);
             if (subTotalExclTax < discountAmountExclTax)
                 discountAmountExclTax = subTotalExclTax;
             var discountAmountInclTax = discountAmountExclTax;
@@ -488,10 +488,10 @@ namespace Nop.Services.Orders
                 discountAmountInclTax = RoundingHelper.RoundPrice(discountAmountInclTax);
             }
 
-            updatedOrder.OrderSubtotalExclTax = subTotalExclTax;
-            updatedOrder.OrderSubtotalInclTax = subTotalInclTax;
-            updatedOrder.OrderSubTotalDiscountExclTax = discountAmountExclTax;
-            updatedOrder.OrderSubTotalDiscountInclTax = discountAmountInclTax;
+            updatedOrder.PedidosubtotalExclTax = subTotalExclTax;
+            updatedOrder.PedidosubtotalInclTax = subTotalInclTax;
+            updatedOrder.PedidosubTotalDiscountExclTax = discountAmountExclTax;
+            updatedOrder.PedidosubTotalDiscountInclTax = discountAmountInclTax;
 
             foreach (var discount in subTotalDiscounts)
                 if (!updateOrderParameters.AppliedDiscounts.ContainsDiscount(discount))
@@ -625,8 +625,8 @@ namespace Nop.Services.Orders
             else
                 updatedOrder.ShippingStatus = ShippingStatus.ShippingNotRequired;
 
-            updatedOrder.OrderShippingExclTax = shippingTotalExclTax;
-            updatedOrder.OrderShippingInclTax = shippingTotalInclTax;
+            updatedOrder.PedidoshippingExclTax = shippingTotalExclTax;
+            updatedOrder.PedidoshippingInclTax = shippingTotalInclTax;
 
             #endregion
 
@@ -665,7 +665,7 @@ namespace Nop.Services.Orders
                 }
             }
 
-            //payment method additional fee tax
+            //Formas de pago additional fee tax
             var paymentMethodAdditionalFeeTax = decimal.Zero;
             if (_taxSettings.PaymentMethodAdditionalFeeIsTaxable)
             {
@@ -1005,7 +1005,7 @@ namespace Nop.Services.Orders
         /// Gets tax
         /// </summary>
         /// <param name="cart">Shopping cart</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating tax</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating tax</param>
         /// <returns>Tax total</returns>
         public virtual decimal GetTaxTotal(IList<ShoppingCartItem> cart, bool usePaymentMethodAdditionalFee = true)
         {
@@ -1021,7 +1021,7 @@ namespace Nop.Services.Orders
         /// </summary>
         /// <param name="cart">Shopping cart</param>
         /// <param name="taxRates">Tax rates</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating tax</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating tax</param>
         /// <returns>Tax total</returns>
         public virtual decimal GetTaxTotal(IList<ShoppingCartItem> cart,
             out SortedDictionary<decimal, decimal> taxRates, bool usePaymentMethodAdditionalFee = true)
@@ -1043,16 +1043,16 @@ namespace Nop.Services.Orders
 
             //order sub total (items + checkout attributes)
             decimal subTotalTaxTotal = decimal.Zero;
-            decimal orderSubTotalDiscountAmount;
-            List<DiscountForCaching> orderSubTotalAppliedDiscounts;
+            decimal PedidosubTotalDiscountAmount;
+            List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
             decimal subTotalWithoutDiscountBase;
             decimal subTotalWithDiscountBase;
-            SortedDictionary<decimal, decimal> orderSubTotalTaxRates;
+            SortedDictionary<decimal, decimal> PedidosubTotalTaxRates;
             GetShoppingCartSubTotal(cart, false, 
-                out orderSubTotalDiscountAmount, out orderSubTotalAppliedDiscounts,
+                out PedidosubTotalDiscountAmount, out PedidosubTotalAppliedDiscounts,
                 out subTotalWithoutDiscountBase, out subTotalWithDiscountBase,
-                out orderSubTotalTaxRates);
-            foreach (KeyValuePair<decimal, decimal> kvp in orderSubTotalTaxRates)
+                out PedidosubTotalTaxRates);
+            foreach (KeyValuePair<decimal, decimal> kvp in PedidosubTotalTaxRates)
             {
                 decimal taxRate = kvp.Key;
                 decimal taxValue = kvp.Value;
@@ -1092,7 +1092,7 @@ namespace Nop.Services.Orders
                 }
             }
 
-            //payment method additional fee
+            //Formas de pago additional fee
             decimal paymentMethodAdditionalFeeTax = decimal.Zero;
             if (usePaymentMethodAdditionalFee && _taxSettings.PaymentMethodAdditionalFeeIsTaxable)
             {
@@ -1140,7 +1140,7 @@ namespace Nop.Services.Orders
         /// </summary>
         /// <param name="cart">Cart</param>
         /// <param name="useRewardPoints">A value indicating reward points should be used; null to detect current choice of the customer</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating order total</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating order total</param>
         /// <returns>Shopping cart total;Null if shopping cart total couldn't be calculated now</returns>
         public virtual decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart,
             bool? useRewardPoints = null,  bool usePaymentMethodAdditionalFee = true)
@@ -1170,7 +1170,7 @@ namespace Nop.Services.Orders
         /// <param name="redeemedRewardPoints">Reward points to redeem</param>
         /// <param name="redeemedRewardPointsAmount">Reward points amount in primary store currency to redeem</param>
         /// <param name="useRewardPoints">A value indicating reward points should be used; null to detect current choice of the customer</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating order total</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating order total</param>
         /// <returns>Shopping cart total;Null if shopping cart total couldn't be calculated now</returns>
         public virtual decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart,
             out decimal discountAmount, out List<DiscountForCaching> appliedDiscounts,
@@ -1193,12 +1193,12 @@ namespace Nop.Services.Orders
 
 
             //subtotal without tax
-            decimal orderSubTotalDiscountAmount;
-            List<DiscountForCaching> orderSubTotalAppliedDiscounts;
+            decimal PedidosubTotalDiscountAmount;
+            List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
             decimal subTotalWithoutDiscountBase;
             decimal subTotalWithDiscountBase;
             GetShoppingCartSubTotal(cart, false,
-                out orderSubTotalDiscountAmount, out orderSubTotalAppliedDiscounts,
+                out PedidosubTotalDiscountAmount, out PedidosubTotalAppliedDiscounts,
                 out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
             //subtotal with discount
             decimal subtotalBase = subTotalWithDiscountBase;
@@ -1210,7 +1210,7 @@ namespace Nop.Services.Orders
 
 
 
-            //payment method additional fee without tax
+            //Formas de pago additional fee without tax
             decimal paymentMethodAdditionalFeeWithoutTax = decimal.Zero;
             if (usePaymentMethodAdditionalFee && !String.IsNullOrEmpty(paymentMethodSystemName))
             {
@@ -1392,15 +1392,15 @@ namespace Nop.Services.Orders
         /// <summary>
         /// Calculate how order total (maximum amount) for which reward points could be earned/reduced
         /// </summary>
-        /// <param name="orderShippingInclTax">Order shipping (including tax)</param>
+        /// <param name="PedidoshippingInclTax">Order shipping (including tax)</param>
         /// <param name="orderTotal">Order total</param>
         /// <returns>Applicable order total</returns>
-        public virtual decimal CalculateApplicableOrderTotalForRewardPoints(decimal orderShippingInclTax, decimal orderTotal)
+        public virtual decimal CalculateApplicableOrderTotalForRewardPoints(decimal PedidoshippingInclTax, decimal orderTotal)
         {
             //do you give reward points for order total? or do you exclude shipping?
             //since shipping costs vary some of store owners don't give reward points based on shipping total
             //you can put your custom logic here
-            return orderTotal - orderShippingInclTax;
+            return orderTotal - PedidoshippingInclTax;
         }
         /// <summary>
         /// Calculate how much reward points will be earned/reduced based on certain amount spent

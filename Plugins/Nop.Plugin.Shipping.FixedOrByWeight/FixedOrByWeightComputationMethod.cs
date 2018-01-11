@@ -295,7 +295,7 @@ namespace Nop.Plugin.Shipping.FixedOrByWeight
             this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.PercentageRateOfSubtotal.Hint", "Charge percentage (of subtotal).");
             this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.RatePerWeightUnit", "Rate per weight unit");
             this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.RatePerWeightUnit.Hint", "Rate per weight unit.");
-            this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.LimitMethodsToCreated", "Limit shipping methods to configured ones");
+            this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.LimitMethodsToCreated", "Limit Formas de envío to configured ones");
             this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.LimitMethodsToCreated.Hint", "If you check this option, then your customers will be limited to shipping options configured here. Otherwise, they'll be able to choose any existing shipping options even they've not configured here (zero shipping fee in this case).");
             this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.Fields.DataHtml", "Data");
             this.AddOrUpdatePluginLocaleResource("Plugins.Shipping.FixedOrByWeight.AddRecord", "Add record");

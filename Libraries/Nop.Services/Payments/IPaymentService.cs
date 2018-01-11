@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 
 namespace Nop.Services.Payments
 {
@@ -9,15 +9,15 @@ namespace Nop.Services.Payments
     /// </summary>
     public partial interface IPaymentService
     {
-        #region Payment methods
+        #region Formas de pagos
 
         /// <summary>
-        /// Load active payment methods
+        /// Load active Formas de pagos
         /// </summary>
         /// <param name="customer">Load records allowed only to a specified customer; pass null to ignore ACL permissions</param>
         /// <param name="storeId">Load records allowed only in a specified store; pass 0 to load all records</param>
         /// <param name="filterByCountryId">Load records allowed only in a specified country; pass 0 to load all records</param>
-        /// <returns>Payment methods</returns>
+        /// <returns>Formas de pagos</returns>
         IList<IPaymentMethod> LoadActivePaymentMethods(Customer customer = null, int storeId = 0, int filterByCountryId = 0);
 
         /// <summary>
@@ -41,16 +41,16 @@ namespace Nop.Services.Payments
         #region Restrictions
 
         /// <summary>
-        /// Gets a list of coutnry identifiers in which a certain payment method is now allowed
+        /// Gets a list of coutnry identifiers in which a certain Formas de pago is now allowed
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <returns>A list of country identifiers</returns>
         IList<int> GetRestictedCountryIds(IPaymentMethod paymentMethod);
 
         /// <summary>
-        /// Saves a list of coutnry identifiers in which a certain payment method is now allowed
+        /// Saves a list of coutnry identifiers in which a certain Formas de pago is now allowed
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <param name="countryIds">A list of country identifiers</param>
         void SaveRestictedCountryIds(IPaymentMethod paymentMethod, List<int> countryIds);
 
@@ -72,24 +72,24 @@ namespace Nop.Services.Payments
         void PostProcessPayment(PostProcessPaymentRequest postProcessPaymentRequest);
 
         /// <summary>
-        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection Formas de pagos)
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
         bool CanRePostProcessPayment(Order order);
 
         /// <summary>
-        /// Gets an additional handling fee of a payment method
+        /// Gets an additional handling fee of a Formas de pago
         /// </summary>
         /// <param name="cart">Shoping cart</param>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>Additional handling fee</returns>
         decimal GetAdditionalHandlingFee(IList<ShoppingCartItem> cart, string paymentMethodSystemName);
 
         /// <summary>
-        /// Gets a value indicating whether capture is supported by payment method
+        /// Gets a value indicating whether capture is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether capture is supported</returns>
         bool SupportCapture(string paymentMethodSystemName);
 
@@ -101,16 +101,16 @@ namespace Nop.Services.Payments
         CapturePaymentResult Capture(CapturePaymentRequest capturePaymentRequest);
 
         /// <summary>
-        /// Gets a value indicating whether partial refund is supported by payment method
+        /// Gets a value indicating whether partial refund is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether partial refund is supported</returns>
         bool SupportPartiallyRefund(string paymentMethodSystemName);
 
         /// <summary>
-        /// Gets a value indicating whether refund is supported by payment method
+        /// Gets a value indicating whether refund is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether refund is supported</returns>
         bool SupportRefund(string paymentMethodSystemName);
 
@@ -122,9 +122,9 @@ namespace Nop.Services.Payments
         RefundPaymentResult Refund(RefundPaymentRequest refundPaymentRequest);
 
         /// <summary>
-        /// Gets a value indicating whether void is supported by payment method
+        /// Gets a value indicating whether void is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether void is supported</returns>
         bool SupportVoid(string paymentMethodSystemName);
 
@@ -136,10 +136,10 @@ namespace Nop.Services.Payments
         VoidPaymentResult Void(VoidPaymentRequest voidPaymentRequest);
 
         /// <summary>
-        /// Gets a recurring payment type of payment method
+        /// Gets a recurring payment type of Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
-        /// <returns>A recurring payment type of payment method</returns>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
+        /// <returns>A recurring payment type of Formas de pago</returns>
         RecurringPaymentType GetRecurringPaymentType(string paymentMethodSystemName);
 
         /// <summary>

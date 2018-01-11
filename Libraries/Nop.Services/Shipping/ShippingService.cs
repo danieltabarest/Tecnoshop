@@ -7,7 +7,7 @@ using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Plugins;
 using Nop.Services.Catalog;
@@ -15,7 +15,7 @@ using Nop.Services.Common;
 using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Shipping.Pickup;
 
 namespace Nop.Services.Shipping
@@ -200,7 +200,7 @@ namespace Nop.Services.Shipping
 
         #endregion
 
-        #region Shipping methods
+        #region Formas de envío
 
         /// <summary>
         /// Deletes a shipping method
@@ -231,10 +231,10 @@ namespace Nop.Services.Shipping
         }
         
         /// <summary>
-        /// Gets all shipping methods
+        /// Gets all Formas de envío
         /// </summary>
         /// <param name="filterByCountryId">The country indentifier to filter by</param>
-        /// <returns>Shipping methods</returns>
+        /// <returns>Formas de envío</returns>
         public virtual IList<ShippingMethod> GetAllShippingMethods(int? filterByCountryId = null)
         {
             if (filterByCountryId.HasValue && filterByCountryId.Value > 0)

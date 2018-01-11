@@ -94,9 +94,9 @@ namespace Nop.Admin.Models.Settings
             public bool SitemapEnabled { get; set; }
             public bool SitemapEnabled_OverrideForStore { get; set; }
 
-            [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.SitemapIncludeCategories")]
-            public bool SitemapIncludeCategories { get; set; }
-            public bool SitemapIncludeCategories_OverrideForStore { get; set; }
+            [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.SitemapIncludeCategorias")]
+            public bool SitemapIncludeCategorias { get; set; }
+            public bool SitemapIncludeCategorias_OverrideForStore { get; set; }
 
             [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.SitemapIncludeManufacturers")]
             public bool SitemapIncludeManufacturers { get; set; }
@@ -273,9 +273,9 @@ namespace Nop.Admin.Models.Settings
             public int LogoPictureId { get; set; }
             public bool LogoPictureId_OverrideForStore { get; set; }
 
-            [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.DisablePdfInvoicesForPendingOrders")]
-            public bool DisablePdfInvoicesForPendingOrders { get; set; }
-            public bool DisablePdfInvoicesForPendingOrders_OverrideForStore { get; set; }
+            [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.DisablePdfInvoicesForPendingPedidos")]
+            public bool DisablePdfInvoicesForPendingPedidos { get; set; }
+            public bool DisablePdfInvoicesForPendingPedidos_OverrideForStore { get; set; }
 
             [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.InvoiceFooterTextColumn1")]
             [AllowHtml]

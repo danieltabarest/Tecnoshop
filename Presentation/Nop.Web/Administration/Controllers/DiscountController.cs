@@ -17,7 +17,7 @@ using Nop.Services.Discounts;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 using Nop.Services.Vendors;
@@ -47,7 +47,7 @@ namespace Nop.Admin.Controllers
         private readonly IManufacturerService _manufacturerService;
         private readonly IStoreService _storeService;
         private readonly IVendorService _vendorService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IPriceFormatter _priceFormatter;
         private readonly ICacheManager _cacheManager;
 
@@ -70,7 +70,7 @@ namespace Nop.Admin.Controllers
             IManufacturerService manufacturerService,
             IStoreService storeService,
             IVendorService vendorService,
-            IOrderService orderService,
+            IPedidoservice Pedidoservice,
             IPriceFormatter priceFormatter,
             ICacheManager cacheManager)
         {
@@ -89,7 +89,7 @@ namespace Nop.Admin.Controllers
             this._manufacturerService = manufacturerService;
             this._storeService = storeService;
             this._vendorService = vendorService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._priceFormatter = priceFormatter;
             this._cacheManager = cacheManager;
         }
@@ -326,11 +326,11 @@ namespace Nop.Admin.Controllers
                 _discountService.UpdateDiscount(discount);
 
                 //clean up old references (if changed) and update "HasDiscountsApplied" properties
-                if (prevDiscountType == DiscountType.AssignedToCategories
-                    && discount.DiscountType != DiscountType.AssignedToCategories)
+                if (prevDiscountType == DiscountType.AssignedToCategorias
+                    && discount.DiscountType != DiscountType.AssignedToCategorias)
                 {
-                    //applied to categories
-                    discount.AppliedToCategories.Clear();
+                    //applied to Categorias
+                    discount.AppliedToCategorias.Clear();
                     _discountService.UpdateDiscount(discount);
                 }
                 if (prevDiscountType == DiscountType.AssignedToManufacturers
@@ -604,11 +604,11 @@ namespace Nop.Admin.Controllers
                 return AccessDeniedView();
 
             var model = new DiscountModel.AddProductToDiscountModel();
-            //categories
-            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            var categories = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
-            foreach (var c in categories)
-                model.AvailableCategories.Add(c);
+            //Categorias
+            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            var Categorias = SelectListHelper.GetCategoryList(_categoryService, _cacheManager, true);
+            foreach (var c in Categorias)
+                model.AvailableCategorias.Add(c);
 
             //manufacturers
             model.AvailableManufacturers.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
@@ -693,7 +693,7 @@ namespace Nop.Admin.Controllers
 
         #endregion
 
-        #region Applied to categories
+        #region Applied to Categorias
 
         [HttpPost]
         public virtual ActionResult CategoryList(DataSourceRequest command, int discountId)
@@ -705,18 +705,18 @@ namespace Nop.Admin.Controllers
             if (discount == null)
                 throw new Exception("No discount found with the specified id");
 
-            var categories = discount
-                .AppliedToCategories
+            var Categorias = discount
+                .AppliedToCategorias
                 .Where(x => !x.Deleted)
                 .ToList();
             var gridModel = new DataSourceResult
             {
-                Data = categories.Select(x => new DiscountModel.AppliedToCategoryModel
+                Data = Categorias.Select(x => new DiscountModel.AppliedToCategoryModel
                 {
                     CategoryId = x.Id,
                     CategoryName = x.GetFormattedBreadCrumb(_categoryService)
                 }),
-                Total = categories.Count
+                Total = Categorias.Count
             };
 
             return Json(gridModel);
@@ -759,17 +759,17 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageDiscounts))
                 return AccessDeniedKendoGridJson();
 
-            var categories = _categoryService.GetAllCategories(model.SearchCategoryName,
+            var Categorias = _categoryService.GetAllCategorias(model.SearchCategoryName,
                 0, command.Page - 1, command.PageSize, true);
             var gridModel = new DataSourceResult
             {
-                Data = categories.Select(x =>
+                Data = Categorias.Select(x =>
                 {
                     var categoryModel = x.ToModel();
                     categoryModel.Breadcrumb = x.GetFormattedBreadCrumb(_categoryService);
                     return categoryModel;
                 }),
-                Total = categories.TotalCount
+                Total = Categorias.TotalCount
             };
 
             return Json(gridModel);
@@ -938,7 +938,7 @@ namespace Nop.Admin.Controllers
             {
                 Data = duh.Select(x =>
                 {
-                    var order = _orderService.GetOrderById(x.OrderId);
+                    var order = _Pedidoservice.GetOrderById(x.OrderId);
                     var duhModel = new DiscountModel.DiscountUsageHistoryModel
                     {
                         Id = x.Id,

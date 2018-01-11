@@ -49,15 +49,15 @@
                 </ul>
             </div>
         </div>
-        @if (Model.Categories.Count > 0)
+        @if (Model.Categorias.Count > 0)
         {
             <div class="entity">
                 <div class="entity-title">
-                    <h2>@T("Sitemap.Categories")</h2>
+                    <h2>@T("Sitemap.Categorias")</h2>
                 </div>
                 <div class="entity-body">
                     <ul>
-                        @foreach (var category in Model.Categories)
+                        @foreach (var category in Model.Categorias)
                         { 
                             <li><a href="@Url.RouteUrl("Category", new { SeName = category.SeName })">@category.Name</a></li>
                         }

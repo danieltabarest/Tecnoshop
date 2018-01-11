@@ -29,7 +29,7 @@ namespace Nop.Web.Models.Order
 
         public DateTime CreatedOn { get; set; }
 
-        public string OrderStatus { get; set; }
+        public string Pedidostatus { get; set; }
 
         public bool IsReOrderAllowed { get; set; }
 
@@ -52,9 +52,9 @@ namespace Nop.Web.Models.Order
         public bool CanRePostProcessPayment { get; set; }
         public Dictionary<string, object> CustomValues { get; set; }
 
-        public string OrderSubtotal { get; set; }
-        public string OrderSubTotalDiscount { get; set; }
-        public string OrderShipping { get; set; }
+        public string Pedidosubtotal { get; set; }
+        public string PedidosubTotalDiscount { get; set; }
+        public string Pedidoshipping { get; set; }
         public string PaymentMethodAdditionalFee { get; set; }
         public string CheckoutAttributeInfo { get; set; }
 

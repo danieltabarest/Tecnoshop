@@ -130,7 +130,7 @@
 		this._pipe = [];
 
 		/**
-		 * Current state information for the drag operation.
+		 * Current state Information for the drag operation.
 		 * @todo #261
 		 * @protected
 		 */
@@ -146,7 +146,7 @@
 		};
 
 		/**
-		 * Current state information and their tags.
+		 * Current state Information and their tags.
 		 * @type {Object}
 		 * @protected
 		 */

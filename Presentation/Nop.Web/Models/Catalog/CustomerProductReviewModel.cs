@@ -30,7 +30,7 @@ namespace Nop.Web.Models.Catalog
         #region Nested class
 
         /// <summary>
-        /// Class that has only page for route value. Used for (My Account) My Product Reviews pagination
+        /// Class that has only page for route value. Used for (Mi cuenta) My Product Reviews pagination
         /// </summary>
         public partial class CustomerProductReviewsRouteValues : IRouteValues
         {

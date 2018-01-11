@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
+// set of attributes. Change these attribute values to modify the Information
 // associated with an assembly.
 [assembly: AssemblyTitle("Nop.Data.Tests")]
 [assembly: AssemblyDescription("")]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("775a871a-a497-41be-a30d-6b793908bd28")]
 
-// Version information for an assembly consists of the following four values:
+// Version Information for an assembly consists of the following four values:
 //
 //      Major Version
 //      Minor Version 

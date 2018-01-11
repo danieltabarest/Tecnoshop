@@ -295,7 +295,7 @@ namespace Nop.Admin.Controllers
 
         #endregion
 
-        #region Shipping methods
+        #region Formas de envío
 
         public virtual ActionResult Methods()
         {

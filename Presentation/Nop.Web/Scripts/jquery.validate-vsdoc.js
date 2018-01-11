@@ -9,7 +9,7 @@
  * or otherwise. Insofar as a script file is dual licensed under GPL,
  * Microsoft neither took the code under GPL nor distributes it thereunder but
  * under the terms set out in this paragraph. All notices and licenses
- * below are for informational purposes only.
+ * below are for Informational purposes only.
  *
  * NUGET: END LICENSE TEXT */
 /*
@@ -26,7 +26,7 @@
 * offering you a license subject to the terms of the Microsoft Software
 * License Terms for Microsoft ASP.NET Model View Controller 3.
 * Microsoft reserves all other rights. The notices below are provided
-* for informational purposes only and are not the license terms under
+* for Informational purposes only and are not the license terms under
 * which Microsoft distributed this file.
 *
 * jQuery Validation Plugin - v1.11.1 - 2/4/2013

@@ -3,7 +3,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Stores;
 
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents a checkout attribute

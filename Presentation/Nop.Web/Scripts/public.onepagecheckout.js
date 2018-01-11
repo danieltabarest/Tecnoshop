@@ -268,7 +268,7 @@ var ShippingMethod = {
     validate: function() {
         var methods = document.getElementsByName('shippingoption');
         if (methods.length==0) {
-            alert('Your order cannot be completed at this time as there is no shipping methods available for it. Please make necessary changes in your shipping address.');
+            alert('Your order cannot be completed at this time as there is no Formas de envío available for it. Please make necessary changes in your shipping address.');
             return false;
         }
 
@@ -341,7 +341,7 @@ var PaymentMethod = {
     validate: function () {
         var methods = document.getElementsByName('paymentmethod');
         if (methods.length == 0) {
-            alert('Your order cannot be completed at this time as there is no payment methods available for it.');
+            alert('Your order cannot be completed at this time as there is no Formas de pagos available for it.');
             return false;
         }
         
@@ -350,7 +350,7 @@ var PaymentMethod = {
                 return true;
             }
         }
-        alert('Please specify payment method.');
+        alert('Please specify Formas de pago.');
         return false;
     },
     

@@ -7,7 +7,7 @@ using Nop.Admin.Models.Affiliates;
 using Nop.Core;
 using Nop.Core.Domain.Affiliates;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Services;
@@ -18,7 +18,7 @@ using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Security;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Kendoui;
@@ -38,7 +38,7 @@ namespace Nop.Admin.Controllers
         private readonly IPriceFormatter _priceFormatter;
         private readonly IAffiliateService _affiliateService;
         private readonly ICustomerService _customerService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IPermissionService _permissionService;
         private readonly ICustomerActivityService _customerActivityService;
 
@@ -50,7 +50,7 @@ namespace Nop.Admin.Controllers
             IWorkContext workContext, IDateTimeHelper dateTimeHelper, IWebHelper webHelper,
             ICountryService countryService, IStateProvinceService stateProvinceService,
             IPriceFormatter priceFormatter, IAffiliateService affiliateService,
-            ICustomerService customerService, IOrderService orderService,
+            ICustomerService customerService, IPedidoservice Pedidoservice,
             IPermissionService permissionService,
             ICustomerActivityService customerActivityService)
         {
@@ -63,7 +63,7 @@ namespace Nop.Admin.Controllers
             this._priceFormatter = priceFormatter;
             this._affiliateService = affiliateService;
             this._customerService = customerService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._permissionService = permissionService;
             this._customerActivityService = customerActivityService;
         }
@@ -158,7 +158,7 @@ namespace Nop.Admin.Controllers
 
             var affiliates = _affiliateService.GetAllAffiliates(model.SearchFriendlyUrlName,
                 model.SearchFirstName, model.SearchLastName,
-                model.LoadOnlyWithOrders, model.OrdersCreatedFromUtc, model.OrdersCreatedToUtc,
+                model.LoadOnlyWithPedidos, model.PedidosCreatedFromUtc, model.PedidosCreatedToUtc,
                 command.Page - 1, command.PageSize, true);
 
             var gridModel = new DataSourceResult
@@ -319,8 +319,8 @@ namespace Nop.Admin.Controllers
             model.AffliateId = affiliateId;
 
             //order statuses
-            model.AvailableOrderStatuses = OrderStatus.Pending.ToSelectList(false).ToList();
-            model.AvailableOrderStatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            model.AvailablePedidostatuses = Pedidostatus.Pending.ToSelectList(false).ToList();
+            model.AvailablePedidostatuses.Insert(0, new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
             
             //payment statuses
             model.AvailablePaymentStatuses = PaymentStatus.Pending.ToSelectList(false).ToList();
@@ -348,14 +348,14 @@ namespace Nop.Admin.Controllers
             DateTime? endDateValue = (model.EndDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
-            var orderStatusIds = model.OrderStatusId > 0 ? new List<int>() { model.OrderStatusId } : null;
+            var PedidostatusIds = model.PedidostatusId > 0 ? new List<int>() { model.PedidostatusId } : null;
             var paymentStatusIds = model.PaymentStatusId > 0 ? new List<int>() { model.PaymentStatusId } : null;
             var shippingStatusIds = model.ShippingStatusId > 0 ? new List<int>() { model.ShippingStatusId } : null;
 
-            var orders = _orderService.SearchOrders(
+            var Pedidos = _Pedidoservice.SearchPedidos(
                 createdFromUtc: startDateValue,
                 createdToUtc: endDateValue,
-                osIds: orderStatusIds,
+                osIds: PedidostatusIds,
                 psIds: paymentStatusIds,
                 ssIds: shippingStatusIds,
                 affiliateId: affiliate.Id,
@@ -363,12 +363,12 @@ namespace Nop.Admin.Controllers
                 pageSize: command.PageSize);
             var gridModel = new DataSourceResult
             {
-                Data = orders.Select(order =>
+                Data = Pedidos.Select(order =>
                     {
                         var orderModel = new AffiliateModel.AffiliatedOrderModel();
                         orderModel.Id = order.Id;
-                        orderModel.OrderStatus = order.OrderStatus.GetLocalizedEnum(_localizationService, _workContext);
-                        orderModel.OrderStatusId = order.OrderStatusId;
+                        orderModel.Pedidostatus = order.Pedidostatus.GetLocalizedEnum(_localizationService, _workContext);
+                        orderModel.PedidostatusId = order.PedidostatusId;
                         orderModel.PaymentStatus = order.PaymentStatus.GetLocalizedEnum(_localizationService, _workContext);
                         orderModel.ShippingStatus = order.ShippingStatus.GetLocalizedEnum(_localizationService, _workContext);
                         orderModel.OrderTotal = _priceFormatter.FormatPrice(order.OrderTotal, true, false);
@@ -377,7 +377,7 @@ namespace Nop.Admin.Controllers
 
                         return orderModel;
                     }),
-                Total = orders.TotalCount
+                Total = Pedidos.TotalCount
             };
 
             return Json(gridModel);

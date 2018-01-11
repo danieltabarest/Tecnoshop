@@ -5,13 +5,13 @@ using System.Linq;
 using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
 using Nop.Services.Helpers;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     /// <summary>
     /// Order report service
@@ -69,12 +69,12 @@ namespace Nop.Services.Orders
         /// <param name="startTimeUtc">Start date</param>
         /// <param name="endTimeUtc">End date</param>
         /// <returns>Result</returns>
-        public virtual IList<OrderByCountryReportLine> GetCountryReport(int storeId, OrderStatus? os,
+        public virtual IList<OrderByCountryReportLine> GetCountryReport(int storeId, Pedidostatus? os,
             PaymentStatus? ps, ShippingStatus? ss, DateTime? startTimeUtc, DateTime? endTimeUtc)
         {
-            int? orderStatusId = null;
+            int? PedidostatusId = null;
             if (os.HasValue)
-                orderStatusId = (int)os.Value;
+                PedidostatusId = (int)os.Value;
 
             int? paymentStatusId = null;
             if (ps.HasValue)
@@ -88,8 +88,8 @@ namespace Nop.Services.Orders
             query = query.Where(o => !o.Deleted);
             if (storeId > 0)
                 query = query.Where(o => o.StoreId == storeId);
-            if (orderStatusId.HasValue)
-                query = query.Where(o => o.OrderStatusId == orderStatusId.Value);
+            if (PedidostatusId.HasValue)
+                query = query.Where(o => o.PedidostatusId == PedidostatusId.Value);
             if (paymentStatusId.HasValue)
                 query = query.Where(o => o.PaymentStatusId == paymentStatusId.Value);
             if (shippingStatusId.HasValue)
@@ -104,16 +104,16 @@ namespace Nop.Services.Orders
                         select new
                         {
                             CountryId = result.Key,
-                            TotalOrders = result.Count(),
-                            SumOrders = result.Sum(o => o.OrderTotal)
+                            TotalPedidos = result.Count(),
+                            SumPedidos = result.Sum(o => o.OrderTotal)
                         }
                        )
-                       .OrderByDescending(x => x.SumOrders)
+                       .OrderByDescending(x => x.SumPedidos)
                        .Select(r => new OrderByCountryReportLine
                        {
                            CountryId = r.CountryId,
-                           TotalOrders = r.TotalOrders,
-                           SumOrders = r.SumOrders
+                           TotalPedidos = r.TotalPedidos,
+                           SumPedidos = r.SumPedidos
                        })
 
                        .ToList();
@@ -126,9 +126,9 @@ namespace Nop.Services.Orders
         /// </summary>
         /// <param name="storeId">Store identifier; pass 0 to ignore this parameter</param>
         /// <param name="vendorId">Vendor identifier; pass 0 to ignore this parameter</param>
-        /// <param name="billingCountryId">Billing country identifier; 0 to load all orders</param>
+        /// <param name="billingCountryId">Billing country identifier; 0 to load all Pedidos</param>
         /// <param name="orderId">Order identifier; pass 0 to ignore this parameter</param>
-        /// <param name="paymentMethodSystemName">Payment method system name; null to load all records</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name; null to load all records</param>
         /// <param name="osIds">Order status identifiers</param>
         /// <param name="psIds">Payment status identifiers</param>
         /// <param name="ssIds">Shipping status identifiers</param>
@@ -162,7 +162,7 @@ namespace Nop.Services.Orders
             if (!String.IsNullOrEmpty(paymentMethodSystemName))
                 query = query.Where(o => o.PaymentMethodSystemName == paymentMethodSystemName);
             if (osIds != null && osIds.Any())
-                query = query.Where(o => osIds.Contains(o.OrderStatusId));
+                query = query.Where(o => osIds.Contains(o.PedidostatusId));
             if (psIds != null && psIds.Any())
                 query = query.Where(o => psIds.Contains(o.PaymentStatusId));
             if (ssIds != null && ssIds.Any())
@@ -183,25 +183,25 @@ namespace Nop.Services.Orders
 						select new
 						           {
                                        OrderCount = result.Count(),
-                                       OrderShippingExclTaxSum = result.Sum(o => o.OrderShippingExclTax),
+                                       PedidoshippingExclTaxSum = result.Sum(o => o.PedidoshippingExclTax),
                                        OrderTaxSum = result.Sum(o => o.OrderTax), 
                                        OrderTotalSum = result.Sum(o => o.OrderTotal)
 						           }
 					   ).Select(r => new OrderAverageReportLine
                        {
-                           CountOrders = r.OrderCount,
-                           SumShippingExclTax = r.OrderShippingExclTaxSum, 
+                           CountPedidos = r.OrderCount,
+                           SumShippingExclTax = r.PedidoshippingExclTaxSum, 
                            SumTax = r.OrderTaxSum, 
-                           SumOrders = r.OrderTotalSum
+                           SumPedidos = r.OrderTotalSum
                        })
                        .FirstOrDefault();
 
 			item = item ?? new OrderAverageReportLine
 			                   {
-                                   CountOrders = 0,
+                                   CountPedidos = 0,
                                    SumShippingExclTax = decimal.Zero,
                                    SumTax = decimal.Zero,
-                                   SumOrders = decimal.Zero, 
+                                   SumPedidos = decimal.Zero, 
 			                   };
             return item;
         }
@@ -212,11 +212,11 @@ namespace Nop.Services.Orders
         /// <param name="storeId">Store identifier</param>
         /// <param name="os">Order status</param>
         /// <returns>Result</returns>
-        public virtual OrderAverageReportLineSummary OrderAverageReport(int storeId, OrderStatus os)
+        public virtual OrderAverageReportLineSummary OrderAverageReport(int storeId, Pedidostatus os)
         {
             var item = new OrderAverageReportLineSummary();
-            item.OrderStatus = os;
-            var orderStatuses = new List<int>() { (int)os };
+            item.Pedidostatus = os;
+            var Pedidostatuses = new List<int>() { (int)os };
 
             DateTime nowDt = _dateTimeHelper.ConvertToUserTime(DateTime.Now);
             TimeZoneInfo timeZone = _dateTimeHelper.CurrentTimeZone;
@@ -227,10 +227,10 @@ namespace Nop.Services.Orders
             {
                 DateTime? startTime1 = _dateTimeHelper.ConvertToUtcTime(t1, timeZone);
                 var todayResult = GetOrderAverageReportLine(storeId: storeId,
-                    osIds: orderStatuses, 
+                    osIds: Pedidostatuses, 
                     startTimeUtc: startTime1);
-                item.SumTodayOrders = todayResult.SumOrders;
-                item.CountTodayOrders = todayResult.CountOrders;
+                item.SumTodayPedidos = todayResult.SumPedidos;
+                item.CountTodayPedidos = todayResult.CountPedidos;
             }
             //week
             DayOfWeek fdow = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
@@ -240,10 +240,10 @@ namespace Nop.Services.Orders
             {
                 DateTime? startTime2 = _dateTimeHelper.ConvertToUtcTime(t2, timeZone);
                 var weekResult = GetOrderAverageReportLine(storeId: storeId,
-                    osIds: orderStatuses,
+                    osIds: Pedidostatuses,
                     startTimeUtc: startTime2);
-                item.SumThisWeekOrders = weekResult.SumOrders;
-                item.CountThisWeekOrders = weekResult.CountOrders;
+                item.SumThisWeekPedidos = weekResult.SumPedidos;
+                item.CountThisWeekPedidos = weekResult.CountPedidos;
             }
             //month
             var t3 = new DateTime(nowDt.Year, nowDt.Month, 1);
@@ -251,10 +251,10 @@ namespace Nop.Services.Orders
             {
                 DateTime? startTime3 = _dateTimeHelper.ConvertToUtcTime(t3, timeZone);
                 var monthResult = GetOrderAverageReportLine(storeId: storeId,
-                    osIds: orderStatuses,
+                    osIds: Pedidostatuses,
                     startTimeUtc: startTime3);
-                item.SumThisMonthOrders = monthResult.SumOrders;
-                item.CountThisMonthOrders = monthResult.CountOrders;
+                item.SumThisMonthPedidos = monthResult.SumPedidos;
+                item.CountThisMonthPedidos = monthResult.CountPedidos;
             }
             //year
             var t4 = new DateTime(nowDt.Year, 1, 1);
@@ -262,15 +262,15 @@ namespace Nop.Services.Orders
             {
                 DateTime? startTime4 = _dateTimeHelper.ConvertToUtcTime(t4, timeZone);
                 var yearResult = GetOrderAverageReportLine(storeId: storeId,
-                    osIds: orderStatuses,
+                    osIds: Pedidostatuses,
                     startTimeUtc: startTime4);
-                item.SumThisYearOrders = yearResult.SumOrders;
-                item.CountThisYearOrders = yearResult.CountOrders;
+                item.SumThisYearPedidos = yearResult.SumPedidos;
+                item.CountThisYearPedidos = yearResult.CountPedidos;
             }
             //all time
-            var allTimeResult = GetOrderAverageReportLine(storeId: storeId, osIds: orderStatuses);
-            item.SumAllTimeOrders = allTimeResult.SumOrders;
-            item.CountAllTimeOrders = allTimeResult.CountOrders;
+            var allTimeResult = GetOrderAverageReportLine(storeId: storeId, osIds: Pedidostatuses);
+            item.SumAllTimePedidos = allTimeResult.SumPedidos;
+            item.CountAllTimePedidos = allTimeResult.CountPedidos;
 
             return item;
         }
@@ -278,7 +278,7 @@ namespace Nop.Services.Orders
         /// <summary>
         /// Get best sellers report
         /// </summary>
-        /// <param name="storeId">Store identifier (orders placed in a specific store); 0 to load all records</param>
+        /// <param name="storeId">Store identifier (Pedidos placed in a specific store); 0 to load all records</param>
         /// <param name="vendorId">Vendor identifier; 0 to load all records</param>
         /// <param name="categoryId">Category identifier; 0 to load all records</param>
         /// <param name="manufacturerId">Manufacturer identifier; 0 to load all records</param>
@@ -297,15 +297,15 @@ namespace Nop.Services.Orders
             int categoryId = 0, int manufacturerId = 0,
             int storeId = 0, int vendorId = 0,
             DateTime? createdFromUtc = null, DateTime? createdToUtc = null,
-            OrderStatus? os = null, PaymentStatus? ps = null, ShippingStatus? ss = null,
+            Pedidostatus? os = null, PaymentStatus? ps = null, ShippingStatus? ss = null,
             int billingCountryId = 0,
             int orderBy = 1,
             int pageIndex = 0, int pageSize = int.MaxValue, 
             bool showHidden = false)
         {
-            int? orderStatusId = null;
+            int? PedidostatusId = null;
             if (os.HasValue)
-                orderStatusId = (int)os.Value;
+                PedidostatusId = (int)os.Value;
 
             int? paymentStatusId = null;
             if (ps.HasValue)
@@ -323,7 +323,7 @@ namespace Nop.Services.Orders
                          where (storeId == 0 || storeId == o.StoreId) &&
                          (!createdFromUtc.HasValue || createdFromUtc.Value <= o.CreatedOnUtc) &&
                          (!createdToUtc.HasValue || createdToUtc.Value >= o.CreatedOnUtc) &&
-                         (!orderStatusId.HasValue || orderStatusId == o.OrderStatusId) &&
+                         (!PedidostatusId.HasValue || PedidostatusId == o.PedidostatusId) &&
                          (!paymentStatusId.HasValue || paymentStatusId == o.PaymentStatusId) &&
                          (!shippingStatusId.HasValue || shippingStatusId == o.ShippingStatusId) &&
                          (!o.Deleted) &&
@@ -331,7 +331,7 @@ namespace Nop.Services.Orders
                          (vendorId == 0 || p.VendorId == vendorId) &&
                          //(categoryId == 0 || pc.CategoryId == categoryId) &&
                          //(manufacturerId == 0 || pm.ManufacturerId == manufacturerId) &&
-                         (categoryId == 0 || p.ProductCategories.Count(pc => pc.CategoryId == categoryId) > 0) &&
+                         (categoryId == 0 || p.ProductCategorias.Count(pc => pc.CategoryId == categoryId) > 0) &&
                          (manufacturerId == 0 || p.ProductManufacturers.Count(pm => pm.ManufacturerId == manufacturerId) > 0) &&
                          (billingCountryId == 0 || o.BillingAddress.CountryId == billingCountryId) &&
                          (showHidden || p.Published)
@@ -384,7 +384,7 @@ namespace Nop.Services.Orders
             if (productId == 0)
                 throw new ArgumentException("Product ID is not specified");
 
-            //this inner query should retrieve all orders that contains a specified product ID
+            //this inner query should retrieve all Pedidos that contains a specified product ID
             var query1 = from orderItem in _orderItemRepository.Table
                           where orderItem.ProductId == productId
                           select orderItem.OrderId;
@@ -455,7 +455,7 @@ namespace Nop.Services.Orders
                       (p.ProductTypeId == simpleProductTypeId) &&
                       (!p.Deleted) &&
                       (vendorId == 0 || p.VendorId == vendorId) &&
-                      (categoryId == 0 || p.ProductCategories.Count(pc => pc.CategoryId == categoryId) > 0) &&
+                      (categoryId == 0 || p.ProductCategorias.Count(pc => pc.CategoryId == categoryId) > 0) &&
                       (manufacturerId == 0 || p.ProductManufacturers.Count(pm => pm.ManufacturerId == manufacturerId) > 0) &&
                       (showHidden || p.Published)
                 select p;
@@ -483,8 +483,8 @@ namespace Nop.Services.Orders
         /// <param name="storeId">Store identifier; pass 0 to ignore this parameter</param>
         /// <param name="vendorId">Vendor identifier; pass 0 to ignore this parameter</param>
         /// <param name="orderId">Order identifier; pass 0 to ignore this parameter</param>
-        /// <param name="billingCountryId">Billing country identifier; 0 to load all orders</param>
-        /// <param name="paymentMethodSystemName">Payment method system name; null to load all records</param>
+        /// <param name="billingCountryId">Billing country identifier; 0 to load all Pedidos</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name; null to load all records</param>
         /// <param name="startTimeUtc">Start date</param>
         /// <param name="endTimeUtc">End date</param>
         /// <param name="osIds">Order status identifiers; null to load all records</param>
@@ -509,16 +509,16 @@ namespace Nop.Services.Orders
             //We cannot use String.IsNullOrEmpty() in SQL Compact
             bool dontSearchPaymentMethods = String.IsNullOrEmpty(paymentMethodSystemName);
 
-            var orders = _orderRepository.Table;
+            var Pedidos = _orderRepository.Table;
             if (osIds != null && osIds.Any())
-                orders = orders.Where(o => osIds.Contains(o.OrderStatusId));
+                Pedidos = Pedidos.Where(o => osIds.Contains(o.PedidostatusId));
             if (psIds != null && psIds.Any())
-                orders = orders.Where(o => psIds.Contains(o.PaymentStatusId));
+                Pedidos = Pedidos.Where(o => psIds.Contains(o.PaymentStatusId));
             if (ssIds != null && ssIds.Any())
-                orders = orders.Where(o => ssIds.Contains(o.ShippingStatusId));
+                Pedidos = Pedidos.Where(o => ssIds.Contains(o.ShippingStatusId));
 
             var query = from orderItem in _orderItemRepository.Table
-                        join o in orders on orderItem.OrderId equals o.Id
+                        join o in Pedidos on orderItem.OrderId equals o.Id
                         where (storeId == 0 || storeId == o.StoreId) &&
                               (orderId == 0 || orderId == o.Id) &&
                               (billingCountryId ==0 || (o.BillingAddress != null && o.BillingAddress.CountryId == billingCountryId)) &&
@@ -550,7 +550,7 @@ namespace Nop.Services.Orders
                 billingEmail: billingEmail,
                 billingLastName: billingLastName,
                 orderNotes: orderNotes);
-            var profit = reportSummary.SumOrders - reportSummary.SumShippingExclTax - reportSummary.SumTax - productCost;
+            var profit = reportSummary.SumPedidos - reportSummary.SumShippingExclTax - reportSummary.SumTax - productCost;
             return profit;
         }
 

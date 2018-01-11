@@ -1,5 +1,5 @@
 using System;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 
 namespace Nop.Core.Domain.Customers
 {

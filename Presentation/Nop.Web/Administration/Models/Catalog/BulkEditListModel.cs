@@ -9,7 +9,7 @@ namespace Nop.Admin.Models.Catalog
     {
         public BulkEditListModel()
         {
-            AvailableCategories = new List<SelectListItem>();
+            AvailableCategorias = new List<SelectListItem>();
             AvailableManufacturers = new List<SelectListItem>();
             AvailableProductTypes = new List<SelectListItem>();
         }
@@ -28,7 +28,7 @@ namespace Nop.Admin.Models.Catalog
         public IList<SelectListItem> AvailableProductTypes { get; set; }
         
 
-        public IList<SelectListItem> AvailableCategories { get; set; }
+        public IList<SelectListItem> AvailableCategorias { get; set; }
         public IList<SelectListItem> AvailableManufacturers { get; set; }
     }
 }

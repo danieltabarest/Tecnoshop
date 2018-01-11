@@ -7,21 +7,21 @@
 
 <div class="panel-group">
     <p>
-        @T("Admin.Catalog.Products.PurchasedWithOrders.Hint")
+        @T("Admin.Catalog.Products.PurchasedWithPedidos.Hint")
     </p>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <div id="purchased-with-orders-grid"></div>
+            <div id="purchased-with-Pedidos-grid"></div>
 
             <script>
                 $(document).ready(function() {
-                    $("#purchased-with-orders-grid").kendoGrid({
+                    $("#purchased-with-Pedidos-grid").kendoGrid({
                         dataSource: {
                             type: "json",
                             transport: {
                                 read: {
-                                    url: "@Html.Raw(Url.Action("PurchasedWithOrders", "Product", new {productId = Model.Id}))",
+                                    url: "@Html.Raw(Url.Action("PurchasedWithPedidos", "Product", new {productId = Model.Id}))",
                                     type: "POST",
                                     dataType: "json",
                                     data: addAntiForgeryToken
@@ -55,33 +55,33 @@
                         columns: [
                             {
                                 field: "CustomOrderNumber",
-                                title: "@T("Admin.Orders.Fields.CustomOrderNumber")",
+                                title: "@T("Admin.Pedidos.Fields.CustomOrderNumber")",
                                 width: 200
                             }, {
                                 field: "CustomerEmail",
-                                title: "@T("Admin.Orders.Fields.CustomerEmail")",
+                                title: "@T("Admin.Pedidos.Fields.CustomerEmail")",
                                 width: 200
                             },
                             @if (!Model.IsLoggedInAsVendor)
                             {
                                 <text>{
-                                field: "OrderStatus",
-                                title: "@T("Admin.Orders.Fields.OrderStatus")",
+                                field: "Pedidostatus",
+                                title: "@T("Admin.Pedidos.Fields.Pedidostatus")",
                                 width: 100
                             },{
                                 field: "PaymentStatus",
-                                title: "@T("Admin.Orders.Fields.PaymentStatus")",
+                                title: "@T("Admin.Pedidos.Fields.PaymentStatus")",
                                 width: 100
                             },{
                                 field: "ShippingStatus",
-                                title: "@T("Admin.Orders.Fields.ShippingStatus")",
+                                title: "@T("Admin.Pedidos.Fields.ShippingStatus")",
                                 width: 100
                             },</text>
                             }
 
                             {
                                 field: "CreatedOn",
-                                title: "@T("Admin.Orders.Fields.CreatedOn")",
+                                title: "@T("Admin.Pedidos.Fields.CreatedOn")",
                                 width: 200,
                                 type: "date",
                                 format: "{0:G}"

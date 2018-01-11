@@ -1,9 +1,9 @@
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents an order status enumeration
     /// </summary>
-    public enum OrderStatus
+    public enum Pedidostatus
     {
         /// <summary>
         /// Pending

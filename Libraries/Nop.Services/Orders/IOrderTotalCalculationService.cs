@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Discounts;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     /// <summary>
     /// Order service interface
@@ -114,7 +114,7 @@ namespace Nop.Services.Orders
         /// Gets tax
         /// </summary>
         /// <param name="cart">Shopping cart</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating tax</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating tax</param>
         /// <returns>Tax total</returns>
         decimal GetTaxTotal(IList<ShoppingCartItem> cart, bool usePaymentMethodAdditionalFee = true);
 
@@ -123,7 +123,7 @@ namespace Nop.Services.Orders
         /// </summary>
         /// <param name="cart">Shopping cart</param>
         /// <param name="taxRates">Tax rates</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating tax</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating tax</param>
         /// <returns>Tax total</returns>
         decimal GetTaxTotal(IList<ShoppingCartItem> cart, out SortedDictionary<decimal, decimal> taxRates, 
             bool usePaymentMethodAdditionalFee = true);
@@ -137,7 +137,7 @@ namespace Nop.Services.Orders
         /// </summary>
         /// <param name="cart">Cart</param>
         /// <param name="useRewardPoints">A value indicating reward points should be used; null to detect current choice of the customer</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating order total</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating order total</param>
         /// <returns>Shopping cart total;Null if shopping cart total couldn't be calculated now</returns>
         decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart,
             bool? useRewardPoints = null, bool usePaymentMethodAdditionalFee = true);
@@ -152,7 +152,7 @@ namespace Nop.Services.Orders
         /// <param name="redeemedRewardPoints">Reward points to redeem</param>
         /// <param name="redeemedRewardPointsAmount">Reward points amount in primary store currency to redeem</param>
         /// <param name="useRewardPoints">A value indicating reward points should be used; null to detect current choice of the customer</param>
-        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating order total</param>
+        /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use Formas de pago additional fee when calculating order total</param>
         /// <returns>Shopping cart total;Null if shopping cart total couldn't be calculated now</returns>
         decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart,
             out decimal discountAmount, out List<DiscountForCaching> appliedDiscounts,
@@ -194,10 +194,10 @@ namespace Nop.Services.Orders
         /// <summary>
         /// Calculate how order total (maximum amount) for which reward points could be earned/reduced
         /// </summary>
-        /// <param name="orderShippingInclTax">Order shipping (including tax)</param>
+        /// <param name="PedidoshippingInclTax">Order shipping (including tax)</param>
         /// <param name="orderTotal">Order total</param>
         /// <returns>Applicable order total</returns>
-        decimal CalculateApplicableOrderTotalForRewardPoints(decimal orderShippingInclTax, decimal orderTotal);
+        decimal CalculateApplicableOrderTotalForRewardPoints(decimal PedidoshippingInclTax, decimal orderTotal);
         /// <summary>
         /// Calculate how much reward points will be earned/reduced based on certain amount spent
         /// </summary>

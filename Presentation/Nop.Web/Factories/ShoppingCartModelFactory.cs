@@ -12,7 +12,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Services.Catalog;
@@ -22,7 +22,7 @@ using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Security;
 using Nop.Services.Seo;
@@ -75,7 +75,7 @@ namespace Nop.Web.Factories
         private readonly MediaSettings _mediaSettings;
         private readonly ShoppingCartSettings _shoppingCartSettings;
         private readonly CatalogSettings _catalogSettings;
-        private readonly OrderSettings _orderSettings;
+        private readonly Pedidosettings _Pedidosettings;
         private readonly ShippingSettings _shippingSettings;
         private readonly TaxSettings _taxSettings;
         private readonly CaptchaSettings _captchaSettings;
@@ -117,7 +117,7 @@ namespace Nop.Web.Factories
             MediaSettings mediaSettings,
             ShoppingCartSettings shoppingCartSettings,
             CatalogSettings catalogSettings, 
-            OrderSettings orderSettings,
+            Pedidosettings Pedidosettings,
             ShippingSettings shippingSettings, 
             TaxSettings taxSettings,
             CaptchaSettings captchaSettings, 
@@ -157,7 +157,7 @@ namespace Nop.Web.Factories
             this._mediaSettings = mediaSettings;
             this._shoppingCartSettings = shoppingCartSettings;
             this._catalogSettings = catalogSettings;
-            this._orderSettings = orderSettings;
+            this._Pedidosettings = Pedidosettings;
             this._shippingSettings = shippingSettings;
             this._taxSettings = taxSettings;
             this._captchaSettings = captchaSettings;
@@ -792,7 +792,7 @@ namespace Nop.Web.Factories
                 throw new ArgumentNullException("model");
 
             //simple properties
-            model.OnePageCheckoutEnabled = _orderSettings.OnePageCheckoutEnabled;
+            model.OnePageCheckoutEnabled = _Pedidosettings.OnePageCheckoutEnabled;
             if (!cart.Any())
                 return model;
             model.IsEditable = isEditable;
@@ -800,14 +800,14 @@ namespace Nop.Web.Factories
             model.ShowSku = _catalogSettings.ShowSkuOnProductDetailsPage;
             var checkoutAttributesXml = _workContext.CurrentCustomer.GetAttribute<string>(SystemCustomerAttributeNames.CheckoutAttributes, _genericAttributeService, _storeContext.CurrentStore.Id);
             model.CheckoutAttributeInfo = _checkoutAttributeFormatter.FormatAttributes(checkoutAttributesXml, _workContext.CurrentCustomer);
-            bool minOrderSubtotalAmountOk = _orderProcessingService.ValidateMinOrderSubtotalAmount(cart);
-            if (!minOrderSubtotalAmountOk)
+            bool minPedidosubtotalAmountOk = _orderProcessingService.ValidateMinPedidosubtotalAmount(cart);
+            if (!minPedidosubtotalAmountOk)
             {
-                decimal minOrderSubtotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_orderSettings.MinOrderSubtotalAmount, _workContext.WorkingCurrency);
-                model.MinOrderSubtotalWarning = string.Format(_localizationService.GetResource("Checkout.MinOrderSubtotalAmount"), _priceFormatter.FormatPrice(minOrderSubtotalAmount, true, false));
+                decimal minPedidosubtotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Pedidosettings.MinPedidosubtotalAmount, _workContext.WorkingCurrency);
+                model.MinPedidosubtotalWarning = string.Format(_localizationService.GetResource("Checkout.MinPedidosubtotalAmount"), _priceFormatter.FormatPrice(minPedidosubtotalAmount, true, false));
             }
-            model.TermsOfServiceOnShoppingCartPage = _orderSettings.TermsOfServiceOnShoppingCartPage;
-            model.TermsOfServiceOnOrderConfirmPage = _orderSettings.TermsOfServiceOnOrderConfirmPage;
+            model.TermsOfServiceOnShoppingCartPage = _Pedidosettings.TermsOfServiceOnShoppingCartPage;
+            model.TermsOfServiceOnOrderConfirmPage = _Pedidosettings.TermsOfServiceOnOrderConfirmPage;
             model.DisplayTaxShippingInfo = _catalogSettings.DisplayTaxShippingInfoShoppingCart;
 
             //discount and gift card boxes
@@ -850,18 +850,18 @@ namespace Nop.Web.Factories
                 model.Items.Add(cartItemModel);
             }
             
-            #region Payment methods
+            #region Formas de pagos
 
-            //all payment methods (do not filter by country here as it could be not specified yet)
+            //all Formas de pagos (do not filter by country here as it could be not specified yet)
             var paymentMethods = _paymentService
                 .LoadActivePaymentMethods(_workContext.CurrentCustomer, _storeContext.CurrentStore.Id)
                 .Where(pm => !pm.HidePaymentMethod(cart))
                 .ToList();
-            //payment methods displayed during checkout (not with "Button" type)
+            //Formas de pagos displayed during checkout (not with "Button" type)
             var nonButtonPaymentMethods = paymentMethods
                 .Where(pm => pm.PaymentMethodType != PaymentMethodType.Button)
                 .ToList();
-            //"button" payment methods(*displayed on the shopping cart page)
+            //"button" Formas de pagos(*displayed on the shopping cart page)
             var buttonPaymentMethods = paymentMethods
                 .Where(pm => pm.PaymentMethodType == PaymentMethodType.Button)
                 .ToList();
@@ -879,7 +879,7 @@ namespace Nop.Web.Factories
                 model.ButtonPaymentMethodControllerNames.Add(controllerName);
                 model.ButtonPaymentMethodRouteValues.Add(routeValues);
             }
-            //hide "Checkout" button if we have only "Button" payment methods
+            //hide "Checkout" button if we have only "Button" Formas de pagos
             model.HideCheckoutButton = !nonButtonPaymentMethods.Any() && model.ButtonPaymentMethodRouteValues.Any();
 
             #endregion
@@ -950,7 +950,7 @@ namespace Nop.Web.Factories
                 //let's always display it
                 DisplayShoppingCartButton = true,
                 CurrentCustomerIsGuest = _workContext.CurrentCustomer.IsGuest(),
-                AnonymousCheckoutAllowed = _orderSettings.AnonymousCheckoutAllowed,
+                AnonymousCheckoutAllowed = _Pedidosettings.AnonymousCheckoutAllowed,
             };
 
 
@@ -965,13 +965,13 @@ namespace Nop.Web.Factories
                 if (cart.Any())
                 {
                     //subtotal
-                    decimal orderSubTotalDiscountAmountBase;
-                    List<DiscountForCaching> orderSubTotalAppliedDiscounts;
+                    decimal PedidosubTotalDiscountAmountBase;
+                    List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
                     decimal subTotalWithoutDiscountBase;
                     decimal subTotalWithDiscountBase;
-                    var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrderSubtotal;
+                    var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal;
                     _orderTotalCalculationService.GetShoppingCartSubTotal(cart, subTotalIncludingTax,
-                        out orderSubTotalDiscountAmountBase, out orderSubTotalAppliedDiscounts,
+                        out PedidosubTotalDiscountAmountBase, out PedidosubTotalAppliedDiscounts,
                         out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
                     decimal subtotalBase = subTotalWithoutDiscountBase;
                     decimal subtotal = _currencyService.ConvertFromPrimaryStoreCurrency(subtotalBase, _workContext.WorkingCurrency);
@@ -991,12 +991,12 @@ namespace Nop.Web.Factories
                             return checkoutAttributes.Any();
                         });
 
-                    bool minOrderSubtotalAmountOk = _orderProcessingService.ValidateMinOrderSubtotalAmount(cart);
+                    bool minPedidosubtotalAmountOk = _orderProcessingService.ValidateMinPedidosubtotalAmount(cart);
                     bool downloadableProductsRequireRegistration =
                         _customerSettings.RequireRegistrationForDownloadableProducts && cart.Any(sci => sci.Product.IsDownload);
 
-                    model.DisplayCheckoutButton = !_orderSettings.TermsOfServiceOnShoppingCartPage &&
-                        minOrderSubtotalAmountOk &&
+                    model.DisplayCheckoutButton = !_Pedidosettings.TermsOfServiceOnShoppingCartPage &&
+                        minPedidosubtotalAmountOk &&
                         !checkoutAttributesExist &&
                         !(downloadableProductsRequireRegistration
                             && _workContext.CurrentCustomer.IsGuest());
@@ -1059,22 +1059,22 @@ namespace Nop.Web.Factories
             if (cart.Any())
             {
                 //subtotal
-                decimal orderSubTotalDiscountAmountBase;
-                List<DiscountForCaching> orderSubTotalAppliedDiscounts;
+                decimal PedidosubTotalDiscountAmountBase;
+                List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
                 decimal subTotalWithoutDiscountBase;
                 decimal subTotalWithDiscountBase;
-                var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrderSubtotal;
+                var subTotalIncludingTax = _workContext.TaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal;
                 _orderTotalCalculationService.GetShoppingCartSubTotal(cart, subTotalIncludingTax,
-                    out orderSubTotalDiscountAmountBase, out orderSubTotalAppliedDiscounts,
+                    out PedidosubTotalDiscountAmountBase, out PedidosubTotalAppliedDiscounts,
                     out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
                 decimal subtotalBase = subTotalWithoutDiscountBase;
                 decimal subtotal = _currencyService.ConvertFromPrimaryStoreCurrency(subtotalBase, _workContext.WorkingCurrency);
                 model.SubTotal = _priceFormatter.FormatPrice(subtotal, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
 
-                if (orderSubTotalDiscountAmountBase > decimal.Zero)
+                if (PedidosubTotalDiscountAmountBase > decimal.Zero)
                 {
-                    decimal orderSubTotalDiscountAmount = _currencyService.ConvertFromPrimaryStoreCurrency(orderSubTotalDiscountAmountBase, _workContext.WorkingCurrency);
-                    model.SubTotalDiscount = _priceFormatter.FormatPrice(-orderSubTotalDiscountAmount, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
+                    decimal PedidosubTotalDiscountAmount = _currencyService.ConvertFromPrimaryStoreCurrency(PedidosubTotalDiscountAmountBase, _workContext.WorkingCurrency);
+                    model.SubTotalDiscount = _priceFormatter.FormatPrice(-PedidosubTotalDiscountAmount, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
                 }
 
 
@@ -1099,7 +1099,7 @@ namespace Nop.Web.Factories
                     model.HideShippingTotal = _shippingSettings.HideShippingTotal;
                 }
 
-                //payment method fee
+                //Formas de pago fee
                 var paymentMethodSystemName = _workContext.CurrentCustomer.GetAttribute<string>(SystemCustomerAttributeNames.SelectedPaymentMethod, _storeContext.CurrentStore.Id);
                 decimal paymentMethodAdditionalFee = _paymentService.GetAdditionalHandlingFee(cart, paymentMethodSystemName);
                 decimal paymentMethodAdditionalFeeWithTaxBase = _taxService.GetPaymentMethodAdditionalFee(paymentMethodAdditionalFee, _workContext.CurrentCustomer);
@@ -1112,7 +1112,7 @@ namespace Nop.Web.Factories
                 //tax
                 bool displayTax = true;
                 bool displayTaxRates = true;
-                if (_taxSettings.HideTaxInOrderSummary && _workContext.TaxDisplayType == TaxDisplayType.IncludingTax)
+                if (_taxSettings.HideTaxInPedidosummary && _workContext.TaxDisplayType == TaxDisplayType.IncludingTax)
                 {
                     displayTax = false;
                     displayTaxRates = false;

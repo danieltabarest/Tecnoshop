@@ -3926,7 +3926,7 @@ function internalRemoveData( elem, name, pvt ) {
 	var thisCache, i,
 		isNode = elem.nodeType,
 
-		// See jQuery.data for more information
+		// See jQuery.data for more Information
 		cache = isNode ? jQuery.cache : elem,
 		id = isNode ? elem[ jQuery.expando ] : jQuery.expando;
 
@@ -3982,7 +3982,7 @@ function internalRemoveData( elem, name, pvt ) {
 		}
 	}
 
-	// See jQuery.data for more information
+	// See jQuery.data for more Information
 	if ( !pvt ) {
 		delete cache[ id ].data;
 
@@ -6666,7 +6666,7 @@ var documentElement = document.documentElement;
 		// table row; if so, offsetWidth/Height are not reliable for use when
 		// determining if an element has been hidden directly using
 		// display:none (it is still safe to use offsets if a parent element is
-		// hidden; don safety goggles and see bug #4512 for more information).
+		// hidden; don safety goggles and see bug #4512 for more Information).
 		div.style.display = "none";
 		reliableHiddenOffsetsVal = div.getClientRects().length === 0;
 		if ( reliableHiddenOffsetsVal ) {
@@ -8150,7 +8150,7 @@ jQuery.fn.delay = function( time, type ) {
 	// If it works, we need attrFixes when doing get/setAttribute (ie6/7)
 	support.getSetAttribute = div.className !== "t";
 
-	// Get the style information from getAttribute
+	// Get the style Information from getAttribute
 	// (IE uses .cssText instead)
 	support.style = /top/.test( a.getAttribute( "style" ) );
 
@@ -10801,7 +10801,7 @@ jQuery.fn.extend( {
 				parentOffset = offsetParent.offset();
 			}
 
-			// Add offsetParent borders
+			// Add offsetParent bPedidos
 			parentOffset.top  += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true );
 			parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true );
 		}
@@ -10966,7 +10966,7 @@ jQuery.fn.andSelf = jQuery.fn.addBack;
 
 // Note that for maximum portability, libraries that are not jQuery should
 // declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
+// AMD loader is present. jQuery is a special case. For more Information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( typeof define === "function" && define.amd ) {

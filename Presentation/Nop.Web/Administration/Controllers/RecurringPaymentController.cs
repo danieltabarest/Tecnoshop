@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Nop.Admin.Models.Orders;
+using Nop.Admin.Models.Pedidos;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Security;
 using Nop.Web.Framework.Controllers;
@@ -19,7 +19,7 @@ namespace Nop.Admin.Controllers
     {
         #region Fields
 
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IOrderProcessingService _orderProcessingService;
         private readonly ILocalizationService _localizationService;
         private readonly IWorkContext _workContext;
@@ -31,12 +31,12 @@ namespace Nop.Admin.Controllers
 
         #region Constructors
 
-        public RecurringPaymentController(IOrderService orderService,
+        public RecurringPaymentController(IPedidoservice Pedidoservice,
             IOrderProcessingService orderProcessingService, ILocalizationService localizationService,
             IWorkContext workContext, IDateTimeHelper dateTimeHelper, IPaymentService paymentService,
             IPermissionService permissionService)
         {
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._orderProcessingService = orderProcessingService;
             this._localizationService = localizationService;
             this._workContext = workContext;
@@ -87,12 +87,12 @@ namespace Nop.Admin.Controllers
             if (history == null)
                 throw new ArgumentNullException("history");
 
-            var order = _orderService.GetOrderById(history.OrderId);
+            var order = _Pedidoservice.GetOrderById(history.OrderId);
 
             model.Id = history.Id;
             model.OrderId = history.OrderId;
             model.RecurringPaymentId = history.RecurringPaymentId;
-            model.OrderStatus = order.OrderStatus.GetLocalizedEnum(_localizationService, _workContext);
+            model.Pedidostatus = order.Pedidostatus.GetLocalizedEnum(_localizationService, _workContext);
             model.PaymentStatus = order.PaymentStatus.GetLocalizedEnum(_localizationService, _workContext);
             model.ShippingStatus = order.ShippingStatus.GetLocalizedEnum(_localizationService, _workContext);
             model.CreatedOn = _dateTimeHelper.ConvertToUserTime(history.CreatedOnUtc, DateTimeKind.Utc);
@@ -123,7 +123,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedKendoGridJson();
 
-            var payments = _orderService.SearchRecurringPayments(0, 0, 0, null, command.Page - 1, command.PageSize, true);
+            var payments = _Pedidoservice.SearchRecurringPayments(0, 0, 0, null, command.Page - 1, command.PageSize, true);
             var gridModel = new DataSourceResult
             {
                 Data = payments.Select(x =>
@@ -144,7 +144,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedView();
 
-            var payment = _orderService.GetRecurringPaymentById(id);
+            var payment = _Pedidoservice.GetRecurringPaymentById(id);
             if (payment == null || payment.Deleted)
                 //No recurring payment found with the specified id
                 return RedirectToAction("List");
@@ -161,7 +161,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedView();
 
-            var payment = _orderService.GetRecurringPaymentById(model.Id);
+            var payment = _Pedidoservice.GetRecurringPaymentById(model.Id);
             if (payment == null || payment.Deleted)
                 //No recurring payment found with the specified id
                 return RedirectToAction("List");
@@ -170,7 +170,7 @@ namespace Nop.Admin.Controllers
             payment.CyclePeriodId = model.CyclePeriodId;
             payment.TotalCycles = model.TotalCycles;
             payment.IsActive = model.IsActive;
-            _orderService.UpdateRecurringPayment(payment);
+            _Pedidoservice.UpdateRecurringPayment(payment);
 
             SuccessNotification(_localizationService.GetResource("Admin.RecurringPayments.Updated"));
 
@@ -191,12 +191,12 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedView();
 
-            var payment = _orderService.GetRecurringPaymentById(id);
+            var payment = _Pedidoservice.GetRecurringPaymentById(id);
             if (payment == null)
                 //No recurring payment found with the specified id
                 return RedirectToAction("List");
 
-            _orderService.DeleteRecurringPayment(payment);
+            _Pedidoservice.DeleteRecurringPayment(payment);
 
             SuccessNotification(_localizationService.GetResource("Admin.RecurringPayments.Deleted"));
             return RedirectToAction("List");
@@ -212,7 +212,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedKendoGridJson();
 
-            var payment = _orderService.GetRecurringPaymentById(recurringPaymentId);
+            var payment = _Pedidoservice.GetRecurringPaymentById(recurringPaymentId);
             if (payment == null)
                 throw new ArgumentException("No recurring payment found with the specified id");
 
@@ -240,7 +240,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedView();
 
-            var payment = _orderService.GetRecurringPaymentById(id);
+            var payment = _Pedidoservice.GetRecurringPaymentById(id);
             if (payment == null)
                 //No recurring payment found with the specified id
                 return RedirectToAction("List");
@@ -283,7 +283,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageRecurringPayments))
                 return AccessDeniedView();
 
-            var payment = _orderService.GetRecurringPaymentById(id);
+            var payment = _Pedidoservice.GetRecurringPaymentById(id);
             if (payment == null)
                 //No recurring payment found with the specified id
                 return RedirectToAction("List");

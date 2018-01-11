@@ -19,3 +19,7 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\
 C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.pdb
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.csproj.App.config
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.dll
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.UPS\obj\Debug\Nop.Plugin.Shipping.UPS.pdb

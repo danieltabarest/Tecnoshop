@@ -20,3 +20,7 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debu
 C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.pdb
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.csproj.App.config
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.dll
+C:\Users\Daniel\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Shipping.Fedex\obj\Debug\Nop.Plugin.Shipping.Fedex.pdb

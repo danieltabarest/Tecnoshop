@@ -37,12 +37,12 @@ namespace Nop.Services.Payments
 
         /// <summary>
         /// /// <summary>
-        /// Gets or sets a payment method identifier
+        /// Gets or sets a Formas de pago identifier
         /// </summary>
         /// </summary>
         public string PaymentMethodSystemName { get; set; }
 
-        #region Payment method specific properties 
+        #region Formas de pago specific properties 
 
         /// <summary>
         /// Gets or sets a credit card type (Visa, Master Card, etc...). We leave it empty if not used by a payment gateway

@@ -1,4 +1,4 @@
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents an order average report line summary
@@ -8,56 +8,56 @@ namespace Nop.Core.Domain.Orders
         /// <summary>
         /// Gets or sets the order status
         /// </summary>
-        public OrderStatus OrderStatus { get; set; }
+        public Pedidostatus Pedidostatus { get; set; }
 
         /// <summary>
         /// Gets or sets the sum today total
         /// </summary>
-        public decimal SumTodayOrders { get; set; }
+        public decimal SumTodayPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the today count
         /// </summary>
-        public int CountTodayOrders { get; set; }
+        public int CountTodayPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the sum this week total
         /// </summary>
-        public decimal SumThisWeekOrders { get; set; }
+        public decimal SumThisWeekPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the this week count
         /// </summary>
-        public int CountThisWeekOrders { get; set; }
+        public int CountThisWeekPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the sum this month total
         /// </summary>
-        public decimal SumThisMonthOrders { get; set; }
+        public decimal SumThisMonthPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the this month count
         /// </summary>
-        public int CountThisMonthOrders { get; set; }
+        public int CountThisMonthPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the sum this year total
         /// </summary>
-        public decimal SumThisYearOrders { get; set; }
+        public decimal SumThisYearPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the this year count
         /// </summary>
-        public int CountThisYearOrders { get; set; }
+        public int CountThisYearPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the sum all time total
         /// </summary>
-        public decimal SumAllTimeOrders { get; set; }
+        public decimal SumAllTimePedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the all time count
         /// </summary>
-        public int CountAllTimeOrders { get; set; }
+        public int CountAllTimePedidos { get; set; }
     }
 }

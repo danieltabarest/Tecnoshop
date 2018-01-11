@@ -38,12 +38,12 @@ namespace Nop.Core.Plugins
         }
 
         /// <summary>
-        /// Get categories
+        /// Get Categorias
         /// </summary>
         /// <returns>Result</returns>
-        public virtual IList<OfficialFeedCategory> GetCategories()
+        public virtual IList<OfficialFeedCategory> GetCategorias()
         {
-            return GetDocument("getCategories=1").SelectNodes(@"//categories/category").Cast<XmlNode>().Select(node => new OfficialFeedCategory
+            return GetDocument("getCategorias=1").SelectNodes(@"//Categorias/category").Cast<XmlNode>().Select(node => new OfficialFeedCategory
             {
                 Id = int.Parse(node.ElText(@"id")),
                 ParentCategoryId = int.Parse(node.ElText(@"parentCategoryId")),

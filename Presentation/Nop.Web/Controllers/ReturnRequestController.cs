@@ -7,12 +7,12 @@ using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Messages;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Web.Factories;
 using Nop.Web.Framework.Security;
 using Nop.Web.Models.Order;
@@ -25,7 +25,7 @@ namespace Nop.Web.Controllers
 
         private readonly IReturnRequestModelFactory _returnRequestModelFactory;
         private readonly IReturnRequestService _returnRequestService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IWorkContext _workContext;
         private readonly IStoreContext _storeContext;
         private readonly IOrderProcessingService _orderProcessingService;
@@ -35,7 +35,7 @@ namespace Nop.Web.Controllers
         private readonly ICustomNumberFormatter _customNumberFormatter;
         private readonly IDownloadService _downloadService;
         private readonly LocalizationSettings _localizationSettings;
-        private readonly OrderSettings _orderSettings;
+        private readonly Pedidosettings _Pedidosettings;
 
         #endregion
 
@@ -43,7 +43,7 @@ namespace Nop.Web.Controllers
 
         public ReturnRequestController(IReturnRequestModelFactory returnRequestModelFactory,
             IReturnRequestService returnRequestService,
-            IOrderService orderService, 
+            IPedidoservice Pedidoservice, 
             IWorkContext workContext, 
             IStoreContext storeContext,
             IOrderProcessingService orderProcessingService,
@@ -53,11 +53,11 @@ namespace Nop.Web.Controllers
             ICustomNumberFormatter customNumberFormatter,
             IDownloadService downloadService,
             LocalizationSettings localizationSettings,
-            OrderSettings orderSettings)
+            Pedidosettings Pedidosettings)
         {
             this._returnRequestModelFactory = returnRequestModelFactory;
             this._returnRequestService = returnRequestService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._workContext = workContext;
             this._storeContext = storeContext;
             this._orderProcessingService = orderProcessingService;
@@ -67,7 +67,7 @@ namespace Nop.Web.Controllers
             this._customNumberFormatter = customNumberFormatter;
             this._downloadService = downloadService;
             this._localizationSettings = localizationSettings;
-            this._orderSettings = orderSettings;
+            this._Pedidosettings = Pedidosettings;
         }
 
         #endregion
@@ -87,7 +87,7 @@ namespace Nop.Web.Controllers
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult ReturnRequest(int orderId)
         {
-            var order = _orderService.GetOrderById(orderId);
+            var order = _Pedidoservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 
@@ -104,7 +104,7 @@ namespace Nop.Web.Controllers
         [PublicAntiForgery]
         public virtual ActionResult ReturnRequestSubmit(int orderId, SubmitReturnRequestModel model, FormCollection form)
         {
-            var order = _orderService.GetOrderById(orderId);
+            var order = _Pedidoservice.GetOrderById(orderId);
             if (order == null || order.Deleted || _workContext.CurrentCustomer.Id != order.CustomerId)
                 return new HttpUnauthorizedResult();
 
@@ -114,7 +114,7 @@ namespace Nop.Web.Controllers
             int count = 0;
 
             var downloadId = 0;
-            if (_orderSettings.ReturnRequestsAllowFiles)
+            if (_Pedidosettings.ReturnRequestsAllowFiles)
             {
                 var download = _downloadService.GetDownloadByGuid(model.UploadedFileGuid);
                 if (download != null)
@@ -179,7 +179,7 @@ namespace Nop.Web.Controllers
         [HttpPost]
         public virtual ActionResult UploadFileReturnRequest()
         {
-            if (!_orderSettings.ReturnRequestsEnabled && !_orderSettings.ReturnRequestsAllowFiles)
+            if (!_Pedidosettings.ReturnRequestsEnabled && !_Pedidosettings.ReturnRequestsAllowFiles)
             {
                 return Json(new
                 {
@@ -217,7 +217,7 @@ namespace Nop.Web.Controllers
             if (!String.IsNullOrEmpty(fileExtension))
                 fileExtension = fileExtension.ToLowerInvariant();
 
-            int validationFileMaximumSize = _orderSettings.ReturnRequestsFileMaximumSize;
+            int validationFileMaximumSize = _Pedidosettings.ReturnRequestsFileMaximumSize;
             if (validationFileMaximumSize > 0)
             {
                 //compare in bytes

@@ -14,7 +14,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         /// </summary>
         public decimal AdditionalFee { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether shippable products are required in order to display this payment method during checkout
+        /// Gets or sets a value indicating whether shippable products are required in order to display this Formas de pago during checkout
         /// </summary>
         public bool ShippableProductRequired { get; set; }
     }

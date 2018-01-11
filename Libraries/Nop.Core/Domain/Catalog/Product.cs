@@ -13,7 +13,7 @@ namespace Nop.Core.Domain.Catalog
     /// </summary>
     public partial class Product : BaseEntity, ILocalizedEntity, ISlugSupported, IAclSupported, IStoreMappingSupported
     {
-        private ICollection<ProductCategory> _productCategories;
+        private ICollection<ProductCategory> _productCategorias;
         private ICollection<ProductManufacturer> _productManufacturers;
         private ICollection<ProductPicture> _productPictures;
         private ICollection<ProductReview> _productReviews;
@@ -332,11 +332,11 @@ namespace Nop.Core.Domain.Catalog
         public bool NotReturnable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to disable buy (Add to cart) button
+        /// Gets or sets a value indicating whether to disable buy (Agregar a carrito de compras) button
         /// </summary>
         public bool DisableBuyButton { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to disable "Add to wishlist" button
+        /// Gets or sets a value indicating whether to disable "Agregar a favoritos" button
         /// </summary>
         public bool DisableWishlistButton { get; set; }
         /// <summary>
@@ -611,10 +611,10 @@ namespace Nop.Core.Domain.Catalog
         /// <summary>
         /// Gets or sets the collection of ProductCategory
         /// </summary>
-        public virtual ICollection<ProductCategory> ProductCategories
+        public virtual ICollection<ProductCategory> ProductCategorias
         {
-            get { return _productCategories ?? (_productCategories = new List<ProductCategory>()); }
-            protected set { _productCategories = value; }
+            get { return _productCategorias ?? (_productCategorias = new List<ProductCategory>()); }
+            protected set { _productCategorias = value; }
         }
 
         /// <summary>

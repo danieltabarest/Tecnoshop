@@ -118,17 +118,17 @@ namespace Nop.Core.Domain.Messages
 
         #endregion
 
-        #region Newsletter
+        #region Boletín informativo
 
         /// <summary>
         /// Represents system name of subscription activation message
         /// </summary>
-        public const string NewsletterSubscriptionActivationMessage = "NewsLetterSubscription.ActivationMessage";
+        public const string Boletín informativoSubscriptionActivationMessage = "Boletín informativoSubscription.ActivationMessage";
 
         /// <summary>
         /// Represents system name of subscription deactivation message
         /// </summary>
-        public const string NewsletterSubscriptionDeactivationMessage = "NewsLetterSubscription.DeactivationMessage";
+        public const string Boletín informativoSubscriptionDeactivationMessage = "Boletín informativoSubscription.DeactivationMessage";
 
         #endregion
 
@@ -192,7 +192,7 @@ namespace Nop.Core.Domain.Messages
         public const string NewVendorAccountApplyStoreOwnerNotification = "VendorAccountApply.StoreOwnerNotification";
 
         /// <summary>
-        /// Represents system name of notification vendor about changing information
+        /// Represents system name of notification vendor about changing Information
         /// </summary>
         public const string VendorInformationChangeNotification = "VendorInformationChange.StoreOwnerNotification";
 

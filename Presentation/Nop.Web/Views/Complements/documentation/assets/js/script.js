@@ -52,11 +52,11 @@ $(document).ready(function() {
 		
 		var sectionselector = 'section';
 		
-		//Documentation has subcategories		
+		//Documentation has subCategorias		
 		if(nav.find('ol').length){
 			sectionselector = 'section, h4';
 		}
-		//saving some information
+		//saving some Information
 		$(sectionselector).each(function(i,e){
 			var _this = $(this);
 			var p = {

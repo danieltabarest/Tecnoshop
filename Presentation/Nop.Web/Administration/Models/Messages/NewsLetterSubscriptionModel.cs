@@ -7,20 +7,20 @@ using Nop.Web.Framework.Mvc;
 
 namespace Nop.Admin.Models.Messages
 {
-    [Validator(typeof(NewsLetterSubscriptionValidator))]
-    public partial class NewsLetterSubscriptionModel : BaseNopEntityModel
+    [Validator(typeof(Boletín informativoSubscriptionValidator))]
+    public partial class Boletín informativoSubscriptionModel : BaseNopEntityModel
     {
-        [NopResourceDisplayName("Admin.Promotions.NewsLetterSubscriptions.Fields.Email")]
+        [NopResourceDisplayName("Admin.Promotions.Boletín informativoSubscriptions.Fields.Email")]
         [AllowHtml]
         public string Email { get; set; }
 
-        [NopResourceDisplayName("Admin.Promotions.NewsLetterSubscriptions.Fields.Active")]
+        [NopResourceDisplayName("Admin.Promotions.Boletín informativoSubscriptions.Fields.Active")]
         public bool Active { get; set; }
 
-        [NopResourceDisplayName("Admin.Promotions.NewsLetterSubscriptions.Fields.Store")]
+        [NopResourceDisplayName("Admin.Promotions.Boletín informativoSubscriptions.Fields.Store")]
         public string StoreName { get; set; }
 
-        [NopResourceDisplayName("Admin.Promotions.NewsLetterSubscriptions.Fields.CreatedOn")]
+        [NopResourceDisplayName("Admin.Promotions.Boletín informativoSubscriptions.Fields.CreatedOn")]
         public DateTime CreatedOn { get; set; }
     }
 }

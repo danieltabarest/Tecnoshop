@@ -1361,7 +1361,7 @@ jQuery.support = (function() {
 		// This requires a wrapper element in IE
 		htmlSerialize: !!div.getElementsByTagName("link").length,
 
-		// Get the style information from getAttribute
+		// Get the style Information from getAttribute
 		// (IE uses .cssText instead)
 		style: /top/.test( a.getAttribute("style") ),
 
@@ -1532,7 +1532,7 @@ jQuery.support = (function() {
 		// table row; if so, offsetWidth/Height are not reliable for use when
 		// determining if an element has been hidden directly using
 		// display:none (it is still safe to use offsets if a parent element is
-		// hidden; don safety goggles and see bug #4512 for more information).
+		// hidden; don safety goggles and see bug #4512 for more Information).
 		// (only IE 8 fails this test)
 		div.innerHTML = "<table><tr><td style='padding:0;border:0;display:none'></td><td>t</td></tr></table>";
 		tds = div.getElementsByTagName( "td" );
@@ -1743,10 +1743,10 @@ jQuery.extend({
 
 			isNode = elem.nodeType,
 
-			// See jQuery.data for more information
+			// See jQuery.data for more Information
 			cache = isNode ? jQuery.cache : elem,
 
-			// See jQuery.data for more information
+			// See jQuery.data for more Information
 			id = isNode ? elem[ internalKey ] : internalKey;
 
 		// If there is already no cache entry for this object, there is no
@@ -1791,7 +1791,7 @@ jQuery.extend({
 			}
 		}
 
-		// See jQuery.data for more information
+		// See jQuery.data for more Information
 		if ( !pvt ) {
 			delete cache[ id ].data;
 
@@ -3839,7 +3839,7 @@ jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblcl
  * Sizzle CSS Selector Engine
  *  Copyright 2012, The Dojo Foundation
  *  Released under the MIT, BSD, and GPL Licenses.
- *  More information: http://sizzlejs.com/
+ *  More Information: http://sizzlejs.com/
  */
 (function(){
 
@@ -9080,7 +9080,7 @@ jQuery.fn.extend({
 		offset.top  -= parseFloat( jQuery.css(elem, "marginTop") ) || 0;
 		offset.left -= parseFloat( jQuery.css(elem, "marginLeft") ) || 0;
 
-		// Add offsetParent borders
+		// Add offsetParent bPedidos
 		parentOffset.top  += parseFloat( jQuery.css(offsetParent[0], "borderTopWidth") ) || 0;
 		parentOffset.left += parseFloat( jQuery.css(offsetParent[0], "borderLeftWidth") ) || 0;
 

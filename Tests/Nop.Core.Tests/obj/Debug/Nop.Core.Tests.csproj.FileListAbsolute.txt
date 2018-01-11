@@ -74,3 +74,6 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\bin\Debug\Newtonsoft.
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\obj\Debug\Nop.Core.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\obj\Debug\Nop.Core.Tests.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\obj\Debug\Nop.Core.Tests.pdb
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\obj\Debug\Nop.Core.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\obj\Debug\Nop.Core.Tests.dll
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Core.Tests\obj\Debug\Nop.Core.Tests.pdb

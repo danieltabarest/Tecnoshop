@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
 using FluentValidation.Attributes;
-using Nop.Admin.Validators.Orders;
+using Nop.Admin.Validators.Pedidos;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     [Validator(typeof(ReturnRequestValidator))]
     public partial class ReturnRequestModel : BaseNopEntityModel

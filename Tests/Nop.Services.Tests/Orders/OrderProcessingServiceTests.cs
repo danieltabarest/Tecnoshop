@@ -8,7 +8,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
@@ -24,7 +24,7 @@ using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Messages;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Security;
 using Nop.Services.Shipping;
@@ -34,7 +34,7 @@ using Nop.Tests;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Nop.Services.Tests.Orders
+namespace Nop.Services.Tests.Pedidos
 {
     [TestFixture]
     public class OrderProcessingServiceTests : ServiceTest
@@ -61,7 +61,7 @@ namespace Nop.Services.Tests.Orders
         private ILogger _logger;
         private IRepository<ShippingMethod> _shippingMethodRepository;
         private IRepository<Warehouse> _warehouseRepository;
-        private IOrderService _orderService;
+        private IPedidoservice _Pedidoservice;
         private IWebHelper _webHelper;
         private ILocalizationService _localizationService;
         private ILanguageService _languageService;
@@ -76,7 +76,7 @@ namespace Nop.Services.Tests.Orders
         private ICustomerActivityService _customerActivityService;
         private ICurrencyService _currencyService;
         private PaymentSettings _paymentSettings;
-        private OrderSettings _orderSettings;
+        private Pedidosettings _Pedidosettings;
         private LocalizationSettings _localizationSettings;
         private ShoppingCartSettings _shoppingCartSettings;
         private CatalogSettings _catalogSettings;
@@ -187,7 +187,7 @@ namespace Nop.Services.Tests.Orders
                 _genericAttributeService, _rewardPointService,
                 _taxSettings, _rewardPointsSettings, _shippingSettings, _shoppingCartSettings, _catalogSettings);
 
-            _orderService = MockRepository.GenerateMock<IOrderService>();
+            _Pedidoservice = MockRepository.GenerateMock<IPedidoservice>();
             _webHelper = MockRepository.GenerateMock<IWebHelper>();
             _languageService = MockRepository.GenerateMock<ILanguageService>();
             _priceFormatter= MockRepository.GenerateMock<IPriceFormatter>();
@@ -211,7 +211,7 @@ namespace Nop.Services.Tests.Orders
                     "Payments.TestMethod"
                 }
             };
-            _orderSettings = new OrderSettings();
+            _Pedidosettings = new Pedidosettings();
 
             _localizationSettings = new LocalizationSettings();
 
@@ -221,7 +221,7 @@ namespace Nop.Services.Tests.Orders
             _rewardPointService = MockRepository.GenerateMock<IRewardPointService>();
             _currencySettings = new CurrencySettings();
 
-            _orderProcessingService = new OrderProcessingService(_orderService, _webHelper,
+            _orderProcessingService = new OrderProcessingService(_Pedidoservice, _webHelper,
                 _localizationService, _languageService,
                 _productService, _paymentService, _logger,
                 _orderTotalCalcService, _priceCalcService, _priceFormatter,
@@ -236,22 +236,22 @@ namespace Nop.Services.Tests.Orders
                 _genericAttributeService,
                 _countryService, _stateProvinceService,
                 _shippingSettings, _paymentSettings, _rewardPointsSettings,
-                _orderSettings, _taxSettings, _localizationSettings,
+                _Pedidosettings, _taxSettings, _localizationSettings,
                 _currencySettings, _customNumberFormatter);
         }
         
         [Test]
-        public void Ensure_order_can_only_be_cancelled_when_orderStatus_is_not_cancelled_yet()
+        public void Ensure_order_can_only_be_cancelled_when_Pedidostatus_is_not_cancelled_yet()
         {
             var order = new Order();
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
-                        if (os != OrderStatus.Cancelled)
+                        if (os != Pedidostatus.Cancelled)
                             _orderProcessingService.CanCancelOrder(order).ShouldBeTrue();
                         else
                             _orderProcessingService.CanCancelOrder(order).ShouldBeFalse();
@@ -259,17 +259,17 @@ namespace Nop.Services.Tests.Orders
         }
 
         [Test]
-        public void Ensure_order_can_only_be_marked_as_authorized_when_orderStatus_is_not_cancelled_and_paymentStatus_is_pending()
+        public void Ensure_order_can_only_be_marked_as_authorized_when_Pedidostatus_is_not_cancelled_and_paymentStatus_is_pending()
         {
             var order = new Order();
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
-                        if (os != OrderStatus.Cancelled && ps == PaymentStatus.Pending)
+                        if (os != Pedidostatus.Cancelled && ps == PaymentStatus.Pending)
                             _orderProcessingService.CanMarkOrderAsAuthorized(order).ShouldBeTrue();
                         else
                             _orderProcessingService.CanMarkOrderAsAuthorized(order).ShouldBeFalse();
@@ -277,7 +277,7 @@ namespace Nop.Services.Tests.Orders
         }
 
         [Test]
-        public void Ensure_order_can_only_be_captured_when_orderStatus_is_not_cancelled_or_pending_and_paymentstatus_is_authorized_and_paymentModule_supports_capture()
+        public void Ensure_order_can_only_be_captured_when_Pedidostatus_is_not_cancelled_or_pending_and_paymentstatus_is_authorized_and_paymentModule_supports_capture()
         {
             _paymentService.Expect(ps => ps.SupportCapture("paymentMethodSystemName_that_supports_capture")).Return(true);
             _paymentService.Expect(ps => ps.SupportCapture("paymentMethodSystemName_that_doesn't_support_capture")).Return(false);
@@ -285,15 +285,15 @@ namespace Nop.Services.Tests.Orders
 
 
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_capture";
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
-                        if ((os != OrderStatus.Cancelled && os != OrderStatus.Pending)
+                        if ((os != Pedidostatus.Cancelled && os != Pedidostatus.Pending)
                             && (ps == PaymentStatus.Authorized))
                             _orderProcessingService.CanCapture(order).ShouldBeTrue();
                         else
@@ -302,11 +302,11 @@ namespace Nop.Services.Tests.Orders
 
 
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_doesn't_support_capture";
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -315,17 +315,17 @@ namespace Nop.Services.Tests.Orders
         }
         
         [Test]
-        public void Ensure_order_cannot_be_marked_as_paid_when_orderStatus_is_cancelled_or_paymentStatus_is_paid_or_refunded_or_voided()
+        public void Ensure_order_cannot_be_marked_as_paid_when_Pedidostatus_is_cancelled_or_paymentStatus_is_paid_or_refunded_or_voided()
         {
             var order = new Order();
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
-                        if (os == OrderStatus.Cancelled
+                        if (os == Pedidostatus.Cancelled
                             || (ps == PaymentStatus.Paid || ps == PaymentStatus.Refunded || ps == PaymentStatus.Voided))
                             _orderProcessingService.CanMarkOrderAsPaid(order).ShouldBeFalse();
                         else
@@ -342,11 +342,11 @@ namespace Nop.Services.Tests.Orders
             order.OrderTotal = 1;
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_refund";
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -359,11 +359,11 @@ namespace Nop.Services.Tests.Orders
 
 
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_doesn't_support_refund";
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -378,11 +378,11 @@ namespace Nop.Services.Tests.Orders
             var order = new Order();
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_refund";
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -397,11 +397,11 @@ namespace Nop.Services.Tests.Orders
             {
                 OrderTotal = 1,
             };
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -417,11 +417,11 @@ namespace Nop.Services.Tests.Orders
         {
             var order = new Order();
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -438,11 +438,11 @@ namespace Nop.Services.Tests.Orders
             order.OrderTotal = 1;
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_void";
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -455,11 +455,11 @@ namespace Nop.Services.Tests.Orders
 
 
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_doesn't_support_void";
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -474,11 +474,11 @@ namespace Nop.Services.Tests.Orders
             var order = new Order();
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_void";
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -493,11 +493,11 @@ namespace Nop.Services.Tests.Orders
             {
                 OrderTotal = 1,
             };
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -513,11 +513,11 @@ namespace Nop.Services.Tests.Orders
         {
             var order = new Order();
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -534,11 +534,11 @@ namespace Nop.Services.Tests.Orders
             order.OrderTotal = 100;
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_partialrefund";
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -551,11 +551,11 @@ namespace Nop.Services.Tests.Orders
 
 
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_doesn't_support_partialrefund";
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -574,11 +574,11 @@ namespace Nop.Services.Tests.Orders
             };
             order.PaymentMethodSystemName = "paymentMethodSystemName_that_supports_partialrefund";
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
@@ -592,16 +592,16 @@ namespace Nop.Services.Tests.Orders
             var order = new Order();
             order.OrderTotal = 100;
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 
                         {
-                            order.OrderStatus = os;
+                            order.Pedidostatus = os;
                             order.PaymentStatus = ps;
                             order.ShippingStatus = ss;
 
@@ -622,11 +622,11 @@ namespace Nop.Services.Tests.Orders
                 RefundedAmount = 30, //100-30=70 can be refunded
             };
 
-            foreach (OrderStatus os in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Pedidostatus os in Enum.GetValues(typeof(Pedidostatus)))
                 foreach (PaymentStatus ps in Enum.GetValues(typeof(PaymentStatus)))
                     foreach (ShippingStatus ss in Enum.GetValues(typeof(ShippingStatus)))
                     {
-                        order.OrderStatus = os;
+                        order.Pedidostatus = os;
                         order.PaymentStatus = ps;
                         order.ShippingStatus = ss;
 

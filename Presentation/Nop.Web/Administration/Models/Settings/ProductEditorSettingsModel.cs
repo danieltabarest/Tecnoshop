@@ -131,8 +131,8 @@ namespace Nop.Admin.Models.Settings
         [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.NotifyAdminForQuantityBelow")]
         public bool NotifyAdminForQuantityBelow { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.Backorders")]
-        public bool Backorders { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.BackPedidos")]
+        public bool BackPedidos { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.AllowBackInStockSubscriptions")]
         public bool AllowBackInStockSubscriptions { get; set; }
@@ -191,8 +191,8 @@ namespace Nop.Admin.Models.Settings
         [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.Seo")]
         public bool Seo { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.PurchasedWithOrders")]
-        public bool PurchasedWithOrders { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.PurchasedWithPedidos")]
+        public bool PurchasedWithPedidos { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.ProductEditor.OneColumnProductPage")]
         public bool OneColumnProductPage { get; set; }

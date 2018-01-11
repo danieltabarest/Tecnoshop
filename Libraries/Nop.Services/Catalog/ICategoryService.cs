@@ -16,33 +16,33 @@ namespace Nop.Services.Catalog
         void DeleteCategory(Category category);
 
         /// <summary>
-        /// Gets all categories
+        /// Gets all Categorias
         /// </summary>
         /// <param name="categoryName">Category name</param>
         /// <param name="storeId">Store identifier; 0 if you want to get all records</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
-        /// <returns>Categories</returns>
-        IPagedList<Category> GetAllCategories(string categoryName = "", int storeId = 0,
+        /// <returns>Categorias</returns>
+        IPagedList<Category> GetAllCategorias(string categoryName = "", int storeId = 0,
             int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
 
         /// <summary>
-        /// Gets all categories filtered by parent category identifier
+        /// Gets all Categorias filtered by parent category identifier
         /// </summary>
         /// <param name="parentCategoryId">Parent category identifier</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <param name="includeAllLevels">A value indicating whether we should load all child levels</param>
-        /// <returns>Categories</returns>
-        IList<Category> GetAllCategoriesByParentCategoryId(int parentCategoryId,
+        /// <returns>Categorias</returns>
+        IList<Category> GetAllCategoriasByParentCategoryId(int parentCategoryId,
             bool showHidden = false, bool includeAllLevels = false);
 
         /// <summary>
-        /// Gets all categories displayed on the home page
+        /// Gets all Categorias displayed on the home page
         /// </summary>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
-        /// <returns>Categories</returns>
-        IList<Category> GetAllCategoriesDisplayedOnHomePage(bool showHidden = false);
+        /// <returns>Categorias</returns>
+        IList<Category> GetAllCategoriasDisplayedOnHomePage(bool showHidden = false);
                 
         /// <summary>
         /// Gets a category
@@ -77,7 +77,7 @@ namespace Nop.Services.Catalog
         /// <param name="pageSize">Page size</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Product a category mapping collection</returns>
-        IPagedList<ProductCategory> GetProductCategoriesByCategoryId(int categoryId,
+        IPagedList<ProductCategory> GetProductCategoriasByCategoryId(int categoryId,
             int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Nop.Services.Catalog
         /// <param name="productId">Product identifier</param>
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Product category mapping collection</returns>
-        IList<ProductCategory> GetProductCategoriesByProductId(int productId, bool showHidden = false);
+        IList<ProductCategory> GetProductCategoriasByProductId(int productId, bool showHidden = false);
         /// <summary>
         /// Gets a product category mapping collection
         /// </summary>
@@ -94,7 +94,7 @@ namespace Nop.Services.Catalog
         /// <param name="storeId">Store identifier (used in multi-store environment). "showHidden" parameter should also be "true"</param>
         /// <param name="showHidden"> A value indicating whether to show hidden records</param>
         /// <returns> Product category mapping collection</returns>
-        IList<ProductCategory> GetProductCategoriesByProductId(int productId, int storeId, bool showHidden = false);
+        IList<ProductCategory> GetProductCategoriasByProductId(int productId, int storeId, bool showHidden = false);
 
         /// <summary>
         /// Gets a product category mapping 
@@ -116,11 +116,11 @@ namespace Nop.Services.Catalog
         void UpdateProductCategory(ProductCategory productCategory);
 
         /// <summary>
-        /// Returns a list of names of not existing categories
+        /// Returns a list of names of not existing Categorias
         /// </summary>
-        /// <param name="categoryNames">The nemes of the categories to check</param>
-        /// <returns>List of names not existing categories</returns>
-        string[] GetNotExistingCategories(string[] categoryNames);
+        /// <param name="categoryNames">The nemes of the Categorias to check</param>
+        /// <returns>List of names not existing Categorias</returns>
+        string[] GetNotExistingCategorias(string[] categoryNames);
 
         /// <summary>
         /// Get category IDs for products

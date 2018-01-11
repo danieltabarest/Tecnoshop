@@ -15,11 +15,11 @@ namespace Nop.Services.ExportImport
         void ImportProductsFromXlsx(Stream stream);
 
         /// <summary>
-        /// Import newsletter subscribers from TXT file
+        /// Import Boletín informativo subscribers from TXT file
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns>Number of imported subscribers</returns>
-        int ImportNewsletterSubscribersFromTxt(Stream stream);
+        int ImportBoletín informativoSubscribersFromTxt(Stream stream);
 
         /// <summary>
         /// Import states from TXT file
@@ -35,9 +35,9 @@ namespace Nop.Services.ExportImport
         void ImportManufacturersFromXlsx(Stream stream);
 
         /// <summary>
-        /// Import categories from XLSX file
+        /// Import Categorias from XLSX file
         /// </summary>
         /// <param name="stream">Stream</param>
-        void ImportCategoriesFromXlsx(Stream stream);
+        void ImportCategoriasFromXlsx(Stream stream);
     }
 }

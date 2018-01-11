@@ -12,7 +12,7 @@ namespace Nop.Web.Models.Catalog
             FeaturedProducts = new List<ProductOverviewModel>();
             Products = new List<ProductOverviewModel>();
             PagingFilteringContext = new CatalogPagingFilteringModel();
-            SubCategories = new List<SubCategoryModel>();
+            SubCategorias = new List<SubCategoryModel>();
             CategoryBreadcrumb = new List<CategoryModel>();
         }
 
@@ -30,7 +30,7 @@ namespace Nop.Web.Models.Catalog
         public bool DisplayCategoryBreadcrumb { get; set; }
         public IList<CategoryModel> CategoryBreadcrumb { get; set; }
         
-        public IList<SubCategoryModel> SubCategories { get; set; }
+        public IList<SubCategoryModel> SubCategorias { get; set; }
 
         public IList<ProductOverviewModel> FeaturedProducts { get; set; }
         public IList<ProductOverviewModel> Products { get; set; }

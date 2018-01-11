@@ -7,7 +7,7 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Plugins;
@@ -526,7 +526,7 @@ namespace Nop.Services.Tax
         #region Payment additional fee
 
         /// <summary>
-        /// Gets payment method additional handling fee
+        /// Gets Formas de pago additional handling fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="customer">Customer</param>
@@ -538,7 +538,7 @@ namespace Nop.Services.Tax
         }
 
         /// <summary>
-        /// Gets payment method additional handling fee
+        /// Gets Formas de pago additional handling fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="includingTax">A value indicating whether calculated price should include tax</param>
@@ -552,7 +552,7 @@ namespace Nop.Services.Tax
         }
 
         /// <summary>
-        /// Gets payment method additional handling fee
+        /// Gets Formas de pago additional handling fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="includingTax">A value indicating whether calculated price should include tax</param>

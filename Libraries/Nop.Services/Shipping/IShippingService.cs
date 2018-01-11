@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Shipping.Pickup;
 
@@ -39,7 +39,7 @@ namespace Nop.Services.Shipping
 
         #endregion
 
-        #region Shipping methods
+        #region Formas de envío
 
         /// <summary>
         /// Deletes a shipping method
@@ -56,10 +56,10 @@ namespace Nop.Services.Shipping
 
 
         /// <summary>
-        /// Gets all shipping methods
+        /// Gets all Formas de envío
         /// </summary>
         /// <param name="filterByCountryId">The country indentifier to filter by</param>
-        /// <returns>Shipping methods</returns>
+        /// <returns>Formas de envío</returns>
         IList<ShippingMethod> GetAllShippingMethods(int? filterByCountryId = null);
 
         /// <summary>

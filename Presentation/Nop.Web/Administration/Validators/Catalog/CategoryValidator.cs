@@ -12,12 +12,12 @@ namespace Nop.Admin.Validators.Catalog
     {
         public CategoryValidator(ILocalizationService localizationService, IDbContext dbContext)
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage(localizationService.GetResource("Admin.Catalog.Categories.Fields.Name.Required"));
-            RuleFor(x => x.PageSizeOptions).Must(ValidatorUtilities.PageSizeOptionsValidator).WithMessage(localizationService.GetResource("Admin.Catalog.Categories.Fields.PageSizeOptions.ShouldHaveUniqueItems"));
+            RuleFor(x => x.Name).NotEmpty().WithMessage(localizationService.GetResource("Admin.Catalog.Categorias.Fields.Name.Required"));
+            RuleFor(x => x.PageSizeOptions).Must(ValidatorUtilities.PageSizeOptionsValidator).WithMessage(localizationService.GetResource("Admin.Catalog.Categorias.Fields.PageSizeOptions.ShouldHaveUniqueItems"));
             Custom(x =>
             {
                 if (!x.AllowCustomersToSelectPageSize && x.PageSize <= 0)
-                    return new ValidationFailure("PageSize", localizationService.GetResource("Admin.Catalog.Categories.Fields.PageSize.Positive"));
+                    return new ValidationFailure("PageSize", localizationService.GetResource("Admin.Catalog.Categorias.Fields.PageSize.Positive"));
 
                 return null;
             });

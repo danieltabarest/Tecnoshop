@@ -17,7 +17,7 @@ using Nop.Services.Logging;
 namespace Nop.Services.Localization
 {
     /// <summary>
-    /// Provides information about localization
+    /// Provides Information about localization
     /// </summary>
     public partial class LocalizationService : ILocalizationService
     {

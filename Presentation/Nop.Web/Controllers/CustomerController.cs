@@ -23,7 +23,7 @@ using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Stores;
 using Nop.Services.Tax;
 using Nop.Web.Extensions;
@@ -60,9 +60,9 @@ namespace Nop.Web.Controllers
         private readonly ForumSettings _forumSettings;
         private readonly IAddressService _addressService;
         private readonly ICountryService _countryService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IPictureService _pictureService;
-        private readonly INewsLetterSubscriptionService _newsLetterSubscriptionService;
+        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IOpenAuthenticationService _openAuthenticationService;
         private readonly IWebHelper _webHelper;
@@ -101,9 +101,9 @@ namespace Nop.Web.Controllers
             ForumSettings forumSettings,
             IAddressService addressService,
             ICountryService countryService,
-            IOrderService orderService,
+            IPedidoservice Pedidoservice,
             IPictureService pictureService,
-            INewsLetterSubscriptionService newsLetterSubscriptionService,
+            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
             IShoppingCartService shoppingCartService,
             IOpenAuthenticationService openAuthenticationService,
             IWebHelper webHelper,
@@ -137,9 +137,9 @@ namespace Nop.Web.Controllers
             this._forumSettings = forumSettings;
             this._addressService = addressService;
             this._countryService = countryService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._pictureService = pictureService;
-            this._newsLetterSubscriptionService = newsLetterSubscriptionService;
+            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
             this._shoppingCartService = shoppingCartService;
             this._openAuthenticationService = openAuthenticationService;
             this._webHelper = webHelper;
@@ -666,31 +666,31 @@ namespace Nop.Web.Controllers
                     if (_customerSettings.FaxEnabled)
                         _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.Fax, model.Fax);
 
-                    //newsletter
-                    if (_customerSettings.NewsletterEnabled)
+                    //Boletín informativo
+                    if (_customerSettings.Boletín informativoEnabled)
                     {
-                        //save newsletter value
-                        var newsletter = _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreId(model.Email, _storeContext.CurrentStore.Id);
-                        if (newsletter != null)
+                        //save Boletín informativo value
+                        var Boletín informativo = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(model.Email, _storeContext.CurrentStore.Id);
+                        if (Boletín informativo != null)
                         {
-                            if (model.Newsletter)
+                            if (model.Boletín informativo)
                             {
-                                newsletter.Active = true;
-                                _newsLetterSubscriptionService.UpdateNewsLetterSubscription(newsletter);
+                                Boletín informativo.Active = true;
+                                _Boletín informativoSubscriptionService.UpdateBoletín informativoSubscription(Boletín informativo);
                             }
                             //else
                             //{
-                            //When registering, not checking the newsletter check box should not take an existing email address off of the subscription list.
-                            //_newsLetterSubscriptionService.DeleteNewsLetterSubscription(newsletter);
+                            //When registering, not checking the Boletín informativo check box should not take an existing email address off of the subscription list.
+                            //_Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(Boletín informativo);
                             //}
                         }
                         else
                         {
-                            if (model.Newsletter)
+                            if (model.Boletín informativo)
                             {
-                                _newsLetterSubscriptionService.InsertNewsLetterSubscription(new NewsLetterSubscription
+                                _Boletín informativoSubscriptionService.InsertBoletín informativoSubscription(new Boletín informativoSubscription
                                 {
-                                    NewsLetterSubscriptionGuid = Guid.NewGuid(),
+                                    Boletín informativoSubscriptionGuid = Guid.NewGuid(),
                                     Email = model.Email,
                                     Active = true,
                                     StoreId = _storeContext.CurrentStore.Id,
@@ -882,7 +882,7 @@ namespace Nop.Web.Controllers
 
         #endregion
 
-        #region My account / Info
+        #region Mi cuenta / Info
 
         [ChildActionOnly]
         public virtual ActionResult CustomerNavigation(int selectedTabId = 0)
@@ -1025,30 +1025,30 @@ namespace Nop.Web.Controllers
                     if (_customerSettings.FaxEnabled)
                         _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.Fax, model.Fax);
 
-                    //newsletter
-                    if (_customerSettings.NewsletterEnabled)
+                    //Boletín informativo
+                    if (_customerSettings.Boletín informativoEnabled)
                     {
-                        //save newsletter value
-                        var newsletter =
-                            _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreId(customer.Email,
+                        //save Boletín informativo value
+                        var Boletín informativo =
+                            _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email,
                                 _storeContext.CurrentStore.Id);
-                        if (newsletter != null)
+                        if (Boletín informativo != null)
                         {
-                            if (model.Newsletter)
+                            if (model.Boletín informativo)
                             {
-                                newsletter.Active = true;
-                                _newsLetterSubscriptionService.UpdateNewsLetterSubscription(newsletter);
+                                Boletín informativo.Active = true;
+                                _Boletín informativoSubscriptionService.UpdateBoletín informativoSubscription(Boletín informativo);
                             }
                             else
-                                _newsLetterSubscriptionService.DeleteNewsLetterSubscription(newsletter);
+                                _Boletín informativoSubscriptionService.DeleteBoletín informativoSubscription(Boletín informativo);
                         }
                         else
                         {
-                            if (model.Newsletter)
+                            if (model.Boletín informativo)
                             {
-                                _newsLetterSubscriptionService.InsertNewsLetterSubscription(new NewsLetterSubscription
+                                _Boletín informativoSubscriptionService.InsertBoletín informativoSubscription(new Boletín informativoSubscription
                                 {
-                                    NewsLetterSubscriptionGuid = Guid.NewGuid(),
+                                    Boletín informativoSubscriptionGuid = Guid.NewGuid(),
                                     Email = customer.Email,
                                     Active = true,
                                     StoreId = _storeContext.CurrentStore.Id,
@@ -1163,7 +1163,7 @@ namespace Nop.Web.Controllers
 
         #endregion
 
-        #region My account / Addresses
+        #region Mi cuenta / Addresses
 
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult Addresses()
@@ -1330,7 +1330,7 @@ namespace Nop.Web.Controllers
 
         #endregion
 
-        #region My account / Downloadable products
+        #region Mi cuenta / Downloadable products
 
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult DownloadableProducts()
@@ -1347,7 +1347,7 @@ namespace Nop.Web.Controllers
 
         public virtual ActionResult UserAgreement(Guid orderItemId)
         {
-            var orderItem = _orderService.GetOrderItemByGuid(orderItemId);
+            var orderItem = _Pedidoservice.GetOrderItemByGuid(orderItemId);
             if (orderItem == null)
                 return RedirectToRoute("HomePage");
 
@@ -1361,7 +1361,7 @@ namespace Nop.Web.Controllers
 
         #endregion
 
-        #region My account / Change password
+        #region Mi cuenta / Change password
 
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult ChangePassword()
@@ -1410,7 +1410,7 @@ namespace Nop.Web.Controllers
 
         #endregion
 
-        #region My account / Avatar
+        #region Mi cuenta / Avatar
 
         [NopHttpsRequirement(SslRequirement.Yes)]
         public virtual ActionResult Avatar()

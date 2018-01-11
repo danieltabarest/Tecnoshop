@@ -21,7 +21,7 @@ using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Shipping;
 using Nop.Services.Shipping.Tracking;
 
@@ -156,13 +156,13 @@ namespace Nop.Plugin.Shipping.UPS
 
             //get subTotalWithoutDiscountBase, for use as insured value (when Settings.InsurePackage)
             //(note: prior versions used "with discount", but "without discount" better reflects true value to insure.)
-            decimal orderSubTotalDiscountAmount;
-            List<DiscountForCaching> orderSubTotalAppliedDiscounts;
+            decimal PedidosubTotalDiscountAmount;
+            List<DiscountForCaching> PedidosubTotalAppliedDiscounts;
             decimal subTotalWithoutDiscountBase;
             decimal subTotalWithDiscountBase;
             //TODO we should use getShippingOptionRequest.Items.GetQuantity() method to get subtotal
             _orderTotalCalculationService.GetShoppingCartSubTotal(getShippingOptionRequest.Items.Select(x=>x.ShoppingCartItem).ToList(),
-                false, out orderSubTotalDiscountAmount, out orderSubTotalAppliedDiscounts,
+                false, out PedidosubTotalDiscountAmount, out PedidosubTotalAppliedDiscounts,
                 out subTotalWithoutDiscountBase, out subTotalWithDiscountBase);
 
             if (_upsSettings.Tracing)
@@ -219,7 +219,7 @@ namespace Nop.Plugin.Shipping.UPS
             sb.Append("</Package>");
         }
 
-        private void SetIndividualPackageLineItems(StringBuilder sb, GetShippingOptionRequest getShippingOptionRequest, UPSPackagingType packagingType, decimal orderSubTotal, string currencyCode)
+        private void SetIndividualPackageLineItems(StringBuilder sb, GetShippingOptionRequest getShippingOptionRequest, UPSPackagingType packagingType, decimal PedidosubTotal, string currencyCode)
         {
             // Rate request setup - Total Dimensions of Shopping Cart Items determines number of packages
 
@@ -247,7 +247,7 @@ namespace Nop.Plugin.Shipping.UPS
                 if (!_upsSettings.PassDimensions)
                     length = width = height = 0;
 
-                int insuranceAmount = _upsSettings.InsurePackage ? Convert.ToInt32(orderSubTotal) : 0;
+                int insuranceAmount = _upsSettings.InsurePackage ? Convert.ToInt32(PedidosubTotal) : 0;
                 AppendPackageRequest(sb, packagingType, length, height, width, weight, insuranceAmount, currencyCode);
             }
             else
@@ -283,7 +283,7 @@ namespace Nop.Plugin.Shipping.UPS
                     length2 = width2 = height2 = 0;
 
                 //The maximum declared amount per package: 50000 USD.
-                int insuranceAmountPerPackage = _upsSettings.InsurePackage ? Convert.ToInt32(orderSubTotal / totalPackages) : 0;
+                int insuranceAmountPerPackage = _upsSettings.InsurePackage ? Convert.ToInt32(PedidosubTotal / totalPackages) : 0;
 
                 for (int i = 0; i < totalPackages; i++)
                 {
@@ -339,7 +339,7 @@ namespace Nop.Plugin.Shipping.UPS
             }
         }
 
-        private void SetIndividualPackageLineItemsCubicRootDimensions(StringBuilder sb, GetShippingOptionRequest getShippingOptionRequest, UPSPackagingType packagingType, decimal orderSubTotal, string currencyCode)
+        private void SetIndividualPackageLineItemsCubicRootDimensions(StringBuilder sb, GetShippingOptionRequest getShippingOptionRequest, UPSPackagingType packagingType, decimal PedidosubTotal, string currencyCode)
         {
             // Rate request setup - Total Volume of Shopping Cart Items determines number of packages
 
@@ -443,7 +443,7 @@ namespace Nop.Plugin.Shipping.UPS
             int weightPerPackage = weight / totalPackages;
 
             //The maximum declared amount per package: 50000 USD.
-            int insuranceAmountPerPackage = _upsSettings.InsurePackage ? Convert.ToInt32(orderSubTotal / totalPackages) : 0;
+            int insuranceAmountPerPackage = _upsSettings.InsurePackage ? Convert.ToInt32(PedidosubTotal / totalPackages) : 0;
 
             for (int i = 0; i < totalPackages; i++)
             {

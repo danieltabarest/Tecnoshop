@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Domain.Localization;
 
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents a return request action

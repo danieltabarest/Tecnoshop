@@ -58,12 +58,12 @@ namespace Nop.Core.Domain.Tax
         /// <summary>
         /// Gets or sets a value indicating whether to hide tax in order summary when prices are shown tax inclusive
         /// </summary>
-        public bool HideTaxInOrderSummary { get; set; }
+        public bool HideTaxInPedidosummary { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether we should always exclude tax from order subtotal (no matter of selected tax dispay type)
         /// </summary>
-        public bool ForceTaxExclusionFromOrderSubtotal { get; set; }
+        public bool ForceTaxExclusionFromPedidosubtotal { get; set; }
 
         /// <summary>
         /// Gets or sets a default tax category identifier for products
@@ -86,17 +86,17 @@ namespace Nop.Core.Domain.Tax
         public int ShippingTaxClassId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether payment method additional fee is taxable
+        /// Gets or sets a value indicating whether Formas de pago additional fee is taxable
         /// </summary>
         public bool PaymentMethodAdditionalFeeIsTaxable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether payment method additional fee incudes tax
+        /// Gets or sets a value indicating whether Formas de pago additional fee incudes tax
         /// </summary>
         public bool PaymentMethodAdditionalFeeIncludesTax { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating the payment method additional fee tax class identifier
+        /// Gets or sets a value indicating the Formas de pago additional fee tax class identifier
         /// </summary>
         public int PaymentMethodAdditionalFeeTaxClassId { get; set; }
 

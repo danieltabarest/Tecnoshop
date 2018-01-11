@@ -7,7 +7,7 @@ using Nop.Core.Infrastructure;
 namespace Nop.Web.Framework.Localization
 {
     /// <summary>
-    /// Provides properties and methods for defining a localized route, and for getting information about the localized route.
+    /// Provides properties and methods for defining a localized route, and for getting Information about the localized route.
     /// </summary>
     public class LocalizedRoute : Route
     {
@@ -71,9 +71,9 @@ namespace Nop.Web.Framework.Localization
         #region Methods
 
         /// <summary>
-        /// Returns information about the requested route.
+        /// Returns Information about the requested route.
         /// </summary>
-        /// <param name="httpContext">An object that encapsulates information about the HTTP request.</param>
+        /// <param name="httpContext">An object that encapsulates Information about the HTTP request.</param>
         /// <returns>
         /// An object that contains the values from the route definition.
         /// </returns>
@@ -85,8 +85,8 @@ namespace Nop.Web.Framework.Localization
                 string applicationPath = httpContext.Request.ApplicationPath;
                 if (virtualPath.IsLocalizedUrl(applicationPath, false))
                 {
-                    //In ASP.NET Development Server, an URL like "http://localhost/Blog.aspx/Categories/BabyFrog" will return 
-                    //"~/Blog.aspx/Categories/BabyFrog" as AppRelativeCurrentExecutionFilePath.
+                    //In ASP.NET Development Server, an URL like "http://localhost/Blog.aspx/Categorias/BabyFrog" will return 
+                    //"~/Blog.aspx/Categorias/BabyFrog" as AppRelativeCurrentExecutionFilePath.
                     //However, in II6, the AppRelativeCurrentExecutionFilePath is "~/Blog.aspx"
                     //It seems that IIS6 think we're process Blog.aspx page.
                     //So, I'll use RawUrl to re-create an AppRelativeCurrentExecutionFilePath like ASP.NET Development Server.
@@ -106,12 +106,12 @@ namespace Nop.Web.Framework.Localization
         }
 
         /// <summary>
-        /// Returns information about the URL that is associated with the route.
+        /// Returns Information about the URL that is associated with the route.
         /// </summary>
-        /// <param name="requestContext">An object that encapsulates information about the requested route.</param>
+        /// <param name="requestContext">An object that encapsulates Information about the requested route.</param>
         /// <param name="values">An object that contains the parameters for a route.</param>
         /// <returns>
-        /// An object that contains information about the URL that is associated with the route.
+        /// An object that contains Information about the URL that is associated with the route.
         /// </returns>
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Routing;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Plugins;
 using Nop.Plugin.Payments.CheckMoneyOrder.Controllers;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 
 namespace Nop.Plugin.Payments.CheckMoneyOrder
@@ -65,15 +65,15 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         }
 
         /// <summary>
-        /// Returns a value indicating whether payment method should be hidden during checkout
+        /// Returns a value indicating whether Formas de pago should be hidden during checkout
         /// </summary>
         /// <param name="cart">Shoping cart</param>
         /// <returns>true - hide; false - display.</returns>
         public bool HidePaymentMethod(IList<ShoppingCartItem> cart)
         {
             //you can put any logic here
-            //for example, hide this payment method if all products in the cart are downloadable
-            //or hide this payment method if current customer is from certain country
+            //for example, hide this Formas de pago if all products in the cart are downloadable
+            //or hide this Formas de pago if current customer is from certain country
 
             if (_checkMoneyOrderPaymentSettings.ShippableProductRequired && !cart.RequiresShipping())
                 return true;
@@ -154,7 +154,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         }
 
         /// <summary>
-        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection Formas de pagos)
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
@@ -163,7 +163,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            //it's not a redirection payment method. So we always return false
+            //it's not a redirection Formas de pago. So we always return false
             return false;
         }
 
@@ -223,7 +223,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
             this.AddOrUpdatePluginLocaleResource("Plugins.Payment.CheckMoneyOrder.DescriptionText.Hint", "Enter info that will be shown to customers during checkout");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payment.CheckMoneyOrder.PaymentMethodDescription", "Pay by cheque or money order");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payment.CheckMoneyOrder.ShippableProductRequired", "Shippable product required");
-            this.AddOrUpdatePluginLocaleResource("Plugins.Payment.CheckMoneyOrder.ShippableProductRequired.Hint", "An option indicating whether shippable products are required in order to display this payment method during checkout.");
+            this.AddOrUpdatePluginLocaleResource("Plugins.Payment.CheckMoneyOrder.ShippableProductRequired.Hint", "An option indicating whether shippable products are required in order to display this Formas de pago during checkout.");
 
             base.Install();
         }
@@ -287,7 +287,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         }
 
         /// <summary>
-        /// Gets a recurring payment type of payment method
+        /// Gets a recurring payment type of Formas de pago
         /// </summary>
         public RecurringPaymentType RecurringPaymentType
         {
@@ -295,7 +295,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         }
 
         /// <summary>
-        /// Gets a payment method type
+        /// Gets a Formas de pago type
         /// </summary>
         public PaymentMethodType PaymentMethodType
         {
@@ -303,7 +303,7 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         }
 
         /// <summary>
-        /// Gets a value indicating whether we should display a payment information page for this plugin
+        /// Gets a value indicating whether we should display a payment Information page for this plugin
         /// </summary>
         public bool SkipPaymentInfo
         {
@@ -311,12 +311,12 @@ namespace Nop.Plugin.Payments.CheckMoneyOrder
         }
 
         /// <summary>
-        /// Gets a payment method description that will be displayed on checkout pages in the public store
+        /// Gets a Formas de pago description that will be displayed on checkout pages in the public store
         /// </summary>
         public string PaymentMethodDescription
         {
-            //return description of this payment method to be display on "payment method" checkout step. good practice is to make it localizable
-            //for example, for a redirection payment method, description may be like this: "You will be redirected to PayPal site to complete the payment"
+            //return description of this Formas de pago to be display on "Formas de pago" checkout step. good practice is to make it localizable
+            //for example, for a redirection Formas de pago, description may be like this: "You will be redirected to PayPal site to complete the payment"
             get { return _localizationService.GetResource("Plugins.Payment.CheckMoneyOrder.PaymentMethodDescription"); }
         }
 

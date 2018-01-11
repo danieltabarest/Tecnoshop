@@ -103,7 +103,7 @@ namespace Nop.Data
                 throw new ArgumentNullException("tableName");
 
             //drop the table
-            if (context.Database.SqlQuery<int>("SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = {0}", tableName).Any<int>())
+            if (context.Database.SqlQuery<int>("SELECT 1 FROM Information_SCHEMA.TABLES WHERE TABLE_NAME = {0}", tableName).Any<int>())
             {
                 var dbScript = "DROP TABLE [" + tableName + "]";
                 context.Database.ExecuteSqlCommand(dbScript);

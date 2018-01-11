@@ -59,9 +59,9 @@ namespace Nop.Plugin.Tax.FixedOrByCountryStateZip.Controllers
         [ChildActionOnly]
         public ActionResult Configure()
         {
-            var taxCategories = _taxCategoryService.GetAllTaxCategories();
-            if (!taxCategories.Any())
-                return Content("No tax categories can be loaded");
+            var taxCategorias = _taxCategoryService.GetAllTaxCategorias();
+            if (!taxCategorias.Any())
+                return Content("No tax Categorias can be loaded");
 
             var model = new ConfigurationModel { CountryStateZipEnabled = _countryStateZipSettings.CountryStateZipEnabled };
             //stores
@@ -69,9 +69,9 @@ namespace Nop.Plugin.Tax.FixedOrByCountryStateZip.Controllers
             var stores = _storeService.GetAllStores();
             foreach (var s in stores)
                 model.AvailableStores.Add(new SelectListItem { Text = s.Name, Value = s.Id.ToString() });
-            //tax categories
-            foreach (var tc in taxCategories)
-                model.AvailableTaxCategories.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString() });
+            //tax Categorias
+            foreach (var tc in taxCategorias)
+                model.AvailableTaxCategorias.Add(new SelectListItem { Text = tc.Name, Value = tc.Id.ToString() });
             //countries
             var countries = _countryService.GetAllCountries(showHidden: true);
             foreach (var c in countries)
@@ -120,7 +120,7 @@ namespace Nop.Plugin.Tax.FixedOrByCountryStateZip.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageTaxSettings))
                 return ErrorForKendoGridJson("Access denied");
 
-            var taxRateModels = _taxCategoryService.GetAllTaxCategories().Select(taxCategory => new FixedTaxRateModel
+            var taxRateModels = _taxCategoryService.GetAllTaxCategorias().Select(taxCategory => new FixedTaxRateModel
             {
                 TaxCategoryId = taxCategory.Id,
                 TaxCategoryName = taxCategory.Name,

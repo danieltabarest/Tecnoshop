@@ -40,7 +40,7 @@ namespace Nop.Services.Tests
                 null, typeof(TestPaymentMethod))
             {
                 SystemName = "Payments.TestMethod",
-                FriendlyName = "Test payment method",
+                FriendlyName = "Test Formas de pago",
                 Installed = true,
             });
             plugins.Add(new PluginDescriptor(typeof(TestDiscountRequirementRule).Assembly,

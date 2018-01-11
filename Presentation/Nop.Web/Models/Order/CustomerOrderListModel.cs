@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Web.Framework.Mvc;
 
 namespace Nop.Web.Models.Order
@@ -9,13 +9,13 @@ namespace Nop.Web.Models.Order
     {
         public CustomerOrderListModel()
         {
-            Orders = new List<OrderDetailsModel>();
-            RecurringOrders = new List<RecurringOrderModel>();
+            Pedidos = new List<OrderDetailsModel>();
+            RecurringPedidos = new List<RecurringOrderModel>();
             RecurringPaymentErrors = new List<string>();
         }
 
-        public IList<OrderDetailsModel> Orders { get; set; }
-        public IList<RecurringOrderModel> RecurringOrders { get; set; }
+        public IList<OrderDetailsModel> Pedidos { get; set; }
+        public IList<RecurringOrderModel> RecurringPedidos { get; set; }
         public IList<string> RecurringPaymentErrors { get; set; }
 
 
@@ -26,8 +26,8 @@ namespace Nop.Web.Models.Order
             public string CustomOrderNumber { get; set; }
             public string OrderTotal { get; set; }
             public bool IsReturnRequestAllowed { get; set; }
-            public OrderStatus OrderStatusEnum { get; set; }
-            public string OrderStatus { get; set; }
+            public Pedidostatus PedidostatusEnum { get; set; }
+            public string Pedidostatus { get; set; }
             public string PaymentStatus { get; set; }
             public string ShippingStatus { get; set; }
             public DateTime CreatedOn { get; set; }

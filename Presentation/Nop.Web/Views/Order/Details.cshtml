@@ -45,7 +45,7 @@
                     @T("Order.OrderDate"): @Model.CreatedOn.ToString("D")
                 </li>
                 <li class="order-status">
-                    @T("Order.OrderStatus"): @Model.OrderStatus
+                    @T("Order.Pedidostatus"): @Model.Pedidostatus
                 </li>
                 <li class="order-total">
                     @T("Order.OrderTotal"): <strong>@Model.OrderTotal</strong>
@@ -186,7 +186,7 @@
                             }
                             @if (!Model.PrintMode && Model.CanRePostProcessPayment)
                             {
-                                @*Complete payment (for redirection payment methods)*@
+                                @*Complete payment (for redirection Formas de pagos)*@
                                 <li class="repost">
                                     @using (Html.BeginRouteForm("OrderDetails", FormMethod.Post))
                                     {
@@ -599,17 +599,17 @@
                                     <label>@T("Order.SubTotal"):</label>
                                 </td>
                                 <td class="cart-total-right">
-                                    <span>@Model.OrderSubtotal</span>
+                                    <span>@Model.Pedidosubtotal</span>
                                 </td>
                             </tr>
-                            @if (!string.IsNullOrEmpty(Model.OrderSubTotalDiscount))
+                            @if (!string.IsNullOrEmpty(Model.PedidosubTotalDiscount))
                             {
                                 <tr>
                                     <td class="cart-total-left">
                                         <label>@T("Order.SubTotalDiscount"):</label>
                                     </td>
                                     <td class="cart-total-right">
-                                        <span>@Model.OrderSubTotalDiscount</span>
+                                        <span>@Model.PedidosubTotalDiscount</span>
                                     </td>
                                 </tr>
                             }
@@ -620,7 +620,7 @@
                                         <label>@T("Order.Shipping"):</label>
                                     </td>
                                     <td class="cart-total-right">
-                                        <span>@Model.OrderShipping</span>
+                                        <span>@Model.Pedidoshipping</span>
                                     </td>
                                 </tr>
                             }

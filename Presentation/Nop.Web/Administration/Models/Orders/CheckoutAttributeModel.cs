@@ -2,13 +2,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using FluentValidation.Attributes;
-using Nop.Admin.Validators.Orders;
+using Nop.Admin.Validators.Pedidos;
 using Nop.Core.Domain.Catalog;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Localization;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     [Validator(typeof(CheckoutAttributeValidator))]
     public partial class CheckoutAttributeModel : BaseNopEntityModel, ILocalizedModel<CheckoutAttributeLocalizedModel>
@@ -16,7 +16,7 @@ namespace Nop.Admin.Models.Orders
         public CheckoutAttributeModel()
         {
             Locales = new List<CheckoutAttributeLocalizedModel>();
-            AvailableTaxCategories = new List<SelectListItem>();
+            AvailableTaxCategorias = new List<SelectListItem>();
 
             SelectedStoreIds = new List<int>();
             AvailableStores = new List<SelectListItem>();
@@ -41,7 +41,7 @@ namespace Nop.Admin.Models.Orders
 
         [NopResourceDisplayName("Admin.Catalog.Attributes.CheckoutAttributes.Fields.TaxCategory")]
         public int TaxCategoryId { get; set; }
-        public IList<SelectListItem> AvailableTaxCategories { get; set; }
+        public IList<SelectListItem> AvailableTaxCategorias { get; set; }
 
         [NopResourceDisplayName("Admin.Catalog.Attributes.CheckoutAttributes.Fields.AttributeControlType")]
         public int AttributeControlTypeId { get; set; }

@@ -1,12 +1,12 @@
 namespace Nop.Services.Payments
 {
     /// <summary>
-    /// Represents a payment method type
+    /// Represents a Formas de pago type
     /// </summary>
     public enum PaymentMethodType
     {
         /// <summary>
-        /// All payment information is entered on the site
+        /// All payment Information is entered on the site
         /// </summary>
         Standard = 10,
         /// <summary>

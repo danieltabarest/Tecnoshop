@@ -13,7 +13,7 @@ using Nop.Admin.Models.Localization;
 using Nop.Admin.Models.Logging;
 using Nop.Admin.Models.Messages;
 using Nop.Admin.Models.News;
-using Nop.Admin.Models.Orders;
+using Nop.Admin.Models.Pedidos;
 using Nop.Admin.Models.Payments;
 using Nop.Admin.Models.Plugins;
 using Nop.Admin.Models.Polls;
@@ -36,7 +36,7 @@ using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
@@ -466,7 +466,7 @@ namespace Nop.Admin.Extensions
 
         #endregion
 
-        #region Tax categories
+        #region Tax Categorias
 
         public static TaxCategoryModel ToModel(this TaxCategory entity)
         {
@@ -503,7 +503,7 @@ namespace Nop.Admin.Extensions
 
         #endregion
 
-        #region Shipping methods
+        #region Formas de envío
 
         public static ShippingMethodModel ToModel(this ShippingMethod entity)
         {
@@ -560,7 +560,7 @@ namespace Nop.Admin.Extensions
 
         #endregion
 
-        #region Payment methods
+        #region Formas de pagos
 
         public static PaymentMethodModel ToModel(this IPaymentMethod entity)
         {
@@ -698,19 +698,19 @@ namespace Nop.Admin.Extensions
 
         #endregion
 
-        #region NewsLetter subscriptions
+        #region Boletín informativo subscriptions
 
-        public static NewsLetterSubscriptionModel ToModel(this NewsLetterSubscription entity)
+        public static Boletín informativoSubscriptionModel ToModel(this Boletín informativoSubscription entity)
         {
-            return entity.MapTo<NewsLetterSubscription, NewsLetterSubscriptionModel>();
+            return entity.MapTo<Boletín informativoSubscription, Boletín informativoSubscriptionModel>();
         }
 
-        public static NewsLetterSubscription ToEntity(this NewsLetterSubscriptionModel model)
+        public static Boletín informativoSubscription ToEntity(this Boletín informativoSubscriptionModel model)
         {
-            return model.MapTo<NewsLetterSubscriptionModel, NewsLetterSubscription>();
+            return model.MapTo<Boletín informativoSubscriptionModel, Boletín informativoSubscription>();
         }
 
-        public static NewsLetterSubscription ToEntity(this NewsLetterSubscriptionModel model, NewsLetterSubscription destination)
+        public static Boletín informativoSubscription ToEntity(this Boletín informativoSubscriptionModel model, Boletín informativoSubscription destination)
         {
             return model.MapTo(destination);
         }
@@ -986,11 +986,11 @@ namespace Nop.Admin.Extensions
         }
 
 
-        public static OrderSettingsModel ToModel(this OrderSettings entity)
+        public static PedidosettingsModel ToModel(this Pedidosettings entity)
         {
-            return entity.MapTo<OrderSettings, OrderSettingsModel>();
+            return entity.MapTo<Pedidosettings, PedidosettingsModel>();
         }
-        public static OrderSettings ToEntity(this OrderSettingsModel model, OrderSettings destination)
+        public static Pedidosettings ToEntity(this PedidosettingsModel model, Pedidosettings destination)
         {
             return model.MapTo(destination);
         }

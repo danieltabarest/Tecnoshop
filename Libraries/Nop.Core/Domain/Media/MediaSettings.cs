@@ -84,7 +84,7 @@ namespace Nop.Core.Domain.Media
         ///private               — allows caches that are specific to one user (e.g., in a browser) to store the response; shared caches (e.g., in a proxy) may not.
         ///no-cache              — forces caches to submit the request to the origin server for validation before releasing a cached copy, every time. This is useful to assure that authentication is respected (in combination with public), or to maintain rigid freshness, without sacrificing all of the benefits of caching.
         ///no-store              — instructs caches not to keep a copy of the representation under any conditions.
-        ///must-revalidate       — tells caches that they must obey any freshness information you give them about a representation. HTTP allows caches to serve stale representations under special conditions; by specifying this header, you’re telling the cache that you want it to strictly follow your rules.
+        ///must-revalidate       — tells caches that they must obey any freshness Information you give them about a representation. HTTP allows caches to serve stale representations under special conditions; by specifying this header, you’re telling the cache that you want it to strictly follow your rules.
         ///proxy-revalidate      — similar to must-revalidate, except that it only applies to proxy caches.
         /// </remarks>
         public string AzureCacheControlHeader { get; set; }

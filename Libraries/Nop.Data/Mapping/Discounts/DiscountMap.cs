@@ -21,9 +21,9 @@ namespace Nop.Data.Mapping.Discounts
                 .WithRequired(d => d.Discount)
                 .HasForeignKey(dr => dr.DiscountId);
 
-            this.HasMany(dr => dr.AppliedToCategories)
+            this.HasMany(dr => dr.AppliedToCategorias)
                 .WithMany(c => c.AppliedDiscounts)
-                .Map(m => m.ToTable("Discount_AppliedToCategories"));
+                .Map(m => m.ToTable("Discount_AppliedToCategorias"));
 
             this.HasMany(dr => dr.AppliedToManufacturers)
                 .WithMany(c => c.AppliedDiscounts)

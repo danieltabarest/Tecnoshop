@@ -51,8 +51,8 @@ namespace Nop.Services.Messages
                 case MessageTemplateSystemNames.RecurringPaymentFailedCustomerNotification:
                     return new[] { TokenGroupNames.StoreTokens, TokenGroupNames.OrderTokens, TokenGroupNames.CustomerTokens, TokenGroupNames.RecurringPaymentTokens };
 
-                case MessageTemplateSystemNames.NewsletterSubscriptionActivationMessage:
-                case MessageTemplateSystemNames.NewsletterSubscriptionDeactivationMessage:
+                case MessageTemplateSystemNames.Boletín informativoSubscriptionActivationMessage:
+                case MessageTemplateSystemNames.Boletín informativoSubscriptionDeactivationMessage:
                     return new[] { TokenGroupNames.StoreTokens, TokenGroupNames.SubscriptionTokens };
 
                 case MessageTemplateSystemNames.EmailAFriendMessage:

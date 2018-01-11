@@ -300,3 +300,7 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.pdb
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.csproj.App.config
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.dll
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.pdb

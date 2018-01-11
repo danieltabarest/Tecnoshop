@@ -1,6 +1,6 @@
 using System;
 
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents an order note

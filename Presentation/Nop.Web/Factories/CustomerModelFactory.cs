@@ -8,7 +8,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Media;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
@@ -20,7 +20,7 @@ using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Messages;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Seo;
 using Nop.Services.Stores;
 using Nop.Web.Framework.Security.Captcha;
@@ -52,12 +52,12 @@ namespace Nop.Web.Factories
         private readonly CustomerSettings _customerSettings;
         private readonly AddressSettings _addressSettings;
         private readonly ForumSettings _forumSettings;
-        private readonly OrderSettings _orderSettings;
+        private readonly Pedidosettings _Pedidosettings;
         private readonly ICountryService _countryService;
         private readonly IStateProvinceService _stateProvinceService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IPictureService _pictureService;
-        private readonly INewsLetterSubscriptionService _newsLetterSubscriptionService;
+        private readonly IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
         private readonly IOpenAuthenticationService _openAuthenticationService;
         private readonly IDownloadService _downloadService;
         private readonly IReturnRequestService _returnRequestService;
@@ -88,12 +88,12 @@ namespace Nop.Web.Factories
             CustomerSettings customerSettings,
             AddressSettings addressSettings, 
             ForumSettings forumSettings,
-            OrderSettings orderSettings,
+            Pedidosettings Pedidosettings,
             ICountryService countryService,
             IStateProvinceService stateProvinceService,
-            IOrderService orderService,
+            IPedidoservice Pedidoservice,
             IPictureService pictureService, 
-            INewsLetterSubscriptionService newsLetterSubscriptionService,
+            IBoletín informativoSubscriptionService Boletín informativoSubscriptionService,
             IOpenAuthenticationService openAuthenticationService,
             IDownloadService downloadService,
             IReturnRequestService returnRequestService,
@@ -119,12 +119,12 @@ namespace Nop.Web.Factories
             this._customerSettings = customerSettings;
             this._addressSettings = addressSettings;
             this._forumSettings = forumSettings;
-            this._orderSettings = orderSettings;
+            this._Pedidosettings = Pedidosettings;
             this._countryService = countryService;
             this._stateProvinceService = stateProvinceService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._pictureService = pictureService;
-            this._newsLetterSubscriptionService = newsLetterSubscriptionService;
+            this._Boletín informativoSubscriptionService = Boletín informativoSubscriptionService;
             this._openAuthenticationService = openAuthenticationService;
             this._downloadService = downloadService;
             this._returnRequestService = returnRequestService;
@@ -282,9 +282,9 @@ namespace Nop.Web.Factories
                 model.Phone = customer.GetAttribute<string>(SystemCustomerAttributeNames.Phone);
                 model.Fax = customer.GetAttribute<string>(SystemCustomerAttributeNames.Fax);
 
-                //newsletter
-                var newsletter = _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreId(customer.Email, _storeContext.CurrentStore.Id);
-                model.Newsletter = newsletter != null && newsletter.Active;
+                //Boletín informativo
+                var Boletín informativo = _Boletín informativoSubscriptionService.GetBoletín informativoSubscriptionByEmailAndStoreId(customer.Email, _storeContext.CurrentStore.Id);
+                model.Boletín informativo = Boletín informativo != null && Boletín informativo.Active;
 
                 model.Signature = customer.GetAttribute<string>(SystemCustomerAttributeNames.Signature);
 
@@ -364,7 +364,7 @@ namespace Nop.Web.Factories
             model.PhoneRequired = _customerSettings.PhoneRequired;
             model.FaxEnabled = _customerSettings.FaxEnabled;
             model.FaxRequired = _customerSettings.FaxRequired;
-            model.NewsletterEnabled = _customerSettings.NewsletterEnabled;
+            model.Boletín informativoEnabled = _customerSettings.Boletín informativoEnabled;
             model.UsernamesEnabled = _customerSettings.UsernamesEnabled;
             model.AllowUsersToChangeUsernames = _customerSettings.AllowUsersToChangeUsernames;
             model.CheckUsernameAvailabilityEnabled = _customerSettings.CheckUsernameAvailabilityEnabled;
@@ -436,7 +436,7 @@ namespace Nop.Web.Factories
             model.PhoneRequired = _customerSettings.PhoneRequired;
             model.FaxEnabled = _customerSettings.FaxEnabled;
             model.FaxRequired = _customerSettings.FaxRequired;
-            model.NewsletterEnabled = _customerSettings.NewsletterEnabled;
+            model.Boletín informativoEnabled = _customerSettings.Boletín informativoEnabled;
             model.AcceptPrivacyPolicyEnabled = _customerSettings.AcceptPrivacyPolicyEnabled;
             model.UsernamesEnabled = _customerSettings.UsernamesEnabled;
             model.CheckUsernameAvailabilityEnabled = _customerSettings.CheckUsernameAvailabilityEnabled;
@@ -445,8 +445,8 @@ namespace Nop.Web.Factories
             model.EnteringEmailTwice = _customerSettings.EnteringEmailTwice;
             if (setDefaultValues)
             {
-                //enable newsletter by default
-                model.Newsletter = _customerSettings.NewsletterTickedByDefault;
+                //enable Boletín informativo by default
+                model.Boletín informativo = _customerSettings.Boletín informativoTickedByDefault;
             }
 
             //countries and states
@@ -591,13 +591,13 @@ namespace Nop.Web.Factories
 
             model.CustomerNavigationItems.Add(new CustomerNavigationItemModel
             {
-                RouteName = "CustomerOrders",
-                Title = _localizationService.GetResource("Account.CustomerOrders"),
-                Tab = CustomerNavigationEnum.Orders,
-                ItemClass = "customer-orders"
+                RouteName = "CustomerPedidos",
+                Title = _localizationService.GetResource("Account.CustomerPedidos"),
+                Tab = CustomerNavigationEnum.Pedidos,
+                ItemClass = "customer-Pedidos"
             });
 
-            if (_orderSettings.ReturnRequestsEnabled &&
+            if (_Pedidosettings.ReturnRequestsEnabled &&
                 _returnRequestService.SearchReturnRequests(_storeContext.CurrentStore.Id,
                     _workContext.CurrentCustomer.Id, pageIndex: 0, pageSize: 1).Any())
             {
@@ -730,7 +730,7 @@ namespace Nop.Web.Factories
         public virtual CustomerDownloadableProductsModel PrepareCustomerDownloadableProductsModel()
         {
             var model = new CustomerDownloadableProductsModel();
-            var items = _orderService.GetDownloadableOrderItems(_workContext.CurrentCustomer.Id);
+            var items = _Pedidoservice.GetDownloadableOrderItems(_workContext.CurrentCustomer.Id);
             foreach (var item in items)
             {
                 var itemModel = new CustomerDownloadableProductsModel.DownloadableProductsModel

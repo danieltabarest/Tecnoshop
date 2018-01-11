@@ -13,7 +13,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Shipping;
 using Nop.Data;
@@ -515,7 +515,7 @@ namespace Nop.Services.Customers
         /// <param name="clearCheckoutAttributes">A value indicating whether to clear selected checkout attributes</param>
         /// <param name="clearRewardPoints">A value indicating whether to clear "Use reward points" flag</param>
         /// <param name="clearShippingMethod">A value indicating whether to clear selected shipping method</param>
-        /// <param name="clearPaymentMethod">A value indicating whether to clear selected payment method</param>
+        /// <param name="clearPaymentMethod">A value indicating whether to clear selected Formas de pago</param>
         public virtual void ResetCheckoutData(Customer customer, int storeId,
             bool clearCouponCodes = false, bool clearCheckoutAttributes = false,
             bool clearRewardPoints = true, bool clearShippingMethod = true,
@@ -551,7 +551,7 @@ namespace Nop.Services.Customers
                 _genericAttributeService.SaveAttribute<ShippingOption>(customer, SystemCustomerAttributeNames.SelectedPickupPoint, null, storeId);
             }
 
-            //clear selected payment method
+            //clear selected Formas de pago
             if (clearPaymentMethod)
             {
                 _genericAttributeService.SaveAttribute<string>(customer, SystemCustomerAttributeNames.SelectedPaymentMethod, null, storeId);
@@ -629,7 +629,7 @@ namespace Nop.Services.Customers
                 query = query.Where(c => c.CustomerRoles.Select(cr => cr.Id).Contains(guestRole.Id));
                 if (onlyWithoutShoppingCart)
                     query = query.Where(c => !c.ShoppingCartItems.Any());
-                //no orders
+                //no Pedidos
                 query = from c in query
                         join o in _orderRepository.Table on c.Id equals o.CustomerId into c_o
                         from o in c_o.DefaultIfEmpty()

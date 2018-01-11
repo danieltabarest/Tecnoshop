@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     public partial class ShipmentListModel : BaseNopModel
     {
@@ -16,35 +16,35 @@ namespace Nop.Admin.Models.Orders
             AvailableWarehouses = new List<SelectListItem>();
         }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.StartDate")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.StartDate")]
         [UIHint("DateNullable")]
         public DateTime? StartDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.EndDate")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.EndDate")]
         [UIHint("DateNullable")]
         public DateTime? EndDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.TrackingNumber")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.TrackingNumber")]
         [AllowHtml]
         public string TrackingNumber { get; set; }
         
         public IList<SelectListItem> AvailableCountries { get; set; }
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.Country")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.Country")]
         public int CountryId { get; set; }
 
         public IList<SelectListItem> AvailableStates { get; set; }
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.StateProvince")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.StateProvince")]
         public int StateProvinceId { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.City")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.City")]
         [AllowHtml]
         public string City { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.LoadNotShipped")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.LoadNotShipped")]
         public bool LoadNotShipped { get; set; }
 
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.List.Warehouse")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.List.Warehouse")]
         public int WarehouseId { get; set; }
         public IList<SelectListItem> AvailableWarehouses { get; set; }
     }

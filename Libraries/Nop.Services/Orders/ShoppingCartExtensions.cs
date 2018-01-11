@@ -3,11 +3,11 @@ using System.Linq;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Infrastructure;
 using Nop.Services.Localization;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     /// <summary>
     /// Represents a shopping cart
@@ -59,7 +59,7 @@ namespace Nop.Services.Orders
         }
 
         /// <summary>
-        /// Get a recurring cycle information
+        /// Get a recurring cycle Information
         /// </summary>
         /// <param name="shoppingCart">Shopping cart</param>
         /// <param name="localizationService">Localization service</param>

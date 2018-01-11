@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using FluentValidation.Attributes;
-using Nop.Admin.Validators.Orders;
+using Nop.Admin.Validators.Pedidos;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Localization;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     [Validator(typeof(CheckoutAttributeValueValidator))]
     public partial class CheckoutAttributeValueModel : BaseNopEntityModel, ILocalizedModel<CheckoutAttributeValueLocalizedModel>

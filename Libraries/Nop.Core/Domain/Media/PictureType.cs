@@ -6,7 +6,7 @@ namespace Nop.Core.Domain.Media
     public enum PictureType
     {
         /// <summary>
-        /// Entities (products, categories, manufacturers)
+        /// Entities (products, Categorias, manufacturers)
         /// </summary>
         Entity = 1,
         /// <summary>

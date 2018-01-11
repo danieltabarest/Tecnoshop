@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Routing;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Plugins;
 
 namespace Nop.Services.Payments
@@ -27,7 +27,7 @@ namespace Nop.Services.Payments
         void PostProcessPayment(PostProcessPaymentRequest postProcessPaymentRequest);
 
         /// <summary>
-        /// Returns a value indicating whether payment method should be hidden during checkout
+        /// Returns a value indicating whether Formas de pago should be hidden during checkout
         /// </summary>
         /// <param name="cart">Shoping cart</param>
         /// <returns>true - hide; false - display.</returns>
@@ -76,7 +76,7 @@ namespace Nop.Services.Payments
         CancelRecurringPaymentResult CancelRecurringPayment(CancelRecurringPaymentRequest cancelPaymentRequest);
 
         /// <summary>
-        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection Formas de pagos)
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
@@ -125,22 +125,22 @@ namespace Nop.Services.Payments
         bool SupportVoid { get; }
 
         /// <summary>
-        /// Gets a recurring payment type of payment method
+        /// Gets a recurring payment type of Formas de pago
         /// </summary>
         RecurringPaymentType RecurringPaymentType { get; }
         
         /// <summary>
-        /// Gets a payment method type
+        /// Gets a Formas de pago type
         /// </summary>
         PaymentMethodType PaymentMethodType { get; }
 
         /// <summary>
-        /// Gets a value indicating whether we should display a payment information page for this plugin
+        /// Gets a value indicating whether we should display a payment Information page for this plugin
         /// </summary>
         bool SkipPaymentInfo { get; }
 
         /// <summary>
-        /// Gets a payment method description that will be displayed on checkout pages in the public store
+        /// Gets a Formas de pago description that will be displayed on checkout pages in the public store
         /// </summary>
         string PaymentMethodDescription { get; }
 

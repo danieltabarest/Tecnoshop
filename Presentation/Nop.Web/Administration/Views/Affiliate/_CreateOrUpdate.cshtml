@@ -16,7 +16,7 @@
                 @if (Model.Id > 0)
                 {
                     @Html.RenderBootstrapTabHeader("tab-customers", @T("Admin.Affiliates.Customers"))
-                    @Html.RenderBootstrapTabHeader("tab-orders", @T("Admin.Affiliates.Orders"))
+                    @Html.RenderBootstrapTabHeader("tab-Pedidos", @T("Admin.Affiliates.Pedidos"))
                 }
             </ul>
             <div class="tab-content">
@@ -24,7 +24,7 @@
                 @if (Model.Id > 0)
                 {
                     @Html.RenderBootstrapTabContent("tab-customers", @TabCustomers())
-                    @Html.RenderBootstrapTabContent("tab-orders", @TabOrders())
+                    @Html.RenderBootstrapTabContent("tab-Pedidos", @TabPedidos())
                 }
             </div>
         </div>
@@ -176,7 +176,7 @@
     </div>
 }
 
-@helper TabOrders()
+@helper TabPedidos()
 {
     @Html.Action("AffiliatedOrderList", new { affiliateId = Model.Id })
 }

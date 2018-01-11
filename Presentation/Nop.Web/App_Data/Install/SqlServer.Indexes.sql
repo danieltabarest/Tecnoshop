@@ -52,7 +52,7 @@ GO
 CREATE NONCLUSTERED INDEX [IX_NewsComment_NewsItemId] ON [NewsComment] ([NewsItemId] ASC)
 GO
 
-CREATE NONCLUSTERED INDEX [IX_NewsletterSubscription_Email_StoreId] ON [NewsLetterSubscription] ([Email] ASC, [StoreId] ASC)
+CREATE NONCLUSTERED INDEX [IX_Boletín informativoSubscription_Email_StoreId] ON [Boletín informativoSubscription] ([Email] ASC, [StoreId] ASC)
 GO
 
 CREATE NONCLUSTERED INDEX [IX_PollAnswer_PollId] ON [PollAnswer] ([PollId] ASC)

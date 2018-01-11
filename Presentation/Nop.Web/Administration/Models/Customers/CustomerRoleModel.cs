@@ -46,7 +46,7 @@ namespace Nop.Admin.Models.Customers
         {
             public AssociateProductToCustomerRoleModel()
             {
-                AvailableCategories = new List<SelectListItem>();
+                AvailableCategorias = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -67,7 +67,7 @@ namespace Nop.Admin.Models.Customers
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategories { get; set; }
+            public IList<SelectListItem> AvailableCategorias { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }

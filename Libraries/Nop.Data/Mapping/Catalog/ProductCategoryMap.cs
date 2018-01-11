@@ -15,7 +15,7 @@ namespace Nop.Data.Mapping.Catalog
 
 
             this.HasRequired(pc => pc.Product)
-                .WithMany(p => p.ProductCategories)
+                .WithMany(p => p.ProductCategorias)
                 .HasForeignKey(pc => pc.ProductId);
         }
     }

@@ -22,12 +22,12 @@
     int shippingMethodStepNumber = 3;
     int paymentMethodStepNumber = 4;
     int paymentInfoStepNumber = 5;
-    int confirmOrderStepNumber = 6;
+    int confirmPedidostepNumber = 6;
     if (!Model.ShippingRequired)
     {
         paymentMethodStepNumber = paymentMethodStepNumber - 2;
         paymentInfoStepNumber = paymentInfoStepNumber - 2;
-        confirmOrderStepNumber = confirmOrderStepNumber - 2;
+        confirmPedidostepNumber = confirmPedidostepNumber - 2;
     }
     if (Model.DisableBillingAddressCheckoutStep)
     {
@@ -35,7 +35,7 @@
         shippingMethodStepNumber--;
         paymentMethodStepNumber--;
         paymentInfoStepNumber--;
-        confirmOrderStepNumber--;
+        confirmPedidostepNumber--;
     }
 }
 <div class="page checkout-page">
@@ -108,7 +108,7 @@
                     <div id="checkout-step-shipping-method" class="step a-item" style="display: none;">
                         <form id="co-shipping-method-form" action="">
                             <div id="checkout-shipping-method-load">
-                                @*shipping methods content will be loaded here*@
+                                @*Formas de envío content will be loaded here*@
                             </div>
                             <script type="text/javascript">
                                 ShippingMethod.init('#co-shipping-method-form', '@(storeLocation)checkout/OpcSaveShippingMethod/');
@@ -131,7 +131,7 @@
                 <div id="checkout-step-payment-method" class="step a-item" style="display: none;">
                     <form action="" id="co-payment-method-form">
                         <div id="checkout-payment-method-load">
-                            @*payment methods content will be loaded here*@ Payment is not required
+                            @*Formas de pagos content will be loaded here*@ Payment is not required
                         </div>
                     </form>
                     <script type="text/javascript">
@@ -169,7 +169,7 @@
             </li>
             <li id="opc-confirm_order" class="tab-section">
                 <div class="step-title">
-                    <span class="number">@confirmOrderStepNumber</span>
+                    <span class="number">@confirmPedidostepNumber</span>
                     <h2 class="title">@T("Checkout.ConfirmOrder")</h2>
                 </div>
                 <div id="checkout-step-confirm-order" class="step a-item" style="display: none;">

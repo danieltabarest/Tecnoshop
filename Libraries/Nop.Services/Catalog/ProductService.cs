@@ -8,7 +8,7 @@ using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Localization;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
@@ -339,7 +339,7 @@ namespace Nop.Services.Catalog
             if (categoryIds != null && categoryIds.Any())
             {
                 query = from p in query
-                        from pc in p.ProductCategories.Where(pc => categoryIds.Contains(pc.CategoryId))
+                        from pc in p.ProductCategorias.Where(pc => categoryIds.Contains(pc.CategoryId))
                         select p;
             }
 
@@ -384,7 +384,7 @@ namespace Nop.Services.Catalog
         /// <param name="productType">Product type; 0 to load all records</param>
         /// <param name="visibleIndividuallyOnly">A values indicating whether to load only products marked as "visible individually"; "false" to load all records; "true" to load "visible individually" only</param>
         /// <param name="markedAsNewOnly">A values indicating whether to load only products marked as "new"; "false" to load all records; "true" to load "marked as new" only</param>
-        /// <param name="featuredProducts">A value indicating whether loaded products are marked as featured (relates only to categories and manufacturers). 0 to load featured products only, 1 to load not featured products only, null to load all products</param>
+        /// <param name="featuredProducts">A value indicating whether loaded products are marked as featured (relates only to Categorias and manufacturers). 0 to load Productos Destacados only, 1 to load not Productos Destacados only, null to load all products</param>
         /// <param name="priceMin">Minimum price; null to load all records</param>
         /// <param name="priceMax">Maximum price; null to load all records</param>
         /// <param name="productTagId">Product tag identifier; 0 to load all records</param>
@@ -454,7 +454,7 @@ namespace Nop.Services.Catalog
         /// <param name="productType">Product type; 0 to load all records</param>
         /// <param name="visibleIndividuallyOnly">A values indicating whether to load only products marked as "visible individually"; "false" to load all records; "true" to load "visible individually" only</param>
         /// <param name="markedAsNewOnly">A values indicating whether to load only products marked as "new"; "false" to load all records; "true" to load "marked as new" only</param>
-        /// <param name="featuredProducts">A value indicating whether loaded products are marked as featured (relates only to categories and manufacturers). 0 to load featured products only, 1 to load not featured products only, null to load all products</param>
+        /// <param name="featuredProducts">A value indicating whether loaded products are marked as featured (relates only to Categorias and manufacturers). 0 to load Productos Destacados only, 1 to load not Productos Destacados only, null to load all products</param>
         /// <param name="priceMin">Minimum price; null to load all records</param>
         /// <param name="priceMax">Maximum price; null to load all records</param>
         /// <param name="productTagId">Product tag identifier; 0 to load all records</param>
@@ -868,7 +868,7 @@ namespace Nop.Services.Catalog
                 if (categoryIds != null && categoryIds.Any())
                 {
                     query = from p in query
-                            from pc in p.ProductCategories.Where(pc => categoryIds.Contains(pc.CategoryId))
+                            from pc in p.ProductCategorias.Where(pc => categoryIds.Contains(pc.CategoryId))
                             where (!featuredProducts.HasValue || featuredProducts.Value == pc.IsFeaturedProduct)
                             select p;
                 }
@@ -964,7 +964,7 @@ namespace Nop.Services.Catalog
                 {
                     //category position
                     var firstCategoryId = categoryIds[0];
-                    query = query.OrderBy(p => p.ProductCategories.FirstOrDefault(pc => pc.CategoryId == firstCategoryId).DisplayOrder);
+                    query = query.OrderBy(p => p.ProductCategorias.FirstOrDefault(pc => pc.CategoryId == firstCategoryId).DisplayOrder);
                 }
                 else if (orderBy == ProductSortingEnum.Position && manufacturerId > 0)
                 {
@@ -1315,7 +1315,7 @@ namespace Nop.Services.Catalog
                     }
                 }
                 //qty is increased. product is back in stock (minimum stock quantity is reached again)?
-                if (_catalogSettings.PublishBackProductWhenCancellingOrders)
+                if (_catalogSettings.PublishBackProductWhenCancellingPedidos)
                 {
                     if (quantityToChange > 0 && prevStockQuantity <= product.MinStockQuantity && product.MinStockQuantity < product.GetTotalStockQuantity())
                     {
@@ -1381,7 +1381,7 @@ namespace Nop.Services.Catalog
             //TODO send back in stock notifications?
             //also do not forget to uncomment some code above ("prevStockQuantity")
             //if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock &&
-            //    product.BackorderMode == BackorderMode.NoBackorders &&
+            //    product.BackorderMode == BackorderMode.NoBackPedidos &&
             //    product.AllowBackInStockSubscriptions &&
             //    product.GetTotalStockQuantity() > 0 &&
             //    prevStockQuantity <= 0 &&

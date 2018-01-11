@@ -55,7 +55,7 @@ namespace Nop.Core.Domain.Customers
         public bool PointsAccumulatedForAllStores { get; set; }
 
         /// <summary>
-        /// Gets or sets the page size is for history of reward points on my account page
+        /// Gets or sets the page size is for history of reward points on Mi cuenta page
         /// </summary>
         public int PageSize { get; set; }
     }

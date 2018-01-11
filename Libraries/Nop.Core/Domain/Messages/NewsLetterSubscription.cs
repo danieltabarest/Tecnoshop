@@ -3,14 +3,14 @@
 namespace Nop.Core.Domain.Messages
 {
     /// <summary>
-    /// Represents NewsLetterSubscription entity
+    /// Represents Boletín informativoSubscription entity
     /// </summary>
-    public partial class NewsLetterSubscription : BaseEntity
+    public partial class Boletín informativoSubscription : BaseEntity
     {       
         /// <summary>
-        /// Gets or sets the newsletter subscription GUID
+        /// Gets or sets the Boletín informativo subscription GUID
         /// </summary>
-        public Guid NewsLetterSubscriptionGuid { get; set; }
+        public Guid Boletín informativoSubscriptionGuid { get; set; }
 
         /// <summary>
         /// Gets or sets the subcriber email
@@ -23,7 +23,7 @@ namespace Nop.Core.Domain.Messages
         public bool Active { get; set; }
 
         /// <summary>
-        /// Gets or sets the store identifier in which a customer has subscribed to newsletter
+        /// Gets or sets the store identifier in which a customer has subscribed to Boletín informativo
         /// </summary>
         public int StoreId { get; set; }
 

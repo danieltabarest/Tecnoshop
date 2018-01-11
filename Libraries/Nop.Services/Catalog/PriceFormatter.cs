@@ -339,7 +339,7 @@ namespace Nop.Services.Catalog
 
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>
@@ -352,7 +352,7 @@ namespace Nop.Services.Catalog
         }
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>
@@ -368,7 +368,7 @@ namespace Nop.Services.Catalog
         }
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>
@@ -385,7 +385,7 @@ namespace Nop.Services.Catalog
         }
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>

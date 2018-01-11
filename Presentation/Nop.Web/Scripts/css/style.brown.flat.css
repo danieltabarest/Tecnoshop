@@ -1327,14 +1327,14 @@ input[type=radio]:checked + span::before {
   margin-bottom: 0 !important;
 }
 
-.faq-panel {
+.Preguntas frecuentes-panel {
   margin-bottom: 40px;
 }
-.faq-panel .panel {
+.Preguntas frecuentes-panel .panel {
   border: 0;
   border-bottom: 1px solid #ddd;
 }
-.faq-panel .panel-title {
+.Preguntas frecuentes-panel .panel-title {
   font-weight: normal;
   font-size: 15px;
 }

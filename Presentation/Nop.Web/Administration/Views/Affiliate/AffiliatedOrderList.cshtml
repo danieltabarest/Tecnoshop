@@ -27,10 +27,10 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4">
-                            @Html.NopLabelFor(model => model.OrderStatusId)
+                            @Html.NopLabelFor(model => model.PedidostatusId)
                         </div>
                         <div class="col-md-8">
-                            @Html.NopDropDownList("OrderStatusId", Model.AvailableOrderStatuses)
+                            @Html.NopDropDownList("PedidostatusId", Model.AvailablePedidostatuses)
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-4">
-                            <button type="button" id="search-orders" class="btn btn-primary btn-search">
+                            <button type="button" id="search-Pedidos" class="btn btn-primary btn-search">
                                 <i class="fa fa-search"></i>
                                 @T("Admin.Common.Search")
                             </button>
@@ -64,11 +64,11 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <div id="orders-grid"></div>
+            <div id="Pedidos-grid"></div>
 
             <script>
                 $(document).ready(function () {
-                    $("#orders-grid").kendoGrid({
+                    $("#Pedidos-grid").kendoGrid({
                         dataSource: {
                             type: "json",
                             transport: {
@@ -106,29 +106,29 @@
                         scrollable: false,
                         columns: [{
                             field: "CustomOrderNumber",
-                            title: "@T("Admin.Affiliates.Orders.CustomOrderNumber")",
+                            title: "@T("Admin.Affiliates.Pedidos.CustomOrderNumber")",
                             width: 200
                         }, {
-                            field: "OrderStatus",
-                            title: "@T("Admin.Affiliates.Orders.OrderStatus")",
+                            field: "Pedidostatus",
+                            title: "@T("Admin.Affiliates.Pedidos.Pedidostatus")",
                             template: '<span class="grid-report-item ' +
-                                                    '# if(OrderStatusId == 10) {# yellow #} #' +
-                                                    '# if(OrderStatusId == 20) {# blue #} #' +
-                                                    '# if(OrderStatusId == 30) {# green #} #' +
-                                                    '# if(OrderStatusId == 40) {# red #} #' +
-                                                    '">#=OrderStatus#</span>'
+                                                    '# if(PedidostatusId == 10) {# yellow #} #' +
+                                                    '# if(PedidostatusId == 20) {# blue #} #' +
+                                                    '# if(PedidostatusId == 30) {# green #} #' +
+                                                    '# if(PedidostatusId == 40) {# red #} #' +
+                                                    '">#=Pedidostatus#</span>'
                         }, {
                             field: "PaymentStatus",
-                            title: "@T("Admin.Affiliates.Orders.PaymentStatus")"
+                            title: "@T("Admin.Affiliates.Pedidos.PaymentStatus")"
                         },{
                             field: "ShippingStatus",
-                            title: "@T("Admin.Affiliates.Orders.ShippingStatus")"
+                            title: "@T("Admin.Affiliates.Pedidos.ShippingStatus")"
                         },{
                             field: "OrderTotal",
-                            title: "@T("Admin.Affiliates.Orders.OrderTotal")"
+                            title: "@T("Admin.Affiliates.Pedidos.OrderTotal")"
                         },{
                             field: "CreatedOn",
-                            title: "@T("Admin.Affiliates.Orders.CreatedOn")",
+                            title: "@T("Admin.Affiliates.Pedidos.CreatedOn")",
                             type: "date",
                             format: "{0:G}"
                         },{
@@ -149,9 +149,9 @@
 
                 $(document).ready(function () {
                     //search button
-                    $('#search-orders').click(function () {
+                    $('#search-Pedidos').click(function () {
                         //search
-                        var grid = $('#orders-grid').data('kendoGrid');
+                        var grid = $('#Pedidos-grid').data('kendoGrid');
                         grid.dataSource.page(1); //new search. Set page size to 1
                         //grid.dataSource.read(); we already loaded the grid above using "page" function
                         return false;
@@ -163,7 +163,7 @@
                         AffliateId: @(Model.AffliateId),
                         StartDate: $('#@Html.FieldIdFor(model => model.StartDate)').val(),
                         EndDate: $('#@Html.FieldIdFor(model => model.EndDate)').val(),
-                        OrderStatusId: $('#@Html.FieldIdFor(model => model.OrderStatusId)').val(),
+                        PedidostatusId: $('#@Html.FieldIdFor(model => model.PedidostatusId)').val(),
                         PaymentStatusId: $('#@Html.FieldIdFor(model => model.PaymentStatusId)').val(),
                         ShippingStatusId: $('#@Html.FieldIdFor(model => model.ShippingStatusId)').val()
                     };

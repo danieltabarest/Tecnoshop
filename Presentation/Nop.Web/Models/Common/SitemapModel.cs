@@ -10,12 +10,12 @@ namespace Nop.Web.Models.Common
         public SitemapModel()
         {
             Products = new List<ProductOverviewModel>();
-            Categories = new List<CategorySimpleModel>();
+            Categorias = new List<CategorySimpleModel>();
             Manufacturers = new List<ManufacturerBriefInfoModel>();
             Topics = new List<TopicModel>();
         }
         public IList<ProductOverviewModel> Products { get; set; }
-        public IList<CategorySimpleModel> Categories { get; set; }
+        public IList<CategorySimpleModel> Categorias { get; set; }
         public IList<ManufacturerBriefInfoModel> Manufacturers { get; set; }
         public IList<TopicModel> Topics { get; set; }
 

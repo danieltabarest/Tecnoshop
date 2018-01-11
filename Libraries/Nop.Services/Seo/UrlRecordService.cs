@@ -10,7 +10,7 @@ using Nop.Core.Domain.Seo;
 namespace Nop.Services.Seo
 {
     /// <summary>
-    /// Provides information about URL records
+    /// Provides Information about URL records
     /// </summary>
     public partial class UrlRecordService : IUrlRecordService
     {

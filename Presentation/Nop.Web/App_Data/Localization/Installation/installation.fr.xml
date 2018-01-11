@@ -51,7 +51,7 @@
     <Value>Base de données</Value>
   </LocaleResource>
   <LocaleResource Name="DatabaseInformation">
-    <Value>base de données des informations</Value>
+    <Value>base de données des Informations</Value>
   </LocaleResource>
   <LocaleResource Name="DatabaseName">
     <Value>nom de la base</Value>
@@ -66,7 +66,7 @@
     <Value>Sélectionnez le fournisseur de données</Value>
   </LocaleResource>
   <LocaleResource Name="Documentation1">
-    <Value>Si vous avez besoin d'informations sur la façon d'utiliser nopCommerce, visitez le site</Value>
+    <Value>Si vous avez besoin d'Informations sur la façon d'utiliser nopCommerce, visitez le site</Value>
   </LocaleResource>
   <LocaleResource Name="Documentation2">
     <Value>la section de documentation sur nopCommerce.com</Value>
@@ -126,7 +126,7 @@
     <Value>Utilisez SQL Server (ou SQL Express) base de données</Value>
   </LocaleResource>
   <LocaleResource Name="StoreInformation">
-    <Value>informations sur le magasin</Value>
+    <Value>Informations sur le magasin</Value>
   </LocaleResource>
   <LocaleResource Name="Title">
     <Value>l'installation nopCommerce</Value>
@@ -135,7 +135,7 @@
     <Value>nopCommerce est le leader ASP.NET boutique en ligne solution e-commerce. Cet assistant va vous guider à travers le processus de configuration nopCommerce</Value>
   </LocaleResource>
   <LocaleResource Name="Tooltip2">
-    <Value>Pour compléter cet assistant, vous devez connaître certaines informations concernant votre serveur de base de données ("chaîne de connexion"). S'il vous plaît contactez votre FAI si nécessaire. Si vous installez sur une machine locale ou serveur que vous pourriez avoir besoin d'informations à partir de votre système d'administration</Value>
+    <Value>Pour compléter cet assistant, vous devez connaître certaines Informations concernant votre serveur de base de données ("chaîne de connexion"). S'il vous plaît contactez votre FAI si nécessaire. Si vous installez sur une machine locale ou serveur que vous pourriez avoir besoin d'Informations à partir de votre système d'administration</Value>
   </LocaleResource>
   <LocaleResource Name="WindowsAuthentication">
     <Value>Utilisez l'authentification Windows intégrée</Value>

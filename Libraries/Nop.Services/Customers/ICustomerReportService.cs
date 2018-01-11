@@ -1,7 +1,7 @@
 using System;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 
@@ -20,12 +20,12 @@ namespace Nop.Services.Customers
         /// <param name="os">Order status; null to load all records</param>
         /// <param name="ps">Order payment status; null to load all records</param>
         /// <param name="ss">Order shipment status; null to load all records</param>
-        /// <param name="orderBy">1 - order by order total, 2 - order by number of orders</param>
+        /// <param name="orderBy">1 - order by order total, 2 - order by number of Pedidos</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <returns>Report</returns>
         IPagedList<BestCustomerReportLine> GetBestCustomersReport(DateTime? createdFromUtc,
-            DateTime? createdToUtc, OrderStatus? os, PaymentStatus? ps, ShippingStatus? ss, int orderBy,
+            DateTime? createdToUtc, Pedidostatus? os, PaymentStatus? ps, ShippingStatus? ss, int orderBy,
             int pageIndex = 0, int pageSize = 214748364);
         
         /// <summary>

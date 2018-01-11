@@ -5,7 +5,7 @@ using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Customers;
@@ -17,7 +17,7 @@ using Nop.Services.Security;
 using Nop.Services.Shipping.Date;
 using Nop.Services.Stores;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     /// <summary>
     /// Shopping cart service
@@ -239,7 +239,7 @@ namespace Nop.Services.Orders
 
                         if (product.AutomaticallyAddRequiredProducts)
                         {
-                            //add to cart (if possible)
+                            //Agregar a carrito de compras (if possible)
                             if (automaticallyAddRequiredProductsIfEnabled)
                             {
                                 //pass 'false' for 'automaticallyAddRequiredProductsIfEnabled' to prevent circular references
@@ -326,13 +326,13 @@ namespace Nop.Services.Orders
                 warnings.Add(_localizationService.GetResource("ShoppingCart.ProductUnpublished"));
             }
 
-            //disabled "add to cart" button
+            //disabled "Agregar a carrito de compras" button
             if (shoppingCartType == ShoppingCartType.ShoppingCart && product.DisableBuyButton)
             {
                 warnings.Add(_localizationService.GetResource("ShoppingCart.BuyingDisabled"));
             }
 
-            //disabled "add to wishlist" button
+            //disabled "Agregar a favoritos" button
             if (shoppingCartType == ShoppingCartType.Wishlist && product.DisableWishlistButton)
             {
                 warnings.Add(_localizationService.GetResource("ShoppingCart.WishlistDisabled"));
@@ -388,7 +388,7 @@ namespace Nop.Services.Orders
                         break;
                     case ManageInventoryMethod.ManageStock:
                         {
-                            if (product.BackorderMode == BackorderMode.NoBackorders)
+                            if (product.BackorderMode == BackorderMode.NoBackPedidos)
                             {
                                 int maximumQuantityCanBeAdded = product.GetTotalStockQuantity();
                                 if (maximumQuantityCanBeAdded < quantity)
@@ -414,7 +414,7 @@ namespace Nop.Services.Orders
                             {
                                 //combination exists
                                 //let's check stock level
-                                if (!combination.AllowOutOfStockOrders && combination.StockQuantity < quantity)
+                                if (!combination.AllowOutOfStockPedidos && combination.StockQuantity < quantity)
                                 {
                                     int maximumQuantityCanBeAdded = combination.StockQuantity;
                                     if (maximumQuantityCanBeAdded <= 0)
@@ -1087,7 +1087,7 @@ namespace Nop.Services.Orders
             }
             if (customer.IsSearchEngineAccount())
             {
-                warnings.Add("Search engine can't add to cart");
+                warnings.Add("Search engine can't Agregar a carrito de compras");
                 return warnings;
             }
 

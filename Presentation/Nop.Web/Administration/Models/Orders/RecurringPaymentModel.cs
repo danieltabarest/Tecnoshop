@@ -2,7 +2,7 @@
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     public partial class RecurringPaymentModel : BaseNopEntityModel
     {
@@ -60,8 +60,8 @@ namespace Nop.Admin.Models.Orders
 
             public int RecurringPaymentId { get; set; }
 
-            [NopResourceDisplayName("Admin.RecurringPayments.History.OrderStatus")]
-            public string OrderStatus { get; set; }
+            [NopResourceDisplayName("Admin.RecurringPayments.History.Pedidostatus")]
+            public string Pedidostatus { get; set; }
 
             [NopResourceDisplayName("Admin.RecurringPayments.History.PaymentStatus")]
             public string PaymentStatus { get; set; }

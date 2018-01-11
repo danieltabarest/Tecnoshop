@@ -28,7 +28,7 @@ namespace Nop.Admin.Models.Catalog
             AvailableBasepriceUnits = new List<SelectListItem>();
             AvailableBasepriceBaseUnits = new List<SelectListItem>();
             AvailableProductTemplates = new List<SelectListItem>();
-            AvailableTaxCategories = new List<SelectListItem>();
+            AvailableTaxCategorias = new List<SelectListItem>();
             AvailableDeliveryDates = new List<SelectListItem>();
             AvailableProductAvailabilityRanges = new List<SelectListItem>();
             AvailableWarehouses = new List<SelectListItem>();
@@ -44,7 +44,7 @@ namespace Nop.Admin.Models.Catalog
             AvailableManufacturers = new List<SelectListItem>();
 
             SelectedCategoryIds = new List<int>();
-            AvailableCategories = new List<SelectListItem>();
+            AvailableCategorias = new List<SelectListItem>();
 
             SelectedCustomerRoleIds = new List<int>();
             AvailableCustomerRoles = new List<SelectListItem>();
@@ -229,7 +229,7 @@ namespace Nop.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.TaxCategory")]
         public int TaxCategoryId { get; set; }
-        public IList<SelectListItem> AvailableTaxCategories { get; set; }
+        public IList<SelectListItem> AvailableTaxCategorias { get; set; }
 
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.IsTelecommunicationsOrBroadcastingOrElectronicServices")]
         public bool IsTelecommunicationsOrBroadcastingOrElectronicServices { get; set; }
@@ -400,11 +400,11 @@ namespace Nop.Admin.Models.Catalog
         public IList<int> SelectedStoreIds { get; set; }
         public IList<SelectListItem> AvailableStores { get; set; }
 
-        //categories
-        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Categories")]
+        //Categorias
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Categorias")]
         [UIHint("MultiSelect")]
         public IList<int> SelectedCategoryIds { get; set; }
-        public IList<SelectListItem> AvailableCategories { get; set; }
+        public IList<SelectListItem> AvailableCategorias { get; set; }
 
         //manufacturers
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.Manufacturers")]
@@ -455,7 +455,7 @@ namespace Nop.Admin.Models.Catalog
         {
             public AddRequiredProductModel()
             {
-                AvailableCategories = new List<SelectListItem>();
+                AvailableCategorias = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -476,7 +476,7 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategories { get; set; }
+            public IList<SelectListItem> AvailableCategorias { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }
@@ -557,7 +557,7 @@ namespace Nop.Admin.Models.Catalog
         {
             public AddRelatedProductModel()
             {
-                AvailableCategories = new List<SelectListItem>();
+                AvailableCategorias = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -578,7 +578,7 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategories { get; set; }
+            public IList<SelectListItem> AvailableCategorias { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }
@@ -603,7 +603,7 @@ namespace Nop.Admin.Models.Catalog
         {
             public AddAssociatedProductModel()
             {
-                AvailableCategories = new List<SelectListItem>();
+                AvailableCategorias = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -624,7 +624,7 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategories { get; set; }
+            public IList<SelectListItem> AvailableCategorias { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }
@@ -649,7 +649,7 @@ namespace Nop.Admin.Models.Catalog
         {
             public AddCrossSellProductModel()
             {
-                AvailableCategories = new List<SelectListItem>();
+                AvailableCategorias = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -670,7 +670,7 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategories { get; set; }
+            public IList<SelectListItem> AvailableCategorias { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }
@@ -876,7 +876,7 @@ namespace Nop.Admin.Models.Catalog
             {
                 public AssociateProductToAttributeValueModel()
                 {
-                    AvailableCategories = new List<SelectListItem>();
+                    AvailableCategorias = new List<SelectListItem>();
                     AvailableManufacturers = new List<SelectListItem>();
                     AvailableStores = new List<SelectListItem>();
                     AvailableVendors = new List<SelectListItem>();
@@ -897,7 +897,7 @@ namespace Nop.Admin.Models.Catalog
                 [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
                 public int SearchProductTypeId { get; set; }
 
-                public IList<SelectListItem> AvailableCategories { get; set; }
+                public IList<SelectListItem> AvailableCategorias { get; set; }
                 public IList<SelectListItem> AvailableManufacturers { get; set; }
                 public IList<SelectListItem> AvailableStores { get; set; }
                 public IList<SelectListItem> AvailableVendors { get; set; }
@@ -933,8 +933,8 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.StockQuantity")]
             public int StockQuantity { get; set; }
 
-            [NopResourceDisplayName("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockOrders")]
-            public bool AllowOutOfStockOrders { get; set; }
+            [NopResourceDisplayName("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.AllowOutOfStockPedidos")]
+            public bool AllowOutOfStockPedidos { get; set; }
 
             [NopResourceDisplayName("Admin.Catalog.Products.ProductAttributes.AttributeCombinations.Fields.Sku")]
             public string Sku { get; set; }

@@ -3,7 +3,7 @@ using Nop.Web.Framework.Mvc;
 
 namespace Nop.Admin.Models.Settings
 {
-    public partial class OrderSettingsModel : BaseNopModel
+    public partial class PedidosettingsModel : BaseNopModel
     {
         public int ActiveStoreScopeConfiguration { get; set; }
 
@@ -12,13 +12,13 @@ namespace Nop.Admin.Models.Settings
         public bool IsReOrderAllowed { get; set; }
         public bool IsReOrderAllowed_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.Order.MinOrderSubtotalAmount")]
-        public decimal MinOrderSubtotalAmount { get; set; }
-        public bool MinOrderSubtotalAmount_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.Order.MinPedidosubtotalAmount")]
+        public decimal MinPedidosubtotalAmount { get; set; }
+        public bool MinPedidosubtotalAmount_OverrideForStore { get; set; }
 
-        [NopResourceDisplayName("Admin.Configuration.Settings.Order.MinOrderSubtotalAmountIncludingTax")]
-        public bool MinOrderSubtotalAmountIncludingTax { get; set; }
-        public bool MinOrderSubtotalAmountIncludingTax_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Admin.Configuration.Settings.Order.MinPedidosubtotalAmountIncludingTax")]
+        public bool MinPedidosubtotalAmountIncludingTax { get; set; }
+        public bool MinPedidosubtotalAmountIncludingTax_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Admin.Configuration.Settings.Order.MinOrderTotalAmount")]
         public decimal MinOrderTotalAmount { get; set; }

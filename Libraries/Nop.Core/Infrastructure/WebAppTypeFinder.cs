@@ -7,7 +7,7 @@ using System.Web.Hosting;
 namespace Nop.Core.Infrastructure
 {
     /// <summary>
-    /// Provides information about types in the current web application. 
+    /// Provides Information about types in the current web application. 
     /// Optionally this class can look at all assemblies in the bin folder.
     /// </summary>
     public class WebAppTypeFinder : AppDomainTypeFinder

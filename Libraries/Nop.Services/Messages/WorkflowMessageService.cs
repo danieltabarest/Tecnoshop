@@ -10,7 +10,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Vendors;
 using Nop.Services.Customers;
@@ -934,15 +934,15 @@ namespace Nop.Services.Messages
 
         #endregion
 
-        #region Newsletter workflow
+        #region Boletín informativo workflow
 
         /// <summary>
-        /// Sends a newsletter subscription activation message
+        /// Sends a Boletín informativo subscription activation message
         /// </summary>
-        /// <param name="subscription">Newsletter subscription</param>
+        /// <param name="subscription">Boletín informativo subscription</param>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Queued email identifier</returns>
-        public virtual int SendNewsLetterSubscriptionActivationMessage(NewsLetterSubscription subscription, int languageId)
+        public virtual int SendBoletín informativoSubscriptionActivationMessage(Boletín informativoSubscription subscription, int languageId)
         {
             if (subscription == null)
                 throw new ArgumentNullException("subscription");
@@ -950,7 +950,7 @@ namespace Nop.Services.Messages
             var store = _storeContext.CurrentStore;
             languageId = EnsureLanguageIsActive(languageId, store.Id);
 
-            var messageTemplate = GetActiveMessageTemplate(MessageTemplateSystemNames.NewsletterSubscriptionActivationMessage, store.Id);
+            var messageTemplate = GetActiveMessageTemplate(MessageTemplateSystemNames.Boletín informativoSubscriptionActivationMessage, store.Id);
             if (messageTemplate == null)
                 return 0;
 
@@ -960,7 +960,7 @@ namespace Nop.Services.Messages
             //tokens
             var tokens = new List<Token>();
             _messageTokenProvider.AddStoreTokens(tokens, store, emailAccount);
-            _messageTokenProvider.AddNewsLetterSubscriptionTokens(tokens, subscription);
+            _messageTokenProvider.AddBoletín informativoSubscriptionTokens(tokens, subscription);
             
             //event notification
             _eventPublisher.MessageTokensAdded(messageTemplate, tokens);
@@ -969,12 +969,12 @@ namespace Nop.Services.Messages
         }
 
         /// <summary>
-        /// Sends a newsletter subscription deactivation message
+        /// Sends a Boletín informativo subscription deactivation message
         /// </summary>
-        /// <param name="subscription">Newsletter subscription</param>
+        /// <param name="subscription">Boletín informativo subscription</param>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Queued email identifier</returns>
-        public virtual int SendNewsLetterSubscriptionDeactivationMessage(NewsLetterSubscription subscription, int languageId)
+        public virtual int SendBoletín informativoSubscriptionDeactivationMessage(Boletín informativoSubscription subscription, int languageId)
         {
             if (subscription == null)
                 throw new ArgumentNullException("subscription");
@@ -982,7 +982,7 @@ namespace Nop.Services.Messages
             var store = _storeContext.CurrentStore;
             languageId = EnsureLanguageIsActive(languageId, store.Id);
 
-            var messageTemplate = GetActiveMessageTemplate(MessageTemplateSystemNames.NewsletterSubscriptionDeactivationMessage, store.Id);
+            var messageTemplate = GetActiveMessageTemplate(MessageTemplateSystemNames.Boletín informativoSubscriptionDeactivationMessage, store.Id);
             if (messageTemplate == null)
                 return 0;
 
@@ -992,7 +992,7 @@ namespace Nop.Services.Messages
             //tokens
             var tokens = new List<Token>();
             _messageTokenProvider.AddStoreTokens(tokens, store, emailAccount);
-            _messageTokenProvider.AddNewsLetterSubscriptionTokens(tokens, subscription);
+            _messageTokenProvider.AddBoletín informativoSubscriptionTokens(tokens, subscription);
 
             //event notification
             _eventPublisher.MessageTokensAdded(messageTemplate, tokens);
@@ -1372,7 +1372,7 @@ namespace Nop.Services.Messages
         }
 
         /// <summary>
-        /// Sends 'Vendor information changed' message to a store owner
+        /// Sends 'Vendor Information changed' message to a store owner
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <param name="languageId">Message language identifier</param>

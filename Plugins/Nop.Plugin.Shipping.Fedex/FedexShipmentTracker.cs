@@ -77,7 +77,7 @@ namespace Nop.Plugin.Shipping.Fedex
 
                 //creates the Version element with all child elements populated from the wsdl
                 request.Version = new VersionId();
-                //tracking information
+                //tracking Information
                 request.PackageIdentifier = new TrackPackageIdentifier();
                 request.PackageIdentifier.Value = trackingNumber;
                 request.PackageIdentifier.Type = TrackIdentifierType.TRACKING_NUMBER_OR_DOORTAG;

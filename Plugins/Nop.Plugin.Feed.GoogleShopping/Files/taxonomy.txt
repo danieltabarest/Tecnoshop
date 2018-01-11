@@ -973,7 +973,7 @@ Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds
 Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Musical Pipes
 Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Oboes & English Horns
 Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Ocarinas
-Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Recorders
+Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > RecPedidos
 Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Saxophones
 Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Tin Whistles
 Arts & Entertainment > Hobbies & Creative Arts > Musical Instruments > Woodwinds > Train Whistles
@@ -1446,23 +1446,23 @@ Electronics > Audio > Audio Components > Speakers
 Electronics > Audio > Audio Components > Speakers > Computer Speakers
 Electronics > Audio > Audio Components > Speakers > Studio Monitors
 Electronics > Audio > Audio Components > Speakers > Subwoofers
-Electronics > Audio > Audio Players & Recorders
-Electronics > Audio > Audio Players & Recorders > Boomboxes
-Electronics > Audio > Audio Players & Recorders > CD Players & Recorders
-Electronics > Audio > Audio Players & Recorders > Cassette Players & Recorders
-Electronics > Audio > Audio Players & Recorders > Home Theater Systems
-Electronics > Audio > Audio Players & Recorders > Jukeboxes
-Electronics > Audio > Audio Players & Recorders > Karaoke Systems
-Electronics > Audio > Audio Players & Recorders > MP3 Players
-Electronics > Audio > Audio Players & Recorders > MiniDisc Players & Recorders
-Electronics > Audio > Audio Players & Recorders > Multitrack Recorders
-Electronics > Audio > Audio Players & Recorders > Radios
-Electronics > Audio > Audio Players & Recorders > Radios > Internet Radios
-Electronics > Audio > Audio Players & Recorders > Radios > Satellite Radios
-Electronics > Audio > Audio Players & Recorders > Stereo Systems
-Electronics > Audio > Audio Players & Recorders > Turntables & Record Players
-Electronics > Audio > Audio Players & Recorders > Turntables & Record Players > DJ Turntables
-Electronics > Audio > Audio Players & Recorders > Voice Recorders
+Electronics > Audio > Audio Players & RecPedidos
+Electronics > Audio > Audio Players & RecPedidos > Boomboxes
+Electronics > Audio > Audio Players & RecPedidos > CD Players & RecPedidos
+Electronics > Audio > Audio Players & RecPedidos > Cassette Players & RecPedidos
+Electronics > Audio > Audio Players & RecPedidos > Home Theater Systems
+Electronics > Audio > Audio Players & RecPedidos > Jukeboxes
+Electronics > Audio > Audio Players & RecPedidos > Karaoke Systems
+Electronics > Audio > Audio Players & RecPedidos > MP3 Players
+Electronics > Audio > Audio Players & RecPedidos > MiniDisc Players & RecPedidos
+Electronics > Audio > Audio Players & RecPedidos > Multitrack RecPedidos
+Electronics > Audio > Audio Players & RecPedidos > Radios
+Electronics > Audio > Audio Players & RecPedidos > Radios > Internet Radios
+Electronics > Audio > Audio Players & RecPedidos > Radios > Satellite Radios
+Electronics > Audio > Audio Players & RecPedidos > Stereo Systems
+Electronics > Audio > Audio Players & RecPedidos > Turntables & Record Players
+Electronics > Audio > Audio Players & RecPedidos > Turntables & Record Players > DJ Turntables
+Electronics > Audio > Audio Players & RecPedidos > Voice RecPedidos
 Electronics > Audio > DJ & Specialty Audio
 Electronics > Audio > DJ & Specialty Audio > DJ CD Players
 Electronics > Audio > DJ & Specialty Audio > DJ Equipment Accessories
@@ -1850,14 +1850,14 @@ Electronics > Video > Video Accessories > Television Accessories > TV Replacemen
 Electronics > Video > Video Accessories > Television Accessories > TV Scan Converters
 Electronics > Video > Video Editing Hardware & Production Equipment
 Electronics > Video > Video Multiplexers
-Electronics > Video > Video Players & Recorders
-Electronics > Video > Video Players & Recorders > DVD & Blu-ray Players
-Electronics > Video > Video Players & Recorders > DVD Recorders
-Electronics > Video > Video Players & Recorders > DVD Recorders > Blu-Ray Recorders
-Electronics > Video > Video Players & Recorders > DVD Recorders > HD-DVD Recorders
-Electronics > Video > Video Players & Recorders > Digital Video Recorders
-Electronics > Video > Video Players & Recorders > Home Media Players
-Electronics > Video > Video Players & Recorders > VCRs
+Electronics > Video > Video Players & RecPedidos
+Electronics > Video > Video Players & RecPedidos > DVD & Blu-ray Players
+Electronics > Video > Video Players & RecPedidos > DVD RecPedidos
+Electronics > Video > Video Players & RecPedidos > DVD RecPedidos > Blu-Ray RecPedidos
+Electronics > Video > Video Players & RecPedidos > DVD RecPedidos > HD-DVD RecPedidos
+Electronics > Video > Video Players & RecPedidos > Digital Video RecPedidos
+Electronics > Video > Video Players & RecPedidos > Home Media Players
+Electronics > Video > Video Players & RecPedidos > VCRs
 Electronics > Video > Video Servers
 Electronics > Video > Video Transmitters
 Electronics > Video > Video Transmitters > Video Senders
@@ -3673,7 +3673,7 @@ Home & Garden > Home Security > Dummy Surveillance Cameras
 Home & Garden > Home Security > Home Alarm Systems
 Home & Garden > Home Security > Motion Sensors
 Home & Garden > Home Security > Security Lights
-Home & Garden > Home Security > Security Monitors & Recorders
+Home & Garden > Home Security > Security Monitors & RecPedidos
 Home & Garden > Home Security > Security Safes
 Home & Garden > Home Security > Security System Sensors
 Home & Garden > Home Security > Tracking Devices

@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Mvc;
 
-namespace Nop.Web.Models.Newsletter
+namespace Nop.Web.Models.Boletín informativo
 {
     public partial class SubscriptionActivationModel : BaseNopModel
     {

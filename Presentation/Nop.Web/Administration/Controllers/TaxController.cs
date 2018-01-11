@@ -114,9 +114,9 @@ namespace Nop.Admin.Controllers
 
         #endregion
 
-        #region Tax Categories
+        #region Tax Categorias
 
-        public virtual ActionResult Categories()
+        public virtual ActionResult Categorias()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageTaxSettings))
                 return AccessDeniedView();
@@ -125,18 +125,18 @@ namespace Nop.Admin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Categories(DataSourceRequest command)
+        public virtual ActionResult Categorias(DataSourceRequest command)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageTaxSettings))
                 return AccessDeniedKendoGridJson();
 
-            var categoriesModel = _taxCategoryService.GetAllTaxCategories()
+            var CategoriasModel = _taxCategoryService.GetAllTaxCategorias()
                 .Select(x => x.ToModel())
                 .ToList();
             var gridModel = new DataSourceResult
             {
-                Data = categoriesModel,
-                Total = categoriesModel.Count
+                Data = CategoriasModel,
+                Total = CategoriasModel.Count
             };
 
             return Json(gridModel);

@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Routing;
 using Nop.Core;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Plugins;
@@ -17,7 +17,7 @@ using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Directory;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Tax;
 
@@ -252,24 +252,24 @@ namespace Nop.Plugin.Payments.PayPalStandard
                 //order totals
 
                 //shipping
-                var orderShippingExclTax = postProcessPaymentRequest.Order.OrderShippingExclTax;
-                var orderShippingExclTaxRounded = Math.Round(orderShippingExclTax, 2);
-                if (orderShippingExclTax > decimal.Zero)
+                var PedidoshippingExclTax = postProcessPaymentRequest.Order.PedidoshippingExclTax;
+                var PedidoshippingExclTaxRounded = Math.Round(PedidoshippingExclTax, 2);
+                if (PedidoshippingExclTax > decimal.Zero)
                 {
                     builder.AppendFormat("&item_name_" + x + "={0}", "Shipping fee");
-                    builder.AppendFormat("&amount_" + x + "={0}", orderShippingExclTaxRounded.ToString("0.00", CultureInfo.InvariantCulture));
+                    builder.AppendFormat("&amount_" + x + "={0}", PedidoshippingExclTaxRounded.ToString("0.00", CultureInfo.InvariantCulture));
                     builder.AppendFormat("&quantity_" + x + "={0}", 1);
                     x++;
-                    cartTotal += orderShippingExclTax;
-                    cartTotalRounded += orderShippingExclTaxRounded;
+                    cartTotal += PedidoshippingExclTax;
+                    cartTotalRounded += PedidoshippingExclTaxRounded;
                 }
 
-                //payment method additional fee
+                //Formas de pago additional fee
                 var paymentMethodAdditionalFeeExclTax = postProcessPaymentRequest.Order.PaymentMethodAdditionalFeeExclTax;
                 var paymentMethodAdditionalFeeExclTaxRounded = Math.Round(paymentMethodAdditionalFeeExclTax, 2);
                 if (paymentMethodAdditionalFeeExclTax > decimal.Zero)
                 {
-                    builder.AppendFormat("&item_name_" + x + "={0}", "Payment method fee");
+                    builder.AppendFormat("&item_name_" + x + "={0}", "Formas de pago fee");
                     builder.AppendFormat("&amount_" + x + "={0}", paymentMethodAdditionalFeeExclTaxRounded.ToString("0.00", CultureInfo.InvariantCulture));
                     builder.AppendFormat("&quantity_" + x + "={0}", 1);
                     x++;
@@ -411,15 +411,15 @@ namespace Nop.Plugin.Payments.PayPalStandard
         }
 
         /// <summary>
-        /// Returns a value indicating whether payment method should be hidden during checkout
+        /// Returns a value indicating whether Formas de pago should be hidden during checkout
         /// </summary>
         /// <param name="cart">Shoping cart</param>
         /// <returns>true - hide; false - display.</returns>
         public bool HidePaymentMethod(IList<ShoppingCartItem> cart)
         {
             //you can put any logic here
-            //for example, hide this payment method if all products in the cart are downloadable
-            //or hide this payment method if current customer is from certain country
+            //for example, hide this Formas de pago if all products in the cart are downloadable
+            //or hide this Formas de pago if current customer is from certain country
             return false;
         }
 
@@ -496,7 +496,7 @@ namespace Nop.Plugin.Payments.PayPalStandard
         }
 
         /// <summary>
-        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection Formas de pagos)
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
@@ -674,7 +674,7 @@ namespace Nop.Plugin.Payments.PayPalStandard
         }
 
         /// <summary>
-        /// Gets a recurring payment type of payment method
+        /// Gets a recurring payment type of Formas de pago
         /// </summary>
         public RecurringPaymentType RecurringPaymentType
         {
@@ -682,7 +682,7 @@ namespace Nop.Plugin.Payments.PayPalStandard
         }
 
         /// <summary>
-        /// Gets a payment method type
+        /// Gets a Formas de pago type
         /// </summary>
         public PaymentMethodType PaymentMethodType
         {
@@ -690,7 +690,7 @@ namespace Nop.Plugin.Payments.PayPalStandard
         }
 
         /// <summary>
-        /// Gets a value indicating whether we should display a payment information page for this plugin
+        /// Gets a value indicating whether we should display a payment Information page for this plugin
         /// </summary>
         public bool SkipPaymentInfo
         {
@@ -698,12 +698,12 @@ namespace Nop.Plugin.Payments.PayPalStandard
         }
 
         /// <summary>
-        /// Gets a payment method description that will be displayed on checkout pages in the public store
+        /// Gets a Formas de pago description that will be displayed on checkout pages in the public store
         /// </summary>
         public string PaymentMethodDescription
         {
-            //return description of this payment method to be display on "payment method" checkout step. good practice is to make it localizable
-            //for example, for a redirection payment method, description may be like this: "You will be redirected to PayPal site to complete the payment"
+            //return description of this Formas de pago to be display on "Formas de pago" checkout step. good practice is to make it localizable
+            //for example, for a redirection Formas de pago, description may be like this: "You will be redirected to PayPal site to complete the payment"
             get { return _localizationService.GetResource("Plugins.Payments.PayPalStandard.PaymentMethodDescription"); }
         }
 

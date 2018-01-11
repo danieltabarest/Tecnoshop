@@ -26,7 +26,7 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether "Published" or "Disable buy/wishlist buttons" flags should be updated after order cancellation (deletion).
         /// Of course, when qty > configured minimum stock level
         /// </summary>
-        public bool PublishBackProductWhenCancellingOrders { get; set; }
+        public bool PublishBackProductWhenCancellingPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to display product SKU on the product details page
@@ -69,9 +69,9 @@ namespace Nop.Core.Domain.Catalog
         public string DefaultViewMode { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether a category details page should include products from subcategories
+        /// Gets or sets a value indicating whether a category details page should include products from subCategorias
         /// </summary>
-        public bool ShowProductsFromSubcategories { get; set; }
+        public bool ShowProductsFromSubCategorias { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether number of products should be displayed beside each category
@@ -79,9 +79,9 @@ namespace Nop.Core.Domain.Catalog
         public bool ShowCategoryProductNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether we include subcategories (when 'ShowCategoryProductNumber' is 'true')
+        /// Gets or sets a value indicating whether we include subCategorias (when 'ShowCategoryProductNumber' is 'true')
         /// </summary>
-        public bool ShowCategoryProductNumberIncludingSubcategories { get; set; }
+        public bool ShowCategoryProductNumberIncludingSubCategorias { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether category breadcrumb is enabled
@@ -257,7 +257,7 @@ namespace Nop.Core.Domain.Catalog
         /// </summary>
         public bool IncludeFullDescriptionInCompareProducts { get; set; }
         /// <summary>
-        /// An option indicating whether products on category and manufacturer pages should include featured products as well
+        /// An option indicating whether products on category and manufacturer pages should include Productos Destacados as well
         /// </summary>
         public bool IncludeFeaturedProductsInNormalLists { get; set; }
         
@@ -271,7 +271,7 @@ namespace Nop.Core.Domain.Catalog
         /// </summary>
         public bool IgnoreDiscounts { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to ignore featured products (side-wide). It can significantly improve performance when enabled.
+        /// Gets or sets a value indicating whether to ignore Productos Destacados (side-wide). It can significantly improve performance when enabled.
         /// </summary>
         public bool IgnoreFeaturedProducts { get; set; }
         /// <summary>
@@ -298,36 +298,36 @@ namespace Nop.Core.Domain.Catalog
         public int ManufacturersBlockItemsToDisplay { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to display information about shipping and tax in the footer (used in Germany)
+        /// Gets or sets a value indicating whether to display Information about shipping and tax in the footer (used in Germany)
         /// </summary>
         public bool DisplayTaxShippingInfoFooter { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to display information about shipping and tax on product details pages (used in Germany)
+        /// Gets or sets a value indicating whether to display Information about shipping and tax on product details pages (used in Germany)
         /// </summary>
         public bool DisplayTaxShippingInfoProductDetailsPage { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to display information about shipping and tax in product boxes (used in Germany)
+        /// Gets or sets a value indicating whether to display Information about shipping and tax in product boxes (used in Germany)
         /// </summary>
         public bool DisplayTaxShippingInfoProductBoxes { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to display information about shipping and tax on shopping cart page (used in Germany)
+        /// Gets or sets a value indicating whether to display Information about shipping and tax on shopping cart page (used in Germany)
         /// </summary>
         public bool DisplayTaxShippingInfoShoppingCart { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to display information about shipping and tax on wishlist page (used in Germany)
+        /// Gets or sets a value indicating whether to display Information about shipping and tax on wishlist page (used in Germany)
         /// </summary>
         public bool DisplayTaxShippingInfoWishlist { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to display information about shipping and tax on order details page (used in Germany)
+        /// Gets or sets a value indicating whether to display Information about shipping and tax on order details page (used in Germany)
         /// </summary>
         public bool DisplayTaxShippingInfoOrderDetailsPage { get; set; }
         
         /// <summary>
-        /// Gets or sets the default value to use for Category page size options (for new categories)
+        /// Gets or sets the default value to use for Category page size options (for new Categorias)
         /// </summary>
         public string DefaultCategoryPageSizeOptions { get; set; }
         /// <summary>
-        /// Gets or sets the default value to use for Category page size (for new categories)
+        /// Gets or sets the default value to use for Category page size (for new Categorias)
         /// </summary>
         public int DefaultCategoryPageSize { get; set; }
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Nop.Core.Domain.Common;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Payments;
 using Nop.Web.Models.Checkout;
 
@@ -40,17 +40,17 @@ namespace Nop.Web.Factories
         CheckoutShippingMethodModel PrepareShippingMethodModel(IList<ShoppingCartItem> cart, Address shippingAddress);
 
         /// <summary>
-        /// Prepare payment method model
+        /// Prepare Formas de pago model
         /// </summary>
         /// <param name="cart">Cart</param>
         /// <param name="filterByCountryId">Filter by country identifier</param>
-        /// <returns>Payment method model</returns>
+        /// <returns>Formas de pago model</returns>
         CheckoutPaymentMethodModel PreparePaymentMethodModel(IList<ShoppingCartItem> cart, int filterByCountryId);
 
         /// <summary>
         /// Prepare payment info model
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <returns>Payment info model</returns>
         CheckoutPaymentInfoModel PreparePaymentInfoModel(IPaymentMethod paymentMethod);
 

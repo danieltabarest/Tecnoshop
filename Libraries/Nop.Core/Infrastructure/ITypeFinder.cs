@@ -5,7 +5,7 @@ using System.Reflection;
 namespace Nop.Core.Infrastructure
 {
     /// <summary>
-    /// Classes implementing this interface provide information about types 
+    /// Classes implementing this interface provide Information about types 
     /// to various services in the Nop engine.
     /// </summary>
     public interface ITypeFinder

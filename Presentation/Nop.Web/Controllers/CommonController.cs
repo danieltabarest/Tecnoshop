@@ -127,6 +127,11 @@ namespace Nop.Web.Controllers
         }
 
 
+        public virtual ActionResult AboutBussiness()
+        {
+            return PartialView();
+        }
+
         //language
         [ChildActionOnly]
         public virtual ActionResult LanguageSelector()

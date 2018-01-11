@@ -293,7 +293,7 @@
           </xs:element>
           <xs:element minOccurs="0" name="ReferenceIndicator" type="ns:CodReturnReferenceIndicatorType">
             <xs:annotation>
-              <xs:documentation>Indicates which type of reference information to include on the COD return shipping label.</xs:documentation>
+              <xs:documentation>Indicates which type of reference Information to include on the COD return shipping label.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="ReturnTrackingId" type="ns:TrackingId">
@@ -478,7 +478,7 @@
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="CommitMessages" type="ns:Notification">
             <xs:annotation>
-              <xs:documentation>Messages concerning the ability to provide an accurate delivery commitment on an International commit quote. These could be messages providing information about why a commitment could not be returned or a successful message such as "REQUEST COMPLETED"</xs:documentation>
+              <xs:documentation>Messages concerning the ability to provide an accurate delivery commitment on an International commit quote. These could be messages providing Information about why a commitment could not be returned or a successful message such as "REQUEST COMPLETED"</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="DeliveryMessages" type="xs:string">
@@ -499,7 +499,7 @@
           </xs:element>
           <xs:element minOccurs="0" name="FreightCommitDetail" type="ns:FreightCommitDetail">
             <xs:annotation>
-              <xs:documentation>Freight origin and destination city center information and total distance between origin and destination city centers.</xs:documentation>
+              <xs:documentation>Freight origin and destination city center Information and total distance between origin and destination city centers.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -538,7 +538,7 @@
           <xs:element minOccurs="0" name="QuantityUnits" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="unbounded" name="AdditionalMeasures" type="ns:Measure">
             <xs:annotation>
-              <xs:documentation>Contains only additional quantitative information other than weight and quantity to calculate duties and taxes.</xs:documentation>
+              <xs:documentation>Contains only additional quantitative Information other than weight and quantity to calculate duties and taxes.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="UnitPrice" type="ns:Money" />
@@ -606,7 +606,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="ContactId" type="xs:string">
             <xs:annotation>
-              <xs:documentation>Client provided identifier corresponding to this contact information.</xs:documentation>
+              <xs:documentation>Client provided identifier corresponding to this contact Information.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="PersonName" type="xs:string">
@@ -728,7 +728,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="Format" type="ns:ShippingDocumentFormat">
             <xs:annotation>
-              <xs:documentation>Common information controlling document production.</xs:documentation>
+              <xs:documentation>Common Information controlling document production.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="LabelPrintingOrientation" type="ns:LabelPrintingOrientationType">
@@ -940,7 +940,7 @@
           <xs:element minOccurs="0" name="ImporterOfRecord" type="ns:Party" />
           <xs:element minOccurs="0" name="RecipientCustomsId" type="ns:RecipientCustomsId">
             <xs:annotation>
-              <xs:documentation>Specifies how the recipient is identified for customs purposes; the requirements on this information vary with destination country.</xs:documentation>
+              <xs:documentation>Specifies how the recipient is identified for customs purposes; the requirements on this Information vary with destination country.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="DutiesPayment" type="ns:Payment" />
@@ -1081,7 +1081,7 @@
           </xs:element>
           <xs:element minOccurs="0" name="AdditionalHandling" type="xs:string">
             <xs:annotation>
-              <xs:documentation>Specifies additional handling information for the current package.</xs:documentation>
+              <xs:documentation>Specifies additional handling Information for the current package.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="RadioactivityDetail" type="ns:RadioactivityDetail">
@@ -1803,7 +1803,7 @@
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="Notations" type="ns:FreightRateNotation">
             <xs:annotation>
-              <xs:documentation>Human-readable descriptions of additional information on this shipment rating.</xs:documentation>
+              <xs:documentation>Human-readable descriptions of additional Information on this shipment rating.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -2135,7 +2135,7 @@
       </xs:simpleType>
       <xs:complexType name="HazardousCommodityInnerReceptacleDetail">
         <xs:annotation>
-          <xs:documentation>This describes information about the inner receptacles for the hazardous commodity in a particular dangerous goods container.</xs:documentation>
+          <xs:documentation>This describes Information about the inner receptacles for the hazardous commodity in a particular dangerous goods container.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
           <xs:element minOccurs="0" name="Quantity" type="ns:HazardousCommodityQuantityDetail">
@@ -2536,7 +2536,7 @@
           </xs:element>
           <xs:element minOccurs="0" name="SignatureContact" type="ns:Contact">
             <xs:annotation>
-              <xs:documentation>Contact information for "Authorized Signature" area of form.</xs:documentation>
+              <xs:documentation>Contact Information for "Authorized Signature" area of form.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="ProducerSpecification" type="ns:NaftaProducerSpecificationType" />
@@ -2629,7 +2629,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="Severity" type="ns:NotificationSeverityType">
             <xs:annotation>
-              <xs:documentation>The severity of this notification. This can indicate success or failure or some other information about the request. The values that can be returned are SUCCESS - Your transaction succeeded with no other applicable information. NOTE - Additional information that may be of interest to you about your transaction. WARNING - Additional information that you need to know about your transaction that you may need to take action on. ERROR - Information about an error that occurred while processing your transaction. FAILURE - FedEx was unable to process your transaction at this time due to a system failure. Please try again later</xs:documentation>
+              <xs:documentation>The severity of this notification. This can indicate success or failure or some other Information about the request. The values that can be returned are SUCCESS - Your transaction succeeded with no other applicable Information. NOTE - Additional Information that may be of interest to you about your transaction. WARNING - Additional Information that you need to know about your transaction that you may need to take action on. ERROR - Information about an error that occurred while processing your transaction. FAILURE - FedEx was unable to process your transaction at this time due to a system failure. Please try again later</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="Source" type="xs:string">
@@ -2889,7 +2889,7 @@
       </xs:complexType>
       <xs:complexType name="PendingShipmentDetail">
         <xs:annotation>
-          <xs:documentation>This information describes the kind of pending shipment being requested.</xs:documentation>
+          <xs:documentation>This Information describes the kind of pending shipment being requested.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
           <xs:element minOccurs="0" name="Type" type="ns:PendingShipmentType" />
@@ -3347,7 +3347,7 @@
       </xs:simpleType>
       <xs:complexType name="RecipientCustomsId">
         <xs:annotation>
-          <xs:documentation>Specifies how the recipient is identified for customs purposes; the requirements on this information vary with destination country.</xs:documentation>
+          <xs:documentation>Specifies how the recipient is identified for customs purposes; the requirements on this Information vary with destination country.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
           <xs:element minOccurs="0" name="Type" type="ns:RecipientCustomsIdType">
@@ -3468,7 +3468,7 @@
           <xs:element minOccurs="0" name="VariableHandlingChargeDetail" type="ns:VariableHandlingChargeDetail" />
           <xs:element minOccurs="0" name="InsuredValue" type="ns:Money">
             <xs:annotation>
-              <xs:documentation>Specifies the declared value for carriage of the package. The declared value for carriage represents the maximum liability of FedEx in connection with a shipment, including, but not limited to, any loss, damage, delay, mis-delivery, nondelivery, misinformation, any failure to provide information, or mis-delivery of information relating to the package. This field is only used for INDIVIDUAL_PACKAGES and PACKAGE_GROUPS. Ignored for PACKAGE_SUMMARY, in which case totalInsuredValue and packageCount on the shipment will be used to determine this value.</xs:documentation>
+              <xs:documentation>Specifies the declared value for carriage of the package. The declared value for carriage represents the maximum liability of FedEx in connection with a shipment, including, but not limited to, any loss, damage, delay, mis-delivery, nondelivery, misInformation, any failure to provide Information, or mis-delivery of Information relating to the package. This field is only used for INDIVIDUAL_PACKAGES and PACKAGE_GROUPS. Ignored for PACKAGE_SUMMARY, in which case totalInsuredValue and packageCount on the shipment will be used to determine this value.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="Weight" type="ns:Weight">
@@ -3510,7 +3510,7 @@
           <xs:element minOccurs="0" name="TotalWeight" type="ns:Weight" />
           <xs:element minOccurs="0" name="TotalInsuredValue" type="ns:Money">
             <xs:annotation>
-              <xs:documentation>Specifies the total declared value for carriage of the shipment. The declared value for carriage represents the maximum liability of FedEx in connection with a shipment, including, but not limited to, any loss, damage, delay, mis-delivery, nondelivery, misinformation, any failure to provide information, or mis-delivery of information relating to the shipment.</xs:documentation>
+              <xs:documentation>Specifies the total declared value for carriage of the shipment. The declared value for carriage represents the maximum liability of FedEx in connection with a shipment, including, but not limited to, any loss, damage, delay, mis-delivery, nondelivery, misInformation, any failure to provide Information, or mis-delivery of Information relating to the shipment.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="PreferredCurrency" type="xs:string">

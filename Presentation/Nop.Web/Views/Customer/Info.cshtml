@@ -302,19 +302,19 @@
                 </div>
             </div>
                     }
-                    if (Model.NewsletterEnabled || Model.CustomerAttributes.Count > 0)
+                    if (Model.Boletín informativoEnabled || Model.CustomerAttributes.Count > 0)
                     {
             <div class="fieldset">
                 <div class="title">
                     <strong>@T("Account.Options")</strong>
                 </div>
                 <div class="form-fields">
-                    @if (Model.NewsletterEnabled)
+                    @if (Model.Boletín informativoEnabled)
                     {
                         <div class="inputs">
-                            @Html.LabelFor(model => model.Newsletter, new {}, ":")
-                            @Html.EditorFor(model => model.Newsletter)
-                            @Html.ValidationMessageFor(model => model.Newsletter)
+                            @Html.LabelFor(model => model.Boletín informativo, new {}, ":")
+                            @Html.EditorFor(model => model.Boletín informativo)
+                            @Html.ValidationMessageFor(model => model.Boletín informativo)
                         </div>
                     }
                     @if (Model.CustomerAttributes.Count > 0)

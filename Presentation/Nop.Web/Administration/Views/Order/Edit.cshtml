@@ -2,9 +2,9 @@
 
 @{
     //page title
-    ViewBag.Title = T("Admin.Orders.EditOrderDetails").Text;
+    ViewBag.Title = T("Admin.Pedidos.EditOrderDetails").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Orders");
+    Html.SetActiveMenuItemSystemName("Pedidos");
 }
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "order-form" }))
@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Orders.EditOrderDetails") - @Model.CustomOrderNumber
-            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Orders.BackToList").Text, "List")</small>
+            @T("Admin.Pedidos.EditOrderDetails") - @Model.CustomOrderNumber
+            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Pedidos.BackToList").Text, "List")</small>
         </h1>
         <div class="pull-right">
             <a href="@Url.Action("PdfInvoice", new {orderId = Model.Id})" class="btn bg-purple">
                 <i class="fa fa-file-pdf-o"></i>
-                @T("Admin.Orders.PdfInvoice")
+                @T("Admin.Pedidos.PdfInvoice")
             </a>
             @if (!Model.IsLoggedInAsVendor)
             {
@@ -62,13 +62,13 @@
         <div class="form-horizontal">
             <div id="order-edit" class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Orders.Info"), true)
-                    @Html.RenderBootstrapTabHeader("tab-billing-info", @T("Admin.Orders.BillingInfo"))
-                    @Html.RenderBootstrapTabHeader("tab-shipping-info", @T("Admin.Orders.ShippingInfo"))
-                    @Html.RenderBootstrapTabHeader("tab-products", @T("Admin.Orders.Products"))
+                    @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Pedidos.Info"), true)
+                    @Html.RenderBootstrapTabHeader("tab-billing-info", @T("Admin.Pedidos.BillingInfo"))
+                    @Html.RenderBootstrapTabHeader("tab-shipping-info", @T("Admin.Pedidos.ShippingInfo"))
+                    @Html.RenderBootstrapTabHeader("tab-products", @T("Admin.Pedidos.Products"))
                     @if (!Model.IsLoggedInAsVendor)
                     {
-                        @Html.RenderBootstrapTabHeader("tab-order-notes", @T("Admin.Orders.OrderNotes"))
+                        @Html.RenderBootstrapTabHeader("tab-order-notes", @T("Admin.Pedidos.OrderNotes"))
                     }
                 </ul>
                 <div class="tab-content">

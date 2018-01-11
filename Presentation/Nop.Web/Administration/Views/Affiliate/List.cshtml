@@ -24,17 +24,17 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#@Html.FieldIdFor(model => model.LoadOnlyWithOrders)").click(toggleLoadOnlyWithOrders);
-        toggleLoadOnlyWithOrders();
+        $("#@Html.FieldIdFor(model => model.LoadOnlyWithPedidos)").click(toggleLoadOnlyWithPedidos);
+        toggleLoadOnlyWithPedidos();
     });
 
-    function toggleLoadOnlyWithOrders() {
-        if ($('#@Html.FieldIdFor(model => model.LoadOnlyWithOrders)').is(':checked')) {
-            $('#pnlOrdersCreatedFromUtc').show();
-            $('#pnlOrdersCreatedToUtc').show();
+    function toggleLoadOnlyWithPedidos() {
+        if ($('#@Html.FieldIdFor(model => model.LoadOnlyWithPedidos)').is(':checked')) {
+            $('#pnlPedidosCreatedFromUtc').show();
+            $('#pnlPedidosCreatedToUtc').show();
         } else {
-            $('#pnlOrdersCreatedFromUtc').hide();
-            $('#pnlOrdersCreatedToUtc').hide();
+            $('#pnlPedidosCreatedFromUtc').hide();
+            $('#pnlPedidosCreatedToUtc').hide();
         }
     }
 </script>
@@ -75,26 +75,26 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.LoadOnlyWithOrders)
+                                    @Html.NopLabelFor(model => model.LoadOnlyWithPedidos)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.NopEditorFor(model => model.LoadOnlyWithOrders)
+                                    @Html.NopEditorFor(model => model.LoadOnlyWithPedidos)
                                 </div>
                             </div>
-                            <div class="form-group" id="pnlOrdersCreatedFromUtc">
+                            <div class="form-group" id="pnlPedidosCreatedFromUtc">
                                 <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.OrdersCreatedFromUtc)
+                                    @Html.NopLabelFor(model => model.PedidosCreatedFromUtc)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.NopEditorFor(model => model.OrdersCreatedFromUtc)
+                                    @Html.NopEditorFor(model => model.PedidosCreatedFromUtc)
                                 </div>
                             </div>
-                            <div class="form-group" id="pnlOrdersCreatedToUtc">
+                            <div class="form-group" id="pnlPedidosCreatedToUtc">
                                 <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.OrdersCreatedToUtc)
+                                    @Html.NopLabelFor(model => model.PedidosCreatedToUtc)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.NopEditorFor(model => model.OrdersCreatedToUtc)
+                                    @Html.NopEditorFor(model => model.PedidosCreatedToUtc)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -207,9 +207,9 @@
                                 SearchFirstName: $('#@Html.FieldIdFor(model => model.SearchFirstName)').val(),
                                 SearchLastName: $('#@Html.FieldIdFor(model => model.SearchLastName)').val(),
                                 SearchFriendlyUrlName: $('#@Html.FieldIdFor(model => model.SearchFriendlyUrlName)').val(),
-                                LoadOnlyWithOrders: $('#@Html.FieldIdFor(model => model.LoadOnlyWithOrders)').is(':checked'),
-                                OrdersCreatedFromUtc: $('#@Html.FieldIdFor(model => model.OrdersCreatedFromUtc)').val(),
-                                OrdersCreatedToUtc: $('#@Html.FieldIdFor(model => model.OrdersCreatedToUtc)').val()
+                                LoadOnlyWithPedidos: $('#@Html.FieldIdFor(model => model.LoadOnlyWithPedidos)').is(':checked'),
+                                PedidosCreatedFromUtc: $('#@Html.FieldIdFor(model => model.PedidosCreatedFromUtc)').val(),
+                                PedidosCreatedToUtc: $('#@Html.FieldIdFor(model => model.PedidosCreatedToUtc)').val()
                             };
                             addAntiForgeryToken(data);
                             return data;

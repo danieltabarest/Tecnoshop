@@ -14,13 +14,13 @@ namespace Nop.Services.Catalog
     public static class CategoryExtensions
     {
         /// <summary>
-        /// Sort categories for tree representation
+        /// Sort Categorias for tree representation
         /// </summary>
         /// <param name="source">Source</param>
         /// <param name="parentId">Parent category identifier</param>
-        /// <param name="ignoreCategoriesWithoutExistingParent">A value indicating whether categories without parent category in provided category list (source) should be ignored</param>
-        /// <returns>Sorted categories</returns>
-        public static IList<Category> SortCategoriesForTree(this IList<Category> source, int parentId = 0, bool ignoreCategoriesWithoutExistingParent = false)
+        /// <param name="ignoreCategoriasWithoutExistingParent">A value indicating whether Categorias without parent category in provided category list (source) should be ignored</param>
+        /// <returns>Sorted Categorias</returns>
+        public static IList<Category> SortCategoriasForTree(this IList<Category> source, int parentId = 0, bool ignoreCategoriasWithoutExistingParent = false)
         {
             if (source == null)
                 throw new ArgumentNullException("source");
@@ -30,11 +30,11 @@ namespace Nop.Services.Catalog
             foreach (var cat in source.Where(c => c.ParentCategoryId == parentId).ToList())
             {
                 result.Add(cat);
-                result.AddRange(SortCategoriesForTree(source, cat.Id, true));
+                result.AddRange(SortCategoriasForTree(source, cat.Id, true));
             }
-            if (!ignoreCategoriesWithoutExistingParent && result.Count != source.Count)
+            if (!ignoreCategoriasWithoutExistingParent && result.Count != source.Count)
             {
-                //find categories without parent in provided category source and insert them into result
+                //find Categorias without parent in provided category source and insert them into result
                 foreach (var cat in source)
                     if (result.FirstOrDefault(x => x.Id == cat.Id) == null)
                         result.Add(cat);
@@ -91,17 +91,17 @@ namespace Nop.Services.Catalog
         /// Note: ACL and store mapping is ignored
         /// </summary>
         /// <param name="category">Category</param>
-        /// <param name="allCategories">All categories</param>
+        /// <param name="allCategorias">All Categorias</param>
         /// <param name="separator">Separator</param>
         /// <param name="languageId">Language identifier for localization</param>
         /// <returns>Formatted breadcrumb</returns>
         public static string GetFormattedBreadCrumb(this Category category,
-            IList<Category> allCategories,
+            IList<Category> allCategorias,
             string separator = ">>", int languageId = 0)
         {
             string result = string.Empty;
 
-            var breadcrumb = GetCategoryBreadCrumb(category, allCategories, null, null, true);
+            var breadcrumb = GetCategoryBreadCrumb(category, allCategorias, null, null, true);
             for (int i = 0; i <= breadcrumb.Count - 1; i++)
             {
                 var categoryName = breadcrumb[i].GetLocalized(x => x.Name, languageId);
@@ -157,13 +157,13 @@ namespace Nop.Services.Catalog
         /// Get category breadcrumb 
         /// </summary>
         /// <param name="category">Category</param>
-        /// <param name="allCategories">All categories</param>
+        /// <param name="allCategorias">All Categorias</param>
         /// <param name="aclService">ACL service</param>
         /// <param name="storeMappingService">Store mapping service</param>
         /// <param name="showHidden">A value indicating whether to load hidden records</param>
         /// <returns>Category breadcrumb </returns>
         public static IList<Category> GetCategoryBreadCrumb(this Category category,
-            IList<Category> allCategories,
+            IList<Category> allCategorias,
             IAclService aclService,
             IStoreMappingService storeMappingService,
             bool showHidden = false)
@@ -187,7 +187,7 @@ namespace Nop.Services.Catalog
 
                 alreadyProcessedCategoryIds.Add(category.Id);
 
-                category = (from c in allCategories
+                category = (from c in allCategorias
                             where c.Id == category.ParentCategoryId
                             select c).FirstOrDefault();
             }

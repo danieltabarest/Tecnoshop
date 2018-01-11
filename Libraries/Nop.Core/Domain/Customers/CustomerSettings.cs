@@ -10,7 +10,7 @@ namespace Nop.Core.Domain.Customers
         /// </summary>
         public bool UsernamesEnabled { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether users can check the availability of usernames (when registering or changing in 'My Account')
+        /// Gets or sets a value indicating whether users can check the availability of usernames (when registering or changing in 'Mi cuenta')
         /// </summary>
         public bool CheckUsernameAvailabilityEnabled { get; set; }
         /// <summary>
@@ -89,12 +89,12 @@ namespace Nop.Core.Domain.Customers
         public bool NotifyNewCustomerRegistration { get; set; }
         
         /// <summary>
-        /// Gets or sets a value indicating whether to hide 'Downloable products' tab on 'My account' page
+        /// Gets or sets a value indicating whether to hide 'Downloable products' tab on 'Mi cuenta' page
         /// </summary>
         public bool HideDownloadableProductsTab { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to hide 'Back in stock subscriptions' tab on 'My account' page
+        /// Gets or sets a value indicating whether to hide 'Back in stock subscriptions' tab on 'Mi cuenta' page
         /// </summary>
         public bool HideBackInStockSubscriptionsTab { get; set; }
 
@@ -109,21 +109,21 @@ namespace Nop.Core.Domain.Customers
         public CustomerNameFormat CustomerNameFormat { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Newsletter' form field is enabled
+        /// Gets or sets a value indicating whether 'Boletín informativo' form field is enabled
         /// </summary>
-        public bool NewsletterEnabled { get; set; }
+        public bool Boletín informativoEnabled { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether 'Newsletter' checkbox is ticked by default on the registration page
+        /// Gets or sets a value indicating whether 'Boletín informativo' checkbox is ticked by default on the registration page
         /// </summary>
-        public bool NewsletterTickedByDefault { get; set; }
+        public bool Boletín informativoTickedByDefault { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether to hide newsletter box
+        /// Gets or sets a value indicating whether to hide Boletín informativo box
         /// </summary>
-        public bool HideNewsletterBlock { get; set; }
+        public bool HideBoletín informativoBlock { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether newsletter block should allow to unsubsribe
+        /// Gets or sets a value indicating whether Boletín informativo block should allow to unsubsribe
         /// </summary>
-        public bool NewsletterBlockAllowToUnsubscribe { get; set; }
+        public bool Boletín informativoBlockAllowToUnsubscribe { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating the number of minutes for 'online customers' module

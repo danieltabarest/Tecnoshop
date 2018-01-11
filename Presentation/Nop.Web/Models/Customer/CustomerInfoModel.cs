@@ -122,9 +122,9 @@ namespace Nop.Web.Models.Customer
         [AllowHtml]
         public string Fax { get; set; }
 
-        public bool NewsletterEnabled { get; set; }
-        [NopResourceDisplayName("Account.Fields.Newsletter")]
-        public bool Newsletter { get; set; }
+        public bool Boletín informativoEnabled { get; set; }
+        [NopResourceDisplayName("Account.Fields.Boletín informativo")]
+        public bool Boletín informativo { get; set; }
 
         //preferences
         public bool SignatureEnabled { get; set; }

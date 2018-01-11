@@ -74,7 +74,7 @@ namespace Nop.Web.Infrastructure
                 .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("nop_cache_static"))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<NewsletterModelFactory>().As<INewsletterModelFactory>()
+            builder.RegisterType<Boletín informativoModelFactory>().As<IBoletín informativoModelFactory>()
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<OrderModelFactory>().As<IOrderModelFactory>()

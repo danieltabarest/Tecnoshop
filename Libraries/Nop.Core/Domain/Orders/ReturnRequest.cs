@@ -1,7 +1,7 @@
 using System;
 using Nop.Core.Domain.Customers;
 
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents a return request

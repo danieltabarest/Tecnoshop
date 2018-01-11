@@ -8,10 +8,10 @@ namespace Nop.Core.Plugins
     public interface IOfficialFeedManager
     {
         /// <summary>
-        /// Get categories
+        /// Get Categorias
         /// </summary>
         /// <returns>Result</returns>
-        IList<OfficialFeedCategory> GetCategories();
+        IList<OfficialFeedCategory> GetCategorias();
 
         /// <summary>
         /// Get versions

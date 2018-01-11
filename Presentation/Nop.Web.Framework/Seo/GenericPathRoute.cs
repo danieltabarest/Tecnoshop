@@ -11,7 +11,7 @@ using Nop.Web.Framework.Localization;
 namespace Nop.Web.Framework.Seo
 {
     /// <summary>
-    /// Provides properties and methods for defining a SEO friendly route, and for getting information about the route.
+    /// Provides properties and methods for defining a SEO friendly route, and for getting Information about the route.
     /// </summary>
     public partial class GenericPathRoute : LocalizedRoute
     {
@@ -69,9 +69,9 @@ namespace Nop.Web.Framework.Seo
         #region Methods
 
         /// <summary>
-        /// Returns information about the requested route.
+        /// Returns Information about the requested route.
         /// </summary>
-        /// <param name="httpContext">An object that encapsulates information about the HTTP request.</param>
+        /// <param name="httpContext">An object that encapsulates Information about the HTTP request.</param>
         /// <returns>
         /// An object that contains the values from the route definition.
         /// </returns>

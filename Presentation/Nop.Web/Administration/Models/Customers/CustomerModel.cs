@@ -27,7 +27,7 @@ namespace Nop.Admin.Models.Customers
             this.AvailableStates = new List<SelectListItem>();
             this.AvailableVendors = new List<SelectListItem>();
             this.CustomerAttributes = new List<CustomerAttributeModel>();
-            this.AvailableNewsletterSubscriptionStores = new List<StoreModel>();
+            this.AvailableBoletín informativoSubscriptionStores = new List<StoreModel>();
             this.RewardPointsAvailableStores = new List<SelectListItem>();
         }
        
@@ -190,11 +190,11 @@ namespace Nop.Admin.Models.Customers
         public IList<int> SelectedCustomerRoleIds { get; set; }
 
 
-        //newsletter subscriptions (per store)
-        [NopResourceDisplayName("Admin.Customers.Customers.Fields.Newsletter")]
-        public List<StoreModel> AvailableNewsletterSubscriptionStores { get; set; }
-        [NopResourceDisplayName("Admin.Customers.Customers.Fields.Newsletter")]
-        public int[] SelectedNewsletterSubscriptionStoreIds { get; set; }
+        //Boletín informativo subscriptions (per store)
+        [NopResourceDisplayName("Admin.Customers.Customers.Fields.Boletín informativo")]
+        public List<StoreModel> AvailableBoletín informativoSubscriptionStores { get; set; }
+        [NopResourceDisplayName("Admin.Customers.Customers.Fields.Boletín informativo")]
+        public int[] SelectedBoletín informativoSubscriptionStoreIds { get; set; }
 
 
 
@@ -293,27 +293,27 @@ namespace Nop.Admin.Models.Customers
         public partial class OrderModel : BaseNopEntityModel
         {
             public override int Id { get; set; }
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.CustomOrderNumber")]
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.CustomOrderNumber")]
             public string CustomOrderNumber { get; set; }
 
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.OrderStatus")]
-            public string OrderStatus { get; set; }
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.OrderStatus")]
-            public int OrderStatusId { get; set; }
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.Pedidostatus")]
+            public string Pedidostatus { get; set; }
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.Pedidostatus")]
+            public int PedidostatusId { get; set; }
 
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.PaymentStatus")]
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.PaymentStatus")]
             public string PaymentStatus { get; set; }
 
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.ShippingStatus")]
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.ShippingStatus")]
             public string ShippingStatus { get; set; }
 
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.OrderTotal")]
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.OrderTotal")]
             public string OrderTotal { get; set; }
 
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.Store")]
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.Store")]
             public string StoreName { get; set; }
 
-            [NopResourceDisplayName("Admin.Customers.Customers.Orders.CreatedOn")]
+            [NopResourceDisplayName("Admin.Customers.Customers.Pedidos.CreatedOn")]
             public DateTime CreatedOn { get; set; }
         }
 

@@ -5,7 +5,7 @@ using System.Web.Routing;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Plugins;
@@ -14,7 +14,7 @@ using Nop.Services.Common;
 using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Shipping;
 using Nop.Services.Stores;
@@ -46,7 +46,7 @@ namespace Nop.Web.Factories
         private readonly IRewardPointService _rewardPointService;
         private readonly IWebHelper _webHelper;
 
-        private readonly OrderSettings _orderSettings;
+        private readonly Pedidosettings _Pedidosettings;
         private readonly RewardPointsSettings _rewardPointsSettings;
         private readonly PaymentSettings _paymentSettings;
         private readonly ShippingSettings _shippingSettings;
@@ -73,7 +73,7 @@ namespace Nop.Web.Factories
             IOrderTotalCalculationService orderTotalCalculationService,
             IRewardPointService rewardPointService,
             IWebHelper webHelper,
-            OrderSettings orderSettings, 
+            Pedidosettings Pedidosettings, 
             RewardPointsSettings rewardPointsSettings,
             PaymentSettings paymentSettings,
             ShippingSettings shippingSettings,
@@ -97,7 +97,7 @@ namespace Nop.Web.Factories
             this._rewardPointService = rewardPointService;
             this._webHelper = webHelper;
 
-            this._orderSettings = orderSettings;
+            this._Pedidosettings = Pedidosettings;
             this._rewardPointsSettings = rewardPointsSettings;
             this._paymentSettings = paymentSettings;
             this._shippingSettings = shippingSettings;
@@ -347,11 +347,11 @@ namespace Nop.Web.Factories
         }
 
         /// <summary>
-        /// Prepare payment method model
+        /// Prepare Formas de pago model
         /// </summary>
         /// <param name="cart">Cart</param>
         /// <param name="filterByCountryId">Filter by country identifier</param>
-        /// <returns>Payment method model</returns>
+        /// <returns>Formas de pago model</returns>
         public virtual CheckoutPaymentMethodModel PreparePaymentMethodModel(IList<ShoppingCartItem> cart, int filterByCountryId)
         {
             var model = new CheckoutPaymentMethodModel();
@@ -392,7 +392,7 @@ namespace Nop.Web.Factories
                     PaymentMethodSystemName = pm.PluginDescriptor.SystemName,
                     LogoUrl = pm.PluginDescriptor.GetLogoUrl(_webHelper)
                 };
-                //payment method additional fee
+                //Formas de pago additional fee
                 decimal paymentMethodAdditionalFee = _paymentService.GetAdditionalHandlingFee(cart, pm.PluginDescriptor.SystemName);
                 decimal rateBase = _taxService.GetPaymentMethodAdditionalFee(paymentMethodAdditionalFee, _workContext.CurrentCustomer);
                 decimal rate = _currencyService.ConvertFromPrimaryStoreCurrency(rateBase, _workContext.WorkingCurrency);
@@ -402,7 +402,7 @@ namespace Nop.Web.Factories
                 model.PaymentMethods.Add(pmModel);
             }
             
-            //find a selected (previously) payment method
+            //find a selected (previously) Formas de pago
             var selectedPaymentMethodSystemName = _workContext.CurrentCustomer.GetAttribute<string>(
                 SystemCustomerAttributeNames.SelectedPaymentMethod,
                 _genericAttributeService, _storeContext.CurrentStore.Id);
@@ -427,7 +427,7 @@ namespace Nop.Web.Factories
         /// <summary>
         /// Prepare payment info model
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <returns>Payment info model</returns>
         public virtual CheckoutPaymentInfoModel PreparePaymentInfoModel(IPaymentMethod paymentMethod)
         {
@@ -439,7 +439,7 @@ namespace Nop.Web.Factories
             model.PaymentInfoActionName = actionName;
             model.PaymentInfoControllerName = controllerName;
             model.PaymentInfoRouteValues = routeValues;
-            model.DisplayOrderTotals = _orderSettings.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab;
+            model.DisplayOrderTotals = _Pedidosettings.OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab;
             return model;
         }
 
@@ -452,12 +452,12 @@ namespace Nop.Web.Factories
         {
             var model = new CheckoutConfirmModel();
             //terms of service
-            model.TermsOfServiceOnOrderConfirmPage = _orderSettings.TermsOfServiceOnOrderConfirmPage;
+            model.TermsOfServiceOnOrderConfirmPage = _Pedidosettings.TermsOfServiceOnOrderConfirmPage;
             //min order amount validation
             bool minOrderTotalAmountOk = _orderProcessingService.ValidateMinOrderTotalAmount(cart);
             if (!minOrderTotalAmountOk)
             {
-                decimal minOrderTotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_orderSettings.MinOrderTotalAmount, _workContext.WorkingCurrency);
+                decimal minOrderTotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_Pedidosettings.MinOrderTotalAmount, _workContext.WorkingCurrency);
                 model.MinOrderTotalWarning = string.Format(_localizationService.GetResource("Checkout.MinOrderTotalAmount"), _priceFormatter.FormatPrice(minOrderTotalAmount, true, false));
             }
             return model;
@@ -476,7 +476,7 @@ namespace Nop.Web.Factories
             var model = new CheckoutCompletedModel
             {
                 OrderId = order.Id,
-                OnePageCheckoutEnabled = _orderSettings.OnePageCheckoutEnabled,
+                OnePageCheckoutEnabled = _Pedidosettings.OnePageCheckoutEnabled,
                 CustomOrderNumber = order.CustomOrderNumber
             };
 
@@ -507,7 +507,7 @@ namespace Nop.Web.Factories
             var model = new OnePageCheckoutModel
             {
                 ShippingRequired = cart.RequiresShipping(),
-                DisableBillingAddressCheckoutStep = _orderSettings.DisableBillingAddressCheckoutStep
+                DisableBillingAddressCheckoutStep = _Pedidosettings.DisableBillingAddressCheckoutStep
             };
             return model;
         }

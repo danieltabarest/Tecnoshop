@@ -42,10 +42,10 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    @Html.NopLabelFor(model => model.OrderStatusId)
+                                    @Html.NopLabelFor(model => model.PedidostatusId)
                                 </div>
                                 <div class="col-md-8">
-                                    @Html.NopDropDownList("OrderStatusId", Model.AvailableOrderStatuses)
+                                    @Html.NopDropDownList("PedidostatusId", Model.AvailablePedidostatuses)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -112,11 +112,11 @@
                                     field: "CountryName",
                                     title: "@T("Admin.SalesReport.Country.Fields.CountryName")"
                                 }, {
-                                    field: "TotalOrders",
-                                    title: "@T("Admin.SalesReport.Country.Fields.TotalOrders")"
+                                    field: "TotalPedidos",
+                                    title: "@T("Admin.SalesReport.Country.Fields.TotalPedidos")"
                                 }, {
-                                    field: "SumOrders",
-                                    title: "@T("Admin.SalesReport.Country.Fields.SumOrders")"
+                                    field: "SumPedidos",
+                                    title: "@T("Admin.SalesReport.Country.Fields.SumPedidos")"
                                 }]
                             });
                         });
@@ -135,7 +135,7 @@
                             var data = {
                                 StartDate: $('#@Html.FieldIdFor(model => model.StartDate)').val(),
                                 EndDate: $('#@Html.FieldIdFor(model => model.EndDate)').val(),
-                                OrderStatusId: $('#OrderStatusId').val(),
+                                PedidostatusId: $('#PedidostatusId').val(),
                                 PaymentStatusId: $('#PaymentStatusId').val()
                             };
                             addAntiForgeryToken(data);

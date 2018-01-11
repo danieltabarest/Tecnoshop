@@ -4,7 +4,7 @@
     //page title
     ViewBag.Title = T("Admin.Configuration.Payment.MethodRestrictions").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Payment method restrictions");
+    Html.SetActiveMenuItemSystemName("Formas de pago restrictions");
 }
 
 @using (Html.BeginForm())
@@ -30,7 +30,7 @@
                         <p>@T("Admin.Configuration.Payment.MethodRestrictions.Description")</p>
                         @if (Model.AvailablePaymentMethods.Count == 0)
                         {
-                            <text>No payment methods installed</text>
+                            <text>No Formas de pagos installed</text>
                         }
                         else if (Model.AvailableCountries.Count == 0)
                         {

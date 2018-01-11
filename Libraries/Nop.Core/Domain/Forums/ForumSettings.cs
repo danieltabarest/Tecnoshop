@@ -120,7 +120,7 @@ namespace Nop.Core.Domain.Forums
         public int PrivateMessagesPageSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the page size for (My Account) Forum Subscriptions
+        /// Gets or sets the page size for (Mi cuenta) Forum Subscriptions
         /// </summary>
         public int ForumSubscriptionsPageSize { get; set; }
 

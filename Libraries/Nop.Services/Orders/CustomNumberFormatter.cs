@@ -1,23 +1,23 @@
 ﻿//using System;
 //using System.Text.RegularExpressions;
 
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     public partial class CustomNumberFormatter : ICustomNumberFormatter
     {
         #region Fields
 
-        private OrderSettings _orderSettings;
+        private Pedidosettings _Pedidosettings;
 
         #endregion
 
         #region Ctor
 
-        public CustomNumberFormatter(OrderSettings orderSettings)
+        public CustomNumberFormatter(Pedidosettings Pedidosettings)
         {
-            _orderSettings = orderSettings;
+            _Pedidosettings = Pedidosettings;
         }
 
         #endregion
@@ -28,13 +28,13 @@ namespace Nop.Services.Orders
         {
             var customNumber = string.Empty;
 
-            if (string.IsNullOrEmpty(_orderSettings.ReturnRequestNumberMask))
+            if (string.IsNullOrEmpty(_Pedidosettings.ReturnRequestNumberMask))
             {
                 customNumber = returnRequest.Id.ToString();
             }
             else
             {
-                customNumber = _orderSettings.ReturnRequestNumberMask
+                customNumber = _Pedidosettings.ReturnRequestNumberMask
                     .Replace("{ID}", returnRequest.Id.ToString())
                     .Replace("{YYYY}", returnRequest.CreatedOnUtc.ToString("yyyy"))
                     .Replace("{YY}", returnRequest.CreatedOnUtc.ToString("yy"))
@@ -62,10 +62,10 @@ namespace Nop.Services.Orders
 
         public virtual string GenerateOrderCustomNumber(Order order)
         {
-            if (string.IsNullOrEmpty(_orderSettings.CustomOrderNumberMask))
+            if (string.IsNullOrEmpty(_Pedidosettings.CustomOrderNumberMask))
                 return order.Id.ToString();
 
-            var customNumber = _orderSettings.CustomOrderNumberMask
+            var customNumber = _Pedidosettings.CustomOrderNumberMask
                 .Replace("{ID}", order.Id.ToString())
                 .Replace("{YYYY}", order.CreatedOnUtc.ToString("yyyy"))
                 .Replace("{YY}", order.CreatedOnUtc.ToString("yy"))

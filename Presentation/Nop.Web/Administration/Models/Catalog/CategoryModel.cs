@@ -20,7 +20,7 @@ namespace Nop.Admin.Models.Catalog
             }
             Locales = new List<CategoryLocalizedModel>();
             AvailableCategoryTemplates = new List<SelectListItem>();
-            AvailableCategories = new List<SelectListItem>();
+            AvailableCategorias = new List<SelectListItem>();
             AvailableDiscounts = new List<SelectListItem>();
             SelectedDiscountIds = new List<int>();
 
@@ -31,67 +31,67 @@ namespace Nop.Admin.Models.Catalog
             AvailableStores = new List<SelectListItem>();
         }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Name")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Name")]
         [AllowHtml]
         public string Name { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Description")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Description")]
         [AllowHtml]
         public string Description { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.CategoryTemplate")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.CategoryTemplate")]
         public int CategoryTemplateId { get; set; }
         public IList<SelectListItem> AvailableCategoryTemplates { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaKeywords")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.MetaKeywords")]
         [AllowHtml]
         public string MetaKeywords { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaDescription")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.MetaDescription")]
         [AllowHtml]
         public string MetaDescription { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaTitle")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.MetaTitle")]
         [AllowHtml]
         public string MetaTitle { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.SeName")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.SeName")]
         [AllowHtml]
         public string SeName { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Parent")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Parent")]
         public int ParentCategoryId { get; set; }
 
         [UIHint("Picture")]
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Picture")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Picture")]
         public int PictureId { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.PageSize")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.PageSize")]
         public int PageSize { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.AllowCustomersToSelectPageSize")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.AllowCustomersToSelectPageSize")]
         public bool AllowCustomersToSelectPageSize { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.PageSizeOptions")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.PageSizeOptions")]
         public string PageSizeOptions { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.PriceRanges")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.PriceRanges")]
         [AllowHtml]
         public string PriceRanges { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.ShowOnHomePage")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.ShowOnHomePage")]
         public bool ShowOnHomePage { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.IncludeInTopMenu")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.IncludeInTopMenu")]
         public bool IncludeInTopMenu { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Published")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Published")]
         public bool Published { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Deleted")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Deleted")]
         public bool Deleted { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.DisplayOrder")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.DisplayOrder")]
         public int DisplayOrder { get; set; }
         
         public IList<CategoryLocalizedModel> Locales { get; set; }
@@ -99,23 +99,23 @@ namespace Nop.Admin.Models.Catalog
         public string Breadcrumb { get; set; }
 
         //ACL (customer roles)
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.AclCustomerRoles")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.AclCustomerRoles")]
         [UIHint("MultiSelect")]
         public IList<int> SelectedCustomerRoleIds { get; set; }
         public IList<SelectListItem> AvailableCustomerRoles { get; set; }
         
         //store mapping
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.LimitedToStores")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.LimitedToStores")]
         [UIHint("MultiSelect")]
         public IList<int> SelectedStoreIds { get; set; }
         public IList<SelectListItem> AvailableStores { get; set; }
 
 
-        public IList<SelectListItem> AvailableCategories { get; set; }
+        public IList<SelectListItem> AvailableCategorias { get; set; }
 
 
         //discounts
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Discounts")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Discounts")]
         [UIHint("MultiSelect")]
         public IList<int> SelectedDiscountIds { get; set; }
         public IList<SelectListItem> AvailableDiscounts { get; set; }
@@ -129,13 +129,13 @@ namespace Nop.Admin.Models.Catalog
 
             public int ProductId { get; set; }
 
-            [NopResourceDisplayName("Admin.Catalog.Categories.Products.Fields.Product")]
+            [NopResourceDisplayName("Admin.Catalog.Categorias.Products.Fields.Product")]
             public string ProductName { get; set; }
 
-            [NopResourceDisplayName("Admin.Catalog.Categories.Products.Fields.IsFeaturedProduct")]
+            [NopResourceDisplayName("Admin.Catalog.Categorias.Products.Fields.IsFeaturedProduct")]
             public bool IsFeaturedProduct { get; set; }
 
-            [NopResourceDisplayName("Admin.Catalog.Categories.Products.Fields.DisplayOrder")]
+            [NopResourceDisplayName("Admin.Catalog.Categorias.Products.Fields.DisplayOrder")]
             public int DisplayOrder { get; set; }
         }
 
@@ -143,7 +143,7 @@ namespace Nop.Admin.Models.Catalog
         {
             public AddCategoryProductModel()
             {
-                AvailableCategories = new List<SelectListItem>();
+                AvailableCategorias = new List<SelectListItem>();
                 AvailableManufacturers = new List<SelectListItem>();
                 AvailableStores = new List<SelectListItem>();
                 AvailableVendors = new List<SelectListItem>();
@@ -164,7 +164,7 @@ namespace Nop.Admin.Models.Catalog
             [NopResourceDisplayName("Admin.Catalog.Products.List.SearchProductType")]
             public int SearchProductTypeId { get; set; }
 
-            public IList<SelectListItem> AvailableCategories { get; set; }
+            public IList<SelectListItem> AvailableCategorias { get; set; }
             public IList<SelectListItem> AvailableManufacturers { get; set; }
             public IList<SelectListItem> AvailableStores { get; set; }
             public IList<SelectListItem> AvailableVendors { get; set; }
@@ -182,27 +182,27 @@ namespace Nop.Admin.Models.Catalog
     {
         public int LanguageId { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Name")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Name")]
         [AllowHtml]
         public string Name { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Description")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.Description")]
         [AllowHtml]
         public string Description {get;set;}
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaKeywords")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.MetaKeywords")]
         [AllowHtml]
         public string MetaKeywords { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaDescription")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.MetaDescription")]
         [AllowHtml]
         public string MetaDescription { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaTitle")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.MetaTitle")]
         [AllowHtml]
         public string MetaTitle { get; set; }
 
-        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.SeName")]
+        [NopResourceDisplayName("Admin.Catalog.Categorias.Fields.SeName")]
         [AllowHtml]
         public string SeName { get; set; }
     }

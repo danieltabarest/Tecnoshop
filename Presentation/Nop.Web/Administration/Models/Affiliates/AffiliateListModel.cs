@@ -20,13 +20,13 @@ namespace Nop.Admin.Models.Affiliates
         [AllowHtml]
         public string SearchFriendlyUrlName { get; set; }
 
-        [NopResourceDisplayName("Admin.Affiliates.List.LoadOnlyWithOrders")]
-        public bool LoadOnlyWithOrders { get; set; }
-        [NopResourceDisplayName("Admin.Affiliates.List.OrdersCreatedFromUtc")]
+        [NopResourceDisplayName("Admin.Affiliates.List.LoadOnlyWithPedidos")]
+        public bool LoadOnlyWithPedidos { get; set; }
+        [NopResourceDisplayName("Admin.Affiliates.List.PedidosCreatedFromUtc")]
         [UIHint("DateNullable")]
-        public DateTime? OrdersCreatedFromUtc { get; set; }
-        [NopResourceDisplayName("Admin.Affiliates.List.OrdersCreatedToUtc")]
+        public DateTime? PedidosCreatedFromUtc { get; set; }
+        [NopResourceDisplayName("Admin.Affiliates.List.PedidosCreatedToUtc")]
         [UIHint("DateNullable")]
-        public DateTime? OrdersCreatedToUtc { get; set; }
+        public DateTime? PedidosCreatedToUtc { get; set; }
     }
 }

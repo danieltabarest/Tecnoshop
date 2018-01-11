@@ -133,7 +133,7 @@ namespace Nop.Admin.Controllers
 
             var pm = _paymentService.LoadPaymentMethodBySystemName(systemName);
             if (pm == null)
-                //No payment method found with the specified id
+                //No Formas de pago found with the specified id
                 return RedirectToAction("Methods");
 
             var model = pm.ToModel();

@@ -5,7 +5,7 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Vendors;
 
@@ -202,24 +202,24 @@ namespace Nop.Services.Messages
 
         #endregion
 
-        #region Newsletter workflow
+        #region Boletín informativo workflow
 
         /// <summary>
-        /// Sends a newsletter subscription activation message
+        /// Sends a Boletín informativo subscription activation message
         /// </summary>
-        /// <param name="subscription">Newsletter subscription</param>
+        /// <param name="subscription">Boletín informativo subscription</param>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Queued email identifier</returns>
-        int SendNewsLetterSubscriptionActivationMessage(NewsLetterSubscription subscription,
+        int SendBoletín informativoSubscriptionActivationMessage(Boletín informativoSubscription subscription,
             int languageId);
 
         /// <summary>
-        /// Sends a newsletter subscription deactivation message
+        /// Sends a Boletín informativo subscription deactivation message
         /// </summary>
-        /// <param name="subscription">Newsletter subscription</param>
+        /// <param name="subscription">Boletín informativo subscription</param>
         /// <param name="languageId">Language identifier</param>
         /// <returns>Queued email identifier</returns>
-        int SendNewsLetterSubscriptionDeactivationMessage(NewsLetterSubscription subscription,
+        int SendBoletín informativoSubscriptionDeactivationMessage(Boletín informativoSubscription subscription,
             int languageId);
 
         #endregion
@@ -334,7 +334,7 @@ namespace Nop.Services.Messages
         int SendNewVendorAccountApplyStoreOwnerNotification(Customer customer, Vendor vendor, int languageId);
 
         /// <summary>
-        /// Sends 'Vendor information change' message to a store owner
+        /// Sends 'Vendor Information change' message to a store owner
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <param name="languageId">Message language identifier</param>

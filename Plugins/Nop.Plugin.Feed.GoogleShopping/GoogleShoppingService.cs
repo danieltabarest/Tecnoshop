@@ -273,11 +273,11 @@ namespace Nop.Plugin.Feed.GoogleShopping
 
                         //product type [product_type] - Your category of the item
                         var defaultProductCategory = _categoryService
-                            .GetProductCategoriesByProductId(product.Id, store.Id)
+                            .GetProductCategoriasByProductId(product.Id, store.Id)
                             .FirstOrDefault();
                         if (defaultProductCategory != null)
                         {
-                            //TODO localize categories
+                            //TODO localize Categorias
                             var category = defaultProductCategory.Category
                                 .GetFormattedBreadCrumb(_categoryService, separator: ">", languageId: languageId);
                             if (!String.IsNullOrEmpty((category)))
@@ -334,7 +334,7 @@ namespace Nop.Plugin.Feed.GoogleShopping
                         //availability [availability] - Availability status of the item
                         string availability = "in stock"; //in stock by default
                         if (product.ManageInventoryMethod == ManageInventoryMethod.ManageStock
-                            && product.BackorderMode == BackorderMode.NoBackorders
+                            && product.BackorderMode == BackorderMode.NoBackPedidos
                             && product.GetTotalStockQuantity() <= 0)
                         {
                             availability = "out of stock";
@@ -381,7 +381,7 @@ namespace Nop.Plugin.Feed.GoogleShopping
 
                         #region Unique Product Identifiers
 
-                        /* Unique product identifiers such as UPC, EAN, JAN or ISBN allow us to show your listing on the appropriate product page. If you don't provide the required unique product identifiers, your store may not appear on product pages, and all your items may be removed from Product Search.
+                        /* Unique product identifiers such as UPC, EAN, JAN or ISBN allow us to show your listing on the appropriate product page. If you don't provide the required unique product identifiers, yNuestra tienda may not appear on product pages, and all your items may be removed from Product Search.
                          * We require unique product identifiers for all products - except for custom made goods. For apparel, you must submit the 'brand' attribute. For media (such as books, movies, music and video games), you must submit the 'gtin' attribute. In all cases, we recommend you submit all three attributes.
                          * You need to submit at least two attributes of 'brand', 'gtin' and 'mpn', but we recommend that you submit all three if available. For media (such as books, movies, music and video games), you must submit the 'gtin' attribute, but we recommend that you include 'brand' and 'mpn' if available.
                         */
@@ -425,7 +425,7 @@ namespace Nop.Plugin.Feed.GoogleShopping
 
                         #region Apparel Products
 
-                        /* Apparel includes all products that fall under 'Apparel & Accessories' (including all sub-categories)
+                        /* Apparel includes all products that fall under 'Apparel & Accessories' (including all sub-Categorias)
                          * in Google’s product taxonomy.
                         */
 
@@ -570,9 +570,9 @@ namespace Nop.Plugin.Feed.GoogleShopping
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.Override", "Override product settings");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.OverrideInstructions", "<p>You can download the list of allowed Google product category attributes <a href=\"http://www.google.com/support/merchants/bin/answer.py?answer=160081\" target=\"_blank\">here</a></p>");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PassShippingInfoWeight", "Pass shipping info (weight)");
-            this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PassShippingInfoWeight.Hint", "Check if you want to include shipping information (weight) in generated XML file.");
+            this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PassShippingInfoWeight.Hint", "Check if you want to include shipping Information (weight) in generated XML file.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PassShippingInfoDimensions", "Pass shipping info (dimensions)");
-            this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PassShippingInfoDimensions.Hint", "Check if you want to include shipping information (dimensions) in generated XML file.");
+            this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PassShippingInfoDimensions.Hint", "Check if you want to include shipping Information (dimensions) in generated XML file.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PricesConsiderPromotions", "Prices consider promotions");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.PricesConsiderPromotions.Hint", "Check if you want prices to be calculated with promotions (tier prices, discounts, special prices, tax, etc). But please note that it can significantly reduce time required to generate the feed file.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.ProductPictureSize", "Product thumbnail image size");
@@ -586,7 +586,7 @@ namespace Nop.Plugin.Feed.GoogleShopping
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.Products.CustomGoods", "Custom goods (no identifier exists)");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.SuccessResult", "Google Shopping feed has been successfully generated.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.StaticFilePath", "Generated file path (static)");
-            this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.StaticFilePath.Hint", "A file path of the generated file. It's static for your store and can be shared with the Google Shopping service.");
+            this.AddOrUpdatePluginLocaleResource("Plugins.Feed.GoogleShopping.StaticFilePath.Hint", "A file path of the generated file. It's static for yNuestra tienda and can be shared with the Google Shopping service.");
             
             base.Install();
         }

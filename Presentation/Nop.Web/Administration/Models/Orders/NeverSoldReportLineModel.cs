@@ -1,7 +1,7 @@
 ﻿using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     public partial class NeverSoldReportLineModel : BaseNopModel
     {

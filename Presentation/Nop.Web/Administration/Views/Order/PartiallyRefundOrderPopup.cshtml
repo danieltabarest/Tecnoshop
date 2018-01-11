@@ -4,7 +4,7 @@
     Layout = "~/Administration/Views/Shared/_AdminPopupLayout.cshtml";
 
     //page title
-    ViewBag.Title = T("Admin.Orders.Fields.PartialRefund").Text;
+    ViewBag.Title = T("Admin.Pedidos.Fields.PartialRefund").Text;
 }
 
 @if (ViewBag.RefreshPage == true)
@@ -21,7 +21,7 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Orders.Fields.PartialRefund")
+            @T("Admin.Pedidos.Fields.PartialRefund")
         </h1>
         <div class="pull-right">
             &nbsp;
@@ -34,7 +34,7 @@
             <div class="panel-group">
                 <div class="panel panel-default panel-popup">
                     <div class="panel-heading">
-                        @string.Format(T("Admin.Orders.Fields.PartialRefund.OrderInfo").Text, Model.Id)
+                        @string.Format(T("Admin.Pedidos.Fields.PartialRefund.OrderInfo").Text, Model.Id)
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -44,14 +44,14 @@
                             <div class="col-sm-7">
                                 @Html.NopEditorFor(model => model.AmountToRefund)
                                 <span style="white-space: nowrap">
-                                    @string.Format(T("Admin.Orders.Fields.PartialRefund.AmountToRefund.Max").Text, Model.MaxAmountToRefund.ToString("G29"), Model.PrimaryStoreCurrencyCode)
+                                    @string.Format(T("Admin.Pedidos.Fields.PartialRefund.AmountToRefund.Max").Text, Model.MaxAmountToRefund.ToString("G29"), Model.PrimaryStoreCurrencyCode)
                                 </span>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-7 col-sm-offset-5">
                                 <button type="submit" name="partialrefundorder" id="partialrefundorder" class="btn btn-primary">
-                                    @T("Admin.Orders.Fields.Refund")
+                                    @T("Admin.Pedidos.Fields.Refund")
                                 </button>
                             </div>
                         </div>

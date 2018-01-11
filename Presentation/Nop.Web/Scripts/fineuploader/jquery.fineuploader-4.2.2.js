@@ -2406,7 +2406,7 @@ qq.status = {
         },
 
         /**
-         * Conditionally orders a manual retry of a failed upload.
+         * Conditionally Pedidos a manual retry of a failed upload.
          *
          * @param id File ID of the failed upload
          * @param callback Optional callback to invoke if a retry is prudent.
@@ -2604,7 +2604,7 @@ qq.status = {
          * Performs some internal validation checks on an item, defined in the `validation` option.
          *
          * @param fileWrapper Wrapper containing a `file` along with an `id`
-         * @param validationDescriptor Normalized information about the item (`size`, `name`).
+         * @param validationDescriptor Normalized Information about the item (`size`, `name`).
          * @returns qq.Promise with appropriate callbacks invoked depending on the validity of the file
          * @private
          */
@@ -8177,7 +8177,7 @@ qq.Session = function(spec) {
 
 /*globals qq, XMLHttpRequest*/
 /**
- * Thin module used to send GET requests to the server, expecting information about session
+ * Thin module used to send GET requests to the server, expecting Information about session
  * data used to initialize an uploader instance.
  *
  * @param spec Various options used to influence the associated request.

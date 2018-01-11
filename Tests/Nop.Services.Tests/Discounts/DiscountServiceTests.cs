@@ -39,7 +39,7 @@ namespace Nop.Services.Tests.Discounts
             var discount1 = new Discount
             {
                 Id = 1,
-                DiscountType = DiscountType.AssignedToCategories,
+                DiscountType = DiscountType.AssignedToCategorias,
                 Name = "Discount 1",
                 UsePercentage = true,
                 DiscountPercentage = 10,

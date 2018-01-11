@@ -48,11 +48,11 @@
                             </div>
                         </div>
                         <div class="advanced-search" id="advanced-search-block">
-                            @if (Model.AvailableCategories.Count > 0)
+                            @if (Model.AvailableCategorias.Count > 0)
                             {
                                 <div class="inputs">
                                     @Html.LabelFor(model => model.cid, new { }, ":")
-                                    @Html.DropDownListFor(model => model.cid, Model.AvailableCategories)
+                                    @Html.DropDownListFor(model => model.cid, Model.AvailableCategorias)
                                 </div>
                                 <div class="inputs reversed">
                                     @Html.CheckBoxFor(model => model.isc)

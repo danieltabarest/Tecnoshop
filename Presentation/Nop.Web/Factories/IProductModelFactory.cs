@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Web.Models.Catalog;
 
 namespace Nop.Web.Factories

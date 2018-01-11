@@ -23,7 +23,7 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Security;
 using Nop.Services.Seo;
@@ -372,7 +372,7 @@ namespace Nop.Admin.Controllers
                     Text = _localizationService.GetResource("Admin.System.Warnings.Shipping.OnlyOneOffline")
                 });
 
-            //payment methods
+            //Formas de pagos
             if (_paymentService.LoadActivePaymentMethods().Any())
                 model.Add(new SystemWarningModel
                 {

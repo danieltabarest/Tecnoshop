@@ -24,7 +24,7 @@ namespace Nop.Core.Data
             return _databaseIsInstalled.Value;
         }
 
-        //Reset information cached in the "DatabaseIsInstalled" method
+        //Reset Information cached in the "DatabaseIsInstalled" method
         public static void ResetCache()
         {
             _databaseIsInstalled = null;

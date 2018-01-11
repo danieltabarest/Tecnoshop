@@ -97,7 +97,7 @@ namespace Nop.Web.MVC.Tests.Public.Infrastructure
 
             "~/customer/info/".ShouldMapTo<CustomerController>(c => c.Info());
             "~/customer/addresses/".ShouldMapTo<CustomerController>(c => c.Addresses());
-            "~/order/history/".ShouldMapTo<OrderController>(c => c.CustomerOrders());
+            "~/order/history/".ShouldMapTo<OrderController>(c => c.CustomerPedidos());
             "~/returnrequest/history/".ShouldMapTo<ReturnRequestController>(c => c.CustomerReturnRequests());
             "~/customer/downloadableproducts/".ShouldMapTo<CustomerController>(c => c.DownloadableProducts());
             "~/backinstocksubscriptions/manage/".ShouldMapTo<BackInStockSubscriptionController>(c => c.CustomerSubscriptions(null));
@@ -170,10 +170,10 @@ namespace Nop.Web.MVC.Tests.Public.Infrastructure
         }
 
         [Test]
-        public void Newsletter_routes()
+        public void Boletín informativo_routes()
         {
             //TODO cannot validate true parameter
-            //"~/newsletter/subscriptionactivation/bb74c80f-1edd-43f7-85df-a3cccc1b47b9/true".ShouldMapTo<NewsletterController>(c => c.SubscriptionActivation(new Guid("bb74c80f-1edd-43f7-85df-a3cccc1b47b9"), true));
+            //"~/Boletín informativo/subscriptionactivation/bb74c80f-1edd-43f7-85df-a3cccc1b47b9/true".ShouldMapTo<Boletín informativoController>(c => c.SubscriptionActivation(new Guid("bb74c80f-1edd-43f7-85df-a3cccc1b47b9"), true));
         }
 
         [Test]

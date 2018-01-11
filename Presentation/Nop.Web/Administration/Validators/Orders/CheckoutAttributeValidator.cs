@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Nop.Admin.Models.Orders;
-using Nop.Core.Domain.Orders;
+using Nop.Admin.Models.Pedidos;
+using Nop.Core.Domain.Pedidos;
 using Nop.Data;
 using Nop.Services.Localization;
 using Nop.Web.Framework.Validators;
 
-namespace Nop.Admin.Validators.Orders
+namespace Nop.Admin.Validators.Pedidos
 {
     public partial class CheckoutAttributeValidator : BaseNopValidator<CheckoutAttributeModel>
     {

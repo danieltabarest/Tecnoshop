@@ -1,6 +1,6 @@
 ﻿@model ProductDetailsModel.AddToCartModel
 @using Nop.Web.Models.Catalog;
-@using Nop.Core.Domain.Orders;
+@using Nop.Core.Domain.Pedidos;
 @if (Model.UpdatedShoppingCartItemId > 0)
 {
     @Html.HiddenFor(x => x.UpdatedShoppingCartItemId)
@@ -36,7 +36,7 @@
                 else
                 {
                     @Html.TextBoxFor(model => model.EnteredQuantity, new { @class = "qty-input" })
-                    //when a customer clicks 'Enter' button we submit the "add to cart" button (if visible)
+                    //when a customer clicks 'Enter' button we submit the "Agregar a carrito de compras" button (if visible)
                     <script type="text/javascript">
                         $(document).ready(function () {
                             $("#@Html.FieldIdFor(model => model.EnteredQuantity)").keydown(function (event) {

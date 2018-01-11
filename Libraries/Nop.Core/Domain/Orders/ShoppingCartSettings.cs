@@ -1,7 +1,7 @@
 ﻿
 using Nop.Core.Configuration;
 
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     public class ShoppingCartSettings : ISettings
     {
@@ -31,7 +31,7 @@ namespace Nop.Core.Domain.Orders
         public bool AllowOutOfStockItemsToBeAddedToWishlist { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to move items from wishlist to cart when clicking "Add to cart" button. Otherwise, they are copied.
+        /// Gets or sets a value indicating whether to move items from wishlist to cart when clicking "Agregar a carrito de compras" button. Otherwise, they are copied.
         /// </summary>
         public bool MoveItemsFromWishlistToCart { get; set; }
         

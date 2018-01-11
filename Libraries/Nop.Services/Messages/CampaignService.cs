@@ -136,7 +136,7 @@ namespace Nop.Services.Messages
         /// <param name="subscriptions">Subscriptions</param>
         /// <returns>Total emails sent</returns>
         public virtual int SendCampaign(Campaign campaign, EmailAccount emailAccount,
-            IEnumerable<NewsLetterSubscription> subscriptions)
+            IEnumerable<Boletín informativoSubscription> subscriptions)
         {
             if (campaign == null)
                 throw new ArgumentNullException("campaign");
@@ -149,13 +149,13 @@ namespace Nop.Services.Messages
             foreach (var subscription in subscriptions)
             {
                 var customer = _customerService.GetCustomerByEmail(subscription.Email);
-                //ignore deleted or inactive customers when sending newsletter campaigns
+                //ignore deleted or inactive customers when sending Boletín informativo campaigns
                 if (customer != null && (!customer.Active || customer.Deleted))
                     continue;
 
                 var tokens = new List<Token>();
                 _messageTokenProvider.AddStoreTokens(tokens, _storeContext.CurrentStore, emailAccount);
-                _messageTokenProvider.AddNewsLetterSubscriptionTokens(tokens, subscription);
+                _messageTokenProvider.AddBoletín informativoSubscriptionTokens(tokens, subscription);
                 if (customer != null)
                     _messageTokenProvider.AddCustomerTokens(tokens, customer);
 

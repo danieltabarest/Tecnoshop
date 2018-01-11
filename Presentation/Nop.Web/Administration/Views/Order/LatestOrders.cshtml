@@ -2,8 +2,8 @@
 @using Nop.Services.Common
 @using Nop.Services.Stores
 @{
-    const string panelId = "latest-orders-box";
-    const string hidePanelAttributeName = "HideLatestOrdersPanel";
+    const string panelId = "latest-Pedidos-box";
+    const string hidePanelAttributeName = "HideLatestPedidosPanel";
     var hidePanel = EngineContext.Current.Resolve<IWorkContext>().CurrentCustomer.GetAttribute<bool>(hidePanelAttributeName);
     var gridPageSize = 5;
     var stores = EngineContext.Current.Resolve<IStoreService>().GetAllStores();
@@ -13,8 +13,8 @@
     <div class="box-header with-border">
         <h3 class="box-title">
             <i class="fa fa-cart-plus"></i>
-            @T("Admin.Dashboard.LatestOrders")
-            <a href="@Url.Action("List", "Order")" class="btn btn-xs btn-info btn-flat margin-l-10">@T("Admin.Dashboard.LatestOrders.ViewAll")</a>
+            @T("Admin.Dashboard.LatestPedidos")
+            <a href="@Url.Action("List", "Order")" class="btn btn-xs btn-info btn-flat margin-l-10">@T("Admin.Dashboard.LatestPedidos.ViewAll")</a>
         </h3>
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="box-body">
-        <div id="orders-grid"></div>
+        <div id="Pedidos-grid"></div>
 
         <script>
             $(document).ready(function () {
@@ -39,7 +39,7 @@
                     saveUserPreferences('@(Url.Action("SavePreference", "Preferences"))', '@hidePanelAttributeName', collapsed);
                 });
 
-                $("#orders-grid").kendoGrid({
+                $("#Pedidos-grid").kendoGrid({
                     dataSource: {
                         type: "json",
                         transport: {
@@ -47,7 +47,7 @@
                                 url: "@Html.Raw(Url.Action("OrderList", "Order"))",
                                 type: "POST",
                                 dataType: "json",
-                                data: additionalDataLatestOrders
+                                data: additionalDataLatestPedidos
                             }
                         },
                         schema: {
@@ -73,34 +73,34 @@
                     columns: [
                         {
                             field: "CustomOrderNumber",
-                            title: "@T("Admin.Orders.Fields.CustomOrderNumber")",
+                            title: "@T("Admin.Pedidos.Fields.CustomOrderNumber")",
                             width: 80
                         },
                         {
-                            field: "OrderStatus",
-                            title: "@T("Admin.Orders.Fields.OrderStatus")",
+                            field: "Pedidostatus",
+                            title: "@T("Admin.Pedidos.Fields.Pedidostatus")",
                             width: 100,
                             template: '<span class="grid-report-item ' +
-                                                    '# if(OrderStatusId == 10) {# yellow #} #' +
-                                                    '# if(OrderStatusId == 20) {# blue #} #' +
-                                                    '# if(OrderStatusId == 30) {# green #} #' +
-                                                    '# if(OrderStatusId == 40) {# red #} #' +
-                                '">#=OrderStatus#</span>'
+                                                    '# if(PedidostatusId == 10) {# yellow #} #' +
+                                                    '# if(PedidostatusId == 20) {# blue #} #' +
+                                                    '# if(PedidostatusId == 30) {# green #} #' +
+                                                    '# if(PedidostatusId == 40) {# red #} #' +
+                                '">#=Pedidostatus#</span>'
                         },
                         {
                             field: "CustomerEmail",
-                            title: "@T("Admin.Orders.Fields.Customer")",
+                            title: "@T("Admin.Pedidos.Fields.Customer")",
                             width: 250,
                             template: '#=CustomerFullName# (#=CustomerEmail#)'
                         },
                         {
                             field: "StoreName",
                             hidden: @(stores.Count > 1 ? "false" : "true"),
-                            title: "@T("Admin.Orders.Fields.Store")",
+                            title: "@T("Admin.Pedidos.Fields.Store")",
                             width: 100
                         }, {
                             field: "CreatedOn",
-                            title: "@T("Admin.Orders.Fields.CreatedOn")",
+                            title: "@T("Admin.Pedidos.Fields.CreatedOn")",
                             width: 150,
                             type: "date",
                             format: "{0:G}"
@@ -117,7 +117,7 @@
                 });
             });
 
-            function additionalDataLatestOrders() {
+            function additionalDataLatestPedidos() {
                 var data = {};
                 addAntiForgeryToken(data);
                 return data;

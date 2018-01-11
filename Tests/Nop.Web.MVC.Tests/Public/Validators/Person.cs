@@ -21,7 +21,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators
         public Person()
         {
             Children = new List<Person>();
-            Orders = new List<Order>();
+            Pedidos = new List<Order>();
         }
 
         public int CalculateSalary()
@@ -30,7 +30,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators
         }
 
         public Address Address { get; set; }
-        public IList<Order> Orders { get; set; }
+        public IList<Order> Pedidos { get; set; }
 
         public string Email { get; set; }
         public decimal Discount { get; set; }

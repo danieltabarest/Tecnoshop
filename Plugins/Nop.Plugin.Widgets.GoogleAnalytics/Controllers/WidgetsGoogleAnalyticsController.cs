@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Nop.Core;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Plugin.Widgets.GoogleAnalytics.Models;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Stores;
 using Nop.Web.Framework.Controllers;
 
@@ -24,7 +24,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
         private readonly IStoreContext _storeContext;
         private readonly IStoreService _storeService;
         private readonly ISettingService _settingService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly ILogger _logger;
         private readonly ICategoryService _categoryService;
         private readonly IProductAttributeParser _productAttributeParser;
@@ -35,7 +35,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
             IStoreContext storeContext, 
             IStoreService storeService,
             ISettingService settingService, 
-            IOrderService orderService, 
+            IPedidoservice Pedidoservice, 
             ILogger logger, 
             ICategoryService categoryService,
             IProductAttributeParser productAttributeParser,
@@ -46,7 +46,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
             this._storeContext = storeContext;
             this._storeService = storeService;
             this._settingService = settingService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._logger = logger;
             this._categoryService = categoryService;
             this._productAttributeParser = productAttributeParser;
@@ -153,7 +153,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
 
         private Order GetLastOrder()
         {
-            var order = _orderService.SearchOrders(storeId: _storeContext.CurrentStore.Id,
+            var order = _Pedidoservice.SearchPedidos(storeId: _storeContext.CurrentStore.Id,
                 customerId: _workContext.CurrentCustomer.Id, pageSize: 1).FirstOrDefault();
             return order;
         }
@@ -211,8 +211,8 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{SITE}", _storeContext.CurrentStore.Url.Replace("http://", "").Replace("/", ""));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{TOTAL}", order.OrderTotal.ToString("0.00", usCulture));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{TAX}", order.OrderTax.ToString("0.00", usCulture));
-                var orderShipping = googleAnalyticsSettings.IncludingTax ? order.OrderShippingInclTax : order.OrderShippingExclTax;
-                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{SHIP}", orderShipping.ToString("0.00", usCulture));
+                var Pedidoshipping = googleAnalyticsSettings.IncludingTax ? order.PedidoshippingInclTax : order.PedidoshippingExclTax;
+                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{SHIP}", Pedidoshipping.ToString("0.00", usCulture));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{CITY}", order.BillingAddress == null ? "" : FixIllegalJavaScriptChars(order.BillingAddress.City));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{STATEPROVINCE}", order.BillingAddress == null || order.BillingAddress.StateProvince == null ? "" : FixIllegalJavaScriptChars(order.BillingAddress.StateProvince.Name));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{COUNTRY}", order.BillingAddress == null || order.BillingAddress.Country == null ? "" : FixIllegalJavaScriptChars(order.BillingAddress.Country.Name));
@@ -223,7 +223,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
                     string analyticsEcommerceDetailScript = googleAnalyticsSettings.EcommerceDetailScript;
                     //get category
                     string category = "";
-                    var defaultProductCategory = _categoryService.GetProductCategoriesByProductId(item.ProductId).FirstOrDefault();
+                    var defaultProductCategory = _categoryService.GetProductCategoriasByProductId(item.ProductId).FirstOrDefault();
                     if (defaultProductCategory != null)
                         category = defaultProductCategory.Category.Name;
                     analyticsEcommerceDetailScript = analyticsEcommerceDetailScript.Replace("{ORDERID}", item.OrderId.ToString());

@@ -7,14 +7,14 @@ using Nop.Core.Data;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Forums;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Security;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Events;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 using Nop.Tests;
@@ -39,7 +39,7 @@ namespace Nop.Services.Tests.Customers
         private ICustomerRegistrationService _customerRegistrationService;
         private ILocalizationService _localizationService;
         private CustomerSettings _customerSettings;
-        private INewsLetterSubscriptionService _newsLetterSubscriptionService;
+        private IBoletín informativoSubscriptionService _Boletín informativoSubscriptionService;
         private IEventPublisher _eventPublisher;
         private IStoreService _storeService;
         private RewardPointsSettings _rewardPointsSettings;
@@ -163,7 +163,7 @@ namespace Nop.Services.Tests.Customers
             _forumTopicRepo = MockRepository.GenerateMock<IRepository<ForumTopic>>();
 
             _genericAttributeService = MockRepository.GenerateMock<IGenericAttributeService>();
-            _newsLetterSubscriptionService = MockRepository.GenerateMock<INewsLetterSubscriptionService>();
+            _Boletín informativoSubscriptionService = MockRepository.GenerateMock<IBoletín informativoSubscriptionService>();
             _rewardPointService = MockRepository.GenerateMock<IRewardPointService>();
 
             _localizationService = MockRepository.GenerateMock<ILocalizationService>();
@@ -175,7 +175,7 @@ namespace Nop.Services.Tests.Customers
                 null, null, null, null, null,
                 _genericAttributeService, null, null, _eventPublisher, _customerSettings, null);
             _customerRegistrationService = new CustomerRegistrationService(_customerService,
-                _encryptionService, _newsLetterSubscriptionService, _localizationService,
+                _encryptionService, _Boletín informativoSubscriptionService, _localizationService,
                 _storeService, _rewardPointService, _workContext, _genericAttributeService,
                 _workflowMessageService, _eventPublisher, _rewardPointsSettings, _customerSettings);
         }

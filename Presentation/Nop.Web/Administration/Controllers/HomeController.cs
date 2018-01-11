@@ -10,11 +10,11 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Customers;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Security;
 
 namespace Nop.Admin.Controllers
@@ -27,7 +27,7 @@ namespace Nop.Admin.Controllers
         private readonly ISettingService _settingService;
         private readonly IPermissionService _permissionService;
         private readonly IProductService _productService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly ICustomerService _customerService;
         private readonly IReturnRequestService _returnRequestService;
         private readonly IWorkContext _workContext;
@@ -42,7 +42,7 @@ namespace Nop.Admin.Controllers
             ISettingService settingService,
             IPermissionService permissionService,
             IProductService productService,
-            IOrderService orderService,
+            IPedidoservice Pedidoservice,
             ICustomerService customerService,
             IReturnRequestService returnRequestService,
             IWorkContext workContext,
@@ -53,7 +53,7 @@ namespace Nop.Admin.Controllers
             this._settingService = settingService;
             this._permissionService = permissionService;
             this._productService = productService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._customerService = customerService;
             this._returnRequestService = returnRequestService;
             this._workContext = workContext;
@@ -148,7 +148,7 @@ namespace Nop.Admin.Controllers
         public virtual ActionResult CommonStatistics()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers) ||
-                !_permissionService.Authorize(StandardPermissionProvider.ManageOrders) ||
+                !_permissionService.Authorize(StandardPermissionProvider.ManagePedidos) ||
                 !_permissionService.Authorize(StandardPermissionProvider.ManageReturnRequests) ||
                 !_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return Content("");
@@ -159,7 +159,7 @@ namespace Nop.Admin.Controllers
 
             var model = new CommonStatisticsModel();
 
-            model.NumberOfOrders = _orderService.SearchOrders(
+            model.NumberOfPedidos = _Pedidoservice.SearchPedidos(
                 pageIndex: 0, 
                 pageSize: 1).TotalCount;
 

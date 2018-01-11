@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
+// set of attributes. Change these attribute values to modify the Information
 // associated with an assembly.
 [assembly: AssemblyTitle("Nop.Plugin.Shipping.UPS")]
 [assembly: AssemblyDescription("")]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("f858a1d6-f6b8-4708-848b-07f76f0800ec")]
 
-// Version information for an assembly consists of the following four values:
+// Version Information for an assembly consists of the following four values:
 //
 //      Major Version
 //      Minor Version 

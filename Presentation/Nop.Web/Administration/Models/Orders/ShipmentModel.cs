@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     public partial class ShipmentModel : BaseNopEntityModel
     {
@@ -12,28 +12,28 @@ namespace Nop.Admin.Models.Orders
             this.ShipmentStatusEvents = new List<ShipmentStatusEventModel>();
             this.Items = new List<ShipmentItemModel>();
         }
-        [NopResourceDisplayName("Admin.Orders.Shipments.ID")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.ID")]
         public override int Id { get; set; }
         public int OrderId { get; set; }
-        [NopResourceDisplayName("Admin.Orders.Shipments.CustomOrderNumber")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.CustomOrderNumber")]
         public string CustomOrderNumber { get; set; }
-        [NopResourceDisplayName("Admin.Orders.Shipments.TotalWeight")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.TotalWeight")]
         public string TotalWeight { get; set; }
-        [NopResourceDisplayName("Admin.Orders.Shipments.TrackingNumber")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.TrackingNumber")]
         public string TrackingNumber { get; set; }
         public string TrackingNumberUrl { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.ShippedDate")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.ShippedDate")]
         public string ShippedDate { get; set; }
         public bool CanShip { get; set; }
         public DateTime? ShippedDateUtc { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.DeliveryDate")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.DeliveryDate")]
         public string DeliveryDate { get; set; }
         public bool CanDeliver { get; set; }
         public DateTime? DeliveryDateUtc { get; set; }
 
-        [NopResourceDisplayName("Admin.Orders.Shipments.AdminComment")]
+        [NopResourceDisplayName("Admin.Pedidos.Shipments.AdminComment")]
         public string AdminComment { get; set; }
 
         public List<ShipmentItemModel> Items { get; set; }
@@ -51,7 +51,7 @@ namespace Nop.Admin.Models.Orders
 
             public int OrderItemId { get; set; }
             public int ProductId { get; set; }
-            [NopResourceDisplayName("Admin.Orders.Shipments.Products.ProductName")]
+            [NopResourceDisplayName("Admin.Pedidos.Shipments.Products.ProductName")]
             public string ProductName { get; set; }
             public string Sku { get; set; }
             public string AttributeInfo { get; set; }
@@ -59,14 +59,14 @@ namespace Nop.Admin.Models.Orders
             public bool ShipSeparately { get; set; }
 
             //weight of one item (product)
-            [NopResourceDisplayName("Admin.Orders.Shipments.Products.ItemWeight")]
+            [NopResourceDisplayName("Admin.Pedidos.Shipments.Products.ItemWeight")]
             public string ItemWeight { get; set; }
-            [NopResourceDisplayName("Admin.Orders.Shipments.Products.ItemDimensions")]
+            [NopResourceDisplayName("Admin.Pedidos.Shipments.Products.ItemDimensions")]
             public string ItemDimensions { get; set; }
 
             public int QuantityToAdd { get; set; }
             public int QuantityOrdered { get; set; }
-            [NopResourceDisplayName("Admin.Orders.Shipments.Products.QtyShipped")]
+            [NopResourceDisplayName("Admin.Pedidos.Shipments.Products.QtyShipped")]
             public int QuantityInThisShipment { get; set; }
             public int QuantityInAllShipments { get; set; }
 

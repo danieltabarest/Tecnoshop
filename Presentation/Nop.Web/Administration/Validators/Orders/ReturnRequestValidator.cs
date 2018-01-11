@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Nop.Admin.Models.Orders;
+using Nop.Admin.Models.Pedidos;
 using Nop.Services.Localization;
 using Nop.Web.Framework.Validators;
 
-namespace Nop.Admin.Validators.Orders
+namespace Nop.Admin.Validators.Pedidos
 {
     public partial class ReturnRequestValidator : BaseNopValidator<ReturnRequestModel>
     {

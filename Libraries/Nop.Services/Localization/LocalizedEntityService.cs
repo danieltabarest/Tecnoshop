@@ -11,7 +11,7 @@ using Nop.Core.Domain.Localization;
 namespace Nop.Services.Localization
 {
     /// <summary>
-    /// Provides information about localizable entities
+    /// Provides Information about localizable entities
     /// </summary>
     public partial class LocalizedEntityService : ILocalizedEntityService
     {

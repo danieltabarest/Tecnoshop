@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Nop.Core;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Plugin.Payments.PayPalDirect.Models;
 using Nop.Plugin.Payments.PayPalDirect.Validators;
@@ -13,7 +13,7 @@ using Nop.Services;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Stores;
 using Nop.Web.Framework.Controllers;
@@ -28,7 +28,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly ILogger _logger;
         private readonly IOrderProcessingService _orderProcessingService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly ISettingService _settingService;
         private readonly IStoreContext _storeContext;
         private readonly IStoreService _storeService;
@@ -42,7 +42,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
         public PaymentPayPalDirectController(ILocalizationService localizationService,
             ILogger logger,
             IOrderProcessingService orderProcessingService,
-            IOrderService orderService,
+            IPedidoservice Pedidoservice,
             ISettingService settingService,
             IStoreContext storeContext,
             IStoreService storeService,
@@ -52,7 +52,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
             this._localizationService = localizationService;
             this._logger = logger;
             this._orderProcessingService = orderProcessingService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._settingService = settingService;
             this._storeContext = storeContext;
             this._storeService = storeService;
@@ -330,10 +330,10 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
                     {
                         //get agreement
                         var agreement = Agreement.Get(apiContext, sale.billing_agreement_id);
-                        var initialOrder = _orderService.GetOrderByGuid(new Guid(agreement.description));
+                        var initialOrder = _Pedidoservice.GetOrderByGuid(new Guid(agreement.description));
                         if (initialOrder != null)
                         {
-                            var recurringPayment = _orderService.SearchRecurringPayments(initialOrderId: initialOrder.Id).FirstOrDefault();
+                            var recurringPayment = _Pedidoservice.SearchRecurringPayments(initialOrderId: initialOrder.Id).FirstOrDefault();
                             if (recurringPayment != null)
                             {
                                 if (sale.state.ToLowerInvariant().Equals("completed"))
@@ -343,7 +343,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
                                         //first payment
                                         initialOrder.PaymentStatus = PaymentStatus.Paid;
                                         initialOrder.CaptureTransactionId = sale.id;
-                                        _orderService.UpdateOrder(initialOrder);
+                                        _Pedidoservice.UpdateOrder(initialOrder);
 
                                         recurringPayment.RecurringPaymentHistory.Add(new RecurringPaymentHistory
                                         {
@@ -351,13 +351,13 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
                                             OrderId = initialOrder.Id,
                                             CreatedOnUtc = DateTime.UtcNow
                                         });
-                                        _orderService.UpdateRecurringPayment(recurringPayment);
+                                        _Pedidoservice.UpdateRecurringPayment(recurringPayment);
                                     }
                                     else
                                     {
                                         //next payments
-                                        var orders = _orderService.GetOrdersByIds(recurringPayment.RecurringPaymentHistory.Select(order => order.OrderId).ToArray());
-                                        if (!orders.Any(order => !string.IsNullOrEmpty(order.CaptureTransactionId)
+                                        var Pedidos = _Pedidoservice.GetPedidosByIds(recurringPayment.RecurringPaymentHistory.Select(order => order.OrderId).ToArray());
+                                        if (!Pedidos.Any(order => !string.IsNullOrEmpty(order.CaptureTransactionId)
                                             && order.CaptureTransactionId.Equals(sale.id, StringComparison.InvariantCultureIgnoreCase)))
                                         {
                                             var processPaymentResult = new ProcessPaymentResult
@@ -383,7 +383,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
                     else
                     //standard payment
                     {
-                        var order = _orderService.GetOrderByGuid(new Guid(sale.invoice_number));
+                        var order = _Pedidoservice.GetOrderByGuid(new Guid(sale.invoice_number));
                         if (order != null)
                         {
                             if (sale.state.ToLowerInvariant().Equals("completed"))
@@ -392,7 +392,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
                                 {
                                     order.CaptureTransactionId = sale.id;
                                     order.CaptureTransactionResult = sale.state;
-                                    _orderService.UpdateOrder(order);
+                                    _Pedidoservice.UpdateOrder(order);
                                     _orderProcessingService.MarkOrderAsPaid(order);
                                 }
                             }

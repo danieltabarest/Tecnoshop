@@ -7,7 +7,7 @@ using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Plugins;
 using Nop.Plugin.Payments.PayPalDirect.Controllers;
@@ -18,7 +18,7 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Tax;
 using PayPal.Api;
@@ -177,7 +177,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
             //create PayPal items from checkout attributes
             items.AddRange(CreateItemsForCheckoutAttributes(customer, storeId));
 
-            //create PayPal item for payment method additional fee
+            //create PayPal item for Formas de pago additional fee
             items.Add(CreateItemForPaymentAdditionalFee(shoppingCart, customer));
 
             //currently there are no ways to add discount for all order directly to amount details, so we add them as extra items 
@@ -268,7 +268,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Create item for payment method additional fee
+        /// Create item for Formas de pago additional fee
         /// </summary>
         /// <param name="shoppingCart">Shopping cart</param>
         /// <param name="customer">Customer</param>
@@ -285,7 +285,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
             //create item
             return new Item
             {
-                name = string.Format("Payment method ({0}) additional fee", PluginDescriptor.FriendlyName),
+                name = string.Format("Formas de pago ({0}) additional fee", PluginDescriptor.FriendlyName),
                 price = paymentPrice.ToString("N", new CultureInfo("en-US")),
                 quantity = "1"
             };
@@ -601,15 +601,15 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Returns a value indicating whether payment method should be hidden during checkout
+        /// Returns a value indicating whether Formas de pago should be hidden during checkout
         /// </summary>
         /// <param name="cart">Shoping cart</param>
         /// <returns>true - hide; false - display.</returns>
         public bool HidePaymentMethod(IList<ShoppingCartItem> cart)
         {
             //you can put any logic here
-            //for example, hide this payment method if all products in the cart are downloadable
-            //or hide this payment method if current customer is from certain country
+            //for example, hide this Formas de pago if all products in the cart are downloadable
+            //or hide this Formas de pago if current customer is from certain country
             return false;
         }
 
@@ -991,16 +991,16 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection Formas de pagos)
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
-        public bool CanRePostProcessPayment(Core.Domain.Orders.Order order)
+        public bool CanRePostProcessPayment(Core.Domain.Pedidos.Order order)
         {
             if (order == null)
                 throw new ArgumentNullException("order");
 
-            //it's not a redirection payment method. So we always return false
+            //it's not a redirection Formas de pago. So we always return false
             return false;
         }
 
@@ -1062,7 +1062,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
             this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.ClientSecret", "Client secret");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.ClientSecret.Hint", "Specify secret key.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.PassPurchasedItems", "Pass purchased items");
-            this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.PassPurchasedItems.Hint", "Check to pass information about purchased items to PayPal.");
+            this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.PassPurchasedItems.Hint", "Check to pass Information about purchased items to PayPal.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.TransactMode", "Transaction mode");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.TransactMode.Hint", "Choose transaction mode.");
             this.AddOrUpdatePluginLocaleResource("Plugins.Payments.PayPalDirect.Fields.UseSandbox", "Use Sandbox");
@@ -1159,7 +1159,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Gets a recurring payment type of payment method
+        /// Gets a recurring payment type of Formas de pago
         /// </summary>
         public RecurringPaymentType RecurringPaymentType
         {
@@ -1167,7 +1167,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Gets a payment method type
+        /// Gets a Formas de pago type
         /// </summary>
         public PaymentMethodType PaymentMethodType
         {
@@ -1175,7 +1175,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Gets a value indicating whether we should display a payment information page for this plugin
+        /// Gets a value indicating whether we should display a payment Information page for this plugin
         /// </summary>
         public bool SkipPaymentInfo
         {
@@ -1183,12 +1183,12 @@ namespace Nop.Plugin.Payments.PayPalDirect
         }
 
         /// <summary>
-        /// Gets a payment method description that will be displayed on checkout pages in the public store
+        /// Gets a Formas de pago description that will be displayed on checkout pages in the public store
         /// </summary>
         public string PaymentMethodDescription
         {
-            //return description of this payment method to be display on "payment method" checkout step. good practice is to make it localizable
-            //for example, for a redirection payment method, description may be like this: "You will be redirected to PayPal site to complete the payment"
+            //return description of this Formas de pago to be display on "Formas de pago" checkout step. good practice is to make it localizable
+            //for example, for a redirection Formas de pago, description may be like this: "You will be redirected to PayPal site to complete the payment"
             get { return _localizationService.GetResource("Plugins.Payments.PayPalDirect.PaymentMethodDescription"); }
         }
 

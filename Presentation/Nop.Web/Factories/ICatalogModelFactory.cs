@@ -36,7 +36,7 @@ namespace Nop.Web.Factories
 
         #endregion
 
-        #region Categories
+        #region Categorias
 
         /// <summary>
         /// Prepare category model
@@ -84,11 +84,11 @@ namespace Nop.Web.Factories
         /// Prepare category (simple) models
         /// </summary>
         /// <param name="rootCategoryId">Root category identifier</param>
-        /// <param name="loadSubCategories">A value indicating whether subcategories should be loaded</param>
-        /// <param name="allCategories">All available categories; pass null to load them internally</param>
+        /// <param name="loadSubCategorias">A value indicating whether subCategorias should be loaded</param>
+        /// <param name="allCategorias">All available Categorias; pass null to load them internally</param>
         /// <returns>List of category (simple) models</returns>
         List<CategorySimpleModel> PrepareCategorySimpleModels(int rootCategoryId,
-            bool loadSubCategories = true, IList<Category> allCategories = null);
+            bool loadSubCategorias = true, IList<Category> allCategorias = null);
 
         #endregion
 

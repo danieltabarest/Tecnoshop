@@ -6,9 +6,9 @@ namespace Nop.Core.Domain.Catalog
     public enum BackorderMode
     {
         /// <summary>
-        /// No backorders
+        /// No backPedidos
         /// </summary>
-        NoBackorders = 0,
+        NoBackPedidos = 0,
         /// <summary>
         /// Allow qty below 0
         /// </summary>

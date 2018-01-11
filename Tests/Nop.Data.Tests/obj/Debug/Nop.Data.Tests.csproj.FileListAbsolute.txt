@@ -88,3 +88,6 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\bin\Debug\System.Web.
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\obj\Debug\Nop.Data.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\obj\Debug\Nop.Data.Tests.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\obj\Debug\Nop.Data.Tests.pdb
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\obj\Debug\Nop.Data.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\obj\Debug\Nop.Data.Tests.dll
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Data.Tests\obj\Debug\Nop.Data.Tests.pdb

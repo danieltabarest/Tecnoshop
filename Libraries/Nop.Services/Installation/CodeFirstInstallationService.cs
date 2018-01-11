@@ -19,7 +19,7 @@ using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Security;
@@ -230,7 +230,7 @@ namespace Nop.Services.Installation
             {
                 new Store
                 {
-                    Name = "Your store name",
+                    Name = "YNuestra tienda name",
                     Url = storeUrl,
                     SslEnabled = false,
                     Hosts = "yourstore.com,www.yourstore.com",
@@ -317,9 +317,9 @@ namespace Nop.Services.Installation
             _measureWeightRepository.Insert(measureWeights);
         }
 
-        protected virtual void InstallTaxCategories()
+        protected virtual void InstallTaxCategorias()
         {
-            var taxCategories = new List<TaxCategory>
+            var taxCategorias = new List<TaxCategory>
                                {
                                    new TaxCategory
                                        {
@@ -347,7 +347,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 20,
                                        },
                                };
-            _taxCategoryRepository.Insert(taxCategories);
+            _taxCategoryRepository.Insert(taxCategorias);
 
         }
 
@@ -3980,7 +3980,7 @@ namespace Nop.Services.Installation
                                     new ShippingMethod
                                         {
                                             Name = "Ground",
-                                            Description ="Compared to other shipping methods, ground shipping is carried out closer to the earth",
+                                            Description ="Compared to other Formas de envío, ground shipping is carried out closer to the earth",
                                             DisplayOrder = 1
                                         },
                                     new ShippingMethod
@@ -4423,7 +4423,7 @@ namespace Nop.Services.Installation
             _customerRepository.Insert(backgroundTaskUser);
         }
 
-        protected virtual void InstallOrders()
+        protected virtual void InstallPedidos()
         {
             //default store
             var defaultStore = _storeRepository.Table.FirstOrDefault();
@@ -4439,12 +4439,12 @@ namespace Nop.Services.Installation
                 Customer = firstCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                OrderSubtotalInclTax = 1855M,
-                OrderSubtotalExclTax = 1855M,
-                OrderSubTotalDiscountInclTax = decimal.Zero,
-                OrderSubTotalDiscountExclTax = decimal.Zero,
-                OrderShippingInclTax = decimal.Zero,
-                OrderShippingExclTax = decimal.Zero,
+                PedidosubtotalInclTax = 1855M,
+                PedidosubtotalExclTax = 1855M,
+                PedidosubTotalDiscountInclTax = decimal.Zero,
+                PedidosubTotalDiscountExclTax = decimal.Zero,
+                PedidoshippingInclTax = decimal.Zero,
+                PedidoshippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4457,7 +4457,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                OrderStatus = OrderStatus.Processing,
+                Pedidostatus = Pedidostatus.Processing,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -4606,12 +4606,12 @@ namespace Nop.Services.Installation
                 Customer = secondCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                OrderSubtotalInclTax = 2460M,
-                OrderSubtotalExclTax = 2460M,
-                OrderSubTotalDiscountInclTax = decimal.Zero,
-                OrderSubTotalDiscountExclTax = decimal.Zero,
-                OrderShippingInclTax = decimal.Zero,
-                OrderShippingExclTax = decimal.Zero,
+                PedidosubtotalInclTax = 2460M,
+                PedidosubtotalExclTax = 2460M,
+                PedidosubTotalDiscountInclTax = decimal.Zero,
+                PedidosubTotalDiscountExclTax = decimal.Zero,
+                PedidoshippingInclTax = decimal.Zero,
+                PedidoshippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4624,7 +4624,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                OrderStatus = OrderStatus.Pending,
+                Pedidostatus = Pedidostatus.Pending,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -4725,12 +4725,12 @@ namespace Nop.Services.Installation
                 Customer = thirdCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                OrderSubtotalInclTax = 8.80M,
-                OrderSubtotalExclTax = 8.80M,
-                OrderSubTotalDiscountInclTax = decimal.Zero,
-                OrderSubTotalDiscountExclTax = decimal.Zero,
-                OrderShippingInclTax = decimal.Zero,
-                OrderShippingExclTax = decimal.Zero,
+                PedidosubtotalInclTax = 8.80M,
+                PedidosubtotalExclTax = 8.80M,
+                PedidosubTotalDiscountInclTax = decimal.Zero,
+                PedidosubTotalDiscountExclTax = decimal.Zero,
+                PedidoshippingInclTax = decimal.Zero,
+                PedidoshippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4743,7 +4743,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                OrderStatus = OrderStatus.Pending,
+                Pedidostatus = Pedidostatus.Pending,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -4869,12 +4869,12 @@ namespace Nop.Services.Installation
                 Customer = fourthCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                OrderSubtotalInclTax = 102M,
-                OrderSubtotalExclTax = 102M,
-                OrderSubTotalDiscountInclTax = decimal.Zero,
-                OrderSubTotalDiscountExclTax = decimal.Zero,
-                OrderShippingInclTax = decimal.Zero,
-                OrderShippingExclTax = decimal.Zero,
+                PedidosubtotalInclTax = 102M,
+                PedidosubtotalExclTax = 102M,
+                PedidosubTotalDiscountInclTax = decimal.Zero,
+                PedidosubTotalDiscountExclTax = decimal.Zero,
+                PedidoshippingInclTax = decimal.Zero,
+                PedidoshippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -4887,7 +4887,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                OrderStatus = OrderStatus.Processing,
+                Pedidostatus = Pedidostatus.Processing,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -5018,7 +5018,7 @@ namespace Nop.Services.Installation
 
             //shipments
             //shipment 1
-            var fourthOrderShipment1 = new Shipment
+            var fourthPedidoshipment1 = new Shipment
             {
                 Order = fourthOrder,
                 TrackingNumber = string.Empty,
@@ -5028,28 +5028,28 @@ namespace Nop.Services.Installation
                 AdminComment = string.Empty,
                 CreatedOnUtc = DateTime.UtcNow
             };
-            _shipmentRepository.Insert(fourthOrderShipment1);
+            _shipmentRepository.Insert(fourthPedidoshipment1);
 
-            var fourthOrderShipment1Item1 = new ShipmentItem()
+            var fourthPedidoshipment1Item1 = new ShipmentItem()
             {
                 OrderItemId = fourthOrderItem1.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fourthOrderShipment1
+                Shipment = fourthPedidoshipment1
             };
-            _shipmentItemRepository.Insert(fourthOrderShipment1Item1);
+            _shipmentItemRepository.Insert(fourthPedidoshipment1Item1);
 
-            var fourthOrderShipment1Item2 = new ShipmentItem()
+            var fourthPedidoshipment1Item2 = new ShipmentItem()
             {
                 OrderItemId = fourthOrderItem2.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fourthOrderShipment1
+                Shipment = fourthPedidoshipment1
             };
-            _shipmentItemRepository.Insert(fourthOrderShipment1Item2);
+            _shipmentItemRepository.Insert(fourthPedidoshipment1Item2);
 
             //shipment 2
-            var fourthOrderShipment2 = new Shipment
+            var fourthPedidoshipment2 = new Shipment
             {
                 Order = fourthOrder,
                 TrackingNumber = string.Empty,
@@ -5059,16 +5059,16 @@ namespace Nop.Services.Installation
                 AdminComment = string.Empty,
                 CreatedOnUtc = DateTime.UtcNow
             };
-            _shipmentRepository.Insert(fourthOrderShipment2);
+            _shipmentRepository.Insert(fourthPedidoshipment2);
 
-            var fourthOrderShipment2Item1 = new ShipmentItem()
+            var fourthPedidoshipment2Item1 = new ShipmentItem()
             {
                 OrderItemId = fourthOrderItem3.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fourthOrderShipment2
+                Shipment = fourthPedidoshipment2
             };
-            _shipmentItemRepository.Insert(fourthOrderShipment2Item1);
+            _shipmentItemRepository.Insert(fourthPedidoshipment2Item1);
 
 
 
@@ -5082,12 +5082,12 @@ namespace Nop.Services.Installation
                 Customer = fifthCustomer,
                 CustomerLanguageId = _languageRepository.Table.First().Id,
                 CustomerIp = "127.0.0.1",
-                OrderSubtotalInclTax = 43.50M,
-                OrderSubtotalExclTax = 43.50M,
-                OrderSubTotalDiscountInclTax = decimal.Zero,
-                OrderSubTotalDiscountExclTax = decimal.Zero,
-                OrderShippingInclTax = decimal.Zero,
-                OrderShippingExclTax = decimal.Zero,
+                PedidosubtotalInclTax = 43.50M,
+                PedidosubtotalExclTax = 43.50M,
+                PedidosubTotalDiscountInclTax = decimal.Zero,
+                PedidosubTotalDiscountExclTax = decimal.Zero,
+                PedidoshippingInclTax = decimal.Zero,
+                PedidoshippingExclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeInclTax = decimal.Zero,
                 PaymentMethodAdditionalFeeExclTax = decimal.Zero,
                 TaxRates = "0:0;",
@@ -5100,7 +5100,7 @@ namespace Nop.Services.Installation
                 CustomerCurrencyCode = "USD",
                 CurrencyRate = 1M,
                 AffiliateId = 0,
-                OrderStatus = OrderStatus.Complete,
+                Pedidostatus = Pedidostatus.Complete,
                 AllowStoringCreditCardNumber = false,
                 CardType = string.Empty,
                 CardName = string.Empty,
@@ -5185,7 +5185,7 @@ namespace Nop.Services.Installation
             _orderItemRepository.Insert(fifthOrderItem1);
 
             //shipment 1
-            var fifthOrderShipment1 = new Shipment
+            var fifthPedidoshipment1 = new Shipment
             {
                 Order = fifthOrder,
                 TrackingNumber = string.Empty,
@@ -5195,16 +5195,16 @@ namespace Nop.Services.Installation
                 AdminComment = string.Empty,
                 CreatedOnUtc = DateTime.UtcNow
             };
-            _shipmentRepository.Insert(fifthOrderShipment1);
+            _shipmentRepository.Insert(fifthPedidoshipment1);
 
-            var fifthOrderShipment1Item1 = new ShipmentItem()
+            var fifthPedidoshipment1Item1 = new ShipmentItem()
             {
                 OrderItemId = fifthOrderItem1.Id,
                 Quantity = 1,
                 WarehouseId = 0,
-                Shipment = fifthOrderShipment1
+                Shipment = fifthPedidoshipment1
             };
-            _shipmentItemRepository.Insert(fifthOrderShipment1Item1);
+            _shipmentItemRepository.Insert(fifthPedidoshipment1Item1);
         }
 
         protected virtual void InstallActivityLog(string defaultUserEmail)
@@ -5412,7 +5412,7 @@ namespace Nop.Services.Installation
                 {
                     Name = MessageTemplateSystemNames.CustomerRegisteredNotification,
                     Subject = "%Store.Name%. New customer registration",
-                    Body = string.Format("<p>{0}<a href=\"%Store.URL%\">%Store.Name%</a>{0}<br />{0}<br />{0}A new customer registered with your store. Below are the customer's details:{0}<br />{0}Full name: %Customer.FullName%{0}<br />{0}Email: %Customer.Email%{0}</p>{0}", Environment.NewLine),
+                    Body = string.Format("<p>{0}<a href=\"%Store.URL%\">%Store.Name%</a>{0}<br />{0}<br />{0}A new customer registered with yNuestra tienda. Below are the customer's details:{0}<br />{0}Full name: %Customer.FullName%{0}<br />{0}Email: %Customer.Email%{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id,
                 },
@@ -5442,17 +5442,17 @@ namespace Nop.Services.Installation
                 },
                 new MessageTemplate
                 {
-                    Name = MessageTemplateSystemNames.NewsletterSubscriptionActivationMessage,
+                    Name = MessageTemplateSystemNames.Boletín informativoSubscriptionActivationMessage,
                     Subject = "%Store.Name%. Subscription activation message.",
-                    Body = string.Format("<p>{0}<a href=\"%NewsLetterSubscription.ActivationUrl%\">Click here to confirm your subscription to our list.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
+                    Body = string.Format("<p>{0}<a href=\"%Boletín informativoSubscription.ActivationUrl%\">Click here to confirm your subscription to our list.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id,
                 },
                 new MessageTemplate
                 {
-                    Name = MessageTemplateSystemNames.NewsletterSubscriptionDeactivationMessage,
+                    Name = MessageTemplateSystemNames.Boletín informativoSubscriptionDeactivationMessage,
                     Subject = "%Store.Name%. Subscription deactivation message.",
-                    Body = string.Format("<p>{0}<a href=\"%NewsLetterSubscription.DeactivationUrl%\">Click here to unsubscribe from our newsletter.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
+                    Body = string.Format("<p>{0}<a href=\"%Boletín informativoSubscription.DeactivationUrl%\">Click here to unsubscribe from our Boletín informativo.</a>{0}</p>{0}<p>{0}If you received this email by mistake, simply delete it.{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id,
                 },
@@ -5500,7 +5500,7 @@ namespace Nop.Services.Installation
                 {
                     Name = MessageTemplateSystemNames.OrderPlacedStoreOwnerNotification,
                     Subject = "%Store.Name%. Purchase Receipt for Order #%Order.OrderNumber%",
-                    Body = string.Format("<p>{0}<a href=\"%Store.URL%\">%Store.Name%</a>{0}<br />{0}<br />{0}%Order.CustomerFullName% (%Order.CustomerEmail%) has just placed an order from your store. Below is the summary of the order.{0}<br />{0}<br />{0}Order Number: %Order.OrderNumber%{0}<br />{0}Date Ordered: %Order.CreatedOn%{0}<br />{0}<br />{0}<br />{0}<br />{0}Billing Address{0}<br />{0}%Order.BillingFirstName% %Order.BillingLastName%{0}<br />{0}%Order.BillingAddress1%{0}<br />{0}%Order.BillingCity% %Order.BillingZipPostalCode%{0}<br />{0}%Order.BillingStateProvince% %Order.BillingCountry%{0}<br />{0}<br />{0}<br />{0}<br />{0}%if (%Order.Shippable%) Shipping Address{0}<br />{0}%Order.ShippingFirstName% %Order.ShippingLastName%{0}<br />{0}%Order.ShippingAddress1%{0}<br />{0}%Order.ShippingCity% %Order.ShippingZipPostalCode%{0}<br />{0}%Order.ShippingStateProvince% %Order.ShippingCountry%{0}<br />{0}<br />{0}Shipping Method: %Order.ShippingMethod%{0}<br />{0}<br />{0} endif% %Order.Product(s)%{0}</p>{0}", Environment.NewLine),
+                    Body = string.Format("<p>{0}<a href=\"%Store.URL%\">%Store.Name%</a>{0}<br />{0}<br />{0}%Order.CustomerFullName% (%Order.CustomerEmail%) has just placed an order from yNuestra tienda. Below is the summary of the order.{0}<br />{0}<br />{0}Order Number: %Order.OrderNumber%{0}<br />{0}Date Ordered: %Order.CreatedOn%{0}<br />{0}<br />{0}<br />{0}<br />{0}Billing Address{0}<br />{0}%Order.BillingFirstName% %Order.BillingLastName%{0}<br />{0}%Order.BillingAddress1%{0}<br />{0}%Order.BillingCity% %Order.BillingZipPostalCode%{0}<br />{0}%Order.BillingStateProvince% %Order.BillingCountry%{0}<br />{0}<br />{0}<br />{0}<br />{0}%if (%Order.Shippable%) Shipping Address{0}<br />{0}%Order.ShippingFirstName% %Order.ShippingLastName%{0}<br />{0}%Order.ShippingAddress1%{0}<br />{0}%Order.ShippingCity% %Order.ShippingZipPostalCode%{0}<br />{0}%Order.ShippingStateProvince% %Order.ShippingCountry%{0}<br />{0}<br />{0}Shipping Method: %Order.ShippingMethod%{0}<br />{0}<br />{0} endif% %Order.Product(s)%{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id,
                 },
@@ -5657,8 +5657,8 @@ namespace Nop.Services.Installation
                 new MessageTemplate
                 {
                     Name = MessageTemplateSystemNames.VendorInformationChangeNotification,
-                    Subject = "%Store.Name%. Vendor information change.",
-                    Body = string.Format("<p>{0}<a href=\"%Store.URL%\">%Store.Name%</a>{0}<br />{0}<br />{0}Vendor %Vendor.Name% (%Vendor.Email%) has just changed information about itself.{0}</p>{0}", Environment.NewLine),
+                    Subject = "%Store.Name%. Vendor Information change.",
+                    Body = string.Format("<p>{0}<a href=\"%Store.URL%\">%Store.Name%</a>{0}<br />{0}<br />{0}Vendor %Vendor.Name% (%Vendor.Email%) has just changed Information about itself.{0}</p>{0}", Environment.NewLine),
                     IsActive = true,
                     EmailAccountId = eaGeneral.Id
                 },
@@ -5700,7 +5700,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 20,
                                            Published = true,
                                            Title = "About us",
-                                           Body = "<p>Put your &quot;About Us&quot; information here. You can edit this in the admin site.</p>",
+                                           Body = "<p>Put your &quot;About Us&quot; Information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
                                    new Topic
@@ -5723,7 +5723,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 15,
                                            Published = true,
                                            Title = "Conditions of Use",
-                                           Body = "<p>Put your conditions of use information here. You can edit this in the admin site.</p>",
+                                           Body = "<p>Put your conditions of use Information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
                                    new Topic
@@ -5734,7 +5734,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 1,
                                            Published = true,
                                            Title = "",
-                                           Body = "<p>Put your contact information here. You can edit this in the admin site.</p>",
+                                           Body = "<p>Put your contact Information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
                                    new Topic
@@ -5755,7 +5755,7 @@ namespace Nop.Services.Installation
                                            IsPasswordProtected = false,
                                            DisplayOrder = 1,
                                            Published = true,
-                                           Title = "Welcome to our store",
+                                           Title = "Welcome to Nuestra tienda",
                                            Body = "<p>Online shopping is the process consumers go through to purchase products or services over the Internet. You can edit this in the admin site.</p><p>If you have questions, see the <a href=\"http://www.nopcommerce.com/documentation.aspx\">Documentation</a>, or post in the <a href=\"http://www.nopcommerce.com/boards/\">Forums</a> at <a href=\"http://www.nopcommerce.com\">nopCommerce.com</a></p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
@@ -5767,7 +5767,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 1,
                                            Published = true,
                                            Title = "About login / registration",
-                                           Body = "<p>Put your login / registration information here. You can edit this in the admin site.</p>",
+                                           Body = "<p>Put your login / registration Information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
                                    new Topic
@@ -5779,7 +5779,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 10,
                                            Published = true,
                                            Title = "Privacy notice",
-                                           Body = "<p>Put your privacy policy information here. You can edit this in the admin site.</p>",
+                                           Body = "<p>Put your privacy policy Information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
                                    new Topic
@@ -5802,7 +5802,7 @@ namespace Nop.Services.Installation
                                            DisplayOrder = 5,
                                            Published = true,
                                            Title = "Shipping & returns",
-                                           Body = "<p>Put your shipping &amp; returns information here. You can edit this in the admin site.</p>",
+                                           Body = "<p>Put your shipping &amp; returns Information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
                                    new Topic
@@ -5852,9 +5852,9 @@ namespace Nop.Services.Installation
             {
                 UseSystemEmailForContactUsForm = true,
                 UseStoredProceduresIfSupported = true,
-                UseStoredProcedureForLoadingCategories = false,
+                UseStoredProcedureForLoadingCategorias = false,
                 SitemapEnabled = true,
-                SitemapIncludeCategories = true,
+                SitemapIncludeCategorias = true,
                 SitemapIncludeManufacturers = true,
                 SitemapIncludeProducts = false,
                 DisplayJavaScriptDisabledWarning = false,
@@ -5871,7 +5871,7 @@ namespace Nop.Services.Installation
             {
                 PageTitleSeparator = ". ",
                 PageTitleSeoAdjustment = PageTitleSeoAdjustment.PagenameAfterStorename,
-                DefaultTitle = "Your store",
+                DefaultTitle = "YNuestra tienda",
                 DefaultMetaKeywords = "",
                 DefaultMetaDescription = "",
                 GenerateProductMetaDescription = true,
@@ -5903,7 +5903,7 @@ namespace Nop.Services.Installation
                     "onepagecheckout",
                     "contactus",
                     "passwordrecovery",
-                    "subscribenewsletter",
+                    "subscribeBoletín informativo",
                     "blog",
                     "boards",
                     "inboxupdate",
@@ -5965,7 +5965,7 @@ namespace Nop.Services.Installation
             {
                 AllowViewUnpublishedProductPage = true,
                 DisplayDiscontinuedMessageForUnpublishedProducts = true,
-                PublishBackProductWhenCancellingOrders = false,
+                PublishBackProductWhenCancellingPedidos = false,
                 ShowSkuOnProductDetailsPage = true,
                 ShowSkuOnCatalogPages = false,
                 ShowManufacturerPartNumber = false,
@@ -5974,9 +5974,9 @@ namespace Nop.Services.Installation
                 AllowProductSorting = true,
                 AllowProductViewModeChanging = true,
                 DefaultViewMode = "grid",
-                ShowProductsFromSubcategories = false,
+                ShowProductsFromSubCategorias = false,
                 ShowCategoryProductNumber = false,
-                ShowCategoryProductNumberIncludingSubcategories = false,
+                ShowCategoryProductNumberIncludingSubCategorias = false,
                 CategoryBreadcrumbEnabled = true,
                 ShowShareButton = true,
                 PageShareCode = "<!-- AddThis Button BEGIN --><div class=\"addthis_toolbox addthis_default_style \"><a class=\"addthis_button_preferred_1\"></a><a class=\"addthis_button_preferred_2\"></a><a class=\"addthis_button_preferred_3\"></a><a class=\"addthis_button_preferred_4\"></a><a class=\"addthis_button_compact\"></a><a class=\"addthis_counter addthis_bubble_style\"></a></div><script type=\"text/javascript\" src=\"http://s7.addthis.com/js/250/addthis_widget.js#pubid=nopsolutions\"></script><!-- AddThis Button END -->",
@@ -6089,10 +6089,10 @@ namespace Nop.Services.Installation
                 PhoneEnabled = false,
                 FaxEnabled = false,
                 AcceptPrivacyPolicyEnabled = false,
-                NewsletterEnabled = true,
-                NewsletterTickedByDefault = true,
-                HideNewsletterBlock = false,
-                NewsletterBlockAllowToUnsubscribe = false,
+                Boletín informativoEnabled = true,
+                Boletín informativoTickedByDefault = true,
+                HideBoletín informativoBlock = false,
+                Boletín informativoBlockAllowToUnsubscribe = false,
                 OnlineCustomerMinutes = 20,
                 StoreLastVisitedPage = false,
                 SuffixDeletedCustomers = false,
@@ -6223,12 +6223,12 @@ namespace Nop.Services.Installation
                 RenderAssociatedAttributeValueQuantity = true
             });
 
-            settingService.SaveSetting(new OrderSettings
+            settingService.SaveSetting(new Pedidosettings
             {
                 ReturnRequestNumberMask = "{ID}",
                 IsReOrderAllowed = true,
-                MinOrderSubtotalAmount = 0,
-                MinOrderSubtotalAmountIncludingTax = false,
+                MinPedidosubtotalAmount = 0,
+                MinPedidosubtotalAmountIncludingTax = false,
                 MinOrderTotalAmount = 0,
                 AutoUpdateOrderTotalsOnEditingOrder = false,
                 AnonymousCheckoutAllowed = true,
@@ -6315,10 +6315,10 @@ namespace Nop.Services.Installation
                 DisplayTaxRates = false,
                 PricesIncludeTax = false,
                 AllowCustomersToSelectTaxDisplayType = false,
-                ForceTaxExclusionFromOrderSubtotal = false,
+                ForceTaxExclusionFromPedidosubtotal = false,
                 DefaultTaxCategoryId = 0,
                 HideZeroTax = false,
-                HideTaxInOrderSummary = false,
+                HideTaxInPedidosummary = false,
                 ShippingIsTaxable = false,
                 ShippingPriceIncludesTax = false,
                 ShippingTaxClassId = 0,
@@ -6634,7 +6634,7 @@ namespace Nop.Services.Installation
             _productAttributeRepository.Insert(productAttributes);
         }
 
-        protected virtual void InstallCategories()
+        protected virtual void InstallCategorias()
         {
             //pictures
             var pictureService = EngineContext.Current.Resolve<IPictureService>();
@@ -6648,8 +6648,8 @@ namespace Nop.Services.Installation
                 throw new Exception("Category template cannot be loaded");
 
 
-            //categories
-            var allCategories = new List<Category>();
+            //Categorias
+            var allCategorias = new List<Category>();
             var categoryComputers = new Category
             {
                 Name = "Computers",
@@ -6664,7 +6664,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryComputers);
+            allCategorias.Add(categoryComputers);
             _categoryRepository.Insert(categoryComputers);
 
 
@@ -6684,7 +6684,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryDesktops);
+            allCategorias.Add(categoryDesktops);
             _categoryRepository.Insert(categoryDesktops);
 
 
@@ -6703,7 +6703,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryNotebooks);
+            allCategorias.Add(categoryNotebooks);
             _categoryRepository.Insert(categoryNotebooks);
 
 
@@ -6722,7 +6722,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categorySoftware);
+            allCategorias.Add(categorySoftware);
             _categoryRepository.Insert(categorySoftware);
 
 
@@ -6741,7 +6741,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryElectronics);
+            allCategorias.Add(categoryElectronics);
             _categoryRepository.Insert(categoryElectronics);
 
 
@@ -6761,7 +6761,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryCameraPhoto);
+            allCategorias.Add(categoryCameraPhoto);
             _categoryRepository.Insert(categoryCameraPhoto);
 
 
@@ -6780,7 +6780,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryCellPhones);
+            allCategorias.Add(categoryCellPhones);
             _categoryRepository.Insert(categoryCellPhones);
 
 
@@ -6800,7 +6800,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryOthers);
+            allCategorias.Add(categoryOthers);
             _categoryRepository.Insert(categoryOthers);
 
 
@@ -6819,7 +6819,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryApparel);
+            allCategorias.Add(categoryApparel);
             _categoryRepository.Insert(categoryApparel);
 
 
@@ -6839,7 +6839,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryShoes);
+            allCategorias.Add(categoryShoes);
             _categoryRepository.Insert(categoryShoes);
 
 
@@ -6858,7 +6858,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryClothing);
+            allCategorias.Add(categoryClothing);
             _categoryRepository.Insert(categoryClothing);
 
 
@@ -6878,7 +6878,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryAccessories);
+            allCategorias.Add(categoryAccessories);
             _categoryRepository.Insert(categoryAccessories);
 
 
@@ -6897,7 +6897,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryDigitalDownloads);
+            allCategorias.Add(categoryDigitalDownloads);
             _categoryRepository.Insert(categoryDigitalDownloads);
 
 
@@ -6918,7 +6918,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryBooks);
+            allCategorias.Add(categoryBooks);
             _categoryRepository.Insert(categoryBooks);
 
 
@@ -6937,7 +6937,7 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryJewelry);
+            allCategorias.Add(categoryJewelry);
             _categoryRepository.Insert(categoryJewelry);
 
             var categoryGiftCards = new Category
@@ -6954,13 +6954,13 @@ namespace Nop.Services.Installation
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow
             };
-            allCategories.Add(categoryGiftCards);
+            allCategorias.Add(categoryGiftCards);
             _categoryRepository.Insert(categoryGiftCards);
 
 
 
             //search engine names
-            foreach (var category in allCategories)
+            foreach (var category in allCategorias)
             {
                 _urlRecordRepository.Insert(new UrlRecord
                 {
@@ -7117,7 +7117,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -7256,7 +7256,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7306,13 +7306,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7357,13 +7357,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7412,14 +7412,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 2,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 ShowOnHomePage = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7508,13 +7508,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7590,14 +7590,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 //ShowOnHomePage = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7673,13 +7673,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7766,13 +7766,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7856,13 +7856,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7939,13 +7939,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -7991,13 +7991,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8046,13 +8046,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8103,12 +8103,12 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8153,7 +8153,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -8190,7 +8190,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -8232,13 +8232,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8284,13 +8284,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8346,7 +8346,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8354,7 +8354,7 @@ namespace Nop.Services.Installation
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8400,14 +8400,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8458,13 +8458,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8513,7 +8513,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8541,7 +8541,7 @@ namespace Nop.Services.Installation
                     }
                 },
                 HasTierPrices = true,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8591,13 +8591,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8641,13 +8641,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8694,7 +8694,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8780,7 +8780,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -8852,7 +8852,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -8926,7 +8926,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9017,13 +9017,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9091,7 +9091,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -9144,7 +9144,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9196,7 +9196,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9221,7 +9221,7 @@ namespace Nop.Services.Installation
                     }
                 },
                 HasTierPrices = true,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9265,7 +9265,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9281,7 +9281,7 @@ namespace Nop.Services.Installation
                         IsRequired = true,
                     }
                 },
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9328,7 +9328,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9353,7 +9353,7 @@ namespace Nop.Services.Installation
                     }
                 },
                 HasTierPrices = true,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9406,7 +9406,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
@@ -9448,7 +9448,7 @@ namespace Nop.Services.Installation
                         }
                     }
                 },
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9496,13 +9496,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9548,13 +9548,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9615,7 +9615,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 IsDownload = true,
@@ -9628,7 +9628,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9690,7 +9690,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 IsDownload = true,
@@ -9703,7 +9703,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9757,7 +9757,7 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 IsDownload = true,
@@ -9768,7 +9768,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9817,13 +9817,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9867,13 +9867,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9921,13 +9921,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -9958,7 +9958,7 @@ namespace Nop.Services.Installation
                 VisibleIndividually = true,
                 Name = "Elegant Gemstone Necklace (rental)",
                 Sku = "EG_GEM_NL",
-                ShortDescription = "Classic and elegant gemstone necklace now available in our store",
+                ShortDescription = "Classic and elegant gemstone necklace now available in Nuestra tienda",
                 FullDescription = "<p>For those who like jewelry, creating their ownelegant jewelry from gemstone beads provides an economical way to incorporate genuine gemstones into your jewelry wardrobe. Manufacturers create beads from all kinds of precious gemstones and semi-precious gemstones, which are available in bead shops, craft stores, and online marketplaces.</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "diamond-pave-earrings",
@@ -9979,14 +9979,14 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -10032,13 +10032,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -10086,13 +10086,13 @@ namespace Nop.Services.Installation
                 AllowBackInStockSubscriptions = false,
                 DisplayStockAvailability = true,
                 LowStockActivity = LowStockActivity.DisableBuyButton,
-                BackorderMode = BackorderMode.NoBackorders,
+                BackorderMode = BackorderMode.NoBackPedidos,
                 OrderMinimumQuantity = 1,
                 OrderMaximumQuantity = 10000,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -10123,7 +10123,7 @@ namespace Nop.Services.Installation
                 Name = "$25 Virtual Gift Card",
                 Sku = "VG_CR_025",
                 ShortDescription = "$25 Gift Card. Gift Cards must be redeemed through our site Web site toward the purchase of eligible products.",
-                FullDescription = "<p>Gift Cards must be redeemed through our site Web site toward the purchase of eligible products. Purchases are deducted from the GiftCard balance. Any unused balance will be placed in the recipient's GiftCard account when redeemed. If an order exceeds the amount of the GiftCard, the balance must be paid with a credit card or other available payment method.</p>",
+                FullDescription = "<p>Gift Cards must be redeemed through our site Web site toward the purchase of eligible products. Purchases are deducted from the GiftCard balance. Any unused balance will be placed in the recipient's GiftCard account when redeemed. If an order exceeds the amount of the GiftCard, the balance must be paid with a credit card or other available Formas de pago.</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "25-virtual-gift-card",
                 AllowCustomerReviews = true,
@@ -10140,7 +10140,7 @@ namespace Nop.Services.Installation
                 ShowOnHomePage = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -10168,7 +10168,7 @@ namespace Nop.Services.Installation
                 Name = "$50 Physical Gift Card",
                 Sku = "PG_CR_050",
                 ShortDescription = "$50 Gift Card. Gift Cards must be redeemed through our site Web site toward the purchase of eligible products.",
-                FullDescription = "<p>Gift Cards must be redeemed through our site Web site toward the purchase of eligible products. Purchases are deducted from the GiftCard balance. Any unused balance will be placed in the recipient's GiftCard account when redeemed. If an order exceeds the amount of the GiftCard, the balance must be paid with a credit card or other available payment method.</p>",
+                FullDescription = "<p>Gift Cards must be redeemed through our site Web site toward the purchase of eligible products. Purchases are deducted from the GiftCard balance. Any unused balance will be placed in the recipient's GiftCard account when redeemed. If an order exceeds the amount of the GiftCard, the balance must be paid with a credit card or other available Formas de pago.</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "50-physical-gift-card",
                 AllowCustomerReviews = true,
@@ -10192,7 +10192,7 @@ namespace Nop.Services.Installation
                 MarkAsNew = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -10220,7 +10220,7 @@ namespace Nop.Services.Installation
                 Name = "$100 Physical Gift Card",
                 Sku = "PG_CR_100",
                 ShortDescription = "$100 Gift Card. Gift Cards must be redeemed through our site Web site toward the purchase of eligible products.",
-                FullDescription = "<p>Gift Cards must be redeemed through our site Web site toward the purchase of eligible products. Purchases are deducted from the GiftCard balance. Any unused balance will be placed in the recipient's GiftCard account when redeemed. If an order exceeds the amount of the GiftCard, the balance must be paid with a credit card or other available payment method.</p>",
+                FullDescription = "<p>Gift Cards must be redeemed through our site Web site toward the purchase of eligible products. Purchases are deducted from the GiftCard balance. Any unused balance will be placed in the recipient's GiftCard account when redeemed. If an order exceeds the amount of the GiftCard, the balance must be paid with a credit card or other available Formas de pago.</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "100-physical-gift-card",
                 AllowCustomerReviews = true,
@@ -10242,7 +10242,7 @@ namespace Nop.Services.Installation
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedOnUtc = DateTime.UtcNow,
-                ProductCategories =
+                ProductCategorias =
                 {
                     new ProductCategory
                     {
@@ -10922,8 +10922,8 @@ namespace Nop.Services.Installation
                                              AllowComments = true,
                                              Language = defaultLanguage,
                                              Title = "How a blog can help your growing e-Commerce business",
-                                             BodyOverview = "<p>When you start an online business, your main aim is to sell the products, right? As a business owner, you want to showcase your store to more audience. So, you decide to go on social media, why? Because everyone is doing it, then why shouldn&rsquo;t you? It is tempting as everyone is aware of the hype that it is the best way to market your brand.</p><p>Do you know having a blog for your online store can be very helpful? Many businesses do not understand the importance of having a blog because they don&rsquo;t have time to post quality content.</p><p>Today, we will talk about how a blog can play an important role for the growth of your e-Commerce business. Later, we will also discuss some tips that will be helpful to you for writing business related blog posts.</p>",
-                                             Body = "<p>When you start an online business, your main aim is to sell the products, right? As a business owner, you want to showcase your store to more audience. So, you decide to go on social media, why? Because everyone is doing it, then why shouldn&rsquo;t you? It is tempting as everyone is aware of the hype that it is the best way to market your brand.</p><p>Do you know having a blog for your online store can be very helpful? Many businesses do not understand the importance of having a blog because they don&rsquo;t have time to post quality content.</p><p>Today, we will talk about how a blog can play an important role for the growth of your e-Commerce business. Later, we will also discuss some tips that will be helpful to you for writing business related blog posts.</p><h3>1) Blog is useful in educating your customers</h3><p>Blogging is one of the best way by which you can educate your customers about your products/services that you offer. This helps you as a business owner to bring more value to your brand. When you provide useful information to the customers about your products, they are more likely to buy products from you. You can use your blog for providing tutorials in regard to the use of your products.</p><p><strong>For example:</strong> If you have an online store that offers computer parts. You can write tutorials about how to build a computer or how to make your computer&rsquo;s performance better. While talking about these things, you can mention products in the tutorials and provide link to your products within the blog post from your website. Your potential customers might get different ideas of using your product and will likely to buy products from your online store.</p><h3>2) Blog helps your business in Search Engine Optimization (SEO)</h3><p>Blog posts create more internal links to your website which helps a lot in SEO. Blog is a great way to have quality content on your website related to your products/services which is indexed by all major search engines like Google, Bing and Yahoo. The more original content you write in your blog post, the better ranking you will get in search engines. SEO is an on-going process and posting blog posts regularly keeps your site active all the time which is beneficial when it comes to search engine optimization.</p><p><strong>For example:</strong> Let&rsquo;s say you sell &ldquo;Sony Television Model XYZ&rdquo; and you regularly publish blog posts about your product. Now, whenever someone searches for &ldquo;Sony Television Model XYZ&rdquo;, Google will crawl on your website knowing that you have something to do with this particular product. Hence, your website will show up on the search result page whenever this item is being searched.</p><h3>3) Blog helps in boosting your sales by convincing the potential customers to buy</h3><p>If you own an online business, there are so many ways you can share different stories with your audience in regard your products/services that you offer. Talk about how you started your business, share stories that educate your audience about what&rsquo;s new in your industry, share stories about how your product/service was beneficial to someone or share anything that you think your audience might find interesting (it does not have to be related to your product). This kind of blogging shows that you are an expert in your industry and interested in educating your audience. It sets you apart in the competitive market. This gives you an opportunity to showcase your expertise by educating the visitors and it can turn your audience into buyers.</p><p><strong>Fun Fact:</strong> Did you know that 92% of companies who decided to blog acquired customers through their blog?</p><p><a href=\"http://www.nopcommerce.com/\">nopCommerce</a> is great e-Commerce solution that also offers a variety of CMS features including blog. A store owner has full access for managing the blog posts and related comments.</p>",
+                                             BodyOverview = "<p>When you start an online business, your main aim is to sell the products, right? As a business owner, you want to showcase yNuestra tienda to more audience. So, you decide to go on social media, why? Because everyone is doing it, then why shouldn&rsquo;t you? It is tempting as everyone is aware of the hype that it is the best way to market your brand.</p><p>Do you know having a blog for your online store can be very helpful? Many businesses do not understand the importance of having a blog because they don&rsquo;t have time to post quality content.</p><p>Today, we will talk about how a blog can play an important role for the growth of your e-Commerce business. Later, we will also discuss some tips that will be helpful to you for writing business related blog posts.</p>",
+                                             Body = "<p>When you start an online business, your main aim is to sell the products, right? As a business owner, you want to showcase yNuestra tienda to more audience. So, you decide to go on social media, why? Because everyone is doing it, then why shouldn&rsquo;t you? It is tempting as everyone is aware of the hype that it is the best way to market your brand.</p><p>Do you know having a blog for your online store can be very helpful? Many businesses do not understand the importance of having a blog because they don&rsquo;t have time to post quality content.</p><p>Today, we will talk about how a blog can play an important role for the growth of your e-Commerce business. Later, we will also discuss some tips that will be helpful to you for writing business related blog posts.</p><h3>1) Blog is useful in educating your customers</h3><p>Blogging is one of the best way by which you can educate your customers about your products/services that you offer. This helps you as a business owner to bring more value to your brand. When you provide useful Information to the customers about your products, they are more likely to buy products from you. You can use your blog for providing tutorials in regard to the use of your products.</p><p><strong>For example:</strong> If you have an online store that offers computer parts. You can write tutorials about how to build a computer or how to make your computer&rsquo;s performance better. While talking about these things, you can mention products in the tutorials and provide link to your products within the blog post from your website. Your potential customers might get different ideas of using your product and will likely to buy products from your online store.</p><h3>2) Blog helps your business in Search Engine Optimization (SEO)</h3><p>Blog posts create more internal links to your website which helps a lot in SEO. Blog is a great way to have quality content on your website related to your products/services which is indexed by all major search engines like Google, Bing and Yahoo. The more original content you write in your blog post, the better ranking you will get in search engines. SEO is an on-going process and posting blog posts regularly keeps your site active all the time which is beneficial when it comes to search engine optimization.</p><p><strong>For example:</strong> Let&rsquo;s say you sell &ldquo;Sony Television Model XYZ&rdquo; and you regularly publish blog posts about your product. Now, whenever someone searches for &ldquo;Sony Television Model XYZ&rdquo;, Google will crawl on your website knowing that you have something to do with this particular product. Hence, your website will show up on the search result page whenever this item is being searched.</p><h3>3) Blog helps in boosting your sales by convincing the potential customers to buy</h3><p>If you own an online business, there are so many ways you can share different stories with your audience in regard your products/services that you offer. Talk about how you started your business, share stories that educate your audience about what&rsquo;s new in your industry, share stories about how your product/service was beneficial to someone or share anything that you think your audience might find interesting (it does not have to be related to your product). This kind of blogging shows that you are an expert in your industry and interested in educating your audience. It sets you apart in the competitive market. This gives you an opportunity to showcase your expertise by educating the visitors and it can turn your audience into buyers.</p><p><strong>Fun Fact:</strong> Did you know that 92% of companies who decided to blog acquired customers through their blog?</p><p><a href=\"http://www.nopcommerce.com/\">nopCommerce</a> is great e-Commerce solution that also offers a variety of CMS features including blog. A store owner has full access for managing the blog posts and related comments.</p>",
                                              Tags = "e-commerce, blog, moey",
                                              CreatedOnUtc = DateTime.UtcNow,
                                         },
@@ -10932,8 +10932,8 @@ namespace Nop.Services.Installation
                                              AllowComments = true,
                                              Language = defaultLanguage,
                                              Title = "Why your online store needs a wish list",
-                                             BodyOverview = "<p>What comes to your mind, when you hear the term&rdquo; wish list&rdquo;? The application of this feature is exactly how it sounds like: a list of things that you wish to get. As an online store owner, would you like your customers to be able to save products in a wish list so that they review or buy them later? Would you like your customers to be able to share their wish list with friends and family for gift giving?</p><p>Offering your customers a feature of wish list as part of shopping cart is a great way to build loyalty to your store site. Having the feature of wish list on a store site allows online businesses to engage with their customers in a smart way as it allows the shoppers to create a list of what they desire and their preferences for future purchase.</p>",
-                                             Body = "<p>What comes to your mind, when you hear the term&rdquo; wish list&rdquo;? The application of this feature is exactly how it sounds like: a list of things that you wish to get. As an online store owner, would you like your customers to be able to save products in a wish list so that they review or buy them later? Would you like your customers to be able to share their wish list with friends and family for gift giving?</p><p>Offering your customers a feature of wish list as part of shopping cart is a great way to build loyalty to your store site. Having the feature of wish list on a store site allows online businesses to engage with their customers in a smart way as it allows the shoppers to create a list of what they desire and their preferences for future purchase.</p><p>Does every e-Commerce store needs a wish list? The answer to this question in most cases is yes, because of the following reasons:</p><p><strong>Understanding the needs of your customers</strong> - A wish list is a great way to know what is in your customer&rsquo;s mind. Try to think the purchase history as a small portion of the customer&rsquo;s preferences. But, the wish list is like a wide open door that can give any online business a lot of valuable information about their customer and what they like or desire.</p><p><strong>Shoppers like to share their wish list with friends and family</strong> - Providing your customers a way to email their wish list to their friends and family is a pleasant way to make online shopping enjoyable for the shoppers. It is always a good idea to make the wish list sharable by a unique link so that it can be easily shared though different channels like email or on social media sites.</p><p><strong>Wish list can be a great marketing tool</strong> &ndash; Another way to look at wish list is a great marketing tool because it is extremely targeted and the recipients are always motivated to use it. For example: when your younger brother tells you that his wish list is on a certain e-Commerce store. What is the first thing you are going to do? You are most likely to visit the e-Commerce store, check out the wish list and end up buying something for your younger brother.</p><p>So, how a wish list is a marketing tool? The reason is quite simple, it introduce your online store to new customers just how it is explained in the above example.</p><p><strong>Encourage customers to return to the store site</strong> &ndash; Having a feature of wish list on the store site can increase the return traffic because it encourages customers to come back and buy later. Allowing the customers to save the wish list to their online accounts gives them a reason return to the store site and login to the account at any time to view or edit the wish list items.</p><p><strong>Wish list can be used for gifts for different occasions like weddings or birthdays. So, what kind of benefits a gift-giver gets from a wish list?</strong></p><ul><li>It gives them a surety that they didn&rsquo;t buy a wrong gift</li><li>It guarantees that the recipient will like the gift</li><li>It avoids any awkward moments when the recipient unwraps the gift and as a gift-giver you got something that the recipient do not want</li></ul><p><strong>Wish list is a great feature to have on a store site &ndash; So, what kind of benefits a business owner gets from a wish list</strong></p><ul><li>It is a great way to advertise an online store as many people do prefer to shop where their friend or family shop online</li><li>It allows the current customers to return to the store site and open doors for the new customers</li><li>It allows store admins to track what&rsquo;s in customers wish list and run promotions accordingly to target specific customer segments</li></ul><p><a href=\"http://www.nopcommerce.com/\">nopCommerce</a> offers the feature of wish list that allows customers to create a list of products that they desire or planning to buy in future.</p>",
+                                             BodyOverview = "<p>What comes to your mind, when you hear the term&rdquo; wish list&rdquo;? The application of this feature is exactly how it sounds like: a list of things that you wish to get. As an online store owner, would you like your customers to be able to save products in a wish list so that they review or buy them later? Would you like your customers to be able to share their wish list with friends and family for gift giving?</p><p>Offering your customers a feature of wish list as part of shopping cart is a great way to build loyalty to yNuestra tienda site. Having the feature of wish list on a store site allows online businesses to engage with their customers in a smart way as it allows the shoppers to create a list of what they desire and their preferences for future purchase.</p>",
+                                             Body = "<p>What comes to your mind, when you hear the term&rdquo; wish list&rdquo;? The application of this feature is exactly how it sounds like: a list of things that you wish to get. As an online store owner, would you like your customers to be able to save products in a wish list so that they review or buy them later? Would you like your customers to be able to share their wish list with friends and family for gift giving?</p><p>Offering your customers a feature of wish list as part of shopping cart is a great way to build loyalty to yNuestra tienda site. Having the feature of wish list on a store site allows online businesses to engage with their customers in a smart way as it allows the shoppers to create a list of what they desire and their preferences for future purchase.</p><p>Does every e-Commerce store needs a wish list? The answer to this question in most cases is yes, because of the following reasons:</p><p><strong>Understanding the needs of your customers</strong> - A wish list is a great way to know what is in your customer&rsquo;s mind. Try to think the purchase history as a small portion of the customer&rsquo;s preferences. But, the wish list is like a wide open door that can give any online business a lot of valuable Information about their customer and what they like or desire.</p><p><strong>Shoppers like to share their wish list with friends and family</strong> - Providing your customers a way to email their wish list to their friends and family is a pleasant way to make online shopping enjoyable for the shoppers. It is always a good idea to make the wish list sharable by a unique link so that it can be easily shared though different channels like email or on social media sites.</p><p><strong>Wish list can be a great marketing tool</strong> &ndash; Another way to look at wish list is a great marketing tool because it is extremely targeted and the recipients are always motivated to use it. For example: when your younger brother tells you that his wish list is on a certain e-Commerce store. What is the first thing you are going to do? You are most likely to visit the e-Commerce store, check out the wish list and end up buying something for your younger brother.</p><p>So, how a wish list is a marketing tool? The reason is quite simple, it introduce your online store to new customers just how it is explained in the above example.</p><p><strong>Encourage customers to return to the store site</strong> &ndash; Having a feature of wish list on the store site can increase the return traffic because it encourages customers to come back and buy later. Allowing the customers to save the wish list to their online accounts gives them a reason return to the store site and login to the account at any time to view or edit the wish list items.</p><p><strong>Wish list can be used for gifts for different occasions like weddings or birthdays. So, what kind of benefits a gift-giver gets from a wish list?</strong></p><ul><li>It gives them a surety that they didn&rsquo;t buy a wrong gift</li><li>It guarantees that the recipient will like the gift</li><li>It avoids any awkward moments when the recipient unwraps the gift and as a gift-giver you got something that the recipient do not want</li></ul><p><strong>Wish list is a great feature to have on a store site &ndash; So, what kind of benefits a business owner gets from a wish list</strong></p><ul><li>It is a great way to advertise an online store as many people do prefer to shop where their friend or family shop online</li><li>It allows the current customers to return to the store site and open doors for the new customers</li><li>It allows store admins to track what&rsquo;s in customers wish list and run promotions accordingly to target specific customer segments</li></ul><p><a href=\"http://www.nopcommerce.com/\">nopCommerce</a> offers the feature of wish list that allows customers to create a list of products that they desire or planning to buy in future.</p>",
                                              Tags = "e-commerce, nopCommerce, sample tag, money",
                                              CreatedOnUtc = DateTime.UtcNow.AddSeconds(1),
                                         },
@@ -10989,7 +10989,7 @@ namespace Nop.Services.Installation
                                          AllowComments = true,
                                          Language = defaultLanguage,
                                          Title = "About nopCommerce",
-                                         Short = "It's stable and highly usable. From downloads to documentation, www.nopCommerce.com offers a comprehensive base of information, resources, and support to the nopCommerce community.",
+                                         Short = "It's stable and highly usable. From downloads to documentation, www.nopCommerce.com offers a comprehensive base of Information, resources, and support to the nopCommerce community.",
                                          Full = "<p>For full feature list go to <a href=\"http://www.nopCommerce.com\">nopCommerce.com</a></p><p>Providing outstanding custom search engine optimization, web development services and e-commerce development solutions to our clients at a fair price in a professional manner.</p>",
                                          Published  = true,
                                          CreatedOnUtc = DateTime.UtcNow,
@@ -11759,9 +11759,9 @@ namespace Nop.Services.Installation
                 },
                 new ActivityLogType
                 {
-                    SystemKeyword = "ImportCategories",
+                    SystemKeyword = "ImportCategorias",
                     Enabled = true,
-                    Name = "Categories were imported"
+                    Name = "Categorias were imported"
                 },
                 new ActivityLogType
                 {
@@ -11834,7 +11834,7 @@ namespace Nop.Services.Installation
                 {
                     SystemKeyword = "PublicStore.AddToCompareList",
                     Enabled = false,
-                    Name = "Public store. Add to compare list"
+                    Name = "Public store. Agregar para comparar list"
                 },
                 new ActivityLogType
                 {
@@ -11846,7 +11846,7 @@ namespace Nop.Services.Installation
                 {
                     SystemKeyword = "PublicStore.AddToWishlist",
                     Enabled = false,
-                    Name = "Public store. Add to wishlist"
+                    Name = "Public store. Agregar a favoritos"
                 },
                 new ActivityLogType
                 {
@@ -12221,7 +12221,7 @@ namespace Nop.Services.Installation
         {
             InstallStores();
             InstallMeasures();
-            InstallTaxCategories();
+            InstallTaxCategorias();
             InstallLanguages();
             InstallCurrencies();
             InstallCountriesAndStates();
@@ -12248,7 +12248,7 @@ namespace Nop.Services.Installation
                 InstallCheckoutAttributes();
                 InstallSpecificationAttributes();
                 InstallProductAttributes();
-                InstallCategories();
+                InstallCategorias();
                 InstallManufacturers();
                 InstallProducts(defaultUserEmail);
                 InstallForums();
@@ -12259,7 +12259,7 @@ namespace Nop.Services.Installation
                 InstallWarehouses();
                 InstallVendors();
                 InstallAffiliates();
-                InstallOrders();
+                InstallPedidos();
                 InstallActivityLog(defaultUserEmail);
                 InstallSearchTerms();
             }

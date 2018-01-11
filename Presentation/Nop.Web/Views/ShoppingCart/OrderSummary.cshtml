@@ -245,10 +245,10 @@
                @Html.Action("OrderTotals", "ShoppingCart", new { isEditable = Model.IsEditable })
                @if (Model.IsEditable)
                {
-                   if (!String.IsNullOrEmpty(Model.MinOrderSubtotalWarning))
+                   if (!String.IsNullOrEmpty(Model.MinPedidosubtotalWarning))
                    {
                        <div class="min-amount-warning">
-                           @Model.MinOrderSubtotalWarning
+                           @Model.MinPedidosubtotalWarning
                        </div>
                    }
                }
@@ -274,7 +274,7 @@
                        </div>
                    }
                    <div class="checkout-buttons">
-                       @if (String.IsNullOrEmpty(Model.MinOrderSubtotalWarning) && !Model.HideCheckoutButton)
+                       @if (String.IsNullOrEmpty(Model.MinPedidosubtotalWarning) && !Model.HideCheckoutButton)
                        {
                            <script type="text/javascript">
                                $(document).ready(function () {
@@ -300,7 +300,7 @@
                        }
                    </div>
                    <div class="addon-buttons">
-                       @*Payment method buttons (e.g. GoogleCheckoutButton, Paypal Express)*@
+                       @*Formas de pago buttons (e.g. GoogleCheckoutButton, Paypal Express)*@
                        @Html.Partial("_ButtonPaymentMethod", Model)
                    </div>
                }

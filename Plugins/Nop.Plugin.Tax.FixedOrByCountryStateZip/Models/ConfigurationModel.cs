@@ -12,7 +12,7 @@ namespace Nop.Plugin.Tax.FixedOrByCountryStateZip.Models
             AvailableStores = new List<SelectListItem>();
             AvailableCountries = new List<SelectListItem>();
             AvailableStates = new List<SelectListItem>();
-            AvailableTaxCategories = new List<SelectListItem>();
+            AvailableTaxCategorias = new List<SelectListItem>();
         }
 
         [NopResourceDisplayName("Plugins.Tax.FixedOrByCountryStateZip.Fields.Store")]
@@ -33,6 +33,6 @@ namespace Nop.Plugin.Tax.FixedOrByCountryStateZip.Models
         public IList<SelectListItem> AvailableStores { get; set; }
         public IList<SelectListItem> AvailableCountries { get; set; }
         public IList<SelectListItem> AvailableStates { get; set; }
-        public IList<SelectListItem> AvailableTaxCategories { get; set; }
+        public IList<SelectListItem> AvailableTaxCategorias { get; set; }
     }
 }

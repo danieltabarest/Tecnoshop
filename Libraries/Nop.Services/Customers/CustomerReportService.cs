@@ -3,7 +3,7 @@ using System.Linq;
 using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Services.Helpers;
@@ -55,17 +55,17 @@ namespace Nop.Services.Customers
         /// <param name="os">Order status; null to load all records</param>
         /// <param name="ps">Order payment status; null to load all records</param>
         /// <param name="ss">Order shipment status; null to load all records</param>
-        /// <param name="orderBy">1 - order by order total, 2 - order by number of orders</param>
+        /// <param name="orderBy">1 - order by order total, 2 - order by number of Pedidos</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <returns>Report</returns>
         public virtual IPagedList<BestCustomerReportLine> GetBestCustomersReport(DateTime? createdFromUtc,
-            DateTime? createdToUtc, OrderStatus? os, PaymentStatus? ps, ShippingStatus? ss, int orderBy,
+            DateTime? createdToUtc, Pedidostatus? os, PaymentStatus? ps, ShippingStatus? ss, int orderBy,
             int pageIndex = 0, int pageSize = 214748364)
         {
-            int? orderStatusId = null;
+            int? PedidostatusId = null;
             if (os.HasValue)
-                orderStatusId = (int)os.Value;
+                PedidostatusId = (int)os.Value;
 
             int? paymentStatusId = null;
             if (ps.HasValue)
@@ -78,7 +78,7 @@ namespace Nop.Services.Customers
                          join o in _orderRepository.Table on c.Id equals o.CustomerId
                          where (!createdFromUtc.HasValue || createdFromUtc.Value <= o.CreatedOnUtc) &&
                          (!createdToUtc.HasValue || createdToUtc.Value >= o.CreatedOnUtc) &&
-                         (!orderStatusId.HasValue || orderStatusId == o.OrderStatusId) &&
+                         (!PedidostatusId.HasValue || PedidostatusId == o.PedidostatusId) &&
                          (!paymentStatusId.HasValue || paymentStatusId == o.PaymentStatusId) &&
                          (!shippingStatusId.HasValue || shippingStatusId == o.ShippingStatusId) &&
                          (!o.Deleted) &&

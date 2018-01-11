@@ -228,3 +228,7 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Ser
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.pdb
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.csproj.App.config
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.dll
+C:\Users\Daniel\Source\Repos\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.pdb

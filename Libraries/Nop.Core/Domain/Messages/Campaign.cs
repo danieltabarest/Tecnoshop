@@ -23,12 +23,12 @@ namespace Nop.Core.Domain.Messages
         public string Body { get; set; }
 
         /// <summary>
-        /// Gets or sets the store identifier  which subscribers it will be sent to; set 0 for all newsletter subscribers
+        /// Gets or sets the store identifier  which subscribers it will be sent to; set 0 for all Boletín informativo subscribers
         /// </summary>
         public int StoreId { get; set; }
 
         /// <summary>
-        /// Gets or sets the customer role identifier  which subscribers it will be sent to; set 0 for all newsletter subscribers
+        /// Gets or sets the customer role identifier  which subscribers it will be sent to; set 0 for all Boletín informativo subscribers
         /// </summary>
         public int CustomerRoleId { get; set; }
 

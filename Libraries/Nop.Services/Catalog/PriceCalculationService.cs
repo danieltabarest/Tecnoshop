@@ -7,7 +7,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Discounts;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Services.Catalog.Cache;
 using Nop.Services.Customers;
 using Nop.Services.Discounts;
@@ -106,35 +106,35 @@ namespace Nop.Services.Catalog
         }
 
         /// <summary>
-        /// Gets allowed discounts applied to categories
+        /// Gets allowed discounts applied to Categorias
         /// </summary>
         /// <param name="product">Product</param>
         /// <param name="customer">Customer</param>
         /// <returns>Discounts</returns>
-        protected virtual IList<DiscountForCaching> GetAllowedDiscountsAppliedToCategories(Product product, Customer customer)
+        protected virtual IList<DiscountForCaching> GetAllowedDiscountsAppliedToCategorias(Product product, Customer customer)
         {
             var allowedDiscounts = new List<DiscountForCaching>();
             if (_catalogSettings.IgnoreDiscounts)
                 return allowedDiscounts;
 
             //load cached discount models (performance optimization)
-            foreach (var discount in _discountService.GetAllDiscountsForCaching(DiscountType.AssignedToCategories))
+            foreach (var discount in _discountService.GetAllDiscountsForCaching(DiscountType.AssignedToCategorias))
             {
-                //load identifier of categories with this discount applied to
+                //load identifier of Categorias with this discount applied to
                 var discountCategoryIds = _discountService.GetAppliedCategoryIds(discount, customer);
 
-                //compare with categories of this product
+                //compare with Categorias of this product
                 var productCategoryIds = new List<int>();
                 if (discountCategoryIds.Any())
                 {
-                    //load identifier of categories of this product
+                    //load identifier of Categorias of this product
                     var cacheKey = string.Format(PriceCacheEventConsumer.PRODUCT_CATEGORY_IDS_MODEL_KEY,
                         product.Id,
                         string.Join(",", customer.GetCustomerRoleIds()),
                         _storeContext.CurrentStore.Id);
                     productCategoryIds = _cacheManager.Get(cacheKey, () =>
                         _categoryService
-                        .GetProductCategoriesByProductId(product.Id)
+                        .GetProductCategoriasByProductId(product.Id)
                         .Select(x => x.CategoryId)
                         .ToList());
                 }
@@ -217,8 +217,8 @@ namespace Nop.Services.Catalog
                 if (!allowedDiscounts.ContainsDiscount(discount))
                     allowedDiscounts.Add(discount);
 
-            //discounts applied to categories
-            foreach (var discount in GetAllowedDiscountsAppliedToCategories(product, customer))
+            //discounts applied to Categorias
+            foreach (var discount in GetAllowedDiscountsAppliedToCategorias(product, customer))
                 if (!allowedDiscounts.ContainsDiscount(discount))
                     allowedDiscounts.Add(discount);
 

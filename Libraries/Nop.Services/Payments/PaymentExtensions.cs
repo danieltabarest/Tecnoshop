@@ -5,9 +5,9 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 
 namespace Nop.Services.Payments
 {
@@ -17,9 +17,9 @@ namespace Nop.Services.Payments
     public static class PaymentExtensions
     {
         /// <summary>
-        /// Is payment method active?
+        /// Is Formas de pago active?
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <param name="paymentSettings">Payment settings</param>
         /// <returns>Result</returns>
         public static bool IsPaymentMethodActive(this IPaymentMethod paymentMethod,
@@ -40,9 +40,9 @@ namespace Nop.Services.Payments
         }
 
         /// <summary>
-        /// Calculate payment method fee
+        /// Calculate Formas de pago fee
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <param name="orderTotalCalculationService">Order total calculation service</param>
         /// <param name="cart">Shopping cart</param>
         /// <param name="fee">Fee value</param>

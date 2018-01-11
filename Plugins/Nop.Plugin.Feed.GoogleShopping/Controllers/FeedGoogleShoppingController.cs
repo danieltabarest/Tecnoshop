@@ -80,11 +80,11 @@ namespace Nop.Plugin.Feed.GoogleShopping.Controllers
             model.CurrencyId = _googleShoppingSettings.CurrencyId;
             foreach (var c in _currencyService.GetAllCurrencies())
                 model.AvailableCurrencies.Add(new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
-            //Google categories
+            //Google Categorias
             model.DefaultGoogleCategory = _googleShoppingSettings.DefaultGoogleCategory;
-            model.AvailableGoogleCategories.Add(new SelectListItem {Text = "Select a category", Value = ""});
+            model.AvailableGoogleCategorias.Add(new SelectListItem {Text = "Select a category", Value = ""});
             foreach (var gc in _googleService.GetTaxonomyList())
-                model.AvailableGoogleCategories.Add(new SelectListItem { Text = gc, Value = gc });
+                model.AvailableGoogleCategorias.Add(new SelectListItem { Text = gc, Value = gc });
 
             //file paths
             foreach (var store in _storeService.GetAllStores())

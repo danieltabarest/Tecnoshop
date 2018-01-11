@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Plugins;
 using Nop.Services.Configuration;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 
 namespace Nop.Plugin.DiscountRules.HasOneProduct
 {
@@ -21,7 +21,7 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct
         /// <summary>
         /// Check discount requirement
         /// </summary>
-        /// <param name="request">Object that contains all information required to check the requirement (Current customer, discount, etc)</param>
+        /// <param name="request">Object that contains all Information required to check the requirement (Current customer, discount, etc)</param>
         /// <returns>Result</returns>
         public DiscountRequirementValidationResult CheckRequirement(DiscountRequirementValidationRequest request)
         {

@@ -1,4 +1,4 @@
-﻿Group: Payment methods
+﻿Group: Formas de pagos
 FriendlyName: Check / Money Order
 SystemName: Payments.CheckMoneyOrder
 Version: 1.21

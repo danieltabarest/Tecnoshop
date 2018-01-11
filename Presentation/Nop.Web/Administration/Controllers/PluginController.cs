@@ -233,7 +233,7 @@ namespace Nop.Admin.Controllers
 
         [NonAction]
         protected static string GetCategoryBreadCrumbName(OfficialFeedCategory category,
-            IList<OfficialFeedCategory> allCategories)
+            IList<OfficialFeedCategory> allCategorias)
         {
             if (category == null)
                 throw new ArgumentNullException("category");
@@ -242,7 +242,7 @@ namespace Nop.Admin.Controllers
             while (category != null)
             {
                 breadCrumb.Add(category);
-                category = allCategories.FirstOrDefault(x => x.Id == category.ParentCategoryId);
+                category = allCategorias.FirstOrDefault(x => x.Id == category.ParentCategoryId);
             }
             breadCrumb.Reverse();
 
@@ -631,11 +631,11 @@ namespace Nop.Admin.Controllers
                 currentVersionItem.Selected = true;
             }
 
-            //categories
-            var categories = _officialFeedManager.GetCategories();
-            model.AvailableCategories.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
-            foreach (var category in categories)
-                model.AvailableCategories.Add(new SelectListItem { Text = GetCategoryBreadCrumbName(category, categories), Value = category.Id.ToString() });
+            //Categorias
+            var Categorias = _officialFeedManager.GetCategorias();
+            model.AvailableCategorias.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
+            foreach (var category in Categorias)
+                model.AvailableCategorias.Add(new SelectListItem { Text = GetCategoryBreadCrumbName(category, Categorias), Value = category.Id.ToString() });
             //prices
             model.AvailablePrices.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "0" });
             model.AvailablePrices.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Configuration.Plugins.OfficialFeed.Price.Free"), Value = "10" });

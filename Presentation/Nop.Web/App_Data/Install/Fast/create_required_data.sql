@@ -1,6 +1,6 @@
 ﻿SET IDENTITY_INSERT [dbo].[Store] ON 
 
-INSERT [dbo].[Store] ([Id], [Name], [Url], [SslEnabled], [SecureUrl], [Hosts], [DefaultLanguageId], [DisplayOrder], [CompanyName], [CompanyAddress], [CompanyPhoneNumber], [CompanyVat]) VALUES (1, N'Your store name', N'http://www.yourstore.com/', 0, NULL, N'yourstore.com,www.yourstore.com', 0, 1, N'Your company name', N'your company country, state, zip, street, etc', N'(123) 456-78901', NULL)
+INSERT [dbo].[Store] ([Id], [Name], [Url], [SslEnabled], [SecureUrl], [Hosts], [DefaultLanguageId], [DisplayOrder], [CompanyName], [CompanyAddress], [CompanyPhoneNumber], [CompanyVat]) VALUES (1, N'YNuestra tienda name', N'http://www.yourstore.com/', 0, NULL, N'yourstore.com,www.yourstore.com', 0, 1, N'Your company name', N'your company country, state, zip, street, etc', N'(123) 456-78901', NULL)
 SET IDENTITY_INSERT [dbo].[Store] OFF
 GO
 
@@ -137,7 +137,7 @@ INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [B
 <a href="%Store.URL%">%Store.Name%</a>
 <br />
 <br />
-A new customer registered with your store. Below are the customer''s details:
+A new customer registered with yNuestra tienda. Below are the customer''s details:
 <br />
 Full name: %Customer.FullName%
 <br />
@@ -191,15 +191,15 @@ INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [B
 A new news comment has been created for news "%NewsComment.NewsTitle%".
 </p>
 ', 1, NULL, 0, 0, 1, 0)
-INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (15, N'NewsLetterSubscription.ActivationMessage', NULL, N'%Store.Name%. Subscription activation message.', N'<p>
-<a href="%NewsLetterSubscription.ActivationUrl%">Click here to confirm your subscription to our list.</a>
+INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (15, N'Boletín informativoSubscription.ActivationMessage', NULL, N'%Store.Name%. Subscription activation message.', N'<p>
+<a href="%Boletín informativoSubscription.ActivationUrl%">Click here to confirm your subscription to our list.</a>
 </p>
 <p>
 If you received this email by mistake, simply delete it.
 </p>
 ', 1, NULL, 0, 0, 1, 0)
-INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (16, N'NewsLetterSubscription.DeactivationMessage', NULL, N'%Store.Name%. Subscription deactivation message.', N'<p>
-<a href="%NewsLetterSubscription.DeactivationUrl%">Click here to unsubscribe from our newsletter.</a>
+INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (16, N'Boletín informativoSubscription.DeactivationMessage', NULL, N'%Store.Name%. Subscription deactivation message.', N'<p>
+<a href="%Boletín informativoSubscription.DeactivationUrl%">Click here to unsubscribe from our Boletín informativo.</a>
 </p>
 <p>
 If you received this email by mistake, simply delete it.
@@ -418,7 +418,7 @@ INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [B
 <a href="%Store.URL%">%Store.Name%</a>
 <br />
 <br />
-%Order.CustomerFullName% (%Order.CustomerEmail%) has just placed an order from your store. Below is the summary of the order.
+%Order.CustomerFullName% (%Order.CustomerEmail%) has just placed an order from yNuestra tienda. Below is the summary of the order.
 <br />
 <br />
 Order Number: %Order.OrderNumber%
@@ -799,11 +799,11 @@ Vendor email: %Vendor.Email%
 You can activate it in admin area.
 </p>
 ', 1, NULL, 0, 0, 1, 0)
-INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (41, N'VendorInformationChange.StoreOwnerNotification', NULL, N'%Store.Name%. Vendor information change.', N'<p>
+INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (41, N'VendorInformationChange.StoreOwnerNotification', NULL, N'%Store.Name%. Vendor Information change.', N'<p>
 <a href="%Store.URL%">%Store.Name%</a>
 <br />
 <br />
-Vendor %Vendor.Name% (%Vendor.Email%) has just changed information about itself.
+Vendor %Vendor.Name% (%Vendor.Email%) has just changed Information about itself.
 </p>
 ', 1, NULL, 0, 0, 1, 0)
 INSERT [dbo].[MessageTemplate] ([Id], [Name], [BccEmailAddresses], [Subject], [Body], [IsActive], [DelayBeforeSend], [DelayPeriodId], [AttachedDownloadId], [EmailAccountId], [LimitedToStores]) VALUES (42, N'Service.ContactUs', NULL, N'%Store.Name%. Contact us', N'<p>
@@ -929,16 +929,16 @@ GO
 
 SET IDENTITY_INSERT [dbo].[Topic] ON 
 
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (1, N'AboutUs', 0, 0, 1, 0, 0, 20, 0, 0, NULL, N'About us', N'<p>Put your &quot;About Us&quot; information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (1, N'AboutUs', 0, 0, 1, 0, 0, 20, 0, 0, NULL, N'About us', N'<p>Put your &quot;About Us&quot; Information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
 INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (2, N'CheckoutAsGuestOrRegister', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'', N'<p><strong>Register and save time!</strong><br />Register with us for future convenience:</p><ul><li>Fast and easy check out</li><li>Easy access to your order history and status</li></ul>', 1, 1, NULL, NULL, NULL, 0, 0)
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (3, N'ConditionsOfUse', 0, 0, 1, 0, 0, 15, 0, 0, NULL, N'Conditions of Use', N'<p>Put your conditions of use information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (4, N'ContactUs', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'', N'<p>Put your contact information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (3, N'ConditionsOfUse', 0, 0, 1, 0, 0, 15, 0, 0, NULL, N'Conditions of Use', N'<p>Put your conditions of use Information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (4, N'ContactUs', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'', N'<p>Put your contact Information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
 INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (5, N'ForumWelcomeMessage', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'Forums', N'<p>Put your welcome message here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (6, N'HomePageText', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'Welcome to our store', N'<p>Online shopping is the process consumers go through to purchase products or services over the Internet. You can edit this in the admin site.</p><p>If you have questions, see the <a href="http://www.nopcommerce.com/documentation.aspx">Documentation</a>, or post in the <a href="http://www.nopcommerce.com/boards/">Forums</a> at <a href="http://www.nopcommerce.com">nopCommerce.com</a></p>', 1, 1, NULL, NULL, NULL, 0, 0)
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (7, N'LoginRegistrationInfo', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'About login / registration', N'<p>Put your login / registration information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (8, N'PrivacyInfo', 0, 0, 1, 0, 0, 10, 0, 0, NULL, N'Privacy notice', N'<p>Put your privacy policy information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (6, N'HomePageText', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'Welcome to Nuestra tienda', N'<p>Online shopping is the process consumers go through to purchase products or services over the Internet. You can edit this in the admin site.</p><p>If you have questions, see the <a href="http://www.nopcommerce.com/documentation.aspx">Documentation</a>, or post in the <a href="http://www.nopcommerce.com/boards/">Forums</a> at <a href="http://www.nopcommerce.com">nopCommerce.com</a></p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (7, N'LoginRegistrationInfo', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'About login / registration', N'<p>Put your login / registration Information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (8, N'PrivacyInfo', 0, 0, 1, 0, 0, 10, 0, 0, NULL, N'Privacy notice', N'<p>Put your privacy policy Information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
 INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (9, N'PageNotFound', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'', N'<p><strong>The page you requested was not found, and we have a fine guess why.</strong></p><ul><li>If you typed the URL directly, please make sure the spelling is correct.</li><li>The page no longer exists. In this case, we profusely apologize for the inconvenience and for any damage this may cause.</li></ul>', 1, 1, NULL, NULL, NULL, 0, 0)
-INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (10, N'ShippingInfo', 0, 0, 1, 0, 0, 5, 0, 0, NULL, N'Shipping & returns', N'<p>Put your shipping &amp; returns information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
+INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (10, N'ShippingInfo', 0, 0, 1, 0, 0, 5, 0, 0, NULL, N'Shipping & returns', N'<p>Put your shipping &amp; returns Information here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
 INSERT [dbo].[Topic] ([Id], [SystemName], [IncludeInSitemap], [IncludeInTopMenu], [IncludeInFooterColumn1], [IncludeInFooterColumn2], [IncludeInFooterColumn3], [DisplayOrder], [AccessibleWhenStoreClosed], [IsPasswordProtected], [Password], [Title], [Body], [Published], [TopicTemplateId], [MetaKeywords], [MetaDescription], [MetaTitle], [SubjectToAcl], [LimitedToStores]) VALUES (11, N'ApplyVendor', 0, 0, 0, 0, 0, 1, 0, 0, NULL, N'', N'<p>Put your apply vendor instructions here. You can edit this in the admin site.</p>', 1, 1, NULL, NULL, NULL, 0, 0)
 SET IDENTITY_INSERT [dbo].[Topic] OFF
 GO
@@ -963,7 +963,7 @@ GO
 
 SET IDENTITY_INSERT [dbo].[ShippingMethod] ON 
 
-INSERT [dbo].[ShippingMethod] ([Id], [Name], [Description], [DisplayOrder]) VALUES (1, N'Ground', N'Compared to other shipping methods, ground shipping is carried out closer to the earth', 1)
+INSERT [dbo].[ShippingMethod] ([Id], [Name], [Description], [DisplayOrder]) VALUES (1, N'Ground', N'Compared to other Formas de envío, ground shipping is carried out closer to the earth', 1)
 INSERT [dbo].[ShippingMethod] ([Id], [Name], [Description], [DisplayOrder]) VALUES (2, N'Next Day Air', N'The one day air shipping', 3)
 INSERT [dbo].[ShippingMethod] ([Id], [Name], [Description], [DisplayOrder]) VALUES (3, N'2nd Day Air', N'The two day air shipping', 3)
 SET IDENTITY_INSERT [dbo].[ShippingMethod] OFF
@@ -1416,7 +1416,7 @@ INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (108, N'EditWidget', N'Edit a widget', 1)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (109, N'Impersonation.Started', N'Customer impersonation session. Started', 1)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (110, N'Impersonation.Finished', N'Customer impersonation session. Finished', 1)
-INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (111, N'ImportCategories', N'Categories were imported', 1)
+INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (111, N'ImportCategorias', N'Categorias were imported', 1)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (112, N'ImportManufacturers', N'Manufacturers were imported', 1)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (113, N'ImportProducts', N'Products were imported', 1)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (114, N'ImportStates', N'States were imported', 1)
@@ -1428,9 +1428,9 @@ INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (120, N'PublicStore.PlaceOrder', N'Public store. Place an order', 0)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (121, N'PublicStore.SendPM', N'Public store. Send PM', 0)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (122, N'PublicStore.ContactUs', N'Public store. Use contact us form', 0)
-INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (123, N'PublicStore.AddToCompareList', N'Public store. Add to compare list', 0)
+INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (123, N'PublicStore.AddToCompareList', N'Public store. Agregar para comparar list', 0)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (124, N'PublicStore.AddToShoppingCart', N'Public store. Add to shopping cart', 0)
-INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (125, N'PublicStore.AddToWishlist', N'Public store. Add to wishlist', 0)
+INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (125, N'PublicStore.AddToWishlist', N'Public store. Agregar a favoritos', 0)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (126, N'PublicStore.Login', N'Public store. Login', 0)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (127, N'PublicStore.Logout', N'Public store. Logout', 0)
 INSERT [dbo].[ActivityLogType] ([Id], [SystemKeyword], [Name], [Enabled]) VALUES (128, N'PublicStore.AddProductReview', N'Public store. Add product review', 0)
@@ -1454,16 +1454,16 @@ SET IDENTITY_INSERT [dbo].[Setting] ON
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (1, N'pdfsettings.logopictureid', N'0', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (2, N'pdfsettings.letterpagesizeenabled', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (3, N'pdfsettings.renderordernotes', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (4, N'pdfsettings.disablepdfinvoicesforpendingorders', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (4, N'pdfsettings.disablepdfinvoicesforpendingPedidos', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (5, N'pdfsettings.fontfilename', N'FreeSerif.ttf', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (6, N'pdfsettings.invoicefootertextcolumn1', N'', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (7, N'pdfsettings.invoicefootertextcolumn2', N'', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (8, N'commonsettings.subjectfieldoncontactusform', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (9, N'commonsettings.usesystememailforcontactusform', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (10, N'commonsettings.usestoredproceduresifsupported', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (11, N'commonsettings.usestoredprocedureforloadingcategories', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (11, N'commonsettings.usestoredprocedureforloadingCategorias', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (12, N'commonsettings.sitemapenabled', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (13, N'commonsettings.sitemapincludecategories', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (13, N'commonsettings.sitemapincludeCategorias', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (14, N'commonsettings.sitemapincludemanufacturers', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (15, N'commonsettings.sitemapincludeproducts', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (16, N'commonsettings.sitemapcustomurls', N'', 0)
@@ -1478,7 +1478,7 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (24, N'commonse
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (25, N'commonsettings.bbcodeeditoropenlinksinnewwindow', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (26, N'seosettings.pagetitleseparator', N'. ', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (27, N'seosettings.pagetitleseoadjustment', N'PagenameAfterStorename', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (28, N'seosettings.defaulttitle', N'Your store', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (28, N'seosettings.defaulttitle', N'YNuestra tienda', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (29, N'seosettings.defaultmetakeywords', N'', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (30, N'seosettings.defaultmetadescription', N'', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (31, N'seosettings.generateproductmetadescription', N'True', 0)
@@ -1490,7 +1490,7 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (36, N'seosetti
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (37, N'seosettings.enablecssbundling', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (38, N'seosettings.twittermetatags', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (39, N'seosettings.opengraphmetatags', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (40, N'seosettings.reservedurlrecordslugs', N'admin,install,recentlyviewedproducts,newproducts,compareproducts,clearcomparelist,setproductreviewhelpfulness,login,register,logout,cart,wishlist,emailwishlist,checkout,onepagecheckout,contactus,passwordrecovery,subscribenewsletter,blog,boards,inboxupdate,sentupdate,news,sitemap,search,config,eucookielawaccept,page-not-found,con,lpt1,lpt2,lpt3,lpt4,lpt5,lpt6,lpt7,lpt8,lpt9,com1,com2,com3,com4,com5,com6,com7,com8,com9,null,prn,aux', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (40, N'seosettings.reservedurlrecordslugs', N'admin,install,recentlyviewedproducts,newproducts,compareproducts,clearcomparelist,setproductreviewhelpfulness,login,register,logout,cart,wishlist,emailwishlist,checkout,onepagecheckout,contactus,passwordrecovery,subscribeBoletín informativo,blog,boards,inboxupdate,sentupdate,news,sitemap,search,config,eucookielawaccept,page-not-found,con,lpt1,lpt2,lpt3,lpt4,lpt5,lpt6,lpt7,lpt8,lpt9,com1,com2,com3,com4,com5,com6,com7,com8,com9,null,prn,aux', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (41, N'seosettings.customheadtags', N'', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (42, N'adminareasettings.defaultgridpagesize', N'15', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (43, N'adminareasettings.popupgridpagesize', N'10', 0)
@@ -1543,7 +1543,7 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (89, N'producte
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (90, N'producteditorsettings.minimumstockquantity', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (91, N'producteditorsettings.lowstockactivity', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (92, N'producteditorsettings.notifyadminforquantitybelow', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (93, N'producteditorsettings.backorders', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (93, N'producteditorsettings.backPedidos', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (94, N'producteditorsettings.allowbackinstocksubscriptions', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (95, N'producteditorsettings.minimumcartquantity', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (96, N'producteditorsettings.maximumcartquantity', N'False', 0)
@@ -1563,7 +1563,7 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (109, N'product
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (110, N'producteditorsettings.relatedproducts', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (111, N'producteditorsettings.crosssellsproducts', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (112, N'producteditorsettings.seo', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (113, N'producteditorsettings.purchasedwithorders', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (113, N'producteditorsettings.purchasedwithPedidos', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (114, N'producteditorsettings.onecolumnproductpage', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (115, N'producteditorsettings.productattributes', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (116, N'producteditorsettings.specificationattributes', N'True', 0)
@@ -1571,7 +1571,7 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (117, N'product
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (118, N'producteditorsettings.stockquantityhistory', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (119, N'catalogsettings.allowviewunpublishedproductpage', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (120, N'catalogsettings.displaydiscontinuedmessageforunpublishedproducts', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (121, N'catalogsettings.publishbackproductwhencancellingorders', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (121, N'catalogsettings.publishbackproductwhencancellingPedidos', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (122, N'catalogsettings.showskuonproductdetailspage', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (123, N'catalogsettings.showskuoncatalogpages', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (124, N'catalogsettings.showmanufacturerpartnumber', N'False', 0)
@@ -1580,9 +1580,9 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (126, N'catalog
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (127, N'catalogsettings.allowproductsorting', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (128, N'catalogsettings.allowproductviewmodechanging', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (129, N'catalogsettings.defaultviewmode', N'grid', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (130, N'catalogsettings.showproductsfromsubcategories', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (130, N'catalogsettings.showproductsfromsubCategorias', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (131, N'catalogsettings.showcategoryproductnumber', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (132, N'catalogsettings.showcategoryproductnumberincludingsubcategories', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (132, N'catalogsettings.showcategoryproductnumberincludingsubCategorias', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (133, N'catalogsettings.categorybreadcrumbenabled', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (134, N'catalogsettings.showsharebutton', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (135, N'catalogsettings.pagesharecode', N'<!-- AddThis Button BEGIN --><div class="addthis_toolbox addthis_default_style "><a class="addthis_button_preferred_1"></a><a class="addthis_button_preferred_2"></a><a class="addthis_button_preferred_3"></a><a class="addthis_button_preferred_4"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=nopsolutions"></script><!-- AddThis Button END -->', 0)
@@ -1674,10 +1674,10 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (220, N'custome
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (221, N'customersettings.hidebackinstocksubscriptionstab', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (222, N'customersettings.downloadableproductsvalidateuser', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (223, N'customersettings.customernameformat', N'ShowFirstName', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (224, N'customersettings.newsletterenabled', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (225, N'customersettings.newslettertickedbydefault', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (226, N'customersettings.hidenewsletterblock', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (227, N'customersettings.newsletterblockallowtounsubscribe', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (224, N'customersettings.Boletín informativoenabled', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (225, N'customersettings.Boletín informativotickedbydefault', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (226, N'customersettings.hideBoletín informativoblock', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (227, N'customersettings.Boletín informativoblockallowtounsubscribe', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (228, N'customersettings.onlinecustomerminutes', N'20', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (229, N'customersettings.storelastvisitedpage', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (230, N'customersettings.suffixdeletedcustomers', N'False', 0)
@@ -1741,18 +1741,18 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (287, N'mediase
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (288, N'mediasettings.multiplethumbdirectories', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (289, N'mediasettings.importproductimagesusinghash', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (290, N'mediasettings.azurecachecontrolheader', N'', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (291, N'storeinformationsettings.hidepoweredbynopcommerce', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (292, N'storeinformationsettings.storeclosed', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (293, N'storeinformationsettings.logopictureid', N'0', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (294, N'storeinformationsettings.defaultstoretheme', N'DefaultClean', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (295, N'storeinformationsettings.allowcustomertoselecttheme', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (296, N'storeinformationsettings.displayminiprofilerinpublicstore', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (297, N'storeinformationsettings.displayminiprofilerforadminonly', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (298, N'storeinformationsettings.displayeucookielawwarning', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (299, N'storeinformationsettings.facebooklink', N'http://www.facebook.com/nopCommerce', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (300, N'storeinformationsettings.twitterlink', N'https://twitter.com/nopCommerce', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (301, N'storeinformationsettings.youtubelink', N'http://www.youtube.com/user/nopCommerce', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (302, N'storeinformationsettings.googlepluslink', N'https://plus.google.com/+nopcommerce', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (291, N'storeInformationsettings.hidepoweredbynopcommerce', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (292, N'storeInformationsettings.storeclosed', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (293, N'storeInformationsettings.logopictureid', N'0', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (294, N'storeInformationsettings.defaultstoretheme', N'DefaultClean', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (295, N'storeInformationsettings.allowcustomertoselecttheme', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (296, N'storeInformationsettings.displayminiprofilerinpublicstore', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (297, N'storeInformationsettings.displayminiprofilerforadminonly', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (298, N'storeInformationsettings.displayeucookielawwarning', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (299, N'storeInformationsettings.facebooklink', N'http://www.facebook.com/nopCommerce', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (300, N'storeInformationsettings.twitterlink', N'https://twitter.com/nopCommerce', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (301, N'storeInformationsettings.youtubelink', N'http://www.youtube.com/user/nopCommerce', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (302, N'storeInformationsettings.googlepluslink', N'https://plus.google.com/+nopcommerce', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (303, N'externalauthenticationsettings.autoregisterenabled', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (304, N'externalauthenticationsettings.requireemailvalidation', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (305, N'externalauthenticationsettings.activeauthenticationmethodsystemnames', N'', 0)
@@ -1799,34 +1799,34 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (345, N'shoppin
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (346, N'shoppingcartsettings.grouptierpricesfordistinctshoppingcartitems', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (347, N'shoppingcartsettings.allowcartitemediting', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (348, N'shoppingcartsettings.renderassociatedattributevaluequantity', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (349, N'ordersettings.isreorderallowed', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (350, N'ordersettings.minordersubtotalamount', N'0', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (351, N'ordersettings.minordersubtotalamountincludingtax', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (352, N'ordersettings.minordertotalamount', N'0', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (353, N'ordersettings.autoupdateordertotalsoneditingorder', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (354, N'ordersettings.anonymouscheckoutallowed', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (355, N'ordersettings.termsofserviceonshoppingcartpage', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (356, N'ordersettings.termsofserviceonorderconfirmpage', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (357, N'ordersettings.onepagecheckoutenabled', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (358, N'ordersettings.onepagecheckoutdisplayordertotalsonpaymentinfotab', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (359, N'ordersettings.disablebillingaddresscheckoutstep', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (360, N'ordersettings.disableordercompletedpage', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (361, N'ordersettings.attachpdfinvoicetoorderplacedemail', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (362, N'ordersettings.attachpdfinvoicetoorderpaidemail', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (363, N'ordersettings.attachpdfinvoicetoordercompletedemail', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (364, N'ordersettings.generatepdfinvoiceincustomerlanguage', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (365, N'ordersettings.returnrequestsenabled', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (366, N'ordersettings.returnrequestsallowfiles', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (367, N'ordersettings.returnrequestsfilemaximumsize', N'2048', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (368, N'ordersettings.returnrequestnumbermask', N'{ID}', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (369, N'ordersettings.numberofdaysreturnrequestavailable', N'365', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (370, N'ordersettings.activategiftcardsaftercompletingorder', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (371, N'ordersettings.deactivategiftcardsaftercancellingorder', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (372, N'ordersettings.deactivategiftcardsafterdeletingorder', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (373, N'ordersettings.minimumorderplacementinterval', N'30', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (374, N'ordersettings.completeorderwhendelivered', N'True', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (375, N'ordersettings.customordernumbermask', N'{ID}', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (376, N'ordersettings.exportwithproducts', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (349, N'Pedidosettings.isreorderallowed', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (350, N'Pedidosettings.minPedidosubtotalamount', N'0', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (351, N'Pedidosettings.minPedidosubtotalamountincludingtax', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (352, N'Pedidosettings.minordertotalamount', N'0', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (353, N'Pedidosettings.autoupdateordertotalsoneditingorder', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (354, N'Pedidosettings.anonymouscheckoutallowed', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (355, N'Pedidosettings.termsofserviceonshoppingcartpage', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (356, N'Pedidosettings.termsofserviceonorderconfirmpage', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (357, N'Pedidosettings.onepagecheckoutenabled', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (358, N'Pedidosettings.onepagecheckoutdisplayordertotalsonpaymentinfotab', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (359, N'Pedidosettings.disablebillingaddresscheckoutstep', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (360, N'Pedidosettings.disableordercompletedpage', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (361, N'Pedidosettings.attachpdfinvoicetoorderplacedemail', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (362, N'Pedidosettings.attachpdfinvoicetoorderpaidemail', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (363, N'Pedidosettings.attachpdfinvoicetoordercompletedemail', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (364, N'Pedidosettings.generatepdfinvoiceincustomerlanguage', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (365, N'Pedidosettings.returnrequestsenabled', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (366, N'Pedidosettings.returnrequestsallowfiles', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (367, N'Pedidosettings.returnrequestsfilemaximumsize', N'2048', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (368, N'Pedidosettings.returnrequestnumbermask', N'{ID}', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (369, N'Pedidosettings.numberofdaysreturnrequestavailable', N'365', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (370, N'Pedidosettings.activategiftcardsaftercompletingorder', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (371, N'Pedidosettings.deactivategiftcardsaftercancellingorder', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (372, N'Pedidosettings.deactivategiftcardsafterdeletingorder', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (373, N'Pedidosettings.minimumorderplacementinterval', N'30', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (374, N'Pedidosettings.completeorderwhendelivered', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (375, N'Pedidosettings.customordernumbermask', N'{ID}', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (376, N'Pedidosettings.exportwithproducts', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (377, N'securitysettings.forcesslforallpages', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (378, N'securitysettings.encryptionkey', N'1137167068647048', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (379, N'securitysettings.adminareaallowedipaddresses', N'', 0)
@@ -1870,8 +1870,8 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (416, N'taxsett
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (417, N'taxsettings.pricesincludetax', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (418, N'taxsettings.allowcustomerstoselecttaxdisplaytype', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (419, N'taxsettings.hidezerotax', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (420, N'taxsettings.hidetaxinordersummary', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (421, N'taxsettings.forcetaxexclusionfromordersubtotal', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (420, N'taxsettings.hidetaxinPedidosummary', N'False', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (421, N'taxsettings.forcetaxexclusionfromPedidosubtotal', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (422, N'taxsettings.defaulttaxcategoryid', N'0', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (423, N'taxsettings.shippingistaxable', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (424, N'taxsettings.shippingpriceincludestax', N'False', 0)
@@ -1945,7 +1945,7 @@ INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (491, N'vendors
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (492, N'vendorsettings.allowcustomerstoapplyforvendoraccount', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (493, N'vendorsettings.allowsearchbyvendor', N'False', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (494, N'vendorsettings.allowvendorstoeditinfo', N'False', 0)
-INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (495, N'vendorsettings.notifystoreowneraboutvendorinformationchange', N'True', 0)
+INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (495, N'vendorsettings.notifystoreowneraboutvendorInformationchange', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (496, N'vendorsettings.maximumproductnumber', N'3000', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (497, N'vendorsettings.allowvendorstoimportproducts', N'True', 0)
 INSERT [dbo].[Setting] ([Id], [Name], [Value], [StoreId]) VALUES (498, N'emailaccountsettings.defaultemailaccountid', N'1', 0)

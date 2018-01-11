@@ -5,7 +5,7 @@
 @using Nop.Web.Models.Common;
 @*@*@*@*<div class="footer">*@
     @*<div class="footer-upper">
-        <div class="footer-block information">
+        <div class="footer-block Information">
             <div class="title">
                 <strong>@T("Footer.Information")</strong>
             </div>
@@ -63,7 +63,7 @@
             </div>
             <ul class="list">
                 <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                <li><a href="@Url.RouteUrl("CustomerPedidos")">@T("Account.CustomerPedidos")</a></li>
                 <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
                 @if (Model.ShoppingCartEnabled)
                 {
@@ -90,7 +90,7 @@
                 </div>
                 @Html.Action("Social", "Common")
             </div>
-            @Html.Action("NewsletterBox", "Newsletter")
+            @Html.Action("Boletín informativoBox", "Boletín informativo")
         </div>
     </div>*@
     @*<div class="footer-lower">

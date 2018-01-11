@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Nop.Core.Data
 {
     /// <summary>
-    /// Data settings (connection string information)
+    /// Data settings (connection string Information)
     /// </summary>
     public partial class DataSettings
     {
@@ -32,7 +32,7 @@ namespace Nop.Core.Data
         public IDictionary<string, string> RawDataSettings { get; private set; }
 
         /// <summary>
-        /// A value indicating whether entered information is valid
+        /// A value indicating whether entered Information is valid
         /// </summary>
         /// <returns></returns>
         public bool IsValid()

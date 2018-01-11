@@ -140,7 +140,7 @@ namespace Nop.Services.Catalog
 
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>
@@ -148,7 +148,7 @@ namespace Nop.Services.Catalog
         string FormatPaymentMethodAdditionalFee(decimal price, bool showCurrency);
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>
@@ -160,7 +160,7 @@ namespace Nop.Services.Catalog
             Currency targetCurrency, Language language, bool priceIncludesTax);
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>
@@ -173,7 +173,7 @@ namespace Nop.Services.Catalog
             Currency targetCurrency, Language language, bool priceIncludesTax, bool showTax);
 
         /// <summary>
-        /// Formats the payment method additional fee
+        /// Formats the Formas de pago additional fee
         /// </summary>
         /// <param name="price">Price</param>
         /// <param name="showCurrency">A value indicating whether to show a currency</param>

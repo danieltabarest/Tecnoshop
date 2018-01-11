@@ -1,7 +1,7 @@
 ﻿using Nop.Admin.Models.Common;
 using Nop.Web.Framework.Mvc;
 
-namespace Nop.Admin.Models.Orders
+namespace Nop.Admin.Models.Pedidos
 {
     public partial class OrderAddressModel : BaseNopModel
     {

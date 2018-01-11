@@ -13,7 +13,7 @@ using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
@@ -30,7 +30,7 @@ using Nop.Services.Forums;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Services.Orders;
+using Nop.Services.Pedidos;
 using Nop.Services.Payments;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
@@ -50,7 +50,7 @@ namespace Nop.Services.Messages
         private readonly ICurrencyService _currencyService;
         private readonly IWorkContext _workContext;
         private readonly IDownloadService _downloadService;
-        private readonly IOrderService _orderService;
+        private readonly IPedidoservice _Pedidoservice;
         private readonly IPaymentService _paymentService;
         private readonly IProductAttributeParser _productAttributeParser;
         private readonly IAddressAttributeFormatter _addressAttributeFormatter;
@@ -79,7 +79,7 @@ namespace Nop.Services.Messages
             ICurrencyService currencyService,
             IWorkContext workContext,
             IDownloadService downloadService,
-            IOrderService orderService,
+            IPedidoservice Pedidoservice,
             IPaymentService paymentService,
             IStoreService storeService,
             IStoreContext storeContext,
@@ -102,7 +102,7 @@ namespace Nop.Services.Messages
             this._currencyService = currencyService;
             this._workContext = workContext;
             this._downloadService = downloadService;
-            this._orderService = orderService;
+            this._Pedidoservice = Pedidoservice;
             this._paymentService = paymentService;
             this._productAttributeParser = productAttributeParser;
             this._addressAttributeFormatter = addressAttributeFormatter;
@@ -243,12 +243,12 @@ namespace Nop.Services.Messages
                     "%RecurringPayment.RecurringPaymentType%"
                 });
 
-                //newsletter subscription tokens
+                //Boletín informativo subscription tokens
                 _allowedTokens.Add(TokenGroupNames.SubscriptionTokens, new[]
                 {
-                    "%NewsLetterSubscription.Email%",
-                    "%NewsLetterSubscription.ActivationUrl%",
-                    "%NewsLetterSubscription.DeactivationUrl%"
+                    "%Boletín informativoSubscription.Email%",
+                    "%Boletín informativoSubscription.ActivationUrl%",
+                    "%Boletín informativoSubscription.DeactivationUrl%"
                 });
 
                 //product tokens
@@ -544,18 +544,18 @@ namespace Nop.Services.Messages
                 string cusSubTotal;
                 bool displaySubTotalDiscount = false;
                 string cusSubTotalDiscount = string.Empty;
-                if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromOrderSubtotal)
+                if (order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax && !_taxSettings.ForceTaxExclusionFromPedidosubtotal)
                 {
                     //including tax
 
                     //subtotal
-                    var orderSubtotalInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderSubtotalInclTax, order.CurrencyRate);
-                    cusSubTotal = _priceFormatter.FormatPrice(orderSubtotalInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
+                    var PedidosubtotalInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubtotalInclTax, order.CurrencyRate);
+                    cusSubTotal = _priceFormatter.FormatPrice(PedidosubtotalInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
                     //discount (applied to order subtotal)
-                    var orderSubTotalDiscountInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderSubTotalDiscountInclTax, order.CurrencyRate);
-                    if (orderSubTotalDiscountInclTaxInCustomerCurrency > decimal.Zero)
+                    var PedidosubTotalDiscountInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubTotalDiscountInclTax, order.CurrencyRate);
+                    if (PedidosubTotalDiscountInclTaxInCustomerCurrency > decimal.Zero)
                     {
-                        cusSubTotalDiscount = _priceFormatter.FormatPrice(-orderSubTotalDiscountInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
+                        cusSubTotalDiscount = _priceFormatter.FormatPrice(-PedidosubTotalDiscountInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
                         displaySubTotalDiscount = true;
                     }
                 }
@@ -564,18 +564,18 @@ namespace Nop.Services.Messages
                     //exсluding tax
 
                     //subtotal
-                    var orderSubtotalExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderSubtotalExclTax, order.CurrencyRate);
-                    cusSubTotal = _priceFormatter.FormatPrice(orderSubtotalExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
+                    var PedidosubtotalExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubtotalExclTax, order.CurrencyRate);
+                    cusSubTotal = _priceFormatter.FormatPrice(PedidosubtotalExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
                     //discount (applied to order subtotal)
-                    var orderSubTotalDiscountExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderSubTotalDiscountExclTax, order.CurrencyRate);
-                    if (orderSubTotalDiscountExclTaxInCustomerCurrency > decimal.Zero)
+                    var PedidosubTotalDiscountExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidosubTotalDiscountExclTax, order.CurrencyRate);
+                    if (PedidosubTotalDiscountExclTaxInCustomerCurrency > decimal.Zero)
                     {
-                        cusSubTotalDiscount = _priceFormatter.FormatPrice(-orderSubTotalDiscountExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
+                        cusSubTotalDiscount = _priceFormatter.FormatPrice(-PedidosubTotalDiscountExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
                         displaySubTotalDiscount = true;
                     }
                 }
                 
-                //shipping, payment method fee
+                //shipping, Formas de pago fee
                 string cusShipTotal;
                 string cusPaymentMethodAdditionalFee;
                 var taxRates = new SortedDictionary<decimal, decimal>();
@@ -587,9 +587,9 @@ namespace Nop.Services.Messages
                     //including tax
 
                     //shipping
-                    var orderShippingInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderShippingInclTax, order.CurrencyRate);
-                    cusShipTotal = _priceFormatter.FormatShippingPrice(orderShippingInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
-                    //payment method additional fee
+                    var PedidoshippingInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidoshippingInclTax, order.CurrencyRate);
+                    cusShipTotal = _priceFormatter.FormatShippingPrice(PedidoshippingInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
+                    //Formas de pago additional fee
                     var paymentMethodAdditionalFeeInclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PaymentMethodAdditionalFeeInclTax, order.CurrencyRate);
                     cusPaymentMethodAdditionalFee = _priceFormatter.FormatPaymentMethodAdditionalFee(paymentMethodAdditionalFeeInclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, true);
                 }
@@ -598,9 +598,9 @@ namespace Nop.Services.Messages
                     //excluding tax
 
                     //shipping
-                    var orderShippingExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.OrderShippingExclTax, order.CurrencyRate);
-                    cusShipTotal = _priceFormatter.FormatShippingPrice(orderShippingExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
-                    //payment method additional fee
+                    var PedidoshippingExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PedidoshippingExclTax, order.CurrencyRate);
+                    cusShipTotal = _priceFormatter.FormatShippingPrice(PedidoshippingExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
+                    //Formas de pago additional fee
                     var paymentMethodAdditionalFeeExclTaxInCustomerCurrency = _currencyService.ConvertCurrency(order.PaymentMethodAdditionalFeeExclTax, order.CurrencyRate);
                     cusPaymentMethodAdditionalFee = _priceFormatter.FormatPaymentMethodAdditionalFee(paymentMethodAdditionalFeeExclTaxInCustomerCurrency, true, order.CustomerCurrencyCode, language, false);
                 }
@@ -608,13 +608,13 @@ namespace Nop.Services.Messages
                 //shipping
                 bool displayShipping = order.ShippingStatus != ShippingStatus.ShippingNotRequired;
 
-                //payment method fee
+                //Formas de pago fee
                 bool displayPaymentMethodFee = order.PaymentMethodAdditionalFeeExclTax > decimal.Zero;
 
                 //tax
                 bool displayTax = true;
                 bool displayTaxRates = true;
-                if (_taxSettings.HideTaxInOrderSummary && order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
+                if (_taxSettings.HideTaxInPedidosummary && order.CustomerTaxDisplayType == TaxDisplayType.IncludingTax)
                 {
                     displayTax = false;
                     displayTaxRates = false;
@@ -673,7 +673,7 @@ namespace Nop.Services.Messages
                     sb.AppendLine(string.Format("<tr style=\"text-align:right;\"><td>&nbsp;</td><td colspan=\"2\" style=\"background-color: {0};padding:0.6em 0.4 em;\"><strong>{1}</strong></td> <td style=\"background-color: {0};padding:0.6em 0.4 em;\"><strong>{2}</strong></td></tr>", _templatesSettings.Color3, _localizationService.GetResource("Messages.Order.Shipping", languageId), cusShipTotal));
                 }
 
-                //payment method fee
+                //Formas de pago fee
                 if (displayPaymentMethodFee)
                 {
                     string paymentMethodFeeTitle = _localizationService.GetResource("Messages.Order.PaymentMethodAdditionalFee", languageId);
@@ -752,7 +752,7 @@ namespace Nop.Services.Messages
             for (int i = 0; i <= table.Count - 1; i++)
             {
                 var si = table[i];
-                var orderItem = _orderService.GetOrderItemById(si.OrderItemId);
+                var orderItem = _Pedidoservice.GetOrderItemById(si.OrderItemId);
                 if (orderItem == null)
                     continue;
 
@@ -1109,22 +1109,22 @@ namespace Nop.Services.Messages
         }
 
         /// <summary>
-        /// Add newsletter subscription tokens
+        /// Add Boletín informativo subscription tokens
         /// </summary>
         /// <param name="tokens">List of already added tokens</param>
-        /// <param name="subscription">Newsletter subscription</param>
-        public virtual void AddNewsLetterSubscriptionTokens(IList<Token> tokens, NewsLetterSubscription subscription)
+        /// <param name="subscription">Boletín informativo subscription</param>
+        public virtual void AddBoletín informativoSubscriptionTokens(IList<Token> tokens, Boletín informativoSubscription subscription)
         {
-            tokens.Add(new Token("NewsLetterSubscription.Email", subscription.Email));
+            tokens.Add(new Token("Boletín informativoSubscription.Email", subscription.Email));
 
 
-            const string urlFormat = "{0}newsletter/subscriptionactivation/{1}/{2}";
+            const string urlFormat = "{0}Boletín informativo/subscriptionactivation/{1}/{2}";
 
-            var activationUrl = String.Format(urlFormat, GetStoreUrl(), subscription.NewsLetterSubscriptionGuid, "true");
-            tokens.Add(new Token("NewsLetterSubscription.ActivationUrl", activationUrl, true));
+            var activationUrl = String.Format(urlFormat, GetStoreUrl(), subscription.Boletín informativoSubscriptionGuid, "true");
+            tokens.Add(new Token("Boletín informativoSubscription.ActivationUrl", activationUrl, true));
 
-            var deActivationUrl = String.Format(urlFormat, GetStoreUrl(), subscription.NewsLetterSubscriptionGuid, "false");
-            tokens.Add(new Token("NewsLetterSubscription.DeactivationUrl", deActivationUrl, true));
+            var deActivationUrl = String.Format(urlFormat, GetStoreUrl(), subscription.Boletín informativoSubscriptionGuid, "false");
+            tokens.Add(new Token("Boletín informativoSubscription.DeactivationUrl", deActivationUrl, true));
 
             //event notification
             _eventPublisher.EntityTokensAdded(subscription, tokens);

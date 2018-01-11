@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Shipping;
 
-namespace Nop.Services.Orders
+namespace Nop.Services.Pedidos
 {
     /// <summary>
     /// Order report service interface
@@ -23,7 +23,7 @@ namespace Nop.Services.Orders
         /// <param name="startTimeUtc">Start date</param>
         /// <param name="endTimeUtc">End date</param>
         /// <returns>Result</returns>
-        IList<OrderByCountryReportLine> GetCountryReport(int storeId = 0, OrderStatus? os = null,
+        IList<OrderByCountryReportLine> GetCountryReport(int storeId = 0, Pedidostatus? os = null,
             PaymentStatus? ps = null, ShippingStatus? ss = null,
             DateTime? startTimeUtc = null, DateTime? endTimeUtc = null);
 
@@ -32,9 +32,9 @@ namespace Nop.Services.Orders
         /// </summary>
         /// <param name="storeId">Store identifier; pass 0 to ignore this parameter</param>
         /// <param name="vendorId">Vendor identifier; pass 0 to ignore this parameter</param>
-        /// <param name="billingCountryId">Billing country identifier; 0 to load all orders</param>
+        /// <param name="billingCountryId">Billing country identifier; 0 to load all Pedidos</param>
         /// <param name="orderId">Order identifier; pass 0 to ignore this parameter</param>
-        /// <param name="paymentMethodSystemName">Payment method system name; null to load all records</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name; null to load all records</param>
         /// <param name="osIds">Order status identifiers</param>
         /// <param name="psIds">Payment status identifiers</param>
         /// <param name="ssIds">Shipping status identifiers</param>
@@ -56,12 +56,12 @@ namespace Nop.Services.Orders
         /// <param name="storeId">Store identifier</param>
         /// <param name="os">Order status</param>
         /// <returns>Result</returns>
-        OrderAverageReportLineSummary OrderAverageReport(int storeId, OrderStatus os);
+        OrderAverageReportLineSummary OrderAverageReport(int storeId, Pedidostatus os);
 
         /// <summary>
         /// Get best sellers report
         /// </summary>
-        /// <param name="storeId">Store identifier (orders placed in a specific store); 0 to load all records</param>
+        /// <param name="storeId">Store identifier (Pedidos placed in a specific store); 0 to load all records</param>
         /// <param name="vendorId">Vendor identifier; 0 to load all records</param>
         /// <param name="categoryId">Category identifier; 0 to load all records</param>
         /// <param name="manufacturerId">Manufacturer identifier; 0 to load all records</param>
@@ -80,7 +80,7 @@ namespace Nop.Services.Orders
             int categoryId = 0, int manufacturerId = 0, 
             int storeId = 0, int vendorId = 0,
             DateTime? createdFromUtc = null, DateTime? createdToUtc = null,
-            OrderStatus? os = null, PaymentStatus? ps = null, ShippingStatus? ss = null,
+            Pedidostatus? os = null, PaymentStatus? ps = null, ShippingStatus? ss = null,
             int billingCountryId = 0,
             int orderBy = 1,
             int pageIndex = 0, int pageSize = int.MaxValue,
@@ -122,8 +122,8 @@ namespace Nop.Services.Orders
         /// <param name="storeId">Store identifier; pass 0 to ignore this parameter</param>
         /// <param name="vendorId">Vendor identifier; pass 0 to ignore this parameter</param>
         /// <param name="orderId">Order identifier; pass 0 to ignore this parameter</param>
-        /// <param name="billingCountryId">Billing country identifier; 0 to load all orders</param>
-        /// <param name="paymentMethodSystemName">Payment method system name; null to load all records</param>
+        /// <param name="billingCountryId">Billing country identifier; 0 to load all Pedidos</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name; null to load all records</param>
         /// <param name="startTimeUtc">Start date</param>
         /// <param name="endTimeUtc">End date</param>
         /// <param name="osIds">Order status identifiers; null to load all records</param>

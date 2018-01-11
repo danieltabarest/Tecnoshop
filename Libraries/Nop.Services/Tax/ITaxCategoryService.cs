@@ -15,10 +15,10 @@ namespace Nop.Services.Tax
         void DeleteTaxCategory(TaxCategory taxCategory);
 
         /// <summary>
-        /// Gets all tax categories
+        /// Gets all tax Categorias
         /// </summary>
-        /// <returns>Tax categories</returns>
-        IList<TaxCategory> GetAllTaxCategories();
+        /// <returns>Tax Categorias</returns>
+        IList<TaxCategory> GetAllTaxCategorias();
 
         /// <summary>
         /// Gets a tax category

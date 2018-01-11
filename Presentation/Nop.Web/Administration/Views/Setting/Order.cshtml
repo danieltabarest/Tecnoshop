@@ -1,4 +1,4 @@
-﻿@model OrderSettingsModel
+﻿@model PedidosettingsModel
 
 @{
     //page title
@@ -24,7 +24,7 @@
 
     <script>
         $(document).ready(function () {
-            bindBootstrapTabSelectEvent('ordersettings-edit');
+            bindBootstrapTabSelectEvent('Pedidosettings-edit');
         });
     </script>
 
@@ -34,13 +34,13 @@
             @Html.Action("Mode", "Setting")
             @Html.ValidationSummary(false)
 
-            <div id="ordersettings-edit" class="nav-tabs-custom">
+            <div id="Pedidosettings-edit" class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Configuration.Settings.Order.OrderSettings"), true)
+                    @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Configuration.Settings.Order.Pedidosettings"), true)
                     @Html.RenderBootstrapTabHeader("tab-returnrequest", @T("Admin.Configuration.Settings.Order.ReturnRequestSettings"))
                 </ul>
                 <div class="tab-content">
-                    @Html.RenderBootstrapTabContent("tab-info", @TabOrderSettings(), true)
+                    @Html.RenderBootstrapTabContent("tab-info", @TabPedidosettings(), true)
                     @Html.RenderBootstrapTabContent("tab-returnrequest", @TabReturnRequestSettings())
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
     {
         //custom tabs
-        var eventMessage = new AdminTabStripCreated(this.Html, "ordersettings-edit");
+        var eventMessage = new AdminTabStripCreated(this.Html, "Pedidosettings-edit");
         EngineContext.Current.Resolve<IEventPublisher>().Publish(eventMessage);
         foreach (var eventBlock in eventMessage.BlocksToRender)
         {
@@ -61,7 +61,7 @@
     <input type="hidden" id="selected-tab-name" name="selected-tab-name" value="@(Html.GetSelectedTabName())">
 }
 
-@helper TabOrderSettings()
+@helper TabPedidosettings()
 {
     <script type="text/javascript">
         $(document).ready(function () {
@@ -164,22 +164,22 @@
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.OverrideStoreCheckboxFor(model => model.MinOrderSubtotalAmount_OverrideForStore, model => model.MinOrderSubtotalAmount, Model.ActiveStoreScopeConfiguration)
-                        @Html.NopLabelFor(model => model.MinOrderSubtotalAmount)
+                        @Html.OverrideStoreCheckboxFor(model => model.MinPedidosubtotalAmount_OverrideForStore, model => model.MinPedidosubtotalAmount, Model.ActiveStoreScopeConfiguration)
+                        @Html.NopLabelFor(model => model.MinPedidosubtotalAmount)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopEditorFor(model => model.MinOrderSubtotalAmount, Model.PrimaryStoreCurrencyCode)
-                        @Html.ValidationMessageFor(model => model.MinOrderSubtotalAmount)
+                        @Html.NopEditorFor(model => model.MinPedidosubtotalAmount, Model.PrimaryStoreCurrencyCode)
+                        @Html.ValidationMessageFor(model => model.MinPedidosubtotalAmount)
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3">
-                        @Html.OverrideStoreCheckboxFor(model => model.MinOrderSubtotalAmountIncludingTax_OverrideForStore, model => model.MinOrderSubtotalAmountIncludingTax, Model.ActiveStoreScopeConfiguration)
-                        @Html.NopLabelFor(model => model.MinOrderSubtotalAmountIncludingTax)
+                        @Html.OverrideStoreCheckboxFor(model => model.MinPedidosubtotalAmountIncludingTax_OverrideForStore, model => model.MinPedidosubtotalAmountIncludingTax, Model.ActiveStoreScopeConfiguration)
+                        @Html.NopLabelFor(model => model.MinPedidosubtotalAmountIncludingTax)
                     </div>
                     <div class="col-md-9">
-                        @Html.NopEditorFor(model => model.MinOrderSubtotalAmountIncludingTax)
-                        @Html.ValidationMessageFor(model => model.MinOrderSubtotalAmountIncludingTax)
+                        @Html.NopEditorFor(model => model.MinPedidosubtotalAmountIncludingTax)
+                        @Html.ValidationMessageFor(model => model.MinPedidosubtotalAmountIncludingTax)
                     </div>
                 </div>
                 <div class="form-group">

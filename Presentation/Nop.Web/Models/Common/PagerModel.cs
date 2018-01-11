@@ -439,7 +439,7 @@ namespace Nop.Web.Models.Common
     }
 
     /// <summary>
-    /// Class that has only page for route value. Used for (My Account) Forum Subscriptions pagination
+    /// Class that has only page for route value. Used for (Mi cuenta) Forum Subscriptions pagination
     /// </summary>
     public partial class ForumSubscriptionsRouteValues : IRouteValues
     {        
@@ -447,7 +447,7 @@ namespace Nop.Web.Models.Common
     }
 
     /// <summary>
-    /// Class that has only page for route value. Used for (My Account) Back in stock subscriptions pagination
+    /// Class that has only page for route value. Used for (Mi cuenta) Back in stock subscriptions pagination
     /// </summary>
     public partial class BackInStockSubscriptionsRouteValues : IRouteValues
     {
@@ -455,7 +455,7 @@ namespace Nop.Web.Models.Common
     }
 
     /// <summary>
-    /// Class that has only page for route value. Used for (My Account) Reward Points pagination
+    /// Class that has only page for route value. Used for (Mi cuenta) Reward Points pagination
     /// </summary>
     public partial class RewardPointsRouteValues : IRouteValues
     {

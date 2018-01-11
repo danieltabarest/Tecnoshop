@@ -1,6 +1,6 @@
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 
-namespace Nop.Data.Mapping.Orders
+namespace Nop.Data.Mapping.Pedidos
 {
     public partial class ReturnRequestMap : NopEntityTypeConfiguration<ReturnRequest>
     {

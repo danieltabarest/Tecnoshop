@@ -1,4 +1,4 @@
-namespace Nop.Core.Domain.Orders
+namespace Nop.Core.Domain.Pedidos
 {
     /// <summary>
     /// Represents an order average report line
@@ -8,7 +8,7 @@ namespace Nop.Core.Domain.Orders
         /// <summary>
         /// Gets or sets the count
         /// </summary>
-        public int CountOrders { get; set; }
+        public int CountPedidos { get; set; }
 
         /// <summary>
         /// Gets or sets the shipping summary (excluding tax)
@@ -23,6 +23,6 @@ namespace Nop.Core.Domain.Orders
         /// <summary>
         /// Gets or sets the order total summary
         /// </summary>
-        public decimal SumOrders { get; set; }
+        public decimal SumPedidos { get; set; }
     }
 }

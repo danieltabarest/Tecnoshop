@@ -70,7 +70,7 @@ function display_kendoui_grid_error(e) {
             alert(e.errors);
         } else {
             //array of errors
-            //source: http://docs.kendoui.com/getting-started/using-kendo-with/aspnet-mvc/helpers/grid/faq#how-do-i-display-model-state-errors?
+            //source: http://docs.kendoui.com/getting-started/using-kendo-with/aspnet-mvc/helpers/grid/Preguntas frecuentes#how-do-i-display-model-state-errors?
             var message = "The following errors have occurred:";
             //create a message containing all errors.
             $.each(e.errors, function (key, value) {

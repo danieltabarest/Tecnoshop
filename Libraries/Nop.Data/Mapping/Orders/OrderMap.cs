@@ -1,6 +1,6 @@
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 
-namespace Nop.Data.Mapping.Orders
+namespace Nop.Data.Mapping.Pedidos
 {
     public partial class OrderMap : NopEntityTypeConfiguration<Order>
     {
@@ -9,12 +9,12 @@ namespace Nop.Data.Mapping.Orders
             this.ToTable("Order");
             this.HasKey(o => o.Id);
             this.Property(o => o.CurrencyRate).HasPrecision(18, 8);
-            this.Property(o => o.OrderSubtotalInclTax).HasPrecision(18, 4);
-            this.Property(o => o.OrderSubtotalExclTax).HasPrecision(18, 4);
-            this.Property(o => o.OrderSubTotalDiscountInclTax).HasPrecision(18, 4);
-            this.Property(o => o.OrderSubTotalDiscountExclTax).HasPrecision(18, 4);
-            this.Property(o => o.OrderShippingInclTax).HasPrecision(18, 4);
-            this.Property(o => o.OrderShippingExclTax).HasPrecision(18, 4);
+            this.Property(o => o.PedidosubtotalInclTax).HasPrecision(18, 4);
+            this.Property(o => o.PedidosubtotalExclTax).HasPrecision(18, 4);
+            this.Property(o => o.PedidosubTotalDiscountInclTax).HasPrecision(18, 4);
+            this.Property(o => o.PedidosubTotalDiscountExclTax).HasPrecision(18, 4);
+            this.Property(o => o.PedidoshippingInclTax).HasPrecision(18, 4);
+            this.Property(o => o.PedidoshippingExclTax).HasPrecision(18, 4);
             this.Property(o => o.PaymentMethodAdditionalFeeInclTax).HasPrecision(18, 4);
             this.Property(o => o.PaymentMethodAdditionalFeeExclTax).HasPrecision(18, 4);
             this.Property(o => o.OrderTax).HasPrecision(18, 4);
@@ -23,7 +23,7 @@ namespace Nop.Data.Mapping.Orders
             this.Property(o => o.RefundedAmount).HasPrecision(18, 4);
             this.Property(o => o.CustomOrderNumber).IsRequired();
 
-            this.Ignore(o => o.OrderStatus);
+            this.Ignore(o => o.Pedidostatus);
             this.Ignore(o => o.PaymentStatus);
             this.Ignore(o => o.ShippingStatus);
             this.Ignore(o => o.CustomerTaxDisplayType);

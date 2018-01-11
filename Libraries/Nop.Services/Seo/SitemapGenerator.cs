@@ -163,8 +163,8 @@ namespace Nop.Services.Seo
                 sitemapUrls.Add(new SitemapUrl(url, UpdateFrequency.Weekly, DateTime.UtcNow));
             }
 
-            //categories
-            if (_commonSettings.SitemapIncludeCategories)
+            //Categorias
+            if (_commonSettings.SitemapIncludeCategorias)
                 sitemapUrls.AddRange(GetCategoryUrls(urlHelper, 0));
 
             //manufacturers
@@ -192,7 +192,7 @@ namespace Nop.Services.Seo
         /// <returns>Collection of sitemap URLs</returns>
         protected virtual IEnumerable<SitemapUrl> GetCategoryUrls(UrlHelper urlHelper, int parentCategoryId)
         {
-            return _categoryService.GetAllCategoriesByParentCategoryId(parentCategoryId).SelectMany(category =>
+            return _categoryService.GetAllCategoriasByParentCategoryId(parentCategoryId).SelectMany(category =>
             {
                 var sitemapUrls = new List<SitemapUrl>();
                 var url = urlHelper.RouteUrl("Category", new { SeName = category.GetSeName() }, GetHttpProtocol());
@@ -330,7 +330,7 @@ namespace Nop.Services.Seo
 
         /// <summary>
         /// This will build an xml sitemap for better index with search engines.
-        /// See http://en.wikipedia.org/wiki/Sitemaps for more information.
+        /// See http://en.wikipedia.org/wiki/Sitemaps for more Information.
         /// </summary>
         /// <param name="urlHelper">URL helper</param>
         /// <param name="id">Sitemap identifier</param>
@@ -346,7 +346,7 @@ namespace Nop.Services.Seo
 
         /// <summary>
         /// This will build an xml sitemap for better index with search engines.
-        /// See http://en.wikipedia.org/wiki/Sitemaps for more information.
+        /// See http://en.wikipedia.org/wiki/Sitemaps for more Information.
         /// </summary>
         /// <param name="urlHelper">URL helper</param>
         /// <param name="id">Sitemap identifier</param>

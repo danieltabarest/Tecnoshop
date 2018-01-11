@@ -25,7 +25,7 @@ namespace Nop.Web.Infrastructure
                             new { controller = "BackwardCompatibility1X", action = "RedirectProduct"},
                             new[] { "Nop.Web.Controllers" });
             
-            //categories
+            //Categorias
             routes.MapRoute("", "category/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectCategory" },
                             new[] { "Nop.Web.Controllers" });

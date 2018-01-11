@@ -7,10 +7,10 @@ namespace Nop.Web.Models.Catalog
     {
         public CategoryNavigationModel()
         {
-            Categories = new List<CategorySimpleModel>();
+            Categorias = new List<CategorySimpleModel>();
         }
 
         public int CurrentCategoryId { get; set; }
-        public List<CategorySimpleModel> Categories { get; set; }
+        public List<CategorySimpleModel> Categorias { get; set; }
     }
 }

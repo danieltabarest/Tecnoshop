@@ -1,10 +1,10 @@
 ﻿using Nop.Web.Framework.Mvc;
 
-namespace Nop.Web.Models.Newsletter
+namespace Nop.Web.Models.Boletín informativo
 {
-    public partial class NewsletterBoxModel : BaseNopModel
+    public partial class Boletín informativoBoxModel : BaseNopModel
     {
-        public string NewsletterEmail { get; set; }
+        public string Boletín informativoEmail { get; set; }
         public bool AllowToUnsubscribe { get; set; }
     }
 }

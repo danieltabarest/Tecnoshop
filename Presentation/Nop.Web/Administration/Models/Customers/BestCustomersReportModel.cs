@@ -11,7 +11,7 @@ namespace Nop.Admin.Models.Customers
     {
         public BestCustomersReportModel()
         {
-            AvailableOrderStatuses = new List<SelectListItem>();
+            AvailablePedidostatuses = new List<SelectListItem>();
             AvailablePaymentStatuses = new List<SelectListItem>();
             AvailableShippingStatuses = new List<SelectListItem>();
         }
@@ -24,14 +24,14 @@ namespace Nop.Admin.Models.Customers
         [UIHint("DateNullable")]
         public DateTime? EndDate { get; set; }
 
-        [NopResourceDisplayName("Admin.Customers.Reports.BestBy.OrderStatus")]
-        public int OrderStatusId { get; set; }
+        [NopResourceDisplayName("Admin.Customers.Reports.BestBy.Pedidostatus")]
+        public int PedidostatusId { get; set; }
         [NopResourceDisplayName("Admin.Customers.Reports.BestBy.PaymentStatus")]
         public int PaymentStatusId { get; set; }
         [NopResourceDisplayName("Admin.Customers.Reports.BestBy.ShippingStatus")]
         public int ShippingStatusId { get; set; }
 
-        public IList<SelectListItem> AvailableOrderStatuses { get; set; }
+        public IList<SelectListItem> AvailablePedidostatuses { get; set; }
         public IList<SelectListItem> AvailablePaymentStatuses { get; set; }
         public IList<SelectListItem> AvailableShippingStatuses { get; set; }
     }

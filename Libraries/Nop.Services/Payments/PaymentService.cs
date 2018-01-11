@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Pedidos;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Plugins;
 using Nop.Services.Catalog;
@@ -49,15 +49,15 @@ namespace Nop.Services.Payments
 
         #region Methods
 
-        #region Payment methods
+        #region Formas de pagos
 
         /// <summary>
-        /// Load active payment methods
+        /// Load active Formas de pagos
         /// </summary>
         /// <param name="customer">Load records allowed only to a specified customer; pass null to ignore ACL permissions</param>
         /// <param name="storeId">Load records allowed only in a specified store; pass 0 to load all records</param>
         /// <param name="filterByCountryId">Load records allowed only in a specified country; pass 0 to load all records</param>
-        /// <returns>Payment methods</returns>
+        /// <returns>Formas de pagos</returns>
         public virtual IList<IPaymentMethod> LoadActivePaymentMethods(Customer customer = null, int storeId = 0, int filterByCountryId = 0)
         {
             return LoadAllPaymentMethods(customer, storeId, filterByCountryId)
@@ -111,9 +111,9 @@ namespace Nop.Services.Payments
         #region Restrictions
 
         /// <summary>
-        /// Gets a list of coutnry identifiers in which a certain payment method is now allowed
+        /// Gets a list of coutnry identifiers in which a certain Formas de pago is now allowed
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <returns>A list of country identifiers</returns>
         public virtual IList<int> GetRestictedCountryIds(IPaymentMethod paymentMethod)
         {
@@ -128,9 +128,9 @@ namespace Nop.Services.Payments
         }
 
         /// <summary>
-        /// Saves a list of coutnry identifiers in which a certain payment method is now allowed
+        /// Saves a list of coutnry identifiers in which a certain Formas de pago is now allowed
         /// </summary>
-        /// <param name="paymentMethod">Payment method</param>
+        /// <param name="paymentMethod">Formas de pago</param>
         /// <param name="countryIds">A list of country identifiers</param>
         public virtual void SaveRestictedCountryIds(IPaymentMethod paymentMethod, List<int> countryIds)
         {
@@ -170,7 +170,7 @@ namespace Nop.Services.Payments
             }
             var paymentMethod = LoadPaymentMethodBySystemName(processPaymentRequest.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             return paymentMethod.ProcessPayment(processPaymentRequest);
         }
 
@@ -186,12 +186,12 @@ namespace Nop.Services.Payments
 
             var paymentMethod = LoadPaymentMethodBySystemName(postProcessPaymentRequest.Order.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             paymentMethod.PostProcessPayment(postProcessPaymentRequest);
         }
 
         /// <summary>
-        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection Formas de pagos)
         /// </summary>
         /// <param name="order">Order</param>
         /// <returns>Result</returns>
@@ -205,16 +205,16 @@ namespace Nop.Services.Payments
 
             var paymentMethod = LoadPaymentMethodBySystemName(order.PaymentMethodSystemName);
             if (paymentMethod == null)
-                return false; //Payment method couldn't be loaded (for example, was uninstalled)
+                return false; //Formas de pago couldn't be loaded (for example, was uninstalled)
 
             if (paymentMethod.PaymentMethodType != PaymentMethodType.Redirection)
-                return false;   //this option is available only for redirection payment methods
+                return false;   //this option is available only for redirection Formas de pagos
 
             if (order.Deleted)
-                return false;  //do not allow for deleted orders
+                return false;  //do not allow for deleted Pedidos
 
-            if (order.OrderStatus == OrderStatus.Cancelled)
-                return false;  //do not allow for cancelled orders
+            if (order.Pedidostatus == Pedidostatus.Cancelled)
+                return false;  //do not allow for cancelled Pedidos
 
             if (order.PaymentStatus != PaymentStatus.Pending)
                 return false;  //payment status should be Pending
@@ -223,10 +223,10 @@ namespace Nop.Services.Payments
         }
 
         /// <summary>
-        /// Gets an additional handling fee of a payment method
+        /// Gets an additional handling fee of a Formas de pago
         /// </summary>
         /// <param name="cart">Shoping cart</param>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>Additional handling fee</returns>
         public virtual decimal GetAdditionalHandlingFee(IList<ShoppingCartItem> cart, string paymentMethodSystemName)
         {
@@ -248,9 +248,9 @@ namespace Nop.Services.Payments
         }
         
         /// <summary>
-        /// Gets a value indicating whether capture is supported by payment method
+        /// Gets a value indicating whether capture is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether capture is supported</returns>
         public virtual bool SupportCapture(string paymentMethodSystemName)
         {
@@ -269,14 +269,14 @@ namespace Nop.Services.Payments
         {
             var paymentMethod = LoadPaymentMethodBySystemName(capturePaymentRequest.Order.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             return paymentMethod.Capture(capturePaymentRequest);
         }
         
         /// <summary>
-        /// Gets a value indicating whether partial refund is supported by payment method
+        /// Gets a value indicating whether partial refund is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether partial refund is supported</returns>
         public virtual bool SupportPartiallyRefund(string paymentMethodSystemName)
         {
@@ -287,9 +287,9 @@ namespace Nop.Services.Payments
         }
 
         /// <summary>
-        /// Gets a value indicating whether refund is supported by payment method
+        /// Gets a value indicating whether refund is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether refund is supported</returns>
         public virtual bool SupportRefund(string paymentMethodSystemName)
         {
@@ -308,14 +308,14 @@ namespace Nop.Services.Payments
         {
             var paymentMethod = LoadPaymentMethodBySystemName(refundPaymentRequest.Order.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             return paymentMethod.Refund(refundPaymentRequest);
         }
         
         /// <summary>
-        /// Gets a value indicating whether void is supported by payment method
+        /// Gets a value indicating whether void is supported by Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
         /// <returns>A value indicating whether void is supported</returns>
         public virtual bool SupportVoid(string paymentMethodSystemName)
         {
@@ -334,15 +334,15 @@ namespace Nop.Services.Payments
         {
             var paymentMethod = LoadPaymentMethodBySystemName(voidPaymentRequest.Order.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             return paymentMethod.Void(voidPaymentRequest);
         }
         
         /// <summary>
-        /// Gets a recurring payment type of payment method
+        /// Gets a recurring payment type of Formas de pago
         /// </summary>
-        /// <param name="paymentMethodSystemName">Payment method system name</param>
-        /// <returns>A recurring payment type of payment method</returns>
+        /// <param name="paymentMethodSystemName">Formas de pago system name</param>
+        /// <returns>A recurring payment type of Formas de pago</returns>
         public virtual RecurringPaymentType GetRecurringPaymentType(string paymentMethodSystemName)
         {
             var paymentMethod = LoadPaymentMethodBySystemName(paymentMethodSystemName);
@@ -369,7 +369,7 @@ namespace Nop.Services.Payments
 
             var paymentMethod = LoadPaymentMethodBySystemName(processPaymentRequest.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             return paymentMethod.ProcessRecurringPayment(processPaymentRequest);
         }
 
@@ -385,7 +385,7 @@ namespace Nop.Services.Payments
 
             var paymentMethod = LoadPaymentMethodBySystemName(cancelPaymentRequest.Order.PaymentMethodSystemName);
             if (paymentMethod == null)
-                throw new NopException("Payment method couldn't be loaded");
+                throw new NopException("Formas de pago couldn't be loaded");
             return paymentMethod.CancelRecurringPayment(cancelPaymentRequest);
         }
 

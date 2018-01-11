@@ -39,7 +39,7 @@ namespace Nop.Core
         /// Initializes a new instance of the Exception class with serialized data.
         /// </summary>
         /// <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
-        /// <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
+        /// <param name="context">The StreamingContext that contains contextual Information about the source or destination.</param>
         protected NopException(SerializationInfo
             info, StreamingContext context)
             : base(info, context)

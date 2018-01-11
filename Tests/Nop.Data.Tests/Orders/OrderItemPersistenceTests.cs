@@ -2,7 +2,7 @@
 using Nop.Tests;
 using NUnit.Framework;
 
-namespace Nop.Data.Tests.Orders
+namespace Nop.Data.Tests.Pedidos
 {
     [TestFixture]
     public class OrderItemPersistenceTests : PersistenceTest

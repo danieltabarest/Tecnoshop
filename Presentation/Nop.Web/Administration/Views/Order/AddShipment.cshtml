@@ -4,9 +4,9 @@
 
 @{
     //page title
-    ViewBag.Title = string.Format(T("Admin.Orders.Shipments.AddNew.Title").Text, Model.CustomOrderNumber);
+    ViewBag.Title = string.Format(T("Admin.Pedidos.Shipments.AddNew.Title").Text, Model.CustomOrderNumber);
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Orders");
+    Html.SetActiveMenuItemSystemName("Pedidos");
 
     var itemsFromMultipleWarehouses = Model.Items
         .Where(x => x.AllowToChooseWarehouse && x.AvailableWarehouses.Count > 0)
@@ -18,8 +18,8 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @string.Format(T("Admin.Orders.Shipments.AddNew.Title").Text, Model.CustomOrderNumber)
-            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Orders.Shipments.BackToOrder").Text, "Edit", new { id = Model.OrderId })</small>
+            @string.Format(T("Admin.Pedidos.Shipments.AddNew.Title").Text, Model.CustomOrderNumber)
+            <small><i class="fa fa-arrow-circle-left"></i>@Html.ActionLink(T("Admin.Pedidos.Shipments.BackToOrder").Text, "Edit", new { id = Model.OrderId })</small>
         </h1>
         <div class="pull-right">
             <button type="submit" id="shipment-save" name="save" class="btn bg-blue">
@@ -83,7 +83,7 @@
                                 }
                                 var valid = @(Html.Raw(sb.ToString()));
                                 if (!valid) {
-                                    return confirm('@T("Admin.Orders.Shipments.Products.Warehouse.QuantityNotEnough")');
+                                    return confirm('@T("Admin.Pedidos.Shipments.Products.Warehouse.QuantityNotEnough")');
                                 }
                                 return true;
                             }
@@ -103,35 +103,35 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        @T("Admin.Orders.Shipments.Products")
+                        @T("Admin.Pedidos.Shipments.Products")
                     </div>
                     <div class="panel-body">
                         <table class="table table-hover table-bordered text-center">
                             <thead>
                                 <tr>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.ProductName")
+                                        @T("Admin.Pedidos.Shipments.Products.ProductName")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.SKU")
+                                        @T("Admin.Pedidos.Shipments.Products.SKU")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.Warehouse")
+                                        @T("Admin.Pedidos.Shipments.Products.Warehouse")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.ItemWeight")
+                                        @T("Admin.Pedidos.Shipments.Products.ItemWeight")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.ItemDimensions")
+                                        @T("Admin.Pedidos.Shipments.Products.ItemDimensions")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.QtyOrdered")
+                                        @T("Admin.Pedidos.Shipments.Products.QtyOrdered")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.QtyShipped")
+                                        @T("Admin.Pedidos.Shipments.Products.QtyShipped")
                                     </th>
                                     <th>
-                                        @T("Admin.Orders.Shipments.Products.QtyToShip")
+                                        @T("Admin.Pedidos.Shipments.Products.QtyToShip")
                                     </th>
                                 </tr>
                             </thead>
@@ -150,8 +150,8 @@
                                             @if (item.ShipSeparately)
                                             {
                                                 <p>
-                                                    <strong>@T("Admin.Orders.Shipments.Products.ShipSeparately.Warning")</strong>
-                                                    @T("Admin.Orders.Shipments.Products.ShipSeparately")
+                                                    <strong>@T("Admin.Pedidos.Shipments.Products.ShipSeparately.Warning")</strong>
+                                                    @T("Admin.Pedidos.Shipments.Products.ShipSeparately")
                                                 </p>
                                             }
                                         </td>
@@ -167,14 +167,14 @@
                                                         @foreach (var warehouse in item.AvailableWarehouses)
                                                         {
                                                             <option value="@warehouse.WarehouseId" data-stock-qty="@warehouse.StockQuantity" data-reserved-qty="@warehouse.ReservedQuantity" data-planned-qty="@warehouse.PlannedQuantity">
-                                                                @T("Admin.Orders.Shipments.Products.Warehouse.ChooseQty", warehouse.WarehouseName, warehouse.StockQuantity, warehouse.ReservedQuantity, warehouse.PlannedQuantity)
+                                                                @T("Admin.Pedidos.Shipments.Products.Warehouse.ChooseQty", warehouse.WarehouseName, warehouse.StockQuantity, warehouse.ReservedQuantity, warehouse.PlannedQuantity)
                                                             </option>
                                                         }
                                                     </select>
                                                 }
                                                 else
                                                 {
-                                                    @T("Admin.Orders.Shipments.Products.Warehouse.NotAvailabe")
+                                                    @T("Admin.Pedidos.Shipments.Products.Warehouse.NotAvailabe")
                                                 }
                                             }
                                             else

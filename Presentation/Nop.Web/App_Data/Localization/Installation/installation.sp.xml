@@ -51,7 +51,7 @@
     <Value>Base de datos</Value>
   </LocaleResource>
   <LocaleResource Name="DatabaseInformation">
-    <Value>Base de datos de información</Value>
+    <Value>Base de datos de Information</Value>
   </LocaleResource>
   <LocaleResource Name="DatabaseName">
     <Value>Base de datos el nombre de</Value>
@@ -66,7 +66,7 @@
     <Value>Seleccione el proveedor de datos</Value>
   </LocaleResource>
   <LocaleResource Name="Documentation1">
-    <Value>Si necesita información sobre cómo utilizar nopCommerce, visite</Value>
+    <Value>Si necesita Information sobre cómo utilizar nopCommerce, visite</Value>
   </LocaleResource>
   <LocaleResource Name="Documentation2">
     <Value>la sección de documentación de nopCommerce.com</Value>
@@ -126,7 +126,7 @@
     <Value>Utilice SQL Server (o SQL Express) de base de datos</Value>
   </LocaleResource>
   <LocaleResource Name="StoreInformation">
-    <Value>Almacenar la información</Value>
+    <Value>Almacenar la Information</Value>
   </LocaleResource>
   <LocaleResource Name="Title">
     <Value>nopCommerce de instalación</Value>
@@ -135,7 +135,7 @@
     <Value>nopCommerce es el principal ASP.NET tienda online solución de comercio electrónico. Este asistente le guiará a través del proceso de configuración de nopCommerce</Value>
   </LocaleResource>
   <LocaleResource Name="Tooltip2">
-    <Value>Para completar este asistente debe saber alguna información acerca de su servidor de base de datos ("cadena de conexión"). Por favor, póngase en contacto con su ISP si es necesario. Si va a instalar en un equipo local o en el servidor es posible que tenga información de su administrador del sistema</Value>
+    <Value>Para completar este asistente debe saber alguna Information acerca de su servidor de base de datos ("cadena de conexión"). Por favor, póngase en contacto con su ISP si es necesario. Si va a instalar en un equipo local o en el servidor es posible que tenga Information de su administrador del sistema</Value>
   </LocaleResource>
   <LocaleResource Name="WindowsAuthentication">
     <Value>Utilice la autenticación integrada de Windows</Value>
