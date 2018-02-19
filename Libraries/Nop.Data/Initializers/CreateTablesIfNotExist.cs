@@ -66,6 +66,7 @@ namespace Nop.Data.Initializers
             }
             else
             {
+
                 throw new ApplicationException("No database instance");
             }
         }
