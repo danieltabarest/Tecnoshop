@@ -139,6 +139,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Wid
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Widgets.NivoSlider\Nop.Plugin.Widgets.NivoSlider.pdb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Widgets.NivoSlider\obj\Debug\Nop.Plugin.Widgets.NivoSlider.csproj.App.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Widgets.NivoSlider\obj\Debug\Nop.Plugin.Widgets.NivoSlider.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Widgets.NivoSlider\obj\Debug\Nop.Plugin.Widgets.NivoSlider.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Widgets.NivoSlider\obj\Debug\Nop.Plugin.Widgets.NivoSlider.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Widgets.NivoSlider\obj\Debug\Nop.Plugin.Widgets.NivoSlider.pdb

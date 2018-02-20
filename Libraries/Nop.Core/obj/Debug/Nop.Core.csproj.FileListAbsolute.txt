@@ -116,6 +116,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\bin\Debug\Sys
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\obj\Debug\Nop.Core.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\obj\Debug\Nop.Core.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\obj\Debug\Nop.Core.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Core\obj\Debug\Nop.Core.pdb

@@ -48,6 +48,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Pic
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.pdb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Pickup.PickupInStore\obj\Debug\Nop.Plugin.Pickup.PickupInStore.pdb

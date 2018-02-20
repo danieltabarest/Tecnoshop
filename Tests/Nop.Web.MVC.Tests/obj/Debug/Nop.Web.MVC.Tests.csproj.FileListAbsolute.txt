@@ -357,17 +357,11 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debu
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Antlr3.Runtime.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\System.Spatial.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Core.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Core.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Data.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Data.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Services.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Services.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Web.Framework.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Web.Framework.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Admin.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Admin.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Web.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Web.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\Nop.Tests.pdb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\AutoMapper.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\FluentValidation.xml
@@ -459,6 +453,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debu
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\bin\Debug\zh-Hant\System.Spatial.resources.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.csproj.App.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Web.MVC.Tests\obj\Debug\Nop.Web.MVC.Tests.pdb

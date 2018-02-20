@@ -38,7 +38,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Tax
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Tax.FixedOrByCountryStateZip\Nop.Plugin.Tax.FixedOrByCountryStateZip.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Tax.FixedOrByCountryStateZip\Nop.Plugin.Tax.FixedOrByCountryStateZip.pdb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Tax.FixedOrByCountryStateZip\obj\Debug\Nop.Plugin.Tax.FixedOrByCountryStateZip.csproj.App.config
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Tax.FixedOrByCountryStateZip\obj\Debug\Nop.Plugin.Tax.FixedOrByCountryStateZip.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Tax.FixedOrByCountryStateZip\obj\Debug\Nop.Plugin.Tax.FixedOrByCountryStateZip.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Tax.FixedOrByCountryStateZip\obj\Debug\Nop.Plugin.Tax.FixedOrByCountryStateZip.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Tax.FixedOrByCountryStateZip\obj\Debug\Nop.Plugin.Tax.FixedOrByCountryStateZip.pdb

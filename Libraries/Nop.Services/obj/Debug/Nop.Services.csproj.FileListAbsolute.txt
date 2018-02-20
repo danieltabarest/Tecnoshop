@@ -361,9 +361,7 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\EntityFramework.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\System.Data.SqlServerCe.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\Nop.Core.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\Nop.Core.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\Nop.Data.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\Nop.Data.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\Autofac.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\EPPlus.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\ImageResizer.xml
@@ -430,6 +428,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\bin\Debug\zh-Hant\System.Spatial.resources.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\obj\Debug\Nop.Services.csproj.App.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\obj\Debug\Nop.Services.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\obj\Debug\Nop.Services.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\obj\Debug\Nop.Services.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Services\obj\Debug\Nop.Services.pdb

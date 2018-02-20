@@ -35,7 +35,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Pay
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.Manual\Nop.Plugin.Payments.Manual.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.Manual\Nop.Plugin.Payments.Manual.pdb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.Manual\obj\Debug\Nop.Plugin.Payments.Manual.csproj.App.config
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.Manual\obj\Debug\Nop.Plugin.Payments.Manual.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.Manual\obj\Debug\Nop.Plugin.Payments.Manual.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.Manual\obj\Debug\Nop.Plugin.Payments.Manual.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.Manual\obj\Debug\Nop.Plugin.Payments.Manual.pdb

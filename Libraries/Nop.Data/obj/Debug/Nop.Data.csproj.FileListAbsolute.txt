@@ -130,7 +130,6 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\Sys
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\Nop.Core.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\Nop.Core.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\EntityFramework.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\EntityFramework.SqlServerCompact.xml
@@ -145,6 +144,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\Sys
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\System.Web.WebPages.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\obj\Debug\Nop.Data.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\obj\Debug\Nop.Data.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\obj\Debug\Nop.Data.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Libraries\Nop.Data\obj\Debug\Nop.Data.pdb

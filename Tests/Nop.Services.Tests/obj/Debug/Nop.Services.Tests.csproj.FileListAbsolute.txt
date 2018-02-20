@@ -275,11 +275,8 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Deb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\System.Spatial.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Core.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Core.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Data.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Data.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Services.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Services.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Nop.Tests.pdb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Autofac.xml
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\Autofac.Integration.Mvc.xml
@@ -348,6 +345,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Deb
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\bin\Debug\zh-Hant\System.Spatial.resources.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.csproj.App.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Tests\Nop.Services.Tests\obj\Debug\Nop.Services.Tests.pdb

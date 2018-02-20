@@ -34,7 +34,5 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Shi
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.CanadaPost\Nop.Plugin.Shipping.CanadaPost.dll.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.CanadaPost\Nop.Plugin.Shipping.CanadaPost.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Shipping.CanadaPost\Nop.Plugin.Shipping.CanadaPost.pdb
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Shipping.CanadaPost\obj\Debug\Nop.Plugin.Shipping.CanadaPost.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Shipping.CanadaPost\obj\Debug\Nop.Plugin.Shipping.CanadaPost.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Shipping.CanadaPost\obj\Debug\Nop.Plugin.Shipping.CanadaPost.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Shipping.CanadaPost\obj\Debug\Nop.Plugin.Shipping.CanadaPost.pdb
