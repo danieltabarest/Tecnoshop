@@ -3,144 +3,89 @@
 @using Nop.Core.Domain.Tax
 @using Nop.Core.Infrastructure
 @using Nop.Web.Models.Common;
-@*@*@*@*<div class="footer">*@
-    @*<div class="footer-upper">
-        <div class="footer-block Information">
-            <div class="title">
-                <strong>@T("Footer.Information")</strong>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Acerca de nosotros</span></div>
+                <ul>
+                    <li>
+                        Estamos ubicados en Medellín, ofrecemos productos... <a href="#">Read More</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="list">
-                @if (Model.SitemapEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
-                }
-                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
-                {
-                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-                }
-                <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-            </ul>
-        </div>
-        <div class="footer-block customer-service">
-            <div class="title">
-                <strong>@T("Footer.CustomerService")</strong>
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Information</span></div>
+                <ul>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Preguntas frecuentes</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Políticas de privacidad</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "TermsConditions")">Terminos y Condiciones</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Formas de envío</a></li>
+                </ul>
             </div>
-            <ul class="list">
-                <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a> </li>
-                @if (Model.NewsEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("NewsArchive")">@T("News")</a></li>
-                }
-                @if (Model.BlogEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
-                }
-                @if (Model.ForumEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
-                }
-                @if (Model.RecentlyViewedProductsEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a></li>
-                }
-                @if (Model.CompareProductsEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("CompareProducts")">@T("Products.Compare.List")</a></li>
-                }
-                @if (Model.NewProductsEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
-                }
-                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
-                {
-                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-                }
-            </ul>
-        </div>
-        <div class="footer-block my-account">
-            <div class="title">
-                <strong>@T("Footer.MyAccount")</strong>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Categories</span></div>
+                <ul>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Cras justo odio</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Dapibus ac facilisis in</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Morbi leo risus</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Porta ac consectetur ac</a></li>
+                </ul>
             </div>
-            <ul class="list">
-                <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
-                <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
-                @if (Model.ShoppingCartEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
-                }
-                @if (Model.WishlistEnabled)
-                {
-                    <li><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
-                }
-                @if (Model.AllowCustomersToApplyForVendorAccount)
-                {
-                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
-                }
-                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-                {
-                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-                }
-            </ul>
-        </div>
-        <div class="footer-block follow-us">
-            <div class="social">
-                <div class="title">
-                    <strong>@T("Footer.FollowUs")</strong>
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Newsletter</span></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, soluta, tempora, ipsa voluptatibus porro vel laboriosam</p>
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Email Address">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default subscribe-button" type="button">Subscribe</button>
+                    </span>
                 </div>
-                @Html.Action("Social", "Common")
             </div>
-            @Html.Action("NewsletterBox", "Newsletter")
         </div>
-    </div>*@
-    @*<div class="footer-lower">
-        <div class="footer-info">
-            <span class="footer-disclaimer">@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)</span>
-            @if (Model.DisplayTaxShippingInfoFooter)
-            {
-                var inclTax = EngineContext.Current.Resolve<IWorkContext>().TaxDisplayType == TaxDisplayType.IncludingTax;
-                <span class="footer-tax-shipping">
-                    @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new {SeName = Html.GetTopicSeName("shippinginfo")}))
-                </span>
-            }
-        </div>
-        @if (!Model.HidePoweredByNopCommerce)
-        {
-            <div class="footer-powered-by">
-                 Powered by <a href="http://www.nopcommerce.com/">nopCommerce</a>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Nuestra tienda</span></div>
+                <ul class="footer-icon">
+                    <li><span><i class="fa fa-map-marker"></i></span> 212 Lorem Ipsum. Dolor Sit, Amet</li>
+                    <li><span><i class="fa fa-phone"></i></span> +57 319 355 4837</li>
+                    <li><span><i class="fa fa-envelope"></i></span> <a href="mailto:tecnoshopandservice@gmail.com">tecnoshopandservice@gmail.com</a></li>
+                </ul>
             </div>
-        }
-        @Html.Action("StoreThemeSelector", "Common")
-    </div>*@
-    @*@Html.Widget("footer")
-</div>*@*@*@*@
-@*<script type="text/javascript">
-    $(document).ready(function () {
-        $('.footer-block .title').click(function () {
-            var e = window, a = 'inner';
-            if (!('innerWidth' in window)) {
-                a = 'client';
-                e = document.documentElement || document.body;
-            }
-            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
-            if (result.width < 769) {
-                $(this).siblings('.list').slideToggle('slow');
-            }
-        });
-    });*@
-@*</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.block .title').click(function () {
-            var e = window, a = 'inner';
-            if (!('innerWidth' in window)) {
-                a = 'client';
-                e = document.documentElement || document.body;
-            }
-            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
-            if (result.width < 1001) {
-                $(this).siblings('.listbox').slideToggle('slow');
-            }
-        });
-    });
-</script>*@
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Síguenos</span></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum</p>
+                <ul class="follow-us">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Formas de pago</span></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, soluta, tempora, ipsa voluptatibus porro vel laboriosam</p>
+                <img src="~/Scripts/images/payment-1.png" alt="Payment-1">
+                <img src="~/Scripts/images/payment-2.png" alt="Payment-2">
+                <img src="~/Scripts/images/payment-3.png" alt="Payment-3">
+                <img src="~/Scripts/images/payment-4.png" alt="Payment-4">
+                <img src="~/Scripts/images/payment-5.png" alt="Payment-5">
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="title-footer"><span>Mi cuenta</span></div>
+                <ul>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Orders</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Vouchers</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Points</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center copyright">
+        Copyright &copy; 2016 Mimity All right reserved
+    </div>
+</div>
