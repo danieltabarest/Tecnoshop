@@ -3,6 +3,24 @@
 @using Nop.Core.Domain.Tax
 @using Nop.Core.Infrastructure
 @using Nop.Web.Models.Common;
+
+@{
+    Html.AddCssFileParts("~/Scripts/css/font-awesome.css");
+    Html.AddCssFileParts("~/Scripts/css/bootstrap-select.css");
+    Html.AddCssFileParts("~/Scripts/css/owl.carousel.css");
+    Html.AddCssFileParts("~/Scripts/css/owl.theme.default.css");
+    Html.AddCssFileParts("~/Scripts/css/style.teal.flat.css");
+    Html.AddCssFileParts("~/Scripts/bootstrap/css/bootstrap.css");
+
+    Html.AddScriptParts("~/Scripts/js/jquery.js");
+    Html.AddScriptParts("~/Scripts/bootstrap/js/bootstrap.js");
+    Html.AddScriptParts("~/Scripts/js/bootstrap-select.js");
+    Html.AddScriptParts("~/Scripts/js/owl.carousel.js");
+    Html.AddScriptParts("~/Scripts/js/bootstrap3-typeahead.js");
+    Html.AddScriptParts("~/Scripts/js/bootstrap-toolkit.js");
+    Html.AddScriptParts("~/Scripts/js/mimity.js");
+}
+
 <div class="footer">
     <div class="container">
         <div class="row">
@@ -19,7 +37,7 @@
                 <ul>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Preguntas frecuentes</a></li>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Políticas de privacidad</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "TermsConditions")">Terminos y Condiciones</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsConditions", "TermsandConditions")">Terminos y Condiciones</a></li>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Formas de envío</a></li>
                 </ul>
             </div>
@@ -86,6 +104,6 @@
         </div>
     </div>
     <div class="text-center copyright">
-        Copyright &copy; 2016 Mimity All right reserved
+        Copyright &copy; 2018 Tecnoshop&Services All right reserved
     </div>
 </div>
