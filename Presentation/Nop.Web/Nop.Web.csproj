@@ -1599,7 +1599,7 @@
     <Content Include="Views\Complements\fonts\robotodraft\Thin\RobotoDraft-Thin.woff2" />
     <Content Include="Views\Product\HomeProduct.cshtml" />
     <Content Include="Views\Common\AboutBussiness.cshtml" />
-    <Content Include="Views\TermsandConditions\TermsConditions.cshtml" />
+    <Content Include="Views\Common\TermsandConditions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />

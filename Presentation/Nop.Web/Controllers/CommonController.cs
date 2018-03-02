@@ -132,6 +132,12 @@ namespace Nop.Web.Controllers
             return PartialView();
         }
 
+        public virtual ActionResult TermsandConditions()
+        {
+            return PartialView();
+        }
+
+
         //language
         [ChildActionOnly]
         public virtual ActionResult LanguageSelector()
