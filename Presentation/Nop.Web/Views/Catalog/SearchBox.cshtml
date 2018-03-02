@@ -2,9 +2,35 @@
 @using Nop.Web.Models.Catalog;
 @using (Html.BeginRouteForm("ProductSearch", FormMethod.Get, new { id = "small-search-box-form" }))
 {
-    <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="@T("Search.SearchBox.Tooltip")" />
-    @Html.Widget("searchbox_before_search_button")
-    <input type="submit" class="button-1 search-box-button" value="@T("Search.Button")" />
+    <div class="col-sm-8 col-md-6 search-box m-t-2">
+        <div class="input-group">
+            <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="@T("Search.SearchBox.Tooltip")" />
+            <div class="input-group-btn">
+                <select class="selectpicker hidden-xs" data-width="150px">
+                    <option value="0">Categories</option>
+                    <option value="1">Portátiles</option>
+                    <option value="2">Todo en uno</option>
+                    <option value="3">PC de Escritorio</option>
+                    <option value="4">Tablets</option>
+                    <option value="5">Celulares</option>
+                    <option value="6">Monitores</option>
+                    <option value="7">Televisores</option>
+                    <option value="8">CCTV</option>
+                    <option value="9">Telefonía IP</option>
+                    <option value="10">Tabletas Digitadoras</option>
+                    <option value="11">Servidores</option>
+                    <option value="12">Redes</option>
+                    <option value="13">Impresoras</option>
+                    <option value="14">Proyectores</option>
+                    <option value="15">UPS</option>
+                    <option value="16">Accesorios</option>
+                </select>
+                <button type="submit" class="btn btn-default btn-search" value="@T("Search.Button")"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+                @Html.Widget("searchbox_before_search_button")
+                @*<input type="submit" class="button-1 search-box-button" value="@T("Search.Button")" />*@
     if (Model.SearchTermMinimumLength > 0)
     {
         <script type="text/javascript">
@@ -23,16 +49,16 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#small-searchterms').autocomplete({
-                            delay: 500,
-                            minLength: @(Model.SearchTermMinimumLength.ToString()),
-                            source: '@(Url.RouteUrl("ProductSearchAutoComplete"))',
-                            appendTo: '.search-box',
-                            select: function(event, ui) {
-                                $("#small-searchterms").val(ui.item.label);
-                                setLocation(ui.item.producturl);
-                                return false;
-                            }
-                        })
+                        delay: 500,
+                        minLength: @(Model.SearchTermMinimumLength.ToString()),
+                        source: '@(Url.RouteUrl("ProductSearchAutoComplete"))',
+                        appendTo: '.search-box',
+                        select: function(event, ui) {
+                            $("#small-searchterms").val(ui.item.label);
+                            setLocation(ui.item.producturl);
+                            return false;
+                        }
+                    })
                         .data("ui-autocomplete")._renderItem = function(ul, item) {
                             var t = item.label;
                             //html encode

@@ -14,14 +14,14 @@
         </div>
     </div>
     <div class="header-lower">
-        <div class="header-logo">
-            @Html.Action("Logo", "Common")
+            <div class="header-logo">
+                @Html.Action("Logo", "Common")
+            </div>
+            <div class="search-box store-search-box">
+                @Html.Action("SearchBox", "Catalog")
+            </div>
         </div>
-        <div class="search-box store-search-box">
-            @Html.Action("SearchBox", "Catalog")
-        </div>
-    </div>
-</div>*@
+    </div>*@
 @{
     Html.AddCssFileParts("~/Scripts/css/font-awesome.css");
     Html.AddCssFileParts("~/Scripts/css/bootstrap-select.css");
@@ -63,7 +63,9 @@
                 <ul class="list-inline pull-right">
                     @*<li class="hidden-xs"><a href="wishlist.html"><i class="fa fa-heart"></i> Favoritos (3)</a></li>
                     <li class="hidden-xs"><a href="compare.html"><i class="fa fa-align-left"></i> Compare (4)</a></li>*@
-                    <li>
+                    @Html.Action("HeaderLinks", "Common")
+                    @Html.Action("FlyoutShoppingCart", "ShoppingCart")
+                    @*<li>
                         <div class="dropdown">
                             <button class="btn dropdown-toggle" type="button" id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Login <span class="caret"></span>
@@ -88,7 +90,7 @@
                                 </form>
                             </div>
                         </div>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
@@ -104,6 +106,9 @@
                 <a href="@Url.Action("Index", "Home")"><img alt="Logo" src="~/Scripts/images/logo-teal.png" class="img-responsive" data-text-logo="Mimity Online Shop" /></a>
             </div>
             <div class="col-sm-8 col-md-6 search-box m-t-2">
+                @Html.Action("SearchBox", "Catalog")
+            </div>
+            @*<div class="col-sm-8 col-md-6 search-box m-t-2">
                 <div class="input-group">
                     <input type="text" class="form-control search-input" aria-label="Buscar..." placeholder="Buscar..." autocomplete="off">
                     <div class="input-group-btn">
@@ -129,7 +134,7 @@
                         <button type="button" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="col-sm-4 col-md-3 cart-btn hidden-xs m-t-2">
                 <button type="button" class="btn btn-default dropdown-toggle" id="dropdown-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-shopping-cart"></i> Carrito de compras : 4 productos <i class="fa fa-caret-down"></i>
