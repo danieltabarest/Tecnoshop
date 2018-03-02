@@ -1,5 +1,4 @@
-﻿
-@*<div class="header">
+﻿@*<div class="header">
     @Html.Widget("header")
     <div class="header-upper">
         <div class="header-selectors-wrapper">
@@ -38,7 +37,7 @@
     Html.AddScriptParts("~/Scripts/js/bootstrap-toolkit.js");
     Html.AddScriptParts("~/Scripts/js/mimity.js");
 }
- 
+
 <!-- Top Header -->
 <div class="top-header">
     <div class="container">
@@ -46,95 +45,95 @@
             <div class="col-xs-12">
                 <ul class="list-inline pull-left">
                     @*<li>
-                        <select class="selectpicker" data-width="95px" data-style="btn-default">
-                            <option value="English" data-content="<img alt='English' src='~/Scripts/images/en.jpg'> English">English</option>
-                            <option value="French" data-content="<img alt='French' src='~/Scripts/images/fr.jpg'> French">French</option>
-                        </select>
-                    </li>
-                    <li>
-                        <select class="selectpicker" data-width="70px" data-style="btn-default">
-                            <option value="USD">$ USD</option>
-                            <option value="EUR">€ EUR</option>
-                        </select>
-                    </li>*@
+                            <select class="selectpicker" data-width="95px" data-style="btn-default">
+                                <option value="English" data-content="<img alt='English' src='~/Scripts/images/en.jpg'> English">English</option>
+                                <option value="French" data-content="<img alt='French' src='~/Scripts/images/fr.jpg'> French">French</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="selectpicker" data-width="70px" data-style="btn-default">
+                                <option value="USD">$ USD</option>
+                                <option value="EUR">€ EUR</option>
+                            </select>
+                        </li>*@
                     <li class="hidden-xs"><a href="#"><i class="fa fa-phone"></i> +57 319 355 4837</a></li>
                     <li class="hidden-xs"><a href="tecnoshopandservice@gmail.com"><i class="fa fa-envelope"></i> tecnoshopandservice@gmail.com</a></li>
                 </ul>
                 <ul class="list-inline pull-right">
                     @*<li class="hidden-xs"><a href="wishlist.html"><i class="fa fa-heart"></i> Favoritos (3)</a></li>
-                    <li class="hidden-xs"><a href="compare.html"><i class="fa fa-align-left"></i> Compare (4)</a></li>*@
+                        <li class="hidden-xs"><a href="compare.html"><i class="fa fa-align-left"></i> Compare (4)</a></li>*@
                     @Html.Action("HeaderLinks", "Common")
                     @Html.Action("FlyoutShoppingCart", "ShoppingCart")
                     @*<li>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Login <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-login" aria-labelledby="dropdownLogin" data-dropdown-in="zoomIn" data-dropdown-out="fadeOut">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"><span> Remember me</span>
-                                        </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-right"></i> Login</button>
-                                    <a class="btn btn-default btn-sm pull-right" href="register.html" role="button">I Want to Register</a>
-                                </form>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Login <span class="caret"></span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-login" aria-labelledby="dropdownLogin" data-dropdown-in="zoomIn" data-dropdown-out="fadeOut">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" placeholder="Username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" placeholder="Password">
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"><span> Remember me</span>
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-right"></i> Login</button>
+                                        <a class="btn btn-default btn-sm pull-right" href="register.html" role="button">I Want to Register</a>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </li>*@
+                        </li>*@
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <!-- End Top Header -->
-
 <!-- Middle Header -->
 <div class="middle-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 logo">
+            <div class="col-md-3">
+                @*<div class="col-md-3 logo">*@
                 <a href="@Url.Action("Index", "Home")"><img alt="Logo" src="~/Scripts/images/logo-teal.png" class="img-responsive" data-text-logo="Mimity Online Shop" /></a>
             </div>
             <div class="col-sm-8 col-md-6 search-box m-t-2">
                 @Html.Action("SearchBox", "Catalog")
             </div>
             @*<div class="col-sm-8 col-md-6 search-box m-t-2">
-                <div class="input-group">
-                    <input type="text" class="form-control search-input" aria-label="Buscar..." placeholder="Buscar..." autocomplete="off">
-                    <div class="input-group-btn">
-                        <select class="selectpicker hidden-xs" data-width="150px">
-                            <option value="0">Categories</option>
-                            <option value="1">Portátiles</option>
-                            <option value="2">Todo en uno</option>
-                            <option value="3">PC de Escritorio</option>
-                            <option value="4">Tablets</option>
-                            <option value="5">Celulares</option>
-                            <option value="6">Monitores</option>
-                            <option value="7">Televisores</option>
-                            <option value="8">CCTV</option>
-                            <option value="9">Telefonía IP</option>
-                            <option value="10">Tabletas Digitadoras</option>
-                            <option value="11">Servidores</option>
-                            <option value="12">Redes</option>
-                            <option value="13">Impresoras</option>
-                            <option value="14">Proyectores</option>
-                            <option value="15">UPS</option>
-                            <option value="16">Accesorios</option>
-                        </select>
-                        <button type="button" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" aria-label="Buscar..." placeholder="Buscar..." autocomplete="off">
+                        <div class="input-group-btn">
+                            <select class="selectpicker hidden-xs" data-width="150px">
+                                <option value="0">Categories</option>
+                                <option value="1">Portátiles</option>
+                                <option value="2">Todo en uno</option>
+                                <option value="3">PC de Escritorio</option>
+                                <option value="4">Tablets</option>
+                                <option value="5">Celulares</option>
+                                <option value="6">Monitores</option>
+                                <option value="7">Televisores</option>
+                                <option value="8">CCTV</option>
+                                <option value="9">Telefonía IP</option>
+                                <option value="10">Tabletas Digitadoras</option>
+                                <option value="11">Servidores</option>
+                                <option value="12">Redes</option>
+                                <option value="13">Impresoras</option>
+                                <option value="14">Proyectores</option>
+                                <option value="15">UPS</option>
+                                <option value="16">Accesorios</option>
+                            </select>
+                            <button type="button" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
+                        </div>
                     </div>
-                </div>
-            </div>*@
+                </div>*@
             <div class="col-sm-4 col-md-3 cart-btn hidden-xs m-t-2">
                 <button type="button" class="btn btn-default dropdown-toggle" id="dropdown-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-shopping-cart"></i> Carrito de compras : 4 productos <i class="fa fa-caret-down"></i>
@@ -193,8 +192,7 @@
     </div>
 </div>
 <!-- End Middle Header -->
-
-   <!-- Navigation Bar -->
+<!-- Navigation Bar -->
 <nav class="navbar navbar-default shadow-navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -211,9 +209,11 @@
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
-                <li><a href="@Url.Action("HomeProduct", "Product")"><span>Productos</span></a>
-                </li><li><a href="@Url.Action("Cart", "ShoppingCart")">Carrito de Compras</a></li>
-                <li><a href="@Url.Action("CheckoutProgress", "Checkout")" > Verificar Compra</a></li>
+                <li>
+                    <a href="@Url.Action("HomeProduct", "Product")"><span>Productos</span></a>
+                </li>
+                <li><a href="@Url.Action("Cart", "ShoppingCart")">Carrito de Compras</a></li>
+                <li><a href="@Url.Action("CheckoutProgress", "Checkout")"> Verificar Compra</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Pages <span class="caret"></span>
@@ -321,8 +321,7 @@
     </div>
 </nav>
 <!-- End Navigation Bar -->
-
-     <!-- Full Slider -->
+<!-- Full Slider -->
 <div class="container-fluid">
     <div class="row">
         <div class="owl-carousel owl-theme home-slider">

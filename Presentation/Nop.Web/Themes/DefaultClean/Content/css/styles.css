@@ -250,7 +250,7 @@ label, label + * {
 	margin: 0 0 15px;
 	text-align: center;
 	white-space: nowrap; /*fix for 'required' elements*/
-    font-size: 0;
+    /*font-size: 0;*/
 }
 .inputs:after {
 	content: "";

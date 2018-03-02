@@ -6086,6 +6086,7 @@ pre {
 }
 .inputs {
 	text-align: right;
+    font-size:medium;
 }
 .inputs label {
 	display: inline-block;
