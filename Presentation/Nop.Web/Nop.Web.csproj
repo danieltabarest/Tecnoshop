@@ -1600,6 +1600,7 @@
     <Content Include="Views\Product\HomeProduct.cshtml" />
     <Content Include="Views\Common\AboutBussiness.cshtml" />
     <Content Include="Views\Common\TermsandConditions.cshtml" />
+    <Content Include="Views\Product\ProductSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />
