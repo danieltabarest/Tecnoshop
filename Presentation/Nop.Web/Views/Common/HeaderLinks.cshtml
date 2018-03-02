@@ -5,12 +5,13 @@
         @*@Html.Widget("header_links_before")*@
         @if (Model.IsAuthenticated)
         {
-            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account" style="color:white">@T("Account.MyAccount")@*@Model.CustomerName*@</a></li>
+            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account" style="color:white">Mi cuenta</a></li>
+            @*<li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account" style="color:white">@T("Account.MyAccount")</a></li>*@
             <li><a href="@Url.RouteUrl("Logout")" class="ico-logout" style="color:white">@T("Account.Logout")</a></li>
         }
         else
         {
-            <li><a href="@Url.RouteUrl("Register")" class="ico-register" style="color:white">@T("Account.Register")</a></li>
+            <li><a href="@Url.RouteUrl("Register")" class="ico-register" style="color:white">Registrarse</a></li>
             <li><a href="@Url.RouteUrl("Login")" class="ico-login" style="color:white">@T("Account.Login")</a></li>
         }
         @if (Model.AllowPrivateMessages)
@@ -35,7 +36,7 @@
         {
             <li id="topcartlink" style="background-color:#009688">
                 <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart" >
-                    <span class="cart-label"  style="color:white">@T("ShoppingCart")</span>
+                    <span class="cart-label"  style="color:white">Carrito de compras</span>
                     <span class="cart-qty"  style="color:white">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
                 </a>
             </li>

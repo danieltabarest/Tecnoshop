@@ -41,8 +41,32 @@
 }
 
 <div class="page home-page">
+
+    <!-- Full Slider -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="owl-carousel owl-theme home-slider">
+                <div class="item">
+                    <a href="@Url.Action("HomeProduct", "Product")" class="hidden-xs"><img src="~/Scripts/images/demo/slide-1-full.jpg" alt="Slider"></a>
+                    <a href="@Url.Action("HomeProduct", "Product")" class="visible-xs"><img src="~/Scripts/images/demo/slide-1.jpg" alt="Slider"></a>
+                </div>
+                <div class="item">
+                    <a href="@Url.Action("HomeProduct", "Product")" class="hidden-xs"><img src="~/Scripts/images/demo/slide-2-full.jpg" alt="Slider"></a>
+                    <a href="@Url.Action("HomeProduct", "Product")" class="visible-xs"><img src="~/Scripts/images/demo/slide-2.jpg" alt="Slider"></a>
+                </div>
+                <div class="item">
+                    <a href="@Url.Action("HomeProduct", "Product")" class="hidden-xs"><img src="~/Scripts/images/demo/slide-3-full.jpg" alt="Slider"></a>
+                    <a href="@Url.Action("HomeProduct", "Product")" class="visible-xs"><img src="~/Scripts/images/demo/slide-3.jpg" alt="Slider"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Full Slider -->
+
+
     <div class="page-body">
 
+      
         <!-- Main Content -->
         @*<div class="container m-t-2">*@
         <div>
