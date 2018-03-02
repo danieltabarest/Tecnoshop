@@ -92,13 +92,37 @@
                 <img src="~/Scripts/images/payment-4.png" alt="Payment-4">
                 <img src="~/Scripts/images/payment-5.png" alt="Payment-5">
             </div>
+            
+
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Mi cuenta</span></div>
-                <ul>
+                @*<ul>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Orders</a></li>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Vouchers</a></li>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Points</a></li>
                     <li><i class="fa fa-angle-double-right"></i> <a href="#">Logout</a></li>
+                </ul>*@
+
+                <ul class="list">
+                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
+                    @if (Model.ShoppingCartEnabled)
+                    {
+                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
+                    }
+                    @if (Model.WishlistEnabled)
+                    {
+                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
+                    }
+                    @if (Model.AllowCustomersToApplyForVendorAccount)
+                    {
+                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
+                    }
+                    @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+                    {
+                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+                    }
                 </ul>
             </div>
         </div>
