@@ -895,7 +895,7 @@ label, label + * {
 
 .footer {
 	background-color: #eee;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 .footer-upper {
@@ -6345,7 +6345,6 @@ pre {
 	margin: 0;
 }
 .follow-us {
-	float: right;
 	width: 300px !important;
 	margin: 0;
 	text-align: left;

@@ -98,16 +98,12 @@
                 <div class="title-footer"><span>Mi cuenta</span></div>
 
                 <ul class="list">
-                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
-                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
+                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerInfo")">Mi cuenta</a></li>
+                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerOrders")">Ordenes</a></li>
+                    <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("CustomerAddresses")">Dirección Cliente</a></li>
                     @if (Model.ShoppingCartEnabled)
                     {
-                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a></li>
-                    }
-                    @if (Model.WishlistEnabled)
-                    {
-                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></li>
+                        <li><i class="fa fa-angle-double-right"></i><a href="@Url.RouteUrl("ShoppingCart")">Carrito de compras</a></li>
                     }
                     @if (Model.AllowCustomersToApplyForVendorAccount)
                     {
