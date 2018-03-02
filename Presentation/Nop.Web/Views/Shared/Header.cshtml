@@ -95,33 +95,7 @@
             <div class="col-sm-8 col-md-6 search-box m-t-2">
                 @Html.Action("SearchBox", "Catalog")
             </div>
-            @*<div class="col-sm-8 col-md-6 search-box m-t-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control search-input" aria-label="Buscar..." placeholder="Buscar..." autocomplete="off">
-                        <div class="input-group-btn">
-                            <select class="selectpicker hidden-xs" data-width="150px">
-                                <option value="0">Categories</option>
-                                <option value="1">Portátiles</option>
-                                <option value="2">Todo en uno</option>
-                                <option value="3">PC de Escritorio</option>
-                                <option value="4">Tablets</option>
-                                <option value="5">Celulares</option>
-                                <option value="6">Monitores</option>
-                                <option value="7">Televisores</option>
-                                <option value="8">CCTV</option>
-                                <option value="9">Telefonía IP</option>
-                                <option value="10">Tabletas Digitadoras</option>
-                                <option value="11">Servidores</option>
-                                <option value="12">Redes</option>
-                                <option value="13">Impresoras</option>
-                                <option value="14">Proyectores</option>
-                                <option value="15">UPS</option>
-                                <option value="16">Accesorios</option>
-                            </select>
-                            <button type="button" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>*@
+           
             <div class="col-sm-4 col-md-3 cart-btn hidden-xs m-t-2">
                 <button type="button" class="btn btn-default dropdown-toggle" id="dropdown-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-shopping-cart"></i> Carrito de compras : 4 productos <i class="fa fa-caret-down"></i>
@@ -242,10 +216,9 @@
                         <li class="dropdown dropdown-submenu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta</a>
                             <ul class="dropdown-menu">
-                                <li><a href="account-profile.html">My Profile</a></li>
-                                <li><a href="account-address.html">My Address</a></li>
-                                <li><a href="account-history.html">Order History</a></li>
-                                <li><a href="account-password.html">Change Password</a></li>
+                                <li><a href="@Url.RouteUrl("CustomerInfo")">My Profile</a></li>
+                                <li><a href="@Url.RouteUrl("CustomerAddresses")">My Address</a></li>
+                                <li><a href="@Url.RouteUrl("CustomerOrders")">Order History</a></li>
                             </ul>
                         </li>
                     </ul>
