@@ -230,7 +230,7 @@ namespace Nop.Services.Installation
             {
                 new Store
                 {
-                    Name = "YNuestra tienda name",
+                    Name = "TecnoShop",
                     Url = storeUrl,
                     SslEnabled = false,
                     Hosts = "yourstore.com,www.yourstore.com",

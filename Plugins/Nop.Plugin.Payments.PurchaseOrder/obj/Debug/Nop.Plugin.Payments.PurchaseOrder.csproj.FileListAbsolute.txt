@@ -36,3 +36,15 @@ C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Presentation\Nop.Web\Plugins\Pay
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csproj.App.config
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.dll
 C:\Users\Admin\Source\Repos\Tecnoshop\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.pdb
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Views\Configure.cshtml
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Views\PaymentInfo.cshtml
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\web.config
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Description.txt
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\logo.jpg
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.dll.config
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.dll
+C:\Users\Usuario\Source\Repos\Tecnoshop\Presentation\Nop.Web\Plugins\Payments.PurchaseOrder\Nop.Plugin.Payments.PurchaseOrder.pdb
+C:\Users\Usuario\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csproj.App.config
+C:\Users\Usuario\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.dll
+C:\Users\Usuario\Source\Repos\Tecnoshop\Plugins\Nop.Plugin.Payments.PurchaseOrder\obj\Debug\Nop.Plugin.Payments.PurchaseOrder.pdb

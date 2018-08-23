@@ -16132,7 +16132,7 @@
     <Value>to</Value>
   </LocaleResource>
   <LocaleResource Name="Search.SearchBox.Tooltip">
-    <Value>Search store</Value>
+    <Value>Buscar Producto</Value>
   </LocaleResource>
   <LocaleResource Name="Search.SearchInDescriptions">
     <Value>Search In product descriptions</Value>
@@ -16471,7 +16471,7 @@
     <Value>Sitemap</Value>
   </LocaleResource>
   <LocaleResource Name="Sitemap.Categories">
-    <Value>Categories</Value>
+    <Value>Categorías</Value>
   </LocaleResource>
   <LocaleResource Name="Sitemap.Description">
     <Value>View the sitemap for this website below, with links to each of the pages and brief descriptions of what to find in each section</Value>
