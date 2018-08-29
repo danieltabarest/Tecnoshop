@@ -821,6 +821,7 @@
     <Content Include="Scripts\fonts\robotodraft\Thin\RobotoDraft-Thin.ttf" />
     <Content Include="Scripts\fonts\robotodraft\Thin\RobotoDraft-Thin.woff" />
     <Content Include="Scripts\fonts\robotodraft\Thin\RobotoDraft-Thin.woff2" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\folderpublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fineuploader\iframe.xss.response-4.2.2.js" />
