@@ -137,9 +137,35 @@ namespace Nop.Web.Controllers
             return PartialView();
         }
 
+        public virtual ActionResult MisionyVision()
+        {
+            return PartialView();
+        }
+        public virtual ActionResult QuienesSomos()
+        {
+            return PartialView();
+        }
+        public virtual ActionResult Preguntasfrecuentes()
+        {
+            return PartialView();
+        }
+        public virtual ActionResult Politicasdeprivacidad()
+        {
+            return PartialView();
+        }
+        public virtual ActionResult Formasdeenvio()
+        {
+            return PartialView();
+        }
+        public virtual ActionResult Gastosdeenvio()
+        {
+            return PartialView();
+        }
+        
 
-        //language
-        [ChildActionOnly]
+
+       //language
+       [ChildActionOnly]
         public virtual ActionResult LanguageSelector()
         {
             var model = _commonModelFactory.PrepareLanguageSelectorModel();

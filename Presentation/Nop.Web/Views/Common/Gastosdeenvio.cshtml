@@ -1,0 +1,167 @@
+﻿.@{
+    Layout = "~/Views/Shared/_Root.Head.cshtml";
+}
+
+@Html.Widget("body_start_html_tag_after")
+@Html.Partial("_Notifications")
+@Html.Action("JavaScriptDisabledWarning", "Common")
+@Html.Partial("OldInternetExplorerWarning")
+
+<div class="master-wrapper-page">
+    @Html.Action("AdminHeaderLinks", "Common")
+    @Html.Partial("Header")
+    <script type="text/javascript">
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+    </script>
+  
+    <div class="master-wrapper-content">
+        @Html.Widget("content_before")
+        
+        <div class="master-column-wrapper">
+            <!-- Content-->
+            <!-- Breadcrumbs -->
+            <div class="breadcrumb-container">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li class="active">Gastos de Envío</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Breadcrumbs -->
+            <!-- Main Content -->
+            <div class="container m-t-3">
+                <div class="row">
+
+                    <!-- Content -->
+                    <div class="col-sm-8">
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'>
+                            <b style='mso-bidi-font-weight:normal'>
+                                <span style='font-family:"Arial",sans-serif'>GASTOS DE ENVÍO<o:p></o:p></span>
+                            </b>
+                        </p>
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'>
+                            <b style='mso-bidi-font-weight:normal'>
+                                <span style='font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span>
+                            </b>
+                        </p>
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'>
+                            <span lang=ES style='font-size:12.0pt;font-family:
+"Arial",sans-serif;mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+ES;mso-fareast-language:ES-CO'>
+                                TECNO SHOP AND SERVICES informará al cliente por
+                                medio de un email la confirmación de orden de compra. En esta confirmación TECNO
+                                SHOP AND SERVICES se comunicara con el cliente preguntando cual es el método de
+                                envío que desea el cliente y la respectiva empresa de transporte preferido. <o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'>
+                            <span lang=ES style='font-size:12.0pt;font-family:
+"Arial",sans-serif;mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+ES;mso-fareast-language:ES-CO'>
+                                TECNO SHOP AND SERVICES NO SE HACE RESPONSABLE
+                                sobre el manejo que se le dé al producto sobre su transporte.<o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'>
+                            <span lang=ES style='font-size:12.0pt;font-family:
+"Arial",sans-serif;mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+ES;mso-fareast-language:ES-CO'>
+                                Si esta empresa de transporte tiene el servicio
+                                contra-entrega se despachara el producto durante los próximos tres (3) días
+                                hábiles posteriores al envío de email de confirmación de orden de compra en
+                                donde el cliente asume un contrato aparte con la empresa de transporte.<o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'>
+                            <span lang=ES style='font-size:12.0pt;font-family:
+"Arial",sans-serif;mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+ES;mso-fareast-language:ES-CO'>
+                                Si la empresa de transporte no tiene el servicio
+                                contra-entrega se le informará al cliente y TECNO SHOP AND SERVICES escogerá
+                                una empresa para el transporte del producto, cotizará el envío y dicho valor
+                                deberá ser consignado por el cliente aparte del valor ya consignado por el
+                                producto. Después de verificar dicha consignación se despachara el producto
+                                durante los próximos tres (3) días hábiles.<o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='margin-bottom:7.5pt;text-align:justify;line-height:
+normal;background:white'><span style='font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></p>
+
+                        <p class=MsoNormal style='line-height:normal'>
+                            <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>
+                                Contactos (Esta se cambiaría por <span class=SpellE>Categories</span>)<o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='line-height:normal'>
+                            <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>
+                                Ventas:<span style='mso-tab-count:2'>                      </span>servicio_clientes@tecnoshopandservices.com
+                                <o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='line-height:normal'>
+                            <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>
+                                Servicio al cliente:<span style='mso-tab-count:
+1'></span>ventas@tecnoshopandservices.com<o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='line-height:normal'>
+                            <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>
+                                Pagos:<span style='mso-tab-count:2'>                       </span>pagos@tecnoshopandservices.com
+                                <o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='line-height:normal'>
+                            <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>
+                                Gerencia:<span style='mso-tab-count:2'>                  </span>gerencia@tecnoshopandservices.com
+                                <o:p></o:p>
+                            </span>
+                        </p>
+
+                        <p class=MsoNormal style='line-height:normal'>
+                            <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span>
+                        </p>
+
+
+
+                    </div>
+                    <!-- End Content -->
+
+
+
+                </div>
+            </div>
+            <!-- End Main Content -->
+            <!-- END Content-->
+        </div>
+        @Html.Widget("content_after")
+    </div>
+    @Html.Action("Footer", "Common")
+</div>
+@Html.Action("EuCookieLaw", "Common")
+@Html.Widget("body_end_html_tag_before")
+
+

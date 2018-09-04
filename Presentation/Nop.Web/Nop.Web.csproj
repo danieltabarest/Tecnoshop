@@ -1604,6 +1604,12 @@
     <Content Include="Views\Common\TermsandConditions.cshtml" />
     <Content Include="Views\Product\ProductSummary.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
+    <Content Include="Views\Common\MisionyVision.cshtml" />
+    <Content Include="Views\Common\Gastosdeenvio.cshtml" />
+    <Content Include="Views\Common\Preguntasfrecuentes.cshtml" />
+    <Content Include="Views\Common\Politicasdeprivacidad.cshtml" />
+    <Content Include="Views\Common\Formasdeenvio.cshtml" />
+    <Content Include="Views\Common\QuienesSomos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />

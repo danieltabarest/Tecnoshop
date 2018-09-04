@@ -1,0 +1,90 @@
+﻿.@{
+    Layout = "~/Views/Shared/_Root.Head.cshtml";
+}
+
+@Html.Widget("body_start_html_tag_after")
+@Html.Partial("_Notifications")
+@Html.Action("JavaScriptDisabledWarning", "Common")
+@Html.Partial("OldInternetExplorerWarning")
+
+<div class="master-wrapper-page">
+    @Html.Action("AdminHeaderLinks", "Common")
+    @Html.Partial("Header")
+    <script type="text/javascript">
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+    </script>
+  
+    <div class="master-wrapper-content">
+        @Html.Widget("content_before")
+        
+        <div class="master-column-wrapper">
+            <!-- Content-->
+            <!-- Breadcrumbs -->
+            <div class="breadcrumb-container">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li class="active">Quienes Somos</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Breadcrumbs -->
+            <!-- Main Content -->
+            <div class="container m-t-3">
+                <div class="row">
+
+                    <!-- Content -->
+                    <div class="col-sm-8">
+                        <div>
+
+                            <p class=MsoNormal style='line-height:normal'>
+                                <b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span></b>
+                            </p>
+
+                            <p class=MsoNormal style='line-height:normal'>
+                                <b style='mso-bidi-font-weight:
+normal'>
+                                    <span style='font-size:12.0pt;font-family:"Arial",sans-serif'>
+                                        ¿Quiénes
+                                        somos?<o:p></o:p>
+                                    </span>
+                                </b>
+                            </p>
+
+                            <p class=MsoNormal style='line-height:normal'>
+                                <span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'><o:p>&nbsp;</o:p></span>
+                            </p>
+
+                            <p class=MsoNormal style='text-align:justify;line-height:normal'>
+                                <span style='font-size:12.0pt;font-family:"Arial",sans-serif'>
+                                    TECNO SHOP AND SERVICE
+                                    es una empresa dedicada a los servicios y distribución de tecnología orientada
+                                    a la educación, a la industria, al entretenimiento y desarrollos electrónicos
+                                    que suplan las necesidades de nuestros clientes. Ofreciendo una amplia gama de
+                                    equipos de cómputo y sus accesorios, circuitos integrados, kits para la
+                                    enseñanza, entre otros.<o:p></o:p>
+                                </span>
+                            </p>
+                        </div>
+
+
+                    </div>
+                    <!-- End Content -->
+
+
+
+                </div>
+            </div>
+            <!-- End Main Content -->
+            <!-- END Content-->
+        </div>
+        @Html.Widget("content_after")
+    </div>
+    @Html.Action("Footer", "Common")
+</div>
+@Html.Action("EuCookieLaw", "Common")
+@Html.Widget("body_end_html_tag_before")
+
+

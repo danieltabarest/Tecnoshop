@@ -26,18 +26,22 @@
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Acerca de nosotros</span></div>
                 <ul>
-                    <li>
-                        Estamos ubicados en Medellín, ofrecemos productos... <a href="@Url.Action("AboutBussiness", "Common")">Read More</a>
-                    </li>
+                    @*<li>
+            Estamos ubicados en Medellín, ofrecemos productos... <a href="@Url.Action("AboutBussiness", "Common")">Read More</a>
+        </li>*@
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("MisionyVision", "Common")">Misión y Visión</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("QuienesSomos", "Common")">Quienes Somos</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("Gastosdeenvio", "Common")">Gastos de Envío </a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "Common")">Item </a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Información</span></div>
                 <ul>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "Common")">Preguntas frecuentes</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "Common")">Políticas de privacidad</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("Preguntasfrecuentes", "Common")">Preguntas frecuentes</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("Politicasdeprivacidad", "Common")">Políticas de privacidad</a></li>
                     <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "Common")">Terminos y Condiciones</a></li>
-                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("TermsandConditions", "Common")">Formas de envío</a></li>
+                    <li><i class="fa fa-angle-double-right"></i> <a href="@Url.Action("Formasdeenvio", "Common")">Formas de envío</a></li>
                 </ul>
             </div>
             <div class="clearfix visible-sm-block"></div>
@@ -52,7 +56,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Newsletter</span></div>
-                <p>Newsletter</p>
+                <p>Quieres conocer nuestros futuros productos y promociones. Lo invitamos a inscribir tu correo para recibir esta y más información.</p>
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Correo Electrónico">
                     <span class="input-group-btn">
@@ -66,14 +70,14 @@
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Nuestra tienda</span></div>
                 <ul class="footer-icon">
-                    <li><span><i class="fa fa-map-marker"></i></span> Medellín - Antioquía</li>
+                    <li><span><i class="fa fa-map-marker"></i></span> Bello - Antioquía</li>
                     <li><span><i class="fa fa-phone"></i></span> +57 319 355 4837</li>
                     <li><span><i class="fa fa-envelope"></i></span> <a href="mailto:tecnoshopandservice@gmail.com">tecnoshopandservice@gmail.com</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Síguenos</span></div>
-                <p>Redes Sociales</p>
+                <p>Conéctese también con nuestras redes sociales</p>
                 <ul class="follow-us">
                     <li><a href="https://www.facebook.com/tecnoshopandservices"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="https://twitter.com/TecnoShopandSer"><i class="fa fa-twitter"></i></a></li>
@@ -85,7 +89,7 @@
             <div class="clearfix visible-sm-block"></div>
             <div class="col-md-3 col-sm-6">
                 <div class="title-footer"><span>Formas de pago</span></div>
-                <p>Los productos  y  servicios ofrecidos de bienes o sitios son los siguientes : <a href="@Url.Action("TermsandConditions", "Common")">Read More</a></</p>
+                <p>Ofrecemos diferentes formas de pago, consúltanos para más información : <a href="@Url.Action("Formasdeenvio", "Common")">Read More</a></</p>
                 <img src="~/Scripts/images/payment-1.png" alt="Payment-1">
                 <img src="~/Scripts/images/payment-2.png" alt="Payment-2">
                 <img src="~/Scripts/images/payment-3.png" alt="Payment-3">
